@@ -24,3 +24,9 @@ npm run test
 ```
 npm run lint
 ```
+###Install routes 
+npm install vue-router
+
+###Insatll vuelidator
+npm install vue-validator
+

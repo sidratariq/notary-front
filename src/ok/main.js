@@ -6,8 +6,8 @@
   import 'bootstrap/dist/css/bootstrap.min.css'
   import Vuelidate from 'vuelidate'
   import vueSignature from "vue-signature"
-  // import {store} from './store/store'
-  // import html2canvas from 'html2canvas';
+  import {store} from './store/store'
+  import html2canvas from 'html2canvas';
   
 
 
@@ -22,7 +22,7 @@
 
   //Vue-Router import and usage
   Vue.use(VueRouter);
-  // Vue.use(html2canvas);
+  Vue.use(html2canvas);
 
 
 
@@ -40,7 +40,7 @@
 
   new Vue({
     router,
-
+    store,
     render: h => h(App),
   }).$mount('#app')
 
