@@ -5,13 +5,15 @@
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" >
                       
                     </div>
+
                     <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12" >
-                      
+
                       <img src="../../assets/icons/esnotary.png"  >
                       <!-- <img  v-if="!flag" src="../../assets/icons/ednotary.png" width="170" height="72" alt=""> -->
+                      
                       <h4>Please log in to your account</h4>
-                        
-                      <login v-if="flag" :flag="flag" @gotclicked="flag = $event"> </login>                  
+
+                      <login v-if="flag" :flag="flag" @gotclicked="flag = $event" @childemail="email = $event"> </login>                  
       
                     <p>
                     </p>
@@ -29,7 +31,11 @@
                       <!-- asdkjbhbalhbafh -->
                         <form class="btn-set">
                           <div class="form-group" > 
-                            <input type="password" v-model="password" class="form-control" style="width:90%"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                            <input type="password" v-model="password" @blur="$v.password.$touch()" class="form-control" style="width:90%"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
+                            <!-- <input class="form-control" type="password" placeholder="Enter password"> -->
+                            <small class="UI-info" v-if="!$v.password.minLen" :class="{invalid:true}">The password must be 6 character long</small>
+
+
                           </div>
                         <button class="bbutton btn-width" @click.prevent="login"> Log IN</button>
                         </form>
@@ -61,9 +67,10 @@
 
               </template> 
 
-  <script>
+    <script>
 
-        // import { required, email,} from "vuelidate/lib/validators";
+        import {required,minLength} from "vuelidate/lib/validators";
+
         import login from "./login.vue"
         import foot_footer from "../footer/footer.vue"
               
@@ -102,10 +109,14 @@
               commingsoon(){
                 this.$router.push('/commingsoon');
               }
-
-            
-
             },
+
+            validations:{
+               password: {
+                   required,
+                   minLen: minLength(6)
+               },
+            }
           
           };
           </script>
@@ -177,5 +188,12 @@
               box-shadow:0 1px 4px rgba(0, 91, 201, 0.3), 0 0 40px rgba(0, 92, 201, 0.1) inset;
 
             }
+
+            .invalid {
+      text-align: left;
+      color: #d03238;
+      font-size: 12px;
+      display: block;
+    }
 
           </style>

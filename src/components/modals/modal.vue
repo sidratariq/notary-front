@@ -35,13 +35,12 @@
                <div class="row">
                <label style="margin-top:2%;" for="initials" class="col-4">Initials</label>
                <input type="text" class="form-control col-8"  v-model="initials" placeholder="Initials" id="initials"> 
-               </div>
-               {{initials}}
-               </div>
 
                </div>
 
                
+                </div>
+                </div>
                 </div>
 
                 
@@ -192,8 +191,6 @@
         }
 
         .modal_title{
-            /* font-size: 18px; */
-            /* line-height: 24px; */
             border-bottom: 1px solid #e9e9e9;
             overflow: hidden;
             padding: 20px 24px;

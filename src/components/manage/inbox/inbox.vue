@@ -159,21 +159,35 @@
                         if(this.status.values=='Need to sign'){
                             return true
                         }
+
+                        return false
                     },
+
+
                     needsign:function(){
                         if(this.status=='Completed'){
                             return true
                         }
+                        return false
+
                     },
+
+
                     iswaiting:function(){
                         if(this.status =='Waiting for others'){
                             return true
                         }
+                        return false
+
                     },
+
+
                     isVoided:function(){
                          if(this.status =='Voided'){
                             return true
                         }
+                        return false
+
                     }
 
                 }

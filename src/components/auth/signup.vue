@@ -29,6 +29,7 @@
 
                                                   </div>
 
+                                                  <!-- email validations -->
                                                   <div class="col-12">  
 
                                                     <input type="email" id="email" 
@@ -40,27 +41,31 @@
                                                          <small v-if="!$v.email.email"  :class="{invalid:true}">Provide a valid email like johndoe@domain.com</small>
                                                   </div>
 
+                                                  <!-- company validation -->
                                                   <div class="col-12">
                                                     <input type="text" @blur="$v.company.$touch()" v-model="company" id="company" class="form-control" placeholder="Company">
                                                     <small v-if="!$v.company.minLen" :class="{invalid: !$v.company.minLen}">Company name must be 3 character long</small>
                                                   </div>
 
+                                                  <!-- phone no validations -->
                                                   <div class="col-12">
                                                     <input type="text" class="form-control" @blur="$v.number.$touch()" v-model="number" placeholder="Phone no">
                                                     <small v-if="!$v.number.minLen" :class="{invalid:true}">Phone number must be 11 digit long</small>
                                                   </div>
 
+                                                  <!-- password validation regex required -->
                                                   <div class="col-12"> 
                                                     <input class="form-control" v-model="password" @blur="$v.password.$touch()" type="password" placeholder="Enter new password">
                                                     <small class="UI-info" v-if="!$v.password.minLen" :class="{invalid:true}">The password must be 6 character long</small>
                                                   </div>
 
+                                                  <!-- confirm password validations -->
                                                   <div class="col-12">
                                                     <input type="password" v-model="confirmPassword" @blur="$v.confirmPassword.$touch()" class="form-control" placeholder="Confirm password">
                                                     <small v-if="!$v.confirmPassword.sameAs && $v.confirmPassword.$invalid" :class="{invalid:true}">The password does not match</small>
-
                                                   </div>
 
+                                                  <!-- terms and condition validation -->
                                                   <div class="col-12 form-check" :class="{termcondition:!$v.terms.$model}" >
                                                     <input type="checkbox" id="terms" v-model="terms" @change="$v.terms.$touch()"   class="form-check-input">Accept Terms and Conditions
                                                   </div>
@@ -107,11 +112,11 @@
       required,
       email,
       numeric,
-      minValue,
+      // minValue,
       minLength,
       sameAs,
-      requiredUnless,
-      helpers,
+      // requiredUnless,
+      // helpers,
       maxLength,
       alpha,
       alphaNum
@@ -132,15 +137,13 @@
           company: "",
           terms:false,
           number:''
-
         };
       },
 
       validations: {
         email: {
           required,
-          email,
-          
+          email,  
         },
 
         password: {
