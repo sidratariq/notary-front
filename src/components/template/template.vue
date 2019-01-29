@@ -9,6 +9,12 @@
                     <AnotherResult></AnotherResult>
                     <hr>
                     <app-counter></app-counter>
+                    
+                    <hr>
+
+                    <anothercounter></anothercounter>
+
+
                 </div>
             </div>
         </div>
@@ -20,6 +26,7 @@
         import UserDetail from './UserDetail.vue';
         import UserEdit from './UserEdit.vue';
         import Counter from './Counter.vue';
+        import anothercounter from './anothercounter.vue'
         import Result from './Result.vue';
         import AnotherResult from './AnotherResult.vue'
 
@@ -46,13 +53,12 @@
                 appUserEdit: UserEdit,
                 appCounter: Counter,
                 appResult: Result,
-                AnotherResult
+                AnotherResult,
+                anothercounter
             }
         }
     </script>
 
     <style scoped>
-        div {
-            /* background-color: lightblue; */
-        }
+       
     </style>
