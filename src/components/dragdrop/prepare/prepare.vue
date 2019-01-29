@@ -33,15 +33,15 @@
             <div class="col-1">
                 <i class="fas fa-ellipsis-v circle float-sm-right foldericon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                  <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >                            
-                                                     <div class="dropdown-menu" style="left:-145px">
-                                                         <div class="row">
-                                                             <div class="col-12">
-                                                                  <a class="dropdown-item date padding" href="#">Rename</a>
-                                                                  <a class="dropdown-item date padding" href="#">View Document</a>
-                                                                  <a class="dropdown-item date padding" href="#">Delete</a>
-                                                             </div>
-                                                         </div>
-                                                     </div>
+                                        <div class="dropdown-menu" style="left:-145px">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                     <a class="dropdown-item date padding" href="#">Rename</a>
+                                                     <a class="dropdown-item date padding" href="#">View Document</a>
+                                                     <a class="dropdown-item date padding" href="#">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
                  </div>
             </div>
 
@@ -59,6 +59,10 @@ export default {
 
 <style scoped>
 
+        *{
+            /* border: 1px solid black; */
+        }
+
         .setback{
             background-color: white;
             border-radius: 2%;
@@ -74,29 +78,36 @@ export default {
             color: #2463d1;
         }
 
-        .set::after{
+        .set::after{    
             content: 'X';
-            position: absolute;
-            bottom: 10px;
-            right: -35px;
-            z-index: 999;
-            color: white;
-            font-weight: bold;
-            font-size: .5em;
-            /* min-width: 20px; */
+            border: 1px solid black;
             background: black;
-            padding: 0.25%;
+            color: white;
+            position: absolute;
+            font-size: .65em;
+            max-width: 20px;
+            max-height: 20px;
+            padding: 3px;
             border-radius:45%;
-            display: block;
-            white-space: nowrap;
-            transform: scale(0);
-            transition:transform ease-out 150ms,
-            bottom ease-out 150ms;
+            font-weight: bold;
+            /* height: 20rem; */
+            /* width: 20rem; */
+            /* bottom: 10px; */
+            /* right: -35px; */
+            /* z-index: 999; */
+            /* font-weight: bold; */
+            /* background: black; */
+            /* padding: 0.25%; */
+            /* display: block; */
+            /* white-space: nowrap; */
+            /* transform: scale(1); */
+            /* transition:transform ease-out 150ms, */
+            /* bottom ease-out 150ms; */
         }
 
         .set:hover::after{
-            transform: scale(1);
-            bottom: 100%;
+            /* transform: scale(1); */
+            /* bottom: 100%; */
         }
 
          .date{

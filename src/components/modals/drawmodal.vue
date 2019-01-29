@@ -130,13 +130,7 @@
         position: absolute;
         right: 4%;
         color: #005cb9;
-            z-index: 999;
+        z-index: 999;
 
       }
-
-
-
-
-
-
       </style>
