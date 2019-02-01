@@ -1,5 +1,6 @@
 <template>
     <div>
+        anothercounter trigger dispatch
         <button class="btn btn-primary" @click="asyncIncrementAction({by:50,duration:500})">Increment</button>
         <button class="btn btn-primary" @click="asyncDecrementAction({by:50,duration:500})">Decrement</button>
     </div>
@@ -18,3 +19,10 @@
         }
     }
 </script>
+
+<style scoped>
+  
+    *{
+        background-color: pink;
+    }
+</style>
