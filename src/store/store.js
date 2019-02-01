@@ -1,5 +1,8 @@
     import Vue from 'vue';
     import Vuex from 'vuex'
+    import counter from './modules/counter.js'
+    import flag from './modules/flag.js'
+    import picupload from './modules/picupload'
 
     Vue.use(Vuex);
 
@@ -10,16 +13,7 @@
             value:0
         },
 
-        getters: {
-
-            doublecounter:state =>{
-                return state.counter * 2;
-                    },
-
-            stringcounter: state =>{
-                return state.counter + "Clicks"
-            },
-            
+        getters: {    
             value:state =>{
                 return state.value
             }
@@ -27,45 +21,24 @@
 
         mutations:{
         
-        increment: (state,payload) =>{
-                state.counter += payload;
-        },
-
-        decrement: (state,payload) =>{
-                state.counter -= payload;
-        },
-
         updatevalue: (state,payload) =>{
             state.value = payload;
         }
-
         },
         
-
         actions:{
-            
-            increment: ({commit},payload) => {
-                commit('increment',payload);
-            },        
-
-            decrement:({commit},payload)=>{
-                commit('decrement',payload);
-            },
+        
             updatevalue:({commit},payload)=>{   
-                    commit('upadatevalue',payload)
-            }
-            ,
-
-            asyncIncrementAction: ({commit},payload)=>{     
-                setTimeout(()=>{commit('increment', payload.by)}
-            ,payload.duration)
+                    commit('updatevalue',payload)
+            },        
             },
-            asyncDecrementAction:({commit},payload)=>{
-                setTimeout(
-                    ()=>{commit('decrement',payload.by)},payload.duration)
-            }
 
-            }
+        modules:{
+            counter,
+            flag,
+            picupload
+        }
+
 
             
 

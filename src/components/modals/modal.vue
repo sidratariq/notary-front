@@ -108,8 +108,7 @@
             methods:{
                 
                 clicked(){
-                    this.showModal= !this.showModal;
-                    this.$emit('gotclicked',this.showModal)
+                    this.$store.dispatch('changeflag')                  
                 },
             },
 

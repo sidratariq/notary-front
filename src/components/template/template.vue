@@ -14,7 +14,10 @@
 
                         <anothercounter></anothercounter>
 
-                        <input type="text" :value="value" @input="updatevalue" >
+                        <hr>
+
+                <!-- @input="updatevalue" -->
+                        <input type="text"   v-model="value" >
                         <p>{{value}}</p>
 
 
@@ -53,17 +56,23 @@
                 },
 
                 methods:{
-                
-                 updatevalue(event){
-                    this.$store.dispatch('updatevalue', event.target.value)
-
-                }
+                    
+                    updatevalue(event){
+                    }
+             
                 },
 
                 computed:{
-                    value(){
-                        return this.$store.getters.value;
-                    }
+                    value:{
+                        get(){
+                          return this.$store.getters.value;
+
+                        },
+                        set(value){
+                        this.$store.dispatch('updatevalue',value)
+
+                        }
+    }
                 }
               
 

@@ -1,16 +1,16 @@
                                         <template>
 
-                                        <div  class="main" :class="{modalavalible:showModal}">
+                                        <div  class="main" :class="{modalavalible:flag}">
                                         
                                         <!-- header  -->
                                         <head_head></head_head>
 
                                              <!--signatures and styles  -->
-                                        <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12"  v-if="showModal" :showModal="showModal" @gotclicked="showModal = $event"></modal>
-
+                                        <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12" v-if="flag" ></modal>
+                                        
 
                                             <!-- user profile change -->
-                                        <uploadphoto v-if="uploadphoto" :uploadphoto="uploadphoto" @gotclicked="uploadphoto = $event" ></uploadphoto>
+                                        <uploadphoto v-if="uploadflag"></uploadphoto>
 
 
 
@@ -18,13 +18,13 @@
                                                 <div class="container-flex" >
                                             
                                                 <!-- unordered list for user image upload and signature upload -->
-                                                <ul class="first" >
+                                                <ul class="first">
                                                     <!-- user image image from server database -->
-                                                    <span  @click="uploadphoto=!uploadphoto" class="OliveReact-Avatar" style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;);"></span>
+                                                    <span  @click="getclick" class="OliveReact-Avatar" style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;);"></span>
                                 
                                                     <li class="signature">
 
-                                                    <div @click="showModal=!showModal" class="signatureChrome signatureChrome-inverse">
+                                                    <div @click="clicked" class="signatureChrome signatureChrome-inverse">
                                                         <span>E-Notarized by:</span>
                                                         <!-- signature image from user choosen from database -->
                                                         <img src="../../assets/icons/signature.gif" class="signatureChrome_signature"  alt="Signature">
@@ -75,10 +75,14 @@
                                         </template>
 
                             <script>
-                                        import head_head from "../header/header.vue";
-                                        import dragdrop from "../dragdrop/dragdrop.vue";
-                                        import modal from "../modals/modal.vue";
-                                        import uploadphoto from "../modals/photoupload.vue"
+                            
+                            import head_head from "../header/header.vue";
+                            import dragdrop from "../dragdrop/dragdrop.vue";
+                            import modal from "../modals/modal.vue";
+                            import uploadphoto from "../modals/photoupload.vue"
+
+                            import {mapActions} from 'vuex'
+
 
 
                             export default {
@@ -87,22 +91,26 @@
                                 quotes: ["Just a Quote to see something"],
                                 maxQuotes: 10,
                                 showModal: false,
-                                uploadphoto:false
+                               
                                 };
                             },
 
                             methods: {
 
-                                newQuote(quote) {
-                                        this.$router.push('/helloworld')
-                                        if (this.quotes.length >= this.maxQuotes) {
-                                        return alert("Please delete Quotes first!");
-                                       }
-                                this.quotes.push(quote);
+                                ...mapActions(
+                                    [
+                                        // 'changeflag'
+                                    ]
+                                ),
+                                
+                                clicked(){
+                                    this.$store.dispatch('changeflag')
+
                                 },
 
-                                deleteQuote(index) {
-                                this.quotes.splice(index, 1);
+                                getclick(){
+                                    this.$store.dispatch('changephoto')
+
                                 },
 
                                 escapeKeyListener: function(evt) {
@@ -127,6 +135,18 @@
                                 
                             },
 
+                            computed:{
+                                
+                                flag(){
+                                    return this.$store.getters.getflag;
+                                },
+
+                                uploadflag(){
+                                    return this.$store.getters.getupload;
+                                }
+
+                            },
+
                             components: {
                                 head_head,
                                 dragdrop,
@@ -137,9 +157,11 @@
                             created() {
                             document.addEventListener('keyup', this.escapeKeyListener);
                             },
+
                             destroyed() {
                             document.removeEventListener('keyup', this.escapeKeyListener);
                             }
+
                             };
                             </script>
 
@@ -147,7 +169,7 @@
                             <style scoped>
                             @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-                            * {
+                            *{
                             position: relative;
                             font-family: "Roboto", sans-serif;
                             box-sizing: border-box;

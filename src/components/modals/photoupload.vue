@@ -65,17 +65,15 @@
                 viewimage:''
               }
             },
-              props:['uploadphoto'],
+             
               methods:{
                   clicked(){
                       this.flag= !this.flag;
-                   
-
                   },
-                  close(){
-                      this.uploadphoto= !this.uploadphoto;
-                      this.$emit('gotclicked',this.uploadphoto);
 
+                  close(){
+                      this.$store.dispatch('changephoto')
+                   
                   },
                   showImage(event){
                       // this.flag= !this.flag;
@@ -92,37 +90,9 @@
                         }
                         reader.readAsDataURL(input.files[0])
                       }
-                     
-
-                      
-
-
-                      // if(event.target.files && event.files[0]){
-                      //   obj = new FileReader();
-                      //   obj.onload= function(data){
-                      //     image = document.getElementById("image");
-                      //     image.src = data.target.result;
-                      //     image.style.display ="block";
-
-                      //   }
-                      //   obj.readAsDataURL(event.files[0]); 
-                      // }
-                      // this.selectedfiles = event.target.files[0]
-                  },
-                  
-
-
-
-
-
-                
-
-            
+                    },            
               },
-              components:{
-               
 
-              }
 
 
               
