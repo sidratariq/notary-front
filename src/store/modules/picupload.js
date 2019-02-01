@@ -1,23 +1,23 @@
-const state ={
-    uploadphoto:false
+const state = {
+    uploadphoto: false
 };
 
 const getters = {
-    getupload:state =>{
+    getupload: state => {
         return state.uploadphoto
     }
 };
 
 const mutations = {
 
-    setupload:state =>{
+    setupload: state => {
         state.uploadphoto = !state.uploadphoto;
         console.log("value of flag is:" + state.uploadphoto)
     }
 }
 
 const actions = {
-    changephoto:({commit})=>{
+    changephoto: ({ commit }) => {
         commit('setupload')
         console.log(state.uploadphoto)
 

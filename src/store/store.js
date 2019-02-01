@@ -3,6 +3,9 @@
     import counter from './modules/counter.js'
     import flag from './modules/flag.js'
     import picupload from './modules/picupload'
+    import * as actions from './actions.js'
+    import * as mutations from './mutations.js'
+    import * as getters from './getters.js'
 
     Vue.use(Vuex);
 
@@ -10,29 +13,13 @@
         
         state:{
             counter:0,
-            value:0
-        },
-
-        getters: {    
-            value:state =>{
-                return state.value
-            }
-        },
-
-        mutations:{
-        
-        updatevalue: (state,payload) =>{
-            state.value = payload;
-        }
+            value:0,
+            username:''
         },
         
-        actions:{
-        
-            updatevalue:({commit},payload)=>{   
-                    commit('updatevalue',payload)
-            },        
-            },
-
+        getters,
+        mutations,
+        actions,
         modules:{
             counter,
             flag,

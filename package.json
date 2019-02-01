@@ -13,6 +13,7 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.6",
     "vue": "^2.5.21",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.2",
     "vue-signature": "^2.3.3",
     "vuelidate": "^0.7.4",
@@ -27,13 +28,11 @@
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
   },
-
   "eslintConfig": {
     "root": true,
     "env": {
       "node": true
     },
-    
     "extends": [
       "plugin:vue/essential",
       "eslint:recommended"

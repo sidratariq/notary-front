@@ -1,6 +1,7 @@
   import Vue from 'vue'
   import App from './App.vue'
   import VueRouter from 'vue-router'
+  import VueResource from 'vue-resource'
   import {routes} from './routes.js'
   import 'bootstrap'
   import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,19 +9,17 @@
   import vueSignature from "vue-signature"
   import {store} from './store/store';
   import html2canvas from 'html2canvas';
+
   
 
-
-  // export const eventBus = new Vue();
-
-
+  Vue.use(VueResource);
   Vue.use(Vuelidate)
   Vue.use(vueSignature)
+  Vue.http.options.root = "https://vuejs-http-a9f00.firebaseio.com/data.json"
+
 
 
   Vue.config.productionTip = false
-
-  //Vue-Router import and usage
   Vue.use(VueRouter);
   Vue.use(html2canvas);
 
