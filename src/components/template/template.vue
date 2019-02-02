@@ -46,7 +46,7 @@
                            </button>
                             
                             <ul class="list-group">
-                                <li class="list-group-item" v-for="u in users"> {{u.username}}{{u.email}}</li>
+                                <li class="list-group-item" v-for="(key,index) in users" :key="index"> {{index.username}}{{index.email}}</li>
 
                             </ul>
 
@@ -58,8 +58,6 @@
             </template>
 
             <script>
-                import UserDetail from './UserDetail.vue';
-                import UserEdit from './UserEdit.vue';
                 import Counter from './Counter.vue';
                 import anothercounter from './anothercounter.vue'
                 import Result from './Result.vue';
@@ -68,8 +66,6 @@
                 export default {
 
                     components: {
-                        appUserDetail: UserDetail,
-                        appUserEdit: UserEdit,
                         appCounter: Counter,
                         appResult: Result,
                         AnotherResult,
