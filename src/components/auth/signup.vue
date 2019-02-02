@@ -2,15 +2,16 @@
                         
                             <div>
 
-                <head_head></head_head>
+                                <head_head></head_head>
 
-                                <div class="row row-set">
+                                <div v-if="globalname" class="row row-set">
                                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                                     </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12"  >
 
-
-                                        <div>
+                                      <!-- this is awesome time -->
+                                    <div  class="col-md-4 col-lg-4 col-sm-6 col-xs-12"  >
+                                       
+                                        <div >
                                             <!-- <img src="../../assets/icons/esnotary.png"  > -->
                                             <!-- <img src="../../assets/icons/docusig.png" alt=""> -->
                                             <h3>Sign Up</h3>
@@ -39,6 +40,7 @@
                                                          <small v-if="flag" class="invalid"> Spaces are not allowed</small>
                                                          <small   :class="{invalid: true}" v-if="!$v.email.required">This field must not be empty.</small>
                                                          <small v-if="!$v.email.email"  :class="{invalid:true}">Provide a valid email like johndoe@domain.com</small>
+                                                         <small v-if="exist">email already exists</small>
                                                   </div>
 
                                                   <!-- company validation -->
@@ -69,45 +71,42 @@
                                                   <div class="col-12 form-check" :class="{termcondition:!$v.terms.$model}" >
                                                     <input type="checkbox" id="terms" v-model="terms" @change="$v.terms.$touch()"   class="form-check-input">Accept Terms and Conditions
                                                   </div>
-
-                                                  
-                                                  <!-- <small>{{$v.$invalid}}</small> -->
-                                                  <!-- <small>{{$v.lastname.$invalid}}</small> -->
-                                                  <!-- <small>{{$v.email}}</small> -->
-                                                  <!-- <small>{{$v.company.$invalid}}</small> -->
-                                                  <!-- <small>{{$v.number.$invalid}}</small> -->
-                                                  <!-- <small>{{$v.password.$invalid}}</small> -->
-                                                  <!-- <small>{{$v.confirmPassword.$invalid}}</small> -->
-                                                  <!-- <small>{{$v.terms}}</small> -->
-
-
-
-
-
-
-
-
-
+                                              
                                                 </div>
-                                                <button type="submit" :disabled="$v.$invalid" @click="loginEnter">Create Your account</button>
+                                                <button type="submit"  @click="onSubmit()">Create Your account</button>
                                             </form>
                                                                     
-                                            
 
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+
+                                        <!-- hdahjdajh -->
+
+                                        
+
                                         
                                     </div>
+                                    
 
+                                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
+                                      
+                                    </div>
+                                </div>  
+
+
+                              <!-- hdahjdajd -->
+
+                                <div v-if="!globalname" class="row row-set">
+                                  <verification></verification>
                                 </div>
 
 
-                            
+                                
+
                             </div>
                     </template>
 
-                    <script>
+    <script>
+
     import {
       required,
       email,
@@ -119,14 +118,17 @@
       // helpers,
       maxLength,
       alpha,
-      alphaNum
+      alphaNum,
       
     } from "vuelidate/lib/validators";
 
     import head_head from '../header/header.vue'
+    import verification from './verficationscreen.vue'
 
 
     export default {
+
+      // data and variables
       data() {
         return {
           firstname: "",
@@ -136,11 +138,15 @@
           confirmPassword: "",
           company: "",
           terms:false,
-          number:''
+          number:'',
+          exist: false,
+          globalname: true
         };
       },
 
-      validations: {
+
+      // validations
+        validations: {
         email: {
           required,
           email,  
@@ -185,26 +191,61 @@
         }
       },
 
+        // components
         components:{
-            head_head
+            head_head,
+            verification
         },
+
+
+        // methods
       methods: {
         loginEnter() {
-            // if(this.$v.invalid){}
 
             console.log(this.$v.invalid);
-            // this.flag = true;
-
-          this.$router.push("/home");
+             this.$router.push("/home");
+        
         },
+
+
+        
         onSubmit() {
-          const formData = {
+          
+            const formData = {
             email: this.email,
             password: this.password,
             confirmPassword: this.confirmPassword,
             terms: this.terms
           };
+
+          this.globalname = false;
+          localStorage.setItem('email',this.email);
+
+
+          this.$http.post('http://192.168.0.166:8000/signup', {"email": this.email,
+                                    "password":this.password,
+                                    "name": this.firstname + this.lastname,
+                                    "company":this.company,
+                                    "phone":this.number})
+
+                                    .then(response => {
+                                    console.log(response.body)
+                                      if(response.body == 'EMAIL_ALREADY_EXISTS'){
+                                         this.exist = true;
+                                      }
+
+                                    }, 
+                                    error => {
+                                    console.log(error);
+                                });
+
+          
+
           console.log(formData);
+
+        //  this.loginEnter()
+
+
         }
       },
       computed:{
@@ -226,6 +267,8 @@
 
     *{
       scroll-behavior: unset;
+      background-color: #d03238;
+      border: 1px solid black;
     }
 
     .row {
@@ -255,7 +298,7 @@
       text-transform: uppercase;
     }
 
-    form img,
+    form img, 
     form h3 {
       text-align: center;
     }
@@ -295,5 +338,9 @@
     .row-set{
      margin: 10px;
     }
+
+
+
+    
 
     </style>

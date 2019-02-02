@@ -84,8 +84,8 @@
                     methods:{
                         
                             submit(){
-                                this.$http.post('', {"username": this.$store.getters.username,
-                                    "email":this.$store.getters.value })
+                                this.$http.post('http://192.168.0.166:8000/login', {"email": this.$store.getters.username,
+                                    "password":this.$store.getters.value })
                                 .then(response => {
                                     console.log(response)},
                                 error => {

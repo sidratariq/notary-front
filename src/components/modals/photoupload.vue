@@ -42,7 +42,7 @@
                 
                 <hr>
                 
-                <div class="modal-footer" >
+                <div class="modal-footer">
                     <button type="button" class="btn btn-outline-info" @click="close()" > Done </button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="clicked()" >Cancel</button>
                 </div>
@@ -67,19 +67,18 @@
             },
              
               methods:{
+
                   clicked(){
                       this.flag= !this.flag;
                   },
 
                   close(){
-                      this.$store.dispatch('changephoto')
-                   
+                      this.$store.dispatch('changephoto')                   
                   },
+
                   showImage(event){
-                      // this.flag= !this.flag;
 
-                        let input = event.target;
-
+                      let input = event.target;
                       if(event.target.files.length > 0){
 
                         let reader = new FileReader();
