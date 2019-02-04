@@ -1,12 +1,11 @@
         <template>
-            <div class="text-center">
+            <div>
+
                 <div class="row" >
-
-
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" >
                     
                     </div>
-                    <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12" >
+                    <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12 text-center" >
                     
                     <transition name="fade">
                     <div  v-show="show" class="alert alert-info" transition="expand">Verification code was sent to {{email}}</div>
@@ -16,7 +15,7 @@
                     
                     <h3>Verify your code</h3>
 
-                    <p> We want to make sure it's really you. In order to further verify your identity, enter the verification code that was sent to {{email}} <br> </p>
+                    <p> Please enter the verification code sent at {{email}} <br> </p>
 
                     <form @submit.prevent="">
                         <input  class=" form-control globalwidth" style="margin-left:15%" type="text"  placeholder="Enter Verfication code ">
@@ -70,14 +69,13 @@
         <style scoped>
         *{
             background-color: white;
-            border: 1px solid black;
-            background-color: aqua;
+            /* border: 1px solid black; */
 
         }
 
         .text-center{
-            height: 100vh;
-            padding-top: 10%;
+            /* height: 100vh; */
+            padding-top: 4%;
 
         }
             

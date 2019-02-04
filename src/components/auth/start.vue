@@ -9,7 +9,6 @@
                     <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12" >
 
                       <img src="../../assets/icons/esnotary.png"  >
-                      <!-- <img  v-if="!flag" src="../../assets/icons/ednotary.png" width="170" height="72" alt=""> -->
                       
                       <h4>Please log in to your account</h4>
 
@@ -17,7 +16,8 @@
       
                     <p>
                     </p>
-                      <!--Login password  -->
+
+                    <!--Login password  -->
                     <div v-show="!flag">                
                       
                         <p>{{email}}</p>

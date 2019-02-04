@@ -5,3 +5,7 @@ export const  value = state =>{
 export const  username = state =>{
     return state.username
 }
+
+export const  email = state =>{
+    return state.email
+}

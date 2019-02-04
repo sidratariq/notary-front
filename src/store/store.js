@@ -14,7 +14,8 @@
         state:{
             counter:0,
             value:0,
-            username:''
+            username:'',
+            email:''
         },
         
         getters,

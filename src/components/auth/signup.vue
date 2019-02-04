@@ -1,20 +1,16 @@
                     <template>
-                        
-                            <div>
+                                    <div>
+                                    <head_head></head_head>
 
-                                <head_head></head_head>
-
-                                <div v-if="globalname" class="row row-set">
+                                    <div v-if="globalname" class="row row-set">
                                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                                     </div>
 
                                       <!-- this is awesome time -->
                                     <div  class="col-md-4 col-lg-4 col-sm-6 col-xs-12"  >
                                        
-                                        <div >
-                                            <!-- <img src="../../assets/icons/esnotary.png"  > -->
-                                            <!-- <img src="../../assets/icons/docusig.png" alt=""> -->
-                                            <h3>Sign Up</h3>
+                                        <div>
+                                                  <h3>Sign Up</h3>
                                                   <form @submit.prevent="onSubmit">
 
                                                   <div class="row">
@@ -87,22 +83,15 @@
                                     </div>
                                     
 
-                                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                                      
-                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12"> </div>
                                 </div>  
 
-
-                              <!-- hdahjdajd -->
-
-                                <div v-if="!globalname" class="row row-set">
-                                  <verification></verification>
-                                </div>
-
-
-                                
+                                   <!-- hdahjdajd -->
+                                  <verification v-if="!globalname"></verification>
 
                             </div>
+
+
                     </template>
 
     <script>
@@ -111,11 +100,8 @@
       required,
       email,
       numeric,
-      // minValue,
-      minLength,
+      minLength,  
       sameAs,
-      // requiredUnless,
-      // helpers,
       maxLength,
       alpha,
       alphaNum,
@@ -218,6 +204,10 @@
             terms: this.terms
           };
 
+          // here when you create an account and and $v is valid and
+          //  you get the response of ok 200 you change the variable
+          //  
+
           this.globalname = false;
           localStorage.setItem('email',this.email);
 
@@ -267,8 +257,6 @@
 
     *{
       scroll-behavior: unset;
-      background-color: #d03238;
-      border: 1px solid black;
     }
 
     .row {
@@ -284,7 +272,7 @@
 
     .container-fluid{
       height: 100vh;
-      padding-top: 5%;
+      /* padding-top: 5%; */
     }
 
 
