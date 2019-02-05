@@ -1,15 +1,40 @@
     <template>
             <div>
 
-                <form enctype="multipart/form-data" >
-                    <input type="file" class="drag_input" id="file-select"  @change="filesChange($event.target, $event.target.files); fileCount = $event.target.files.length"
+                <form v-show="!idk"  enctype="multipart/form-data" >
+                   
+                    <input type="file"              
+                    class="drag_input" 
+                    id="file-select"
+                    @change="showImage($event)"
                     accept="image/*">
+
                     <label for="file-select" class="img-container dotted-class">
-                    <img style="max-width:80px"  src="https://docucdn-a.akamaihd.net/olive/18.21.0/img/illustrations/file-add.svg" alt="Add File">
+                    <img  style="max-width:80px"  src="https://docucdn-a.akamaihd.net/olive/18.21.0/img/illustrations/file-add.svg" alt="Add File">
                     <span class="spanset">Drag documents here to get started</span>  
-                    <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button" id="start-now" @click.prevent="filesChange($event.target)">Start Now</button>
-                    </label>              
+                    <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button" id="start-now" @click.prevent="filesChange($event.target)">{{content}}</button>
+                    </label>    
                 </form>
+
+                <!--  -->
+                   <form v-show="idk"  enctype="multipart/form-data" >
+                   
+                    <input type="file"              
+                    class="drag_input" 
+                    id="file-select"
+                    @change="showImage($event)"
+                    accept="image/*">
+
+                    <label for="file-select" class="img-container dotted-class">
+                    <span class="spanset">Drag documents here to get started</span>  
+                    <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button" id="start-now" @click.prevent="filesChange($event.target)">{{content}}</button>
+                    </label>    
+                </form>
+
+                
+
+                
+
 
               
 
@@ -18,28 +43,77 @@
     </template>
 
     <script>
-    // import { upload } from './file-upload.service';
 
-    // const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
     export default {
+
         name: 'app',
         data() {
         return {
-        }
-        },
-        computed: {
-        },
-        methods: {
-        filesChange() {
+            file:'',
+            idk:true, 
+
+            btnvalue:''
             
-            // console.log(this.fieldName);
-            this.$router.push('/adddocs');
-            // this.change = fieldName;
-            // return change;
         }
         },
-    }
+
+        computed: {
+            content:function(){
+                
+                if(this.$route.path == '/dashboard'){
+                  this.btnvalue = 'Start'
+                   this.idk = false                    
+                  
+                  return this.btnvalue
+                }
+
+                if(this.$route.path == '/adddocs'){
+                   this.btnvalue = 'UPload'
+                   this.idk = true                 
+                   return this.btnvalue
+                }
+            }
+        },
+
+        methods: {
+
+
+                  showImage(event){ 
+
+                      let input = event.target;
+
+                      if(event.target.files.length > 0){
+                        // console.log(event.target.files[0].name)
+                        let reader = new FileReader();
+                        reader.onload = function(){
+                        
+                        var dataURL = reader.result;
+                        localStorage.setItem('imgsource',dataURL);
+
+                        // document.getElementById('image').src = dataURL;                          
+
+                        // set file and file name for future use
+                        localStorage.setItem('imgsource',dataURL);
+                        
+                        localStorage.setItem('filename',event.target.files[0].name)
+
+                        }
+                        reader.readAsDataURL(input.files[0])
+
+                        this.$router.push('/adddocs')
+
+                      }
+                    }
+            ,
+
+            filesChange(){
+
+            }
+        
+
+        
+    }}
 
     </script>
 
@@ -78,8 +152,6 @@
 
         .img-container button{
             width: 140px;
-
-
         }
 
         .img-container img{

@@ -47,6 +47,8 @@
                     <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="clicked()" >Cancel</button>
                 </div>
 
+
+                
               </div>
             </div>
           </div>
@@ -62,7 +64,9 @@
                 hash:'AE9DB71A4A854B1...',
                 flag:false,
                 selectedfiles:null,
-                viewimage:''
+                viewimage:'',
+                idk:''
+
               }
             },
              
@@ -85,9 +89,10 @@
                         reader.onload = function(){
                           var dataURL = reader.result;
                           localStorage.setItem('imgsource',dataURL);
-                          document.getElementById('image').src = dataURL;
+                          document.getElementById('image').src = dataURL;                          
                         }
                         reader.readAsDataURL(input.files[0])
+
                       }
                     },            
               },

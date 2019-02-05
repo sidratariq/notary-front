@@ -1,5 +1,5 @@
 <template>
-    <div class="row setback" style="position:relative" >
+    <div class="row setback cross"  style="position:relative;" >
         <div class="col-12 set">
             <div class="row">
             
@@ -8,31 +8,28 @@
             </div>
 
             <div class="col-11" style="padding-left: 0px; padding-right: 0px;">
-                <div class="row">
+                <div class="row setmargin">
 
                     <!-- //uploading file name  -->
                     <div class="col-12" style="padding-left:0px">
                         <small class="font-weight-bold">
                            <!-- 857260_500931473281642_534467027_o.jpg -->
-                           Finishing...
+                           {{filestatus[0]}}
                         </small>
                     </div>
 
-                    <div class="col-12" style="padding-left:0px">
-                        <small class="text-muted">  
+                        
+                    <div class="col-11 set" >
                             <!-- 1 page -->
                             <div class="progress">
-                               <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                               <div class="progress-bar" role="progressbar" :style="{width: progress +'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{progress+'%'}}</div>
                             </div>
-                        </small>
                     </div>
 
-                </div>
-            </div>
-
-            <div class="col-1">
+                <!-- drop down -->
+                <div class="col-1" style="padding-right:45px">
                 <i class="fas fa-ellipsis-v circle float-sm-right foldericon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                 <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >                            
+                 <div class="btn-group"  >                            
                                         <div class="dropdown-menu" style="left:-145px">
                                             <div class="row">
                                                 <div class="col-12">
@@ -43,17 +40,56 @@
                                             </div>
                                         </div>
                  </div>
+                 </div>
+
+                </div>
             </div>
+
+
 
             </div>
         </div>
+            <p v-show="false">{{progressbar}}</p>  
+
 
     </div>
 </template>
 
 <script>
 export default {
+data(){
+    return{
+        progress:0,
+        filestatus:['Finishing....']
+        
+    }
+},
 
+computed:{
+    
+
+    progressbar:function(){
+        setInterval(()=>{
+            if(this.progress <= 100){
+                var random =Math.floor(Math.random() * (+10 - +5)) + 9;
+                this.progress +=random;
+                this.progress
+                // to make progress bar still at 100
+                if(this.progress > 100){
+                   this.progress = 100
+
+                   //updating the file name    
+                   this.filestatus[0] = localStorage.getItem('filename')
+                   
+                   return this.progress
+                }
+                else{
+                    return this.progress
+                }
+            }
+        },1000)
+    }
+}
 }
 </script>
 
@@ -68,6 +104,13 @@ export default {
             border-radius: 2%;
             height: 70px;
             padding: 1%;
+            /* margin-right: -15px; */
+            margin-left: 2px;
+        }
+
+        .set{
+            padding-right: 0px;
+            padding-left: 0px; 
         }
 
         .circle{
@@ -78,37 +121,7 @@ export default {
             color: #2463d1;
         }
 
-        .set::after{    
-            content: 'X';
-            border: 1px solid black;
-            background: black;
-            color: white;
-            position: absolute;
-            font-size: .65em;
-            max-width: 20px;
-            max-height: 20px;
-            padding: 3px;
-            border-radius:45%;
-            font-weight: bold;
-            /* height: 20rem; */
-            /* width: 20rem; */
-            /* bottom: 10px; */
-            /* right: -35px; */
-            /* z-index: 999; */
-            /* font-weight: bold; */
-            /* background: black; */
-            /* padding: 0.25%; */
-            /* display: block; */
-            /* white-space: nowrap; */
-            /* transform: scale(1); */
-            /* transition:transform ease-out 150ms, */
-            /* bottom ease-out 150ms; */
-        }
-
-        .set:hover::after{
-            /* transform: scale(1); */
-            /* bottom: 100%; */
-        }
+       
 
          .date{
             padding-left:0px; 
@@ -126,6 +139,43 @@ export default {
 
         .progress{
             height: 0.75rem;
+        }
+
+        .setmargin{
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+
+           .cross::after{    
+            content: 'X';
+            border: 1px solid black;
+            background: black;
+            color: white;
+            position: absolute;
+            font-size: .65em;
+            max-width: 20px;
+            max-height: 20px;
+            padding: 3px;
+            border-radius:45%;
+            font-weight: bold;
+            /* height: 20rem; */
+            /* width: 20rem; */
+            /* bottom: 10px; */
+            right: -35px;
+            z-index: 999;
+            /* font-weight: bold; */
+            /* background: black; */
+            /* padding: 0.25%; */
+            /* display: block; */
+            /* white-space: nowrap; */
+            /* transform: scale(1); */
+            /* transition:transform ease-out 150ms, */
+            /* bottom ease-out 150ms; */
+        }
+
+        .cross:hover::after{
+            /* transform: scale(1); */
+            /* bottom: 100%; */
         }
 
 </style>
