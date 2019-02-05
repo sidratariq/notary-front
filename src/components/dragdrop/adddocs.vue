@@ -37,7 +37,8 @@
 
         data(){
             return{
-                fileavalible:''
+                fileavalible:'',
+                noofdocs:[]
             }
         },
 

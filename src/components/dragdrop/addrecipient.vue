@@ -1,15 +1,14 @@
 <template>
+  <div class="container">
     <div class="row">
-        Add Recipients
+      <h1>Add Recipients</h1>
     </div>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

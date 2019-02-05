@@ -3,6 +3,7 @@
     import counter from './modules/counter.js'
     import flag from './modules/flag.js'
     import picupload from './modules/picupload'
+    import contractfile from './modules/contract'
     import * as actions from './actions.js'
     import * as mutations from './mutations.js'
     import * as getters from './getters.js'
@@ -24,7 +25,8 @@
         modules:{
             counter,
             flag,
-            picupload
+            picupload,
+            contractfile
         }
 
 

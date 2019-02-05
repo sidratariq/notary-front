@@ -7,8 +7,10 @@
                     <li id="mylist" >
                       <span @click="avalible = !avalible" ><i class="fas fa-caret-down menuicon"></i></span>
                      FOLDERS
+                    
                     <span class="setright" data-toggle="modal" data-target="#myModal">
                       <i class="fas fa-plus foldericon plusicon"></i></span>
+
                         <ul style="padding:0px 3px 0px 24px" :class="{hide:avalible}">
                         <li class="whenhover" id="subfolder">
                           <i class="fas fa-folder menuicon">
@@ -131,7 +133,11 @@
   };  
   </script>
 
-  <style scoped>  
+  <style scoped>   
+
+  *{
+    border: 1px solid black;
+  }
 
   .envelopclass{
     margin-top:20px;
