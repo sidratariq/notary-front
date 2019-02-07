@@ -11,7 +11,7 @@
                                                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
                                                 <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
                                                     <ul class="nav" >
-                                                        <router-link class="nav-link" active-class="activee" to="/dashboard" exact tag="li"><a >Home</a></router-link>
+                                                        <router-link class="nav-link" active-class="activee" to="/dashboard" @click="changefile" exact tag="li"><a >Home</a></router-link>
                                                         <router-link class="nav-link" active-class="activee" to="/manage_inbox" exact tag="li"><a>Manage</a></router-link>
                                                         <router-link class="nav-link template" active-class="activee"   tag="li" exact   to="/template"><a>Template</a></router-link>
                                                     </ul>
@@ -59,29 +59,34 @@
 
                                             </template>
 
-                                            <script>
-                                        export default {
-                                            data:function(){
-                                                return {
-                                                    flag:false
+            <script>
+            
+            import {mapActions} from 'vuex' 
+                           
+                    export default {
+                         data:function(){
+                             return {
+                                 flag:false
+                                     }
+                                },
+                                methods:{
+                                     
+                                     gohome(){
+                                        if(this.$route.path == '/commingsoon'){
+                                              
+                                            this.$router.push('/home')
+                                                }
+                                            else{
+                                            this.$router.push('/dashboard');
                                                 }
                                             },
-                                            methods:{
-                                                gohome(){
-                                                    if(this.$route.path == '/commingsoon'){
-                                                        this.$router.push('/home')
-                                                    }
-                                                    else{
-                                                    this.$router.push('/dashboard');
-
-                                                    }
-                                                },
-                                                settingpage(){
-                                                    this.$router.push('/userpreferences');
-
-                                                }
-
+                                            settingpage(){
+                                                this.$router.push('/userpreferences');
                                             },
+                                            changefile(){
+                                                //    this.$store.getters.getavalible
+                                            }
+                                        },
                                         
 
                                             mounted(){

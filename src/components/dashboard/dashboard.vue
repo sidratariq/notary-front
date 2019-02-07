@@ -38,7 +38,7 @@
                                                 <ul class="second">
                                                     <!-- user actions from database -->
                                                 <li @click="routechange()"> <a class="userAction"  href=""><span class="userAction_number">0</span>
-                                                <span class="userAction_status">Action Required</span></a></li>
+                                                <span class="userAction_status">Action Required {{fileavalible}}</span></a></li>
 
                                                     <!--waiting for others from database  -->
                                                 <li @click="routewaitchange()"><a class="userAction" href=""> <span class="userAction_number">1</span>
@@ -91,7 +91,8 @@
                                 quotes: ["Just a Quote to see something"],
                                 maxQuotes: 10,
                                 showModal: false,
-                               
+                                fileavalible:this.$store.getters.getavalible,
+
                                 };
                             },
 

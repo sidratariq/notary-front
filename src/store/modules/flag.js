@@ -12,14 +12,14 @@ const mutations = {
 
     setflag:state =>{
         state.flag = !state.flag;
-        console.log("value of flag is:" + state.flag)
+        // console.log("value of flag is:" + state.flag)
     }
 }
 
 const actions = {
     changeflag:({commit})=>{
         commit('setflag')
-        console.log(state.flag)
+        // console.log(state.flag)
 
     }
 };

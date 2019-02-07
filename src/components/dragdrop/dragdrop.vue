@@ -1,34 +1,35 @@
         <template>
-                <div :class="{setheight:'idk'}">
+                <div v-if="!fileavalible" :class="{setheight:'idk'}">
 
-                    <form v-show="!idk"  enctype="multipart/form-data" >
+
+                    <form  enctype="multipart/form-data">
+
                         <input type="file"              
                         class="drag_input" 
                         id="file-select"
                         @change="showImage($event)"
                         accept="image/*">
+
                         <label for="file-select" class="img-container dotted-class">
                         <img  style="max-width:80px"  src="https://docucdn-a.akamaihd.net/olive/18.21.0/img/illustrations/file-add.svg" alt="Add File">
                         <span class="spanset">Drag documents here to get started</span>  
+                        <!-- {{idk}} -->
                         <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button" id="start-now" @click.prevent="filesChange($event.target)">{{content}}</button>
                         </label>    
                     </form>
 
-                        <!--  -->
-                    <form v-show="idk"  style="margin-top:30px" enctype="multipart/form-data" >
                     
-                        <input type="file"              
-                        class="drag_input" 
-                        id="file-select"
-                        @change="showImage($event)"
-                        accept="image/*">
-
-
-                        <label for="file-select" class="img-container dotted-class  override">
-                        <span class="spanset">Drag documents here to get started</span>  
-                        <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button" id="start-now" @click.prevent="filesChange($event.target)">{{content}}</button>
-                        </label>    
-                    </form>
+                    <!-- <form style="margin-top:30px" enctype="multipart/form-data" > -->
+                        <!-- <input type="file"               -->
+                        <!-- class="drag_input"  -->
+                        <!-- id="file-select" -->
+                        <!-- @change="showImage($event)" -->
+                        <!-- accept="image/*"> -->
+                        <!-- <label for="file-select" class="img-container dotted-class  override"> -->
+                        <!-- <span class="spanset">Drag documents here to get started</span>   -->
+                        <!-- <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button" id="start-now" @click.prevent="filesChange($event.target)">{{content}}</button> -->
+                        <!-- </label>     -->
+                    <!-- </form> -->
 
                     
 
@@ -52,7 +53,10 @@
             return {
                 file:'',
                 idk:true, 
-                btnvalue:''
+                btnvalue:'',
+                fileavalible:this.$store.getters.getavalible,
+
+
                 
             }
             },
@@ -63,7 +67,6 @@
                     if(this.$route.path == '/dashboard'){
                     this.btnvalue = 'Start'
                     this.idk = false                    
-                    
                     return this.btnvalue
                     }
 
@@ -97,13 +100,14 @@
                             localStorage.setItem('filename',event.target.files[0].name)
                             
                             // set store values
-
-
-
                             }
                             reader.readAsDataURL(input.files[0])
+
+
                             this.$store.dispatch('act_filename',localStorage.getItem('filename'))
                             this.$store.dispatch('act_filesrc',localStorage.getItem('imgsource'))
+                            this.$store.dispatch('act_avalible')
+
                             this.$router.push('/adddocs')
 
                         }

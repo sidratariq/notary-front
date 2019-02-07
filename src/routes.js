@@ -6,7 +6,7 @@ import forget from './components/auth/forget.vue'
 import signup from './components/auth/signup.vue'
 import userpreferences from './components/auth/userpreferences.vue'
 
-import adddocs from './components/dragdrop/adddocs.vue'
+import adddocs from './components/Add_docs/adddocs.vue'
 import commingsoon from './components/commingsoon/comming.vue'
 import detail from './components/manage/detail.vue'
 import actionrequired from './components/manage/Actionrequired/actionrequired.vue'
@@ -18,7 +18,7 @@ import waitingforother from './components/manage/waitingforother/waitingforother
 
 import dashboard from './components/dashboard/dashboard.vue'
 
-import addrecipient from './components/dragdrop/addrecipient.vue'
+import addrecipient from './components/recipients/addrecipients.vue'
 
 const inbox = resolve =>{
         require.ensure(['./components/manage/inbox/inbox.vue'],()=>{

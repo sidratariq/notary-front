@@ -3,16 +3,15 @@
             <div>
                 <head_head></head_head>
                 <div class="container">
-                <h2 class="setpadding">Add Documents</h2>
+                <h2 class="setpadding">Add Documents {{fileavalible}}</h2>
 
                     <uploadfile v-if="setimage"></uploadfile>
 
                     <dragdrop></dragdrop>
 
                     <div class="row set">
-                        
-
                             <div class="col-10" style="padding-left:-15px, padding-right:-15px" ></div>
+                            
                             <div class="col-2 " style="padding-left:-15px, padding-right:-15px">
                             <button class="btn-main btn-large btn btn-primary btn-sm float-right" @click="$router.push('/addrecipient')">NEXT</button>
                             </div>
@@ -28,17 +27,26 @@
         </template>
 
         <script>
+
+        import {mapActions} from 'vuex'
+
         
         import head_head from '../header/header.vue'
-        import dragdrop from './dragdrop.vue'
+        import dragdrop from '../dragdrop/dragdrop.vue'
         import uploadfile from './prepare/prepare.vue'
 
         export default {
 
         data(){
             return{
-                fileavalible:'',
-                noofdocs:[]
+                file:{
+                    name:'',
+                    filesrc:''
+                },
+                fileavalible:this.$store.getters.getavalible,
+                noofdocs:[
+                
+                ]
             }
         },
 
@@ -55,6 +63,7 @@
         
         },
         computed:{
+            
             setimage:function(){
                 
                 if(localStorage.getItem('imgsource') != undefined){

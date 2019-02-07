@@ -4,6 +4,7 @@
     import flag from './modules/flag.js'
     import picupload from './modules/picupload'
     import contractfile from './modules/contract'
+    import file_avalible from './modules/fileavalible.js'
     import * as actions from './actions.js'
     import * as mutations from './mutations.js'
     import * as getters from './getters.js'
@@ -22,11 +23,13 @@
         getters,
         mutations,
         actions,
+        
         modules:{
             counter,
             flag,
             picupload,
-            contractfile
+            contractfile,
+            file_avalible
         }
 
 

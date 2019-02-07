@@ -1,5 +1,5 @@
     <template>
-        <div class="row setback cross"  style="position:relative;" >
+        <div v-if="fileavalible" class="row setback cross"  style="position:relative;" >
             <div class="col-12 set">
                 <div class="row">
                 
@@ -36,7 +36,7 @@
                                                     <div class="col-12">
                                                         <a class="dropdown-item date padding" data-toggle="modal" data-target="#myModal"  href="#">Rename</a>
                                                         <a class="dropdown-item date padding" data-toggle="modal" data-target="#viewdocument"  href="#">View Document</a>
-                                                        <a class="dropdown-item date padding" href="#">Delete</a>
+                                                        <a class="dropdown-item date padding" data-toggle="modal" data-target="#deletedocument" href="#">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -50,7 +50,8 @@
 
                 </div>
             </div>
-                <p v-show="false">{{progressbar}}</p>  
+                
+            <p v-show="false">{{progressbar}}</p>  
 
 
 
@@ -66,10 +67,10 @@
         </div>
 
         <form @submit.prevent="">
+            
             <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
             <label for="foldername">Name</label>
             <input type="text" class="form-control" v-model.lazy="filename" id="foldername" aria-describedby="emailHelp" >
-            
             </div>
 
             <div class="modal-footer">
@@ -104,6 +105,35 @@
         </div>
         </div> 
 
+        <!-- delete document -->
+          <div id="deletedocument" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            
+        <div class="modal-header">
+            <h6> Delete Document</h6>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+          
+
+
+            <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
+            <p>Are you sure you want to delete document</p>
+            </div>
+
+            <div class="modal-footer">
+            <button type="button" @click="Delete" class="btn btn-primary" data-dismiss="modal">Delete</button>
+            <button type="button" class="btn" id="cancel" data-dismiss="modal">Cancel</button>
+            </div>
+
+        
+        
+        </div>
+        </div>
+         
+        </div>
+
         </div>
     </template>
 
@@ -120,7 +150,9 @@
             progress:0,
             filestatus:['Finishing....'],
             filename:localStorage.getItem('filename'),
-            imagesource:this.$store.getters.getfilesrc
+            imagesource:this.$store.getters.getfilesrc,
+            fileavalible:this.$store.getters.getavalible,
+
             
         }
     },
@@ -131,16 +163,22 @@
 
         progressbar:function(){
             setInterval(()=>{
+              
                 if(this.progress <= 100){
+
                     var random =Math.floor(Math.random() * (+10 - +5)) + 9;
                     this.progress +=random;
                     this.progress
+                    
                     // to make progress bar still at 100
                     if(this.progress > 100){
                     this.progress = 100
+                    console.log(this.filestatus[0])
 
                     //updating the file name   
                     this.filestatus[0] = this.filename
+                    console.log("after"+this.filestatus[0])
+
                     this.$store.dispatch('act_status',this.filestatus[0])
                     
                     return this.progress
@@ -171,7 +209,7 @@
         },
 
         Delete(){
-
+            // this.$store.dispatch('act_avalible')
         }
 
     }
