@@ -7,24 +7,15 @@
 
                     <h2 class="set-recipient">Add Recipients</h2>
 
-                   <logicayee :no_of_recipient="no_of_recipient" :index='index'
-                     v-for="(key,index) in quotes" :key="index"
-                    
-
-                    @DeleteRecipient='Remove()'
-                    
-                    > i am key{{key}} ******
-                    i am value{{index}}</logicayee>
+                  
 
 
-                     <div class="btn btn-primary" @click="newRecipient()">
-                                    create one more
-                    </div>
+               
                     
                     <!-- <local_header></local_header> -->
                     
-                    <!-- <newrecipient @recipienteadded="newRecipient" ></newrecipient> -->
-                    <!-- <recipientgrid :quotes="quotes" @recipientdeleted='recipientdeleted'></recipientgrid> -->
+                    <newrecipient @recipienteadded="newRecipient" ></newrecipient>
+                    <recipientgrid :quotes="quotes" @recipientdeleted='recipientdeleted'></recipientgrid>
 
                  
 
@@ -37,7 +28,6 @@
             import {mapActions} from 'vuex'
             import recipientgrid from './receipientgrid.vue'
             import newrecipient from './NewRecipient.vue'
-            import logicayee from './incrediable.vue'
             
             import head_head from '../header/header.vue'
             // import local_header from './header.vue'
@@ -58,8 +48,6 @@
                 head_head,
                 recipientgrid,
                 newrecipient,
-                logicayee
-                // local_header
             },
 
             props:{

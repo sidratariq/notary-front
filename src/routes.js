@@ -18,7 +18,7 @@ import waitingforother from './components/manage/waitingforother/waitingforother
 
 import dashboard from './components/dashboard/dashboard.vue'
 
-import addrecipient from './components/recipients/addrecipients.vue'
+import addrecipient from './components/recipients/AddRecipient.vue'
 
 const inbox = resolve =>{
         require.ensure(['./components/manage/inbox/inbox.vue'],()=>{
