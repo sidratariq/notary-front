@@ -31,7 +31,7 @@
 
        <span class="timeline_marker timeline_badge">
                                 <span class="badge badge-xlarge badge-transparent">
-                                    djahdhka
+                                <signature></signature>
                                 </span>
                                 </span>  
     </div>
@@ -40,8 +40,12 @@
   </template>
 
   <script>
-  export default {
+  import signature from './small_signature.vue'
 
+  export default {
+    components:{
+      signature
+    }
   }
   </script>
 

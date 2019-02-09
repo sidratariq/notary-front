@@ -8,7 +8,7 @@ import userpreferences from './components/auth/userpreferences.vue'
 
 import adddocs from './components/Add_docs/adddocs.vue'
 import commingsoon from './components/commingsoon/comming.vue'
-import detail from './components/manage/detail.vue'
+import detail from './components/viewfile/detail.vue'
 import actionrequired from './components/manage/Actionrequired/actionrequired.vue'
 import completed from './components/manage/completed/completed.vue'
 import expiringsoon from './components/manage/expiringsoon/expiringsoon.vue'

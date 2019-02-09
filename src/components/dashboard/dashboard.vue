@@ -23,13 +23,9 @@
                                                     <span  @click="getclick" class="OliveReact-Avatar" style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;);"></span>
                                 
                                                     <li class="signature">
-
-                                                    <div @click="clicked" class="signatureChrome signatureChrome-inverse">
-                                                        <span>E-Notarized by:</span>
-                                                        <!-- signature image from user choosen from database -->
-                                                        <img src="../../assets/icons/signature.gif" class="signatureChrome_signature"  alt="Signature">
-                                                        <span>AE9DB71A4A854B1...</span>
-                                                    </div>
+                                                            
+                                                        <!-- compoennet here -->
+                                                        <signature></signature>
 
                                                     </li>
                                                 </ul>
@@ -80,6 +76,7 @@
                             import dragdrop from "../dragdrop/dragdrop.vue";
                             import modal from "../modals/modal.vue";
                             import uploadphoto from "../modals/photoupload.vue"
+                            import signature from "./signature.vue"
 
                             import {mapActions} from 'vuex'
 
@@ -152,7 +149,8 @@
                                 head_head,
                                 dragdrop,
                                 modal,
-                                uploadphoto
+                                uploadphoto,
+                                signature
                             },
                             
                             created() {
