@@ -1,53 +1,45 @@
 <template>
         <div class="setborder"  >
 
-
-
-                             <div class="row sethidden"  v-if="!checked">
+                 <div class="row sethidden"  v-if="!flag">
+                <div class="col-lg-7 ">
+                    <span class="setinbox set">Inbox</span>
+                </div>
+                <div class="col-lg-5 searchbar">
+                 <search></search>
+                </div> 
+                </div>
                     
-                            <div class="col-lg-7 ">
-                                <span class="setinbox set">Inbox</span>
-                            </div>
-
-                            <div class="col-lg-5 searchbar">
-                             <search></search>
-                            </div> 
-
-
-                           </div>
-                    
-                             <div class=" sethidden topset" style="padding-top:18px" v-if="checked">
-                                <div class="row" >    
-                                    <div class="col-1 topset"> 
-                                    </div> 
-                                    <div class="col-2 topset">
-                                     <input type="checkbox" id="checkbox" v-model="checked" class="checkbox">
-
-                                     <span class="">{{nooffilesselected}}  Selected</span>
-                                    </div>
-                                    <!-- <div class="col-1"> -->
-                                        <button class="btn  btn-sm apply " type="button" >
-                                           MOVE
-                                        </button>
+                 <div class=" sethidden topset" style="padding-top:18px" v-if="flag">
+                    <div class="row" >    
+                    <div class="col-1 topset"> 
+                    </div> 
+                    <div class="col-2 topset">
+                     <input type="checkbox" id="checkbox" v-model="checked" @change="emitchange()" class="checkbox">
+                     <span class="">{{nooffilesselected}}{{checked}}{{flag}}  Selected</span>
+                    </div>
+                    <!-- <div class="col-1"> -->
+                        <button class="btn  btn-sm apply " type="button" >
+                           MOVE
+                        </button>
 
 
-                                    <!-- </div> -->
-                                    <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >
-                                      <button class="btn  btn-sm dropdown-toggle apply" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        MORE
-                                      </button>
-                                      <div class="dropdown-menu">
-                                           <a class="dropdown-item date padding" href="#">Export As CSV</a>
-                                           <a class="dropdown-item date padding" href="#">Delete</a>
-                                      </div>
-                                    </div>
-
-                              
-
-                                    
-                                </div>         
+                     <!-- </div> -->
+                     <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >
+                       <button class="btn  btn-sm dropdown-toggle apply" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         MORE
+                       </button>
+                       <div class="dropdown-menu">
+                            <a class="dropdown-item date padding" href="#">Export As CSV</a>
+                            <a class="dropdown-item date padding" href="#">Delete</a>
+                       </div>
+                     </div>                                                                  
+                     </div>         
                     </div>   
 
+
+                    <!-- new event -->
+                
                         
 
                      
@@ -59,16 +51,36 @@
         import search from '../search/search.vue'
 
 export default {
+    data(){
+        return{
+            // flag:this.checked,
+            // filesselected:this.nooffilesselected
+        }
+    },
     props:[
         'checked','nooffilesselected'
     ],
   components:{
                 search
-            }
+            },
+    methods:{
+        emitchange(){
+            this.$emit('changecheck',this.flag)
+        }
+    },
+    computed:{
+        flag:function(){
+            return this.checked
+        }
+    }
 }
 </script>
 
-<style scoped>
+<style scoped>  
+
+        *{
+            background-color: green;
+        }
 
 
 

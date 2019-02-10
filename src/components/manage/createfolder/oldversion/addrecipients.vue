@@ -1,17 +1,8 @@
             <template>
             
                 <div>
-                    <head_head></head_head>
 
-                    <div class="container set-middle">
-
-                    <h2 class="set-recipient">Add Recipients</h2>
-
-                  
-
-
-               
-                    
+                    <div class="container set-middle">                                                     
                     <!-- <local_header></local_header> -->
                     
                     <newrecipient @recipienteadded="newRecipient" ></newrecipient>
@@ -29,7 +20,7 @@
             import recipientgrid from './receipientgrid.vue'
             import newrecipient from './NewRecipient.vue'
             
-            import head_head from '../header/header.vue'
+            // import head_head from '../header/header.vue'
             // import local_header from './header.vue'
 
             export default {
@@ -45,7 +36,7 @@
             },
 
             components:{
-                head_head,
+                // head_head,
                 recipientgrid,
                 newrecipient,
             },
@@ -91,11 +82,6 @@
 
             .container{
                 background-color: pink;
-            }
-
-            .set-middle{
-                /* margin-right: 150px; */
-                margin-left: 210px;
             }
 
             .set-recipient{

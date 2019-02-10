@@ -34,7 +34,11 @@
       <div class="col-10 col-lg-10 col-md-10 col-xs-12 content-area " > 
         <!-- <inner_header></inner_header> -->
 
-        <router-view></router-view></div>
+        <router-view></router-view>
+
+        <!-- <test></test> -->
+        
+      </div>
 
         </div>
       </div>
@@ -45,7 +49,8 @@
   import head_head from '../header/header.vue';
   import btn_btn from './button.vue';
   // import inner_header from "./inbox/inbox_header.vue"
-  import folders from "./createfolders.vue"
+  import folders from "./createfolder/createfolders.vue"
+  // import test from "./createfolder/oldversion/addrecipients.vue"
 
   export default {
     name: "HelloWorld",
@@ -60,7 +65,8 @@
         head_head,
         btn_btn,
         // inner_header,
-        folders
+        folders,
+        // test
     },
       methods:{
                   

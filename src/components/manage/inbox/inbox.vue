@@ -3,198 +3,52 @@
                     <div class="container-fluid mx-0">
 
                             <div>
-                                <head_head :checked="checked" :nooffilesselected="nooffilesselected"></head_head>
+                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected"></head_head>
                             </div>
-                    
 
-                            <div class="row makescroll">
-                                       <table style="width:100%;">
-                                
-                                        <!-- headings side -->
-                                        <tr>
-                                            <!-- 1 -->
-                                        <th style="width:5%;"><span></span></th>
-                                            <!-- 2 -->
-                                        <th style="width:2%;"><span></span></th>
-                                            <!-- 3 -->
-                                        <th style="width:50%;" ><span>Subject</span></th>
-                                            <!-- 4 -->
-                                        <th style="width:20%; padding-left:0px;" ><span >Status</span></th>
-                                            <!-- 5 -->
-                                        <th style="width:14.5%; padding-left:0px;"><span >Last change</span></th>
-                                            <!-- 6 -->
-                                        <th style="width:16.5%; "><span></span></th> 
-
-                                        </tr>
+                            <content_bar :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
 
 
-                                        <!-- list of selected item field from database -->
-     
-                                        <tr v-for="(key,index) in 10" :key="index" class="setborder" :class="{'clicked':checked}"  >
-
-                                            <!-- checkbox colum__1 -->
-                                            <!-- error @click="return startx()" -->
-                                            <td style="text-align:center; padding:5px">
-                                                <input type="checkbox" id="checkbox" name="lists"   v-model="checked" class="checkbox">
-                                            </td>
-
-                                            <!-- status__2 -->
-                                            <td @click="routechange">
-                                            <i :class="{'far fa-clock':status[index]=='Waiting for others',
-                                            'fas fa-ban voided':status[index]=='Voided',
-                                            'fas fa-exclamation-circle reqaction':status[index]=='Need to sign',
-                                            'fas fa-check sucess':status[index]=='Completed'}" ></i>
-                                            </td>
-
-                                            <!-- status__3 Subject-->
-                                            <td class="setpadding" @click="routechange">
-                                                <ul>
-
-                                                <!-- subject -->
-                                                <li class="setfont ">    
-                                                    <a style="color: #1e1e1e; cursor:pointer; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">
-                                                    {{subjectname}}
-                                                    </a>
-                                                </li>
-
-                                                <!-- recipient -->
-                                                <li>
-                                                <small class="text-muted">{{recepient[index]}}</small>
-                                                </li>
-                                                
-                                                </ul>
-                                            </td>
-
-                                            <!-- status__4 status  -->
-                                            <td @click="routechange">
-                                               
-                                                <p style="font-size:13px">
-                                                {{status[index]}}
-                                                </p>
-
-                                            </td>
-
-                                            <!-- status__5 Last change  -->
-                                            <td @click="routechange">
-                                                <ul style="padding-left:0px" >
-                                                    
-                                                    <li class="date">
-                                                    11/29/2018
-                                                    </li>
-
-                                                    <li>
-                                                        <small class="text-muted">12:21:23 pm</small>
-                                                    </li>
-
-                                                </ul>
-                                            </td>
-                                       
-                                            <!-- drop down__6 -->
-                                            <td>
-                                            <div class="btn-group" >
-                                                <button class="btn btn-sm dropdown-toggle" :class="{'btn-primary':action[index]=='Sign','btn-white':action[index]=='Move'}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                 {{action[index]}}
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                           <a class="dropdown-item date padding" href="#">Move</a>
-                                                           <a class="dropdown-item date padding" href="#">Export As CSV</a>
-                                                           <a class="dropdown-item date padding" href="#">Delete</a>
-                                                        </div>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                            </td>
-
-                                            </tr>
-                                    </table>
-
-                            </div>
-                        
-
-
-                            
+                                im from parent and i am parent {{nooffilesselected}}
                     </div>
 
             </template>
 
             <script>
             import head_head from './inbox_header.vue'
+            import content_bar from './content.vue'
 
             export default {
                 data(){
+                    
                     return{
-                    checked:false,
-                    nooffilesselected:0,
-                    subjectname:'Please Sign: SubjectName',
-                    status:['Need to sign','Completed','Voided','Need to sign','Completed','Voided','Waiting for others'],
-                    recepient:['To:Ali Ahsan','From:sidra','To:Ali Ahsan','From:sidra','To:Ali Ahsan','From:sidra','From:sidra'],
-                    action:['Sign','Move','Sign','Move','Sign','Move','Sign'],
                    
-                 
+                    nooffilesselected:0,
+                     defaultSelects:[],
+                      getselected: []
                         }
+
                 },
                 
                 methods:{
-                    
-                    navigateToHome(){
-                        this.$router.push('/helloworld')
-                    },
-
-                    routechange(){
-                        this.$router.push('/detail/something')
-                    },
-
-                    // startx(){
-                        // var checkboxes = document.getElementsByName("lists");   
-                        // for(var i =0; i<document.checkboxes.length; i++){
-                        // } 
-                    // }
+                   
+                   
+                
                 },
                 computed:{
-
-                    isComplete:function(){
-                        
-                        if(this.status.values=='Need to sign'){
+                    checked:function(){
+                        if(this.nooffilesselected > 0){
                             return true
                         }
-
-                        return false
-                    },
-
-
-                    needsign:function(){
-                        if(this.status=='Completed'){
-                            return true
+                        else{
+                            return false
                         }
-                        return false
-
-                    },
-
-
-                    iswaiting:function(){
-                        if(this.status =='Waiting for others'){
-                            return true
-                        }
-                        return false
-
-                    },
-
-
-                    isVoided:function(){
-                         if(this.status =='Voided'){
-                            return true
-                        }
-                        return false
-
                     }
-
-                }
-                ,
+                       } ,
              
                 components:{
-                    head_head
+                    head_head,
+                    content_bar
                 }
             
             }
