@@ -3,7 +3,7 @@
                     <div class="container-fluid mx-0">
 
                             <div>
-                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected">Actions Required</head_head>
+                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected">Deleted</head_head>
                             </div>
 
                             <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
@@ -15,8 +15,8 @@
             </template>
 
             <script>
-            import head_head from '../inbox/inbox_header.vue'
-            import content_bar from '../inbox/content.vue'
+            import head_head from './inbox_header.vue'
+            import content_bar from './content.vue'
 
             export default {
                 data(){

@@ -54,6 +54,8 @@
                     </div>
                 </div>
 
+                <blaa></blaa>
+
                 </div>
             </template>
 
@@ -62,6 +64,7 @@
                 import anothercounter from './anothercounter.vue'
                 import Result from './Result.vue';
                 import AnotherResult from './AnotherResult.vue'
+                import blaa from '../manage/createfolder/oldversion/addrecipients.vue'
 
                 export default {
 
@@ -69,7 +72,8 @@
                         appCounter: Counter,
                         appResult: Result,
                         AnotherResult,
-                        anothercounter
+                        anothercounter,
+                        blaa
                     },
 
                     data(){

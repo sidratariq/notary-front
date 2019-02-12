@@ -6,7 +6,7 @@
                     <!-- <local_header></local_header> -->
                     
                     <newrecipient @recipienteadded="newRecipient" ></newrecipient>
-                    <recipientgrid :quotes="quotes" @recipientdeleted='recipientdeleted'></recipientgrid>
+                    <recipientgrid :quotes="quotes" @recipientdeleted='Remove()'></recipientgrid>
 
                  
 
@@ -60,6 +60,8 @@
                         alert("you need to have atleast one recipient")
                     }
                 },
+
+                recipientdeleted(){}
 
 
 

@@ -14,12 +14,21 @@
 
             </div>
 
+            <check_check></check_check>
+
         </div>
 
 </template>
 
 <script>
+
+import check_check from '../../inbox/inbox.vue'
+
 export default {
+
+  components:{
+      check_check
+    }
 
 }
 </script>

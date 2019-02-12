@@ -9,22 +9,21 @@
 
             <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
-          <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li">
-          <i class="fas fa-box-open menuicon"></i>
-          <a>Inbox </a></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" to="/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><a>Sent</a></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/draft"><i class="far fa-edit menuicon"></i><a>Draft</a></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/delete"><i class="fas fa-trash menuicon"></i><a>Delete</a></router-link>
+          <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
+
+         <a>  <router-link class="nav-link menuitem"  active-class="active" to="/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link></a>
+         <a> <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/draft"><i class="far fa-edit menuicon"></i><span>Draft</span></router-link></a>
+         <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/delete"><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link></a>
 
           </div>
 
           <div class="envelopclass">
 
-            <h6 class="text-centerr">quick views</h6>
-          <router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><a ><i class="fas fa-exclamation-circle menuicon"></i>   Actions Required </a></router-link>
-          <router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><a ><i class="far fa-clock menuicon" ></i>    Waiting for Others</a></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><a ><i class="fas fa-exclamation-triangle menuicon"></i>  Expiring Soon</a></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><a><i class="fas fa-check menuicon"></i> Completed</a></router-link>
+          <h6 class="text-centerr">quick views</h6>
+          <a><router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link></a>
+          <a><router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link></a>
+          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link></a>
+          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a>
            </div>
 
 
@@ -119,14 +118,11 @@
     margin-top:20px;
   }
 
-  li a{
+   a{
     color: #1e1e1e;
     font-weight: normal;
     font-size: 15px;
-      padding: 5px 0px 5px 0px;
-  margin-left:4px;
-
-    
+    padding: 5px 0px 5px 0px;    
   }
 
   .nav-link:hover{
@@ -194,6 +190,11 @@
   .active{
     background: #e9e9e9;
 
+  }
+
+  i{
+    padding-left:4px;
+    padding-right:8px;  
   }
 
     @media screen and (max-width: 631px) {

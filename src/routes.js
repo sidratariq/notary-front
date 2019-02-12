@@ -33,8 +33,8 @@ const sent = resolve =>{
 };
 
 const deletee = resolve =>{
-    require.ensure(['./components/manage/delete/delete.vue'],()=>{
-        resolve(require('./components/manage/delete/delete.vue'));
+    require.ensure(['./components/manage/inbox/delete.vue'],()=>{
+        resolve(require('./components/manage/inbox/delete.vue'));
     },'manage');
 };
 

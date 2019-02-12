@@ -3,13 +3,13 @@
                     <div class="container-fluid mx-0">
 
                             <div>
-                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected"></head_head>
+                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected">Inbox</head_head>
                             </div>
 
-                            <content_bar :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
+                            <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
 
 
-                                im from parent and i am parent {{nooffilesselected}}
+                                <!-- im from parent and i am parent {{nooffilesselected}} -->
                     </div>
 
             </template>
@@ -24,8 +24,18 @@
                     return{
                    
                     nooffilesselected:0,
-                     defaultSelects:[],
-                      getselected: []
+                    defaultSelects:[],
+                    getselected: [],
+
+                    // file information object will come here
+                      fileArray: [ 
+                        {id: 'automotive', name: 'Automotive', class: 'industry', default: false},
+                        {id: 'beauty', name: 'Beauty', class: 'industry', default: true},
+                        {id: 'branding', name: 'Branding', class: 'industry', default: true},
+                        {id: 'btob', name: 'B to B', class: 'industry', default: false}
+                    ],
+
+                    
                         }
 
                 },

@@ -6,7 +6,7 @@
             <input  
               class="setsearchborder"
               type="text"
-              placeholder="Search inbox and Folders" @click="openfilter = !openfilter">
+              :placeholder="searchvalue" @click="openfilter = !openfilter">
         
               <div v-if="openfilter" class="filter">
                   
@@ -16,13 +16,13 @@
                   <!-- </li> -->
 
 
-    <!-- // status -->
+                  <!-- // status -->
                   <li style="min-height:64px">
                     <!--  -->
                     <status></status>
                   </li>
 
-    <!-- // sent by -->
+                <!-- // sent by -->
                 <li style="min-height:64px">
                   <!--  -->
                     <sent></sent>
@@ -47,7 +47,7 @@
                   <!-- Apply and reset buttons -->
                   <li style="min-height:64px"><button type="submit" class="btn btn-primary">Apply</button>
                   <span></span>
-                  <button     type="submit" class="btn btn-link">Reset</button></li>
+                  <button type="submit" class="btn btn-link">Reset</button></li>
 
 
 
@@ -88,8 +88,12 @@
       // checkbox,
       status,
       sent,
-      setdate
-    }
+      setdate,
+      
+    },
+    props:[
+      'searchvalue'
+    ]
 
     };
     </script>
@@ -98,6 +102,7 @@
 
     *{
         box-sizing: border-box;
+        /* border: 1px solid black; */
       }
     
    .setheight,form{
@@ -106,17 +111,21 @@
     
 
     .setsearchborder {
-      margin-top: 5%;
-      width: 100%;
+      /* margin-top: 5%; */
+      /* width: 100%; */
       width:100%;
       z-index:2; 
       position:relative;
-      margin-top:10px
+      margin-top:10px;
+      margin-left:20px; 
+
     }
 
     .setsearch{
-       padding-left: 0px;
       margin-top: 2%;
+      border-left-width: 15px;
+      padding-left: 15px;
+
 
     }
 
@@ -125,9 +134,9 @@
       position:absolute;
       background: #f9f9f9;
       border: 1px solid #ccc;
-      top:0;
-      left:1px;
-      right:0;
+      top:-8px;
+      /* left:1px; */
+      right:-120px;
       min-width: 453px;
       height:400px;
     }
@@ -143,7 +152,7 @@
    
 
     .setposition {
-      padding: 0px;
+      padding: 9px;
       padding-top: 5px;
     }
 

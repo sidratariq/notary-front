@@ -2,224 +2,102 @@
 
                     <div class="container-fluid mx-0">
 
-                        <div class="row setborder setpadding"  v-if="checked">
-                        
-                                <div class="col-lg-8 sethidden topset" style="padding-top:18px">
-
-                                    <div class="row" >
-                                    
-                                       
-                                        <div class="col-3 topset">
-                                        <input type="checkbox" id="checkbox" v-model="checked" class="checkbox">
-
-                                        <span class="">{{nooffilesselected}}  Selected</span>
-                                        </div>
-
-                                        <div class="col-5">
-                                            <button class="btn  btn-sm apply" style="margin-right:8px" type="button" >
-                                            Resend
-                                            </button>
-
-                                            <button class="btn  btn-sm apply" style="margin-right:8px" type="button" >
-                                            MOVE
-                                            </button>
-                                     
-
-                                        <div class="btn-group" >
-                                        <button class="btn  btn-sm dropdown-toggle apply" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            MORE
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Export As CSV</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
-                                        </div>
-                                        </div>
-                                           </div>
-
-                                        
-                                        
-                                    </div>
-                                        
-
-                                        
-                                    
-                                            
-
-                                    
-                                </div>
-                        </div>  
-
-                        <div class="row setborder setpadding"  v-if="!checked">
-                        
-
-                                <div class="col-lg-8 sethidden">
-                                    <span class="setinbox set" style="" >Expiring Soon</span>
-                                </div>
-                                <div class="col-lg-4 searchbar">
-                                <search></search>
-                                </div>           
-                        </div>  
-
-
-                        <div class="row makescroll text-center" style="height:100%; padding-top:15%">
-                                <div class="col-lg-12 col-md-12">
-
-
-                                        <i class="far fa-file"  style="color: #999;font-size: 48px; display:block"></i>
-                      
-                                    <small>You don't have any expiring envelopes. </small>
-                                </div>
-
-                                    <!-- <table style="width:100%;"> -->
-                                        <!-- <tr> -->
-                                        <!-- <th style="width:5%; "><span></span></th> -->
-                                        <!-- <th style="width:2%; "><span></span></th> -->
-                                        <!-- <th style="width:50%;" ><span >Subject</span></th> -->
-                                        <!-- <th style="width:20%; padding-left:0px;" ><span >Status</span></th> -->
-                                        <!-- <th style="width:14.5%; padding-left:0px;"><span >Sent</span></th> -->
-                                        <!-- <th style="width:16.5%; "><span></span></th>  -->
-                                        <!-- </tr> -->
-                                        <!-- <rowset v-for="(key,index) in 10" :key="index"></rowset> -->
-                                        <!-- <tr v-for="(key,index) in 2" :key="index" class="setborder" :class="{'clicked':checked}"  > -->
-                                            <!-- <td style="text-align:center; padding:5px"> -->
-                                                <!-- <input type="checkbox" id="checkbox" v-model="checked" class="checkbox"> -->
-                                                <!-- (0,92,185) -->
-                                            <!-- </td> -->
-                                            <!-- <td @click="routechange"> -->
-
-                                            <!-- <i :class="{'fas fa-exclamation-triangle':true, -->
-                                           <!-- }"  -->
-                                            <!-- class="voided"></i> -->
-                                            <!--  -->
-                                            <!-- </td> -->
-                                            <!-- <td class="setpadding" @click="routechange"> -->
-                                                <!-- <ul ><li class="setfont "> -->
-                                                    <!-- <strong> -->
-                                                    <!-- {{subjectname}} -->
-
-                                                    <!-- </strong> -->
-                                                <!-- </li> -->
-                                                <!-- <li> -->
-                                                <!-- <small class="text-muted">{{recepient[index]}}</small> -->
-                                                <!-- </li></ul> -->
-                                            <!-- </td> -->
-                                            <!-- <td @click="routechange"> -->
-                                                <!-- <p style="font-size:13px"> -->
-                                                <!-- {{status[index]}} -->
-                                                <!-- </p> -->
-                                                <!-- </td> -->
-                                            <!-- <td @click="routechange"> -->
-                                                <!-- <ul style="padding-left:0px;"> -->
-                                                    <!-- <li class="date"> -->
-                                                    <!-- 11/29/2018 -->
-                                                    <!-- </li> -->
-                                                    <!-- <li> -->
-                                                        <!-- <small class="text-muted">12:21:23 pm</small> -->
-                                                    <!-- </li> -->
-                                                <!-- </ul> -->
-                                            <!-- </td> -->
-                                            <!-- <td> -->
-
-                                        <!-- <div class="btn-group" > -->
-                                            <!-- <button class="btn  btn-sm dropdown-toggle" :class="{'btn-primary':action[index]=='Sign','btn-white':action[index]=='Move'}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-                                             <!-- {{action[index]}} -->
-                                            <!-- </button> -->
-                                            <!-- <div class="dropdown-menu"> -->
-                                                <!-- <a class="dropdown-item date padding" href="#">Forward</a> -->
-                                                <!-- <a class="dropdown-item date padding" href="#">Create a Copy</a> -->
-                                                <!-- <a class="dropdown-item date padding" href="#">Export As CSV</a> -->
-                                                <!-- <a class="dropdown-item date padding" href="#">Delete</a> -->
-                                            <!-- </div> -->
-                                        <!-- </div> -->
-
-                                            <!-- </td> -->
-
-                                        <!-- </tr> -->
-                                    <!-- </table> -->
-
+                            <div>
+                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected">Expiring Soon</head_head>
                             </div>
 
-                       
+                            <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
 
 
-
-                            
+                                <!-- im from parent and i am parent {{nooffilesselected}} -->
                     </div>
 
             </template>
 
             <script>
-
-            import search from './search.vue'
+            import head_head from '../inbox/inbox_header.vue'
+            import content_bar from '../inbox/content.vue'
 
             export default {
-             
-               
-                      data(){
+                data(){
+                    
                     return{
-                    checked:false,
-                    nooffilesselected:5,
-                    subjectname:'Please Sign: SubjectName',
-                    status:['Need to sign','Need to sign'],
-                    recepient:['To:Ali Ahsan','From:sidra','To:Ali Ahsan','From:sidra','To:Ali Ahsan','From:sidra','From:sidra'],
-                    action:['Sign','Sign','Move','Sign','Move','Sign'],
                    
-                 
+                    nooffilesselected:0,
+                    defaultSelects:[],
+                    getselected: [],
+
+                    // file information object will come here
+                      fileArray: [ 
+                        {id: 'automotive', name: 'Automotive', class: 'industry', default: false},
+                        {id: 'beauty', name: 'Beauty', class: 'industry', default: true},
+                        {id: 'branding', name: 'Branding', class: 'industry', default: true},
+                        {id: 'btob', name: 'B to B', class: 'industry', default: false}
+                    ]
                         }
+
                 },
-               
                 
-                  methods:{
-                    navigateToHome(){
-                        this.$router.push('/helloworld')
-                    },
-                    routechange(){
-                        this.$router.push('/detail/something')
-                    }
+                methods:{
+                   
+                   
+                
                 },
                 computed:{
-            
-                },
+                    checked:function(){
+                        if(this.nooffilesselected > 0){
+                            return true
+                        }
+                        else{
+                            return false
+                        }
+                    }
+                       } ,
+             
                 components:{
-                    search
+                    head_head,
+                    content_bar
                 }
+            
             }
             </script>
 
 
             <style scoped>
 
-   
+          
 
+
+            .sucess{
+                color:#008938;
+            }
+
+            .reqaction{
+                color: rgb(0,92,185);
+            }
+
+            .voided{
+                color: #999;
+            }
+         
                 .sethidden{
-                    height: 54px;
+                height: 54px;
                 }
 
+            .padding{
+                padding: .25rem 1.5rem;
+            }
 
             .makescroll{
                 overflow-y: auto;
 
             }
 
-            .apply{
-                color: #000000;
-                background-color: #f9f9f9;
-                border-color: #ccc;
-
-            }
 
             #checkbox{
                 margin-right: 5px; 
             } 
-              .btn-white{
-        color: #000000;
-    background-color: #f9f9f9;
-    border-color: #ccc;
-    }
             
-            .btn-primary{
-                background-color: #2463d1;
-            }
 
             .container-fluid{
                 padding: 0;
@@ -229,18 +107,23 @@
             border-bottom: 1px solid rgba(0,0,0,.1);
             }
 
+            .setborder:hover{
+              background-color:  rgb(216, 237, 250);
+            }
+
+            .setborder::selection{
+                    background: #bad3f8;
+                    text-shadow: none;
+            }
+
             .row{
                 margin-left: 0px;
                 margin-right:0px; 
             }
 
             .setpadding{
-                /* padding-top:1%; */
+                padding-top:1%;
                 padding-left: 1%;
-            }
-
-            .padding{
-                padding: .25rem 1.5rem;
             }
 
             .setinbox{
@@ -253,7 +136,7 @@
 
             .setfont{
                 font-weight: 700px;
-                color: #1e1e1e;
+                color: black;
                 font-size: 15px;
             }
 
@@ -270,17 +153,15 @@
                 text-align: left;
             }
 
-                .sucess{
-                color:#008938;
-            }
-
-            .reqaction{
-                color: rgb(0,92,185);
-            }
-
-            .voided{
-                color: #999;
-            }
+             .date{
+        padding-left:0px; 
+        color: rgb(51, 51, 51);
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: normal;
+        text-rendering: optimizelegibility;
+        font-size: 13px;
+        line-height: 18px;
+    }
 
 
         
@@ -294,24 +175,13 @@
             }
 
             input[type="checkbox"]{
-    width: 17px; /*Desired width*/
-    height: 17px; /*Desired height*/
-    cursor: pointer;
-    }
+            width: 17px; /*Desired width*/
+            height: 17px; /*Desired height*/
+            cursor: pointer;
+            }
 
     .dropdown-menu{
         min-width: 10rem;
-    }
-
-
-    .date{
-        padding-left:0px; 
-        color: rgb(51, 51, 51);
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: normal;
-        text-rendering: optimizelegibility;
-        font-size: 13px;
-        line-height: 18px;
     }
 
     .searchbar{
@@ -326,6 +196,12 @@
     .clicked{
     background-color:  rgb(216, 237, 250);
     border-left: 4px solid rgb(8, 123, 238)
+    }
+
+    .btn-white{
+        color: #000000;
+    background-color: #f9f9f9;
+    border-color: #ccc;
     }
 
 
@@ -343,10 +219,5 @@
                 zoom: 1;
             }
 
-
-
-            .topset{
-                padding-top:7px; 
-            }
 
             </style>

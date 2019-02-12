@@ -2,10 +2,10 @@
         
                 <div class="envelopclass"  >
 
-                       <div>
+                    <div>
                     <ul  style="padding:0px 24px">
                     <li id="mylist" >
-                      <span @click="avalible = !avalible" ><i class="fas fa-caret-down menuicon"></i></span>
+                      <span @click="avalible = !avalible"><i class="fas fa-caret-down menuicon"></i></span>
                      FOLDERS
                     
                     <span class="setright" data-toggle="modal" data-target="#myModal">
@@ -14,7 +14,8 @@
                         <ul style="padding:0px 3px 0px 24px" :class="{hide:avalible}">
                         <li class="whenhover" id="subfolder">
                           <i class="fas fa-folder menuicon">
-                          </i>F1 <span class="" @click="subfolder($event)">
+                          </i>F1 <span class="" >
+                            <!-- @click="subfolder($event)" -->
                             <i class="fas fa-ellipsis-v setright foldericon setdropdown " >
                             
                             <!-- drop down -->
@@ -24,7 +25,8 @@
                               <li>Rename</li>
                               <li>Move</li>
                               <li @click="rename($event)">Delete</li>
-                              <li @click="subfolder($event)">NewSubfolder</li>
+                              <li >NewSubfolder</li>
+                              <!-- @click="subfolder($event)" -->
                             </ul>
                             </div>
 
@@ -32,7 +34,8 @@
                       
                         </span></li>
                         <li class="whenhover" id="subfolder"><i class="fas fa-folder menuicon" >
-                          </i>F1 <span class="setdropdown" @click="subfolder($event)">
+                          </i>F1 <span class="setdropdown" >
+                            <!-- @click="subfolder($event)" -->
                           <i class="fas fa-ellipsis-v setright foldericon"></i> 
                         </span>  
                         </li>
@@ -89,8 +92,8 @@
       return {
         avalible:false,
         foldername:'',
-        subfoldername:'ok',
-        newname:'chalrhaahai'
+        newname:'chalrhaahai',
+        folder:[{name:'',id:0,subfolder:{name:'',id:0}}]
       };
     },
 
@@ -136,7 +139,7 @@
   <style scoped>   
 
   *{
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
 
   .envelopclass{

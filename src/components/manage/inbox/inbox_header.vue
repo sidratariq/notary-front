@@ -3,30 +3,36 @@
 
                  <div class="row sethidden"  v-if="!flag">
                 <div class="col-lg-7 ">
-                    <span class="setinbox set">Inbox</span>
+                    <span class="setinbox set"><slot></slot></span>
                 </div>
                 <div class="col-lg-5 searchbar">
-                 <search></search>
+                 <search searchvalue='Search Inbox and folders' ></search>
                 </div> 
                 </div>
                     
                  <div class=" sethidden topset" style="padding-top:18px" v-if="flag">
                     <div class="row" >    
-                    <div class="col-1 topset"> 
-                    </div> 
-                    <div class="col-2 topset">
+                    <div class="col-2 topset"> 
                      <input type="checkbox" id="checkbox" v-model="checked" @change="emitchange()" class="checkbox">
-                     <span class="">{{nooffilesselected}}{{checked}}{{flag}}  Selected</span>
-                    </div>
-                    <!-- <div class="col-1"> -->
-                        <button class="btn  btn-sm apply " type="button" >
+                     <span class="">{{nooffilesselected}} Selected</span>
+                     
+                    </div> 
+                    <div class="col-1 topset">
+                         <button class="btn  btn-sm apply " type="button" >
                            MOVE
                         </button>
+                    </div>
+                    
+
+                     <div class="col-1">
+                                            <button class="btn  btn-sm apply " type="button" >
+                                            Restore
+                                            </button>
+                                        </div>
 
 
-                     <!-- </div> -->
                      <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >
-                       <button class="btn  btn-sm dropdown-toggle apply" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <button class="btn  btn-sm dropdown-toggle apply" style="height:30px;padding-left: 8px; margin-top:8px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          MORE
                        </button>
                        <div class="dropdown-menu">
@@ -79,7 +85,8 @@ export default {
 <style scoped>  
 
         *{
-            background-color: green;
+            /* background-color: green; */
+            /* border: 1px solid black; */
         }
 
 
@@ -143,7 +150,7 @@ export default {
             }
 
             #checkbox{
-                margin-right: 5px; 
+                margin-right: 9px; 
             } 
             
 
@@ -237,7 +244,11 @@ export default {
                 padding-top:7px; 
             }
 
-        
+                .apply{
+                color: #000000;
+                background-color: #f9f9f9;
+                border-color: #ccc;
+            }       
 
 
         
