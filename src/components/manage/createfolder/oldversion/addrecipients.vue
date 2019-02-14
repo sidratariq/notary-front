@@ -8,7 +8,7 @@
                     <newrecipient @recipienteadded="newRecipient" ></newrecipient>
                     <recipientgrid :quotes="quotes" @recipientdeleted='Remove()'></recipientgrid>
 
-                 
+                    <folder></folder>
 
                 </div>
                 </div>
@@ -19,6 +19,7 @@
             import {mapActions} from 'vuex'
             import recipientgrid from './receipientgrid.vue'
             import newrecipient from './NewRecipient.vue'
+            import folder from '../createfolderold.vue'
             
             // import head_head from '../header/header.vue'
             // import local_header from './header.vue'
@@ -39,6 +40,7 @@
                 // head_head,
                 recipientgrid,
                 newrecipient,
+                folder
             },
 
             props:{

@@ -73,7 +73,7 @@
                         appResult: Result,
                         AnotherResult,
                         anothercounter,
-                        blaa
+                        blaa,
                     },
 
                     data(){

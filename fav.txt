@@ -99,3 +99,19 @@
 
                                             </tr>
                                     </table>
+
+
+
+
+                                         <i  style="padding:4px" class="fas fa-ellipsis-v setright foldericon setdropdown " >                            
+                            <!-- drop down -->
+                            <div class="dropdown">
+                               <ul>
+                              <li>Rename</li>
+                              <li>Move</li>
+                              <li @click="rename($event)">Delete</li>
+                              <li >NewSubfolder</li>
+                              <!-- @click="subfolder($event)" -->
+                            </ul>
+                            </div>
+                           </i>

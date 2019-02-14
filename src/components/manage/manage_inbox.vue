@@ -9,29 +9,26 @@
 
             <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
-          <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
-
+         <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
          <a>  <router-link class="nav-link menuitem"  active-class="active" to="/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link></a>
          <a> <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/draft"><i class="far fa-edit menuicon"></i><span>Draft</span></router-link></a>
          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/delete"><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link></a>
 
           </div>
 
-          <div class="envelopclass">
-
-          <h6 class="text-centerr">quick views</h6>
-          <a><router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link></a>
-          <a><router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link></a>
-          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link></a>
-          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a>
-           </div>
+          <!-- <div class="envelopclass"> -->
+          <!-- <h6 class="text-centerr">quick views</h6> -->
+          <!-- <a><router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link></a> -->
+          <!-- <a><router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link></a> -->
+          <!-- <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link></a> -->
+          <!-- <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a> -->
+           <!-- </div> -->
 
 
            <folders></folders>
 
         </div>
       <div class="col-10 col-lg-10 col-md-10 col-xs-12 content-area " > 
-        <!-- <inner_header></inner_header> -->
 
         <router-view></router-view>
 
@@ -48,7 +45,7 @@
   import head_head from '../header/header.vue';
   import btn_btn from './button.vue';
   // import inner_header from "./inbox/inbox_header.vue"
-  import folders from "./createfolder/createfolders.vue"
+  import folders from "./createfolder/createfolderold.vue"
   // import test from "./createfolder/oldversion/addrecipients.vue"
 
   export default {
@@ -105,7 +102,6 @@
     font-size: 13px;
     line-height: 18px;
     text-transform: uppercase;
-
   }
 
   .nav-link{
@@ -151,11 +147,11 @@
   }
 
   a:focus{
-                font-weight: bolder;
+    font-weight: bolder;
   }
 
   a:active{
-                font-weight: bolder;
+    font-weight: bolder;
 
   }
 

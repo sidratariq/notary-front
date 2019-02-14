@@ -9,7 +9,9 @@
                             <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
 
 
-                                <!-- im from parent and i am parent {{nooffilesselected}} -->
+                            <!-- im from parent and i am parent {{nooffilesselected}} -->
+                            <!-- <createfolder></createfolder> -->
+
                     </div>
 
             </template>
@@ -17,6 +19,7 @@
             <script>
             import head_head from './inbox_header.vue'
             import content_bar from './content.vue'
+            // import createfolder from '../createfolder/createfolders.vue'
 
             export default {
                 data(){
@@ -58,7 +61,8 @@
              
                 components:{
                     head_head,
-                    content_bar
+                    content_bar,
+                    // createfold/er
                 }
             
             }

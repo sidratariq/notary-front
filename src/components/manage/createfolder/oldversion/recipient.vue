@@ -14,7 +14,7 @@
 
             </div>
 
-            <check_check></check_check>
+            <!-- <check_check></check_check> -->
 
         </div>
 
