@@ -63,6 +63,7 @@
                <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
                  <label for="foldername">Folder name</label>
                  <input type="text" class="form-control"  v-model="foldername" id="foldername" aria-describedby="emailHelp" placeholder="Enter email">
+                <p>{{foldername}}</p>
                </div>
                
                <div class="modal-footer">
@@ -101,11 +102,8 @@
       methods:{
       
                     chalo(indexno){
-                        // let newfolder = document.createElement('li')
-                        // let t = document.createTextNode(this.foldername)
-                        // newfolder.appendChild(t)
-                        // newfolder.className ='fas fa-folder'
-                        // document.getElementById('mylist').appendChild(newfolder)
+                        this.folders.push(this.foldername);
+                        
 
                     },
                      subfolder($event){
@@ -133,7 +131,6 @@
   <style scoped>   
 
   *{
-    /* border: 1px solid black; */
   }
 
   .envelopclass{

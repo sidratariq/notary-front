@@ -20,8 +20,12 @@
                                                 <!-- unordered list for user image upload and signature upload -->
                                                 <ul class="first">
                                                     <!-- user image image from server database -->
-                                                    <span  @click="getclick" class="OliveReact-Avatar" style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;);"></span>
-                                
+                                                    <li>
+                                                    <span  @click="getclick" class="OliveReact-Avatar" style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;); "></span>
+
+                                                    </li>
+
+
                                                     <li class="signature">
                                                             
                                                         <!-- compoennet here -->
@@ -172,6 +176,7 @@
                             position: relative;
                             font-family: "Roboto", sans-serif;
                             box-sizing: border-box;
+                            border: 1px solid black;
                             }
 
                             ul {
@@ -300,6 +305,8 @@
                             text-align: center;
                             vertical-align: middle;
                             width: 66px;
+                            margin-top: 6px;
+                            margin-left:25px; 
                             }
 
                             .userAction {

@@ -98,6 +98,10 @@
 
 
                                         <style scoped>
+
+                                        *{
+                                            /* border: 1px solid black; */
+                                        }
                                         
                                         /* small screen */
                                         *{

@@ -16,16 +16,18 @@
 
           </div>
 
-          <!-- <div class="envelopclass"> -->
-          <!-- <h6 class="text-centerr">quick views</h6> -->
-          <!-- <a><router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link></a> -->
-          <!-- <a><router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link></a> -->
-          <!-- <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link></a> -->
-          <!-- <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a> -->
-           <!-- </div> -->
+          <div class="envelopclass">
+          <h6 class="text-centerr">quick views</h6>
+          <a><router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link></a>
+          <a><router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link></a>
+          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link></a>
+          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a>
+           </div>
 
 
-           <folders></folders>
+           <folders>
+
+           </folders>
 
         </div>
       <div class="col-10 col-lg-10 col-md-10 col-xs-12 content-area " > 
@@ -75,7 +77,7 @@
   <style scoped>
 
   *{
-    overflow: hidden;
+    overflow: scroll;
     /* border:1px solid green */
   }
 

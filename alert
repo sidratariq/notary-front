@@ -1,0 +1,16 @@
+<i class="ts_icon ts_icon_warning"></i> Sorry, you entered an incorrect email address or password.
+html.no_touch.supports_sticky_position body.index.feature-vogue div#page div#page_contents div.span_4_of_6.col.float_none.margin_auto.no_right_padding
+<div class="span_4_of_6 col float_none margin_auto no_right_padding">
+	
+		<p class="alert alert_info"><i class="ts_icon ts_icon_info_circle"></i> You need to sign in to see this page.</p>
+
+	
+	<p class="alert alert_error"><i class="ts_icon ts_icon_warning"></i> Sorry, you entered an incorrect email address or password.</p>
+<p id="error_ratelimit" class="alert alert_warning" style="display: none;">
+	<i class="ts_icon ts_icon_warning"></i>
+	
+	<strong>Too many login failures!</strong><br class="hide_on_mobile">
+	Apologies! There were too many SMS message requests in a short period, so you’ll have to wait a moment to try again.
+	</p>
+<p id="error_unknown" class="alert alert_error" style="display: none;">
+	<i class="ts_icon ts_icon_warning"></i> Hmmm... something went wrong. Please try again.</p></div>
