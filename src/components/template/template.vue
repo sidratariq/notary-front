@@ -1,6 +1,21 @@
 
             <template>
                 <div class="component">
+
+                     <div class="small">
+                  Small Viewport
+                 </div>
+                
+                <div class="medium">
+                        Medium Viewport
+                </div>
+                <div class="large">
+                Large Viewport
+                </div>
+
+                <div class="drmiyanwlaa">
+                    drmiyan wlaa
+                </div>
                     <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6">
@@ -55,6 +70,8 @@
                 </div>
 
                 <blaa></blaa>
+
+             
 
                 </div>
             </template>
@@ -146,4 +163,17 @@
 
             <style scoped>
             
+            @media only screen and (max-width: 948px) {
+                .medium, .large {
+                    display:none;
+                }
+            }
+
+             @media only screen and (max-width: 520px) {
+                 *{
+                    background-color: red;        
+
+                 }
+             }
+
             </style>

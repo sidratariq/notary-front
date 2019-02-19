@@ -1,5 +1,5 @@
         <template>
-                <div v-if="!fileavalible" :class="{setheight:'idk'}">
+                <div class="media-apply" v-if="!fileavalible" :class="{setheight:'idk'}">
 
 
                     <form  enctype="multipart/form-data">
@@ -287,12 +287,10 @@
         }
 
 
-        @media screen and (max-width: 454px) {
-
-                    
-                        
-
-
-                        }
+           @media only screen and (max-width: 520px) {
+                              .media-apply{
+                                  /* display: none; */
+                              }
+                    }
     
         </style>
