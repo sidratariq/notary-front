@@ -1,6 +1,6 @@
         <template>
         
-            <div>
+            <div class="main">
                 <head_head></head_head>
                 <div class="container">
                 <h2 class="setpadding">Add Documents {{fileavalible}}</h2>
@@ -82,6 +82,10 @@
         *{
                     background-color: rgb(244, 244, 244);
 
+        }
+
+        .main{
+            height: 100vh;
         }
 
         .set{
