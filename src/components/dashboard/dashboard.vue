@@ -14,7 +14,7 @@
         <!-- unordered list for user image upload and signature upload -->
         <ul class="first">
           <!-- user image image from server database -->
-          <li>
+          <li >
             <span
               @click="getclick"
               class="OliveReact-Avatar"
@@ -148,7 +148,8 @@ export default {
 </script>
 
 
-                                    <style scoped>
+<style scoped>
+
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 * {
@@ -285,8 +286,8 @@ ul li {
   text-align: center;
   vertical-align: middle;
   width: 66px;
-  margin-top: 6px;
-  margin-left: 25px;
+  /* margin-top: -6px; */
+  margin-left: 54px;
 }
 
 .userAction {
@@ -394,7 +395,7 @@ ul li {
 
   .second {
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 
   ul {
@@ -409,20 +410,17 @@ ul li {
 
   .userAction {
     width: 100%;
-    /* border: 1px solid coral; */
     display: flex;
     align-content: space-evenly;
   }
 
   .small-screen {
-    /* align-self: center; */
     display: block;
     align-items: center;
     justify-content: right;
   }
 
   .userAction_status {
-    border: 1px solid purple;
     font-weight: bold;
     font-size: 15px;
   }
@@ -431,12 +429,14 @@ ul li {
     padding: 0px;
     font-size: 15px;
     font-weight: bold;
-    border: 1px solid purple;
-    /* justify-content: flex-end; */
   }
 
   .large-screen {
     display: none;
+  }
+
+  .panel-fileDrop{
+      display: none;
   }
 }
 </style>
