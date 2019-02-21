@@ -19,10 +19,10 @@ const mutations = {
 
 const actions = {
     act_avalible:({commit})=>{
-        console.log("i am file avalible file and value is "+ state.fileavalible)
+        // console.log("before function commit "+ state.fileavalible)
 
         commit('setavalible')
-        console.log("mhy updates state is hahdagda"+state.fileavalible)
+        // console.log("after function commit"+state.fileavalible)
 
     }
 };

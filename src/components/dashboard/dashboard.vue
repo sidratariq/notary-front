@@ -14,7 +14,7 @@
         <!-- unordered list for user image upload and signature upload -->
         <ul class="first">
           <!-- user image image from server database -->
-          <li >
+          <li>
             <span
               @click="getclick"
               class="OliveReact-Avatar"
@@ -172,7 +172,7 @@ a {
 
 ul li {
   list-style: none;
-  width: 150px;
+  /* width: 150px; */
   height: 80px;
   margin: 8px;
 }
@@ -255,10 +255,18 @@ ul li {
   font-size: 11px;
   font-weight: 700;
   line-height: 11px;
-  min-width: 140px;
+  min-width: 140px; 
   padding: 0 0 0 25px;
   position: relative;
   text-align: left;
+}
+
+.signature{
+  color: #999;
+}
+
+.signature:hover{
+  color: #fff;
 }
 
 .sizeXlarge {
@@ -288,6 +296,7 @@ ul li {
   width: 66px;
   /* margin-top: -6px; */
   margin-left: 54px;
+  cursor: pointer;
 }
 
 .userAction {
@@ -371,6 +380,10 @@ ul li {
 
 .small-screen {
   display: none;
+}
+
+.signature{
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 948px) {

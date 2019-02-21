@@ -1,13 +1,13 @@
-        <template>
+<template>
         
-            <div class="main">
+            <div class="main" >
                 <head_head></head_head>
                 <div class="container">
-                <h2 class="setpadding">Add Documents {{fileavalible}}</h2>
+                <h2 class="setpadding">Add Documents</h2>
 
-                    <uploadfile v-if="setimage"></uploadfile>
+                    <uploadfile v-if="fileavalible"></uploadfile>
 
-                    <dragdrop></dragdrop>
+                    <dragdrop v-if="!fileavalible" ></dragdrop>
 
                     <div class="row set">
                             <div class="col-10" style="padding-left:-15px, padding-right:-15px" ></div>
@@ -43,7 +43,7 @@
                     name:'',
                     filesrc:''
                 },
-                fileavalible:this.$store.getters.getavalible,
+                // fileavalible:this.$store.getters.getavalible,
                 noofdocs:[
                 
                 ]
@@ -63,10 +63,14 @@
         
         },
         computed:{
+
+            fileavalible:function(){
+                return this.$store.getters.getavalible;
+            },
             
             setimage:function(){
                 
-                if(localStorage.getItem('imgsource') != undefined){
+                if(localStorage.getItem('imgsource') != null){
                     return true
                 }
 

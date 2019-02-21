@@ -1,4 +1,4 @@
-    <template>
+<template>
         <div v-if="fileavalible" class="row setback cross"  style="position:relative;" >
             <div class="col-12 set">
                 <div class="row">
@@ -149,38 +149,43 @@
         return{
             progress:0,
             filestatus:['Finishing....'],
-            filename:localStorage.getItem('filename'),
-            imagesource:this.$store.getters.getfilesrc,
-            fileavalible:this.$store.getters.getavalible,
+    
+           
+           
 
-            
         }
     },
 
     computed:{
 
+        fileavalible:function(){
+            return this.$store.getters.getavalible
+        },
+
+        imagesource:function(){
+            return this.$store.getters.getfilesrc;
+        },
+
+        filename:function(){
+            return localStorage.getItem('filename');
+        },
+
         
 
         progressbar:function(){
-            setInterval(()=>{
-              
+            setInterval(()=>{             
                 if(this.progress <= 100){
-
                     var random =Math.floor(Math.random() * (+10 - +5)) + 9;
                     this.progress +=random;
                     this.progress
-                    
                     // to make progress bar still at 100
                     if(this.progress > 100){
                     this.progress = 100
                     console.log(this.filestatus[0])
-
                     //updating the file name   
                     this.filestatus[0] = this.filename
                     console.log("after"+this.filestatus[0])
-
                     this.$store.dispatch('act_status',this.filestatus[0])
-                    
                     return this.progress
                     }
                     else{
@@ -209,7 +214,8 @@
         },
 
         Delete(){
-            // this.$store.dispatch('act_avalible')
+             this.$store.dispatch('act_avalible');
+            
         }
 
     }
