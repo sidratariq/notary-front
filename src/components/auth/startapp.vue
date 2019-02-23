@@ -1,5 +1,5 @@
               <template >
-                <div class="text-center"  >
+                <div class="text-center">
 
                   <div class="row" style="margin-top:10%">
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" >
@@ -11,7 +11,6 @@
                       <img src="../../assets/icons/esnotary.png"  >
                       
                       <h4>Please log in to your account</h4>
-
                       <login v-if="flag" :flag="flag" @gotclicked="flag = $event" @childemail="email = $event"> </login>                  
       
                     <p>
@@ -22,22 +21,14 @@
                       
                         <p>{{email}}</p>
 
-
-                      <!-- ddnandadadbadba -->
-
-        
-
-
                       <!-- asdkjbhbalhbafh -->
                         <form class="btn-set">
                           <div class="form-group" > 
                             <input type="password" v-model="password" @blur="$v.password.$touch()" class="form-control" style="width:90%"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter password">
                             <!-- <input class="form-control" type="password" placeholder="Enter password"> -->
                             <small class="UI-info" v-if="!$v.password.minLen" :class="{invalid:true}">The password must be 6 character long</small>
-
-
-                          </div>
-                        <button class="bbutton btn-width" @click.prevent="login"> Log IN</button>
+                            </div>
+                            <button class="bbutton btn-width" @click.prevent="login"> Log IN</button>
                         </form>
                         <button class="btn btn-link"   @click="forgetpassword"><small>Forgot password</small></button>
                       </div>
@@ -78,7 +69,7 @@
             data() {
               return {
                 flag:true,
-                email:'sidratariq48@gmail.com',
+                email:'',
                 password:''
               
               };
@@ -93,7 +84,7 @@
                 this.flag=!this.flag;
               },
               forgetpassword:function(){
-                this.$router.push('/forget/sidratariq48@gmail.com')
+                this.$router.push('/forget')
               },
 
               login:function(){ 

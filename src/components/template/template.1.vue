@@ -56,7 +56,9 @@
 
                            <hr>
 
-                        
+                           <button class="btn btn-primary" @click="fetchdata">
+                               Getdata
+                           </button>
                             
                             <ul class="list-group">
                                 <li class="list-group-item" v-for="(key,index) in users" :key="index"> {{index.username}}{{index.email}}</li>
@@ -103,18 +105,18 @@
                     methods:{
                         
                             submit(){
-                                this.$http.get('http://192.168.10.7:8000/login', {
-                                "email": this.$store.getters.username,
-                                "password":this.$store.getters.value })
+                                this.$http.post('http://192.168.0.166:8000/login', {"email": this.$store.getters.username,
+                                    "password":this.$store.getters.value })
                                 .then(response => {
                                     console.log(response)},
                                 error => {
                                     console.log(error);
                                 });
+
                             },
 
                             fetchdata(){
-                                this.$http.get('/login')
+                                this.$http.get('')
                                 .then(response => {
                                    return response.json();
                                 }).then(data => 

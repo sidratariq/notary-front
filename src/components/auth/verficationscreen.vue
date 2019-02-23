@@ -18,9 +18,13 @@
                     <p> Please enter the verification code sent at {{email}} <br> </p>
 
                     <form @submit.prevent="">
-                        <input  class=" form-control globalwidth" style="margin-left:15%" type="text"  placeholder="Enter Verfication code ">
-                        <p></p>
-                        <button class="bbutton globalwidth">Confirm</button>
+
+                        <input  class=" form-control globalwidth" v-model="email" style="margin-left:15%" type="text"  placeholder="Enter your email ">
+
+                        <input  class=" form-control globalwidth" v-model="verify_code" style="margin-left:15%" type="text"  placeholder="Enter Verfication code ">
+
+                        <p>f185f6</p>
+                        <button @click.prevent="submit" class="bbutton globalwidth">Confirm</button>
                         
                     </form>
                     
@@ -49,19 +53,34 @@
             return{
                 // email:this.$route.params.email,
                 email:localStorage.getItem('email'),
-                show: false
+                show: false,
+                verify_code:'',
+                email:''
             }
         },
         methods:{
+            
             resendcode:function(){
                 this.show = !this.show;
                 setTimeout(() =>{
                     this.show = !this.show;
-                },5000)
+                },5000) 
 
+            },
+
+            submit(){
+                 this.$http.post('http://192.168.10.7:8000/verifyEmail', {
+                     "email":this.email,
+                     "VerificationCode":this.verify_code
+                })
+            .then(response => {
+                console.log(response.bodyText)},
+            error => {
+                console.log(error);
+                // console.log(response.bodyText)
+            });
             } 
-            
-                
+        
         }
         }
         </script>

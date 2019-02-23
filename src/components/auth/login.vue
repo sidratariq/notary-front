@@ -16,7 +16,7 @@
           id="emailHelp"
           class="form-text text-muted"
         >We'll never share your email with anyone else.</small>
-        <small v-if="flag" class="invalid">Spaces are not allowed</small>
+        <small v-if="regexflag" class="invalid">Spaces are not allowed</small>
         <!-- <small   :class="{invalid: true}" v-if="!$v.email.required">This field must not be empty.</small> -->
         <small
           v-if="!$v.email.email"
@@ -43,18 +43,18 @@ import { required, email } from "vuelidate/lib/validators";
 
 export default {
   data() {
-    return {};
+    return {
+      currentflag: this.flag
+    };
   },
-  props: {
-    flag: {},
-    email: {}
-  },
+  props: ['flag','email']
+  ,
 
   methods: {
     clickhappened() {
       if (this.$v.email.$invalid == false) {
-        this.flag = !this.flag;
-        this.$emit("gotclicked", this.flag);
+        this.currentflag = !this.currentflag;
+        this.$emit("gotclicked", this.currentflag);
         this.$emit("childemail", this.email);
       } else {
         //    console.log("enter a valid email address");
@@ -73,7 +73,7 @@ export default {
   },
 
   computed: {
-    flag: function() {
+    regexflag: function() {
       if (/\s/.test(this.$v.email.$model)) {
         return true;
       } else {

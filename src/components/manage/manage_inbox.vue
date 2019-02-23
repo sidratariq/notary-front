@@ -7,7 +7,7 @@
           <btn_btn></btn_btn>
           <div>
 
-            <h6 class="text-centerr">ENVELOPES</h6>
+         <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
          <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
          <a>  <router-link class="nav-link menuitem"  active-class="active" to="/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link></a>
@@ -24,9 +24,7 @@
           <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a>
            </div>
 
-           <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <h1>Routing</h1>
-            </div>
+       
 
 
            <folders>

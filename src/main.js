@@ -14,24 +14,11 @@
   Vue.use(VueResource);
   Vue.use(Vuelidate)
   Vue.use(vueSignature)
-  //Vue.http.options.root = "http://192.168.0.166:8000/login"
-
-  // Vue.http.interceptors.push((request,next) => {
-  //   console.log(request);
-
-  //   if(request.method == 'POST'){
-  //   request.method = 'PUT';
-  //   }
-  //   next(response => {
-      
-  //   }
-  //   )
-  // })
-
-
 
   Vue.config.productionTip = false
   Vue.use(VueRouter);
+
+  
 
 
 

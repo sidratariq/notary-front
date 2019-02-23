@@ -1,10 +1,12 @@
 /* eslint-disable */
 import manage_inbox from './components/manage/manage_inbox.vue'
-import home from './components/auth/start.vue'
+import home from './components/auth/startapp.vue'
 import template from './components/template/template.vue'
 import forget from './components/auth/forget.vue'
 import signup from './components/auth/signup.vue'
 import userpreferences from './components/auth/userpreferences.vue'
+import verify from './components/auth/verficationscreen.vue' 
+
 
 import adddocs from './components/Add_docs/adddocs.vue'
 import commingsoon from './components/commingsoon/comming.vue'
@@ -14,10 +16,15 @@ import completed from './components/manage/completed/completed.vue'
 import expiringsoon from './components/manage/expiringsoon/expiringsoon.vue'
 import waitingforother from './components/manage/waitingforother/waitingforother.vue'
 
+
+// routes tutorial
+import User from './components/template/user/User.vue'
+import userhome from './components/template/Home.vue'
+
+
 // make a bundle of dashoard
 
 import dashboard from './components/dashboard/dashboard.vue'
-
 import addrecipient from './components/recipients/AddRecipient.vue'
 
 const inbox = resolve =>{
@@ -46,21 +53,35 @@ const draft  = resolve =>{
 
 
 export const routes = [
+        
+        // tutorial    
+        {
+            path:'/user',
+            component: User,
 
-    
-    {
-        path:'/dashboard',
-        component:dashboard,
-        name:dashboard
-    },
+        },
 
-    {
-        path:'/manage_inbox',
+        {
+            path:'/userhome',
+            component:userhome
+        },
+
+
+        // end of tutorial
+
+        // **** dashboard route set****//
+        {
+            path:'/dashboard',
+            component:dashboard,
+            name:dashboard
+        },
+
+        
+        //*** manage routes with child and parents ***/
+        {path:'/manage_inbox',
         component: manage_inbox,
         children:[
-            {   path:'/inbox',name:'inbox',component: inbox
-            
-        },
+            {path:'',name:'inbox',component: inbox},
             {   path:'/sent',component: sent},        
             {   path:'/delete', component: deletee },         
             {   path:'/draft',component: draft,  },      
@@ -81,14 +102,18 @@ export const routes = [
                 path:'/waitingforother',
                 component:waitingforother
             }
-        ]
-    },   
+            ]
+            },   
 
-    {
-        path:'/home',
-        component:home,
-     
-    },
+            {
+                path:'/home',
+                component:home, 
+            },{
+                path:'/verify',
+                component:verify
+            },
+
+
       {
         path:'/signup',
         component:signup,
