@@ -189,7 +189,17 @@
                 "phone":this.number
                 })
             .then(response => {
-                console.log(response)},
+                if(response.status ==200){
+                  
+                  this.$router.push("/verify/sidratariq48@gmail.com")
+                  console.log("chal gyaa code")
+                }
+                else{
+                  console.log(response)
+                }
+                
+
+                },
             error => {
                 console.log(error);
             });

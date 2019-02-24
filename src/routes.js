@@ -1,6 +1,6 @@
 /* eslint-disable */
 import manage_inbox from './components/manage/manage_inbox.vue'
-import home from './components/auth/startapp.vue'
+import login from './components/auth/startapp.vue'
 import template from './components/template/template.vue'
 import forget from './components/auth/forget.vue'
 import signup from './components/auth/signup.vue'
@@ -85,7 +85,7 @@ export const routes = [
             {   path:'/sent',component: sent},        
             {   path:'/delete', component: deletee },         
             {   path:'/draft',component: draft,  },      
-            {   path:'/home:id', component: home,  },
+            // {   path:'/home:id', component: home,  },
             {
                 path:'/actionrequired',
                 component:actionrequired
@@ -106,10 +106,10 @@ export const routes = [
             },   
 
             {
-                path:'/home',
-                component:home, 
+                path:'/login',
+                component:login, 
             },{
-                path:'/verify',
+                path:'/verify/:email',
                 component:verify
             },
 

@@ -19,11 +19,9 @@
 
                     <form @submit.prevent="">
 
-                        <input  class=" form-control globalwidth" v-model="email" style="margin-left:15%" type="text"  placeholder="Enter your email ">
 
                         <input  class=" form-control globalwidth" v-model="verify_code" style="margin-left:15%" type="text"  placeholder="Enter Verfication code ">
 
-                        <p>f185f6</p>
                         <button @click.prevent="submit" class="bbutton globalwidth">Confirm</button>
                         
                     </form>
@@ -55,7 +53,7 @@
                 email:localStorage.getItem('email'),
                 show: false,
                 verify_code:'',
-                email:''
+                email:this.$route.params.email
             }
         },
         methods:{
@@ -74,7 +72,11 @@
                      "VerificationCode":this.verify_code
                 })
             .then(response => {
-                console.log(response)},
+                if(response.status ==200){
+                    this.$router.push('/login')
+                    console.log(response)
+                }
+                },
             error => {
                 console.log(error);
                 // console.log(response.bodyText)
@@ -114,6 +116,7 @@
 
             .globalwidth{
                 width: 70%;
+                margin: 2%;
             }
 
             .fade-enter{

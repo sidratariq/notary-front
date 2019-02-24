@@ -103,12 +103,12 @@
                         
                             submit(){
 
-                                this.$http.get('http://192.168.10.7:8000/login', {
+                                this.$http.post('http://192.168.10.7:8000/login', {
                                         "email": "aliahsan147@gmail.com",
 	                                    "password":"Meandus123"
                                 })
                                 .then(response => {
-                                    console.log(response)},
+                                    console.log(response.json())},
                                 error => {
                                     console.log(error);
                                 });

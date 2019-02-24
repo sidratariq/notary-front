@@ -10,7 +10,8 @@
           style="width:90%"
           aria-describedby="emailHelp"
           placeholder="Enter email"
-         autocomplete="true"
+         autocomplete="on"
+
         >
         <small
           id="emailHelp"
@@ -34,7 +35,7 @@
     <button class="btn btn-link" @click="signup">
       <small>No account? Sign up for free</small>
     </button>
-    <small>{{$v.email.$invalid}}</small>
+    <!-- <small>{{$v.email.$invalid}}</small> -->
   </div>
 </template>
 
@@ -54,7 +55,11 @@ export default {
   ,
 
   methods: {
+
+    
     clickhappened() {
+
+      // ****this function chnages the current component to password component******//
       if (this.$v.email.$invalid == false) {
         this.currentflag = !this.currentflag;
         this.$emit("gotclicked", this.currentflag);
@@ -63,8 +68,11 @@ export default {
         //    console.log("enter a valid email address");
       }
     },
+
+
     signup() {
-      this.$router.push("/signup");
+      // this function runs when new user signs in
+           this.$router.push("/signup");
     }
   },
 
@@ -103,7 +111,9 @@ export default {
 }
 
 .disabled {
+  /* pointer-events: none; */
   cursor: not-allowed;
+
   /* opacity: 0.65; */
 }
 </style>

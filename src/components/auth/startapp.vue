@@ -3,20 +3,24 @@
 
                   <div class="row" style="margin-top:10%">
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" >
-                      {{password}}
-                      {{currentemail}}
+                      <!-- {{password}} -->
+                      <!-- {{currentemail}} -->
+                      <!-- {{ -->
+                        <!-- $v.password.$invalid -->
+                      <!-- }} -->
 
                     <ul class="list-group">
-                      <li class="list-group-item" v-for="(u,key) in users" :key="key">{{u}}</li>
+                    <li class="list-group-item" v-for="(u,key) in errors" :key="key">
+                    <transition name="fade">
+                    <div   class="alert alert-info" transition="expand">{{u}}</div>
+                    </transition></li>
                     </ul>
 
                     </div>
 
 
-
-
+                    <!-- here the main login things happen -->
                     <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12" >
-
                       <img src="../../assets/icons/esnotary.png"  >
                       
                       <h4>Please log in to your account</h4>
@@ -31,9 +35,18 @@
                       <!-- asdkjbhbalhbafh -->
                         <form class="btn-set">
                           <div class="form-group" > 
-                            <input type="password" v-model="password" @blur="$v.password.$touch()" class="form-control" style="width:90%"  aria-describedby="emailHelp" placeholder="Enter password">
+                            <input type="password" autocomplete="on" @focus="setvalues" v-model="password" @blur="$v.password.$touch()" class="form-control" style="width:90%"  aria-describedby="emailHelp" placeholder="Enter password">
                             <!-- <input class="form-control" type="password" placeholder="Enter password"> -->
                             <small class="UI-info" v-if="!$v.password.minLen" :class="{invalid:true}">The password must be 6 character long</small>
+                            <small v-if="show" class="error-msg">
+                              Invalid email or password
+                            </small>
+                            <small v-if="validpassword" class="error-msg">
+                              Invalid password please try again
+                            </small>
+                            <small v-if="validemail" class="error-msg">
+                              Invalid email!! Please sign in as a different user
+                            </small>
                             </div>
                             <button class="bbutton btn-width" @click.prevent="login"> Log IN</button>
                         </form>
@@ -79,7 +92,11 @@
                 flag:true,
                 currentemail:'',
                 password:'',
-                users:[]
+                users:[],
+                errors:[],
+                show:false,
+                invalid_password:false,
+                invalid_email:false
               
               };
             },  
@@ -88,50 +105,70 @@
               foot_footer
             }, 
             methods:{
+
               // use logic to disable and enable the button
               enteremail:function(){
                 this.flag=!this.flag;
               },
+
+
               forgetpassword:function(){
+                // changes route to forgetpassword
                 this.$router.push('/forget')
               },
 
+
               login:function(){ 
-                  // this.$http.get('http://192.168.10.7:8000/login', {
-                  //               	"email": "aliahsan147@gmail.com",
-	                //                 "password":"Meandus123"})
-                  //               .then(response => {
-                  //                   console.log(response)
-                  //                   },
-                  //               error => {
-                  //                   console.log(error);
-                  //               });
+                  // *** this function sends the post request and if users shows if there is mistake in client side ***///
+                  // *** this function sends the post request and if users shows if there is mistake in client side ***///
+                if(!this.$v.password.$invalid){
 
-                // this.$router.push('/dashboard')
+                   this.$http.post('http://192.168.10.7:8000/login', {
+                                	"email": this.currentemail,
+	                                "password":this.password})
+                                .then(response => {
+                                    
+                                    if(response.status == 200){
+                                          this.$router.push('/dashboard')                                      
+                                    }
+                                    },
+                                error => {
+                                    if(error.body =='INVALID PASSWORD'){
+                                      this.invalid_password = true
+                                    }
 
-                this.$http.get('http://192.168.10.7:8000/login',{
-                  	"email": "aliahsan147@gmail.com",
-	                  "password":"Meandus123"
-                })
-                .then(response =>{
-                  return response.json();
-                })
-                .then(data=>console.log(data))
-                
+                                    if(error.body =="INVALID EMAIL"){
+                                      this.invalid_email = true
+                                    }
 
+                                    this.errors.push(error.status)
+                                    this.errors.push(error.body)
+                                    // this.show =true
+                                });
+
+
+                }
               },
 
               change:function(){
+                // ***this function runs when user clicks sign in as a different user ***//
                 this.currentemail = '';
+                this.errors = [];
+                this.password = '';
                 this.flag = !this.flag;
               },
 
               commingsoon(){
+                //runs for upgrade sevices
                 this.$router.push('/commingsoon');
+              },
+              
+              setvalues(){
+                // onfoucs when ever clicked sets the alets to false
+                this.invalid_password = false;
+                this.invalid_email = false;
               }
             },
-
-
 
             validations:{
                password: {
@@ -139,6 +176,17 @@
                    minLen: minLength(6)
                },
             },
+
+            computed:{
+                // showing responses on the screen
+                validpassword:function(){
+                  return this.invalid_password;
+                },
+                validemail:function(){
+                  return this.invalid_email;
+                }
+            }
+
 
          
 
@@ -170,10 +218,13 @@
                   background-color: #ffffff;
               }
 
-
-
+              .error-msg{
+                    color: #d03238;
+                    display: block;
+                    /* margin: 8px 0; */
+              }
+      
           
-              
               h5{
                 font-family: 'Roboto', sans-serif;
                 font-weight: bold;
@@ -202,7 +253,7 @@
                 }
 
 
-                .btn-width{
+              .btn-width{
                 width: 80%;
               }
 
@@ -217,10 +268,10 @@
             }
 
             .invalid {
-      text-align: left;
-      color: #d03238;
-      font-size: 12px;
-      display: block;
-    }
+              text-align: left;
+              color: #d03238;
+              font-size: 12px;
+              display: block;
+              }
 
           </style>
