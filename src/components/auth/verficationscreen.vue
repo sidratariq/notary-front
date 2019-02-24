@@ -74,7 +74,7 @@
                      "VerificationCode":this.verify_code
                 })
             .then(response => {
-                console.log(response.bodyText)},
+                console.log(response)},
             error => {
                 console.log(error);
                 // console.log(response.bodyText)

@@ -9,6 +9,10 @@
                         <div  class="col-md-4 col-lg-4 col-sm-6 col-xs-12"  >
                               <div>
                                   <h3>Sign Up</h3>
+
+                                  <transition name="fade">
+                                      <div class="alert alert-info" transition="expand">Verification code was sent to {{email}}</div>
+                                  </transition>
                                   <form @submit.prevent="onSubmit">
                                   <div class="row">
                                   <div class="col-6">
@@ -62,8 +66,8 @@
                                   </div>
                                               
                                   </div>
-                                  <button type="submit" :class="{disabled:$v.$invalid}"  @click="onSubmit()">Create Your account</button>
-                                  
+                                  <button  :class="{disabled:$v.$invalid}" type="submit" >Create Your account</button>
+                                  <!--   -->
                                   </form>                      
                                   </div>
 
@@ -189,7 +193,9 @@
             error => {
                 console.log(error);
             });
-          
+
+          // console.log("mein chal rhaa hn naa mein so rae hn mein")
+        
 
 
         }
@@ -207,6 +213,10 @@
 
         name:function(){
           return this.firstname +" "+  this.lastname;
+        },
+
+        showresponse:function(){
+
         }
       }
     };

@@ -8,9 +8,9 @@
           class="form-control"
           @input="$v.email.$touch()"
           style="width:90%"
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
+         autocomplete="true"
         >
         <small
           id="emailHelp"
@@ -42,12 +42,15 @@
 import { required, email } from "vuelidate/lib/validators";
 
 export default {
+
+  // data aur valiudation kaa name same hona chai hai
   data() {
     return {
-      currentflag: this.flag
+      currentflag: this.flag,
+      email:''
     };
   },
-  props: ['flag','email']
+  props: ['flag']
   ,
 
   methods: {

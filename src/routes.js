@@ -136,7 +136,7 @@ export const routes = [
     },
 
     {
-        path:'/forget/:email',
+        path:'/forget',
         component:forget,
         name:forget
     },
