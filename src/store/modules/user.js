@@ -11,7 +11,7 @@ const state  ={
 
         // these should be in the contract module
         Waitingforother:'',
-        Tosign:'',
+        Tosign:'',  
         Expiringsoon:'' 
     }
 
@@ -21,7 +21,7 @@ const state  ={
 const getters ={
 
     getusername:state =>{
-        return Userdata.UserName;
+        return state.Userdata.UserName;
     },
 
     getuserid: state =>{
@@ -29,13 +29,13 @@ const getters ={
     },
 
     getemail: state=>{
-        console.log("chal bhi rhaa hn mein")
+        console.log("chal bhi rhaa hn mein"+state.Userdata.UserEmail)
 
         return state.Userdata.UserEmail
     },
     
     getprofilepicture:state=>{
-        console.log("chal rhaa hn mein")
+        console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
         return state.Userdata.UserProfilepicture
     },
 
@@ -72,22 +72,31 @@ const getters ={
 const mutations = {
     
     setusername: (state,payload) =>{
+        // console.log("username:"+payload)
         state.UserName = payload;
     },
 
     setprofilepicture: (state,payload) =>{
+        // console.log(payload)
+
         state.UserProfilepicture = payload;
     },
 
     setinitial:(state,payload)=>{
+        // console.log(payload)
+
         state.UserInitials = payload
     },
 
     setsignature:(state,payload)=>{
+        // console.log(payload)
+
         state.UserSignature = payload
     },
 
     setcompany:(state,payload)=>{
+        // console.log(payload)
+
         state.UserCompany= payload
     },
 };
@@ -95,22 +104,28 @@ const mutations = {
 const actions = {
 
     change_username: ({commit},payload) => {
+        console.log("mutation running")
         commit('setusername',payload);
     },        
 
     change_userprofilepic:({commit},payload)=>{
+        console.log("mutation running")
         commit('setprofilepicture',payload);
     },
 
     changeinitial:({commit},payload)=>{
+        console.log("mutation running")
         commit('setinitial',payload)
     },
 
     changesignature:({commit},payload)=>{
+        console.log("mutation running")
         commit('setsignature',payload)
     },
 
     changecompany:({commit},payload)=>{
+        console.log("mutation running")
+        
         commit('setcompany',payload)
     }
 };

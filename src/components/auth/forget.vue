@@ -1,10 +1,7 @@
         <template>
             <div class="text-center">
                 <div class="row" >
-
-
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" >
-                    
                     </div>
                     <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12" >
                     
@@ -18,28 +15,36 @@
 
                     <p> We want to make sure it's really you. In order to further verify your identity, enter the verification code that was sent to {{email}} <br> </p>
 
-                    <form @submit.prevent="">
+                    <form v-if="show" >
                         <input  class=" form-control globalwidth" style="margin-left:15%" type="text"  placeholder="Enter Verfication code ">
                         <p></p>
-                        <button class="bbutton globalwidth">Confirm</button>
+                        <button @click.prevent="party()" class="bbutton globalwidth">Confirm</button>
+                        
+                    </form>
+
+                    <!-- password -->
+                    <form v-if="!show" >
+                        <input  class=" form-control globalwidth" style="margin-left:15%" type="password"  placeholder="Enter New password">
+                        <input  class=" form-control globalwidth" style="margin-left:15%" type="password"  placeholder="Renter your password">
+
+                        <p></p>
+                        <button @click.prevent="party()" class="bbutton globalwidth">Confirm</button>
                         
                     </form>
                     
                     <hr>
                 
                     <div>
-                        <button class="btn btn-link" @click="resendcode" >Resend Code</button>
+                        <button v-if="show" class="btn btn-link" @click="resendcode" >Resend Code</button>
 
                     </div>
                     </div>
 
                     <div  class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-
-
                     </div>
-
-
                 </div>
+
+                
                 </div>
         </template>
 
@@ -49,7 +54,7 @@
         data:function(){
             return{
                 email:this.$route.params.email,
-                show: false
+                flag: true
             }
         },
         methods:{
@@ -59,9 +64,20 @@
                     this.show = !this.show;
                 },5000)
 
-            } 
-            
-                
+            },
+
+            party(){
+                console.log("chal rhaa hai nae")
+                this.flag = !this.flag;
+            }   
+              
+        },
+
+        computed:{
+            show:function(){
+
+                return this.flag;
+            }
         }
         }
         </script>

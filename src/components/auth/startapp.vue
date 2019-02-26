@@ -150,15 +150,15 @@
                                     this.$store.dispatch("changecompany",this.Userdata.Userdata.Company);
 
 
-                                    console.log(this.Userdata.Userdata.Company)
-                                    console.log(this.Userdata.Userdata.CreationTime)
-                                    console.log(this.Userdata.Userdata.Email)
-                                    console.log(this.Userdata.Userdata.Initials)
-                                    console.log(this.Userdata.Userdata.Name)
-                                    console.log(this.Userdata.Userdata.Phone)
-                                    console.log(this.Userdata.Userdata.Picture)
-                                    console.log(this.Userdata.Userdata.Sign)
-                                    console.log(this.Userdata.Userdata.Userid)
+                                    // console.log(this.Userdata.Userdata.Company)
+                                    // console.log(this.Userdata.Userdata.CreationTime)
+                                    // console.log(this.Userdata.Userdata.Email)
+                                    // console.log(this.Userdata.Userdata.Initials)
+                                    // console.log(this.Userdata.Userdata.Name)
+                                    // console.log(this.Userdata.Userdata.Phone)
+                                    // console.log(this.Userdata.Userdata.Picture)
+                                    // console.log(this.Userdata.Userdata.Sign)
+                                    // console.log(this.Userdata.Userdata.Userid)
                                     
 
 

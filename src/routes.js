@@ -5,7 +5,9 @@ import template from './components/template/template.vue'
 import forget from './components/auth/forget.vue'
 import signup from './components/auth/signup.vue'
 import userpreferences from './components/auth/userpreferences.vue'
-import verify from './components/auth/verficationscreen.vue' 
+import verify from './components/auth/verficationscreen.vue'
+// import newpassword from './components/auth/newpassword.vue'
+
 
 
 import adddocs from './components/Add_docs/adddocs.vue'
@@ -21,9 +23,7 @@ import waitingforother from './components/manage/waitingforother/waitingforother
 import User from './components/template/user/User.vue'
 import userhome from './components/template/Home.vue'
 
-
 // make a bundle of dashoard
-
 import dashboard from './components/dashboard/dashboard.vue'
 import addrecipient from './components/recipients/AddRecipient.vue'
 
@@ -127,12 +127,12 @@ export const routes = [
 
     {
         path:'/redirect-me',
-        redirect:'/home'
+        redirect:'/login'
     },
 
     {
         path:'*',
-        redirect:'/home'
+        redirect:'/login'
     },
 
     {
@@ -159,16 +159,14 @@ export const routes = [
         path:'/detail/:id',
         component:detail
     },
+    
     {
         path:'/userpreferences',
         component:userpreferences
     },
+
     {
         path:'/addrecipient',
         component:addrecipient
-    }
-   
-
-
-
+    },
 ];

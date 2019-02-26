@@ -94,7 +94,7 @@
                                         },
 
                                         profilepic:function(){
-                                            return this.$store.getters.getprofilepicture
+                                            return this.$store.getters.getprofile
                                         }
 
                                     },
