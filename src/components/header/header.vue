@@ -3,9 +3,7 @@
                                             <div class="logo">
                                                 <!-- <img style="z-index=999" src="../../assets/icons/SVG/SVG/simple.svg"  -->
                                                 <img style="z-index=999" src="../../assets/icons/logo.svg" 
-
                                                 @click="gohome" alt="" height="57px" width="87px" srcset="">
-                                                <!-- <img src="../../assets/icons/ebnotary.png"   > -->
                                                 </div> 
 
                                                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
@@ -37,7 +35,7 @@
                                                         <img style="width:40%" class="rounded-circle" src="../../assets/icons/sidra.jpeg"  width="100%" height="100%" alt="" srcset="">
 
                                                             <span style="font-size:13px">
-                                                            sidratariq48@gmail.com
+                                                                 {{email}}
                                                             </span>
 
                                                         <!-- <div> -->
@@ -66,7 +64,9 @@
                     export default {
                          data:function(){
                              return {
-                                 flag:false
+                                 flag:false,
+                                 
+
                                      }
                                 },
                                 methods:{
@@ -87,6 +87,17 @@
                                                 //    this.$store.getters.getavalible
                                             }
                                         },
+                                    computed:{
+                                        
+                                        email:function(){
+                                            return this.$store.getters.getemail;
+                                        },
+
+                                        profilepic:function(){
+                                            return this.$store.getters.getprofilepicture
+                                        }
+
+                                    },
                                         
 
                                             mounted(){

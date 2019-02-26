@@ -1,4 +1,4 @@
-                                                <template>
+<template>
   <div class="main" :class="{modalavalible:flag}">
     <!-- header  -->
     <head_head></head_head>
@@ -70,7 +70,7 @@
   </div>
 </template>
 
-                                    <script>
+<script>
 import head_head from "../header/header.vue";
 import dragdrop from "../dragdrop/dragdrop.vue";
 import modal from "../modals/modal.vue";
@@ -85,7 +85,10 @@ export default {
       quotes: ["Just a Quote to see something"],
       maxQuotes: 10,
       showModal: false,
-      fileavalible: this.$store.getters.getavalible
+      fileavalible: this.$store.getters.getavalible,
+      userdata:{
+        
+      }
     };
   },
 
@@ -128,7 +131,10 @@ export default {
       return this.$store.getters.getupload;
     }
   },
+  mounted(){
 
+  }
+  ,
   components: {
     head_head,
     dragdrop,

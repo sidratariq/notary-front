@@ -7,8 +7,8 @@
                     </div>
                     <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12 text-center" >
                     
-                    <transition name="fade">
-                    <div  v-show="show" class="alert alert-info" transition="expand">Verification code was sent to {{email}}</div>
+                    <transition  name="fade">
+                    <div class="alert alert-info" transition="expand">Account created sucessfully</div>
                     </transition>
 
                     <img src="../../assets/icons/esnotary.png" >
@@ -53,7 +53,8 @@
                 email:localStorage.getItem('email'),
                 show: false,
                 verify_code:'',
-                email:this.$route.params.email
+                email:this.$route.params.email,
+                show:false
             }
         },
         methods:{
@@ -73,6 +74,8 @@
                 })
             .then(response => {
                 if(response.status ==200){
+                    
+                    this.show = true;
                     this.$router.push('/login')
                     console.log(response)
                 }
@@ -83,6 +86,11 @@
             });
             } 
         
+        },
+        computed:{
+            div_show:function(){
+                return this.show
+            }
         }
         }
         </script>

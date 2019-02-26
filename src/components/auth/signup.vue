@@ -10,31 +10,37 @@
                               <div>
                                   <h3>Sign Up</h3>
 
-                                  <transition name="fade">
-                                      <div class="alert alert-info" transition="expand">Verification code was sent to {{email}}</div>
-                                  </transition>
+                                  
+                                 <ul class="list-group">
+                    <li class="list-group-item" v-for="(u,key) in errors" :key="key">
+                    <transition name="fade">
+                    <div   class="alert alert-info" transition="expand">{{u}}</div>
+                    </transition></li>
+                    </ul>
                                   <form @submit.prevent="onSubmit">
                                   <div class="row">
                                   <div class="col-6">
-                                    <input type="text" class="form-control" @blur="$v.firstname.$touch()"  v-model="firstname" placeholder=" Name" id="firstname"> 
-                                    <small v-if="!$v.firstname.alpha" :class="{invalid:!$v.firstname.alpha}">Please Enter a valid first name </small>
+                                    <input type="text" class="form-control" @blur="$v.firstname.$touch()"  v-model="firstname" placeholder="First Name" id="firstname"> 
+                                    <small v-if="!$v.firstname.alpha" :class="{invalid:!$v.firstname.alpha}">Spaces and numbers are not allowed</small>
                                     </div>
                                   <div class="col-6">
                                     <input type="text" class="form-control" @blur="$v.lastname.$touch()"  v-model="lastname" placeholder="Last Name"> 
-                                    <small v-if="!$v.lastname.alpha" :class="{invalid:!$v.lastname.alpha}">Please Enter a valid lastname </small>
+                                    <small v-if="!$v.firstname.alpha" :class="{invalid:!$v.firstname.alpha}">Spaces and numbers are not allowed</small>
                                   </div>
                                   
                                   <!-- email validations -->
                                   <div class="col-12">  
                                     <input type="email" id="email" 
                                     v-model="email" 
-                                    @blur="$v.email.$touch()"
+                                    @blur="$v.email.$touch()" @focus="existchange"
                                     class="form-control" placeholder="Email"> 
                                         <small v-if="flag" class="invalid"> Spaces are not allowed</small>
                                         <small   :class="{invalid: true}" v-if="!$v.email.required">This field must not be empty.</small>
                                         <small v-if="!$v.email.email"  :class="{invalid:true}">Provide a valid email like johndoe@domain.com</small>
-                                        <small v-if="exist">email already exists</small>
                                         </div>
+
+                                        <small class="error-msg" v-if="emailexist">email already exists</small>
+
 
                                   <!-- company validation -->
                                   <div class="col-12">
@@ -115,7 +121,9 @@
           terms:false,
           number:'',
           exist: false,
-          globalname: true
+          globalname: true,
+          errors:[],
+
         };
       },
 
@@ -182,7 +190,9 @@
         },
         
         onSubmit() {
-           this.$http.post('http://192.168.10.7:8000/signup', {"email": this.email,
+
+          if(!this.$v.$invalid){
+            this.$http.post('http://192.168.10.7:8000/signup', {"email": this.email,
                 "password":this.password,
                 "name": this.name,
                 "company":this.company,
@@ -191,7 +201,7 @@
             .then(response => {
                 if(response.status ==200){
                   
-                  this.$router.push("/verify/sidratariq48@gmail.com")
+                  this.$router.push("/verify/rimsha335@gmail.com")
                   console.log("chal gyaa code")
                 }
                 else{
@@ -201,13 +211,24 @@
 
                 },
             error => {
-                console.log(error);
+                if(error.body == "EMAIL_ALREADY_EXISTS"){
+                    this.exist = true;
+                }
+                this.errors.push(error.body)
+                  console.log(error.body)
+
             });
+          }
+           
 
           // console.log("mein chal rhaa hn naa mein so rae hn mein")
         
 
 
+        },
+
+        existchange(){
+          this.exist = false;
         }
       },
       computed:{
@@ -222,11 +243,22 @@
         },
 
         name:function(){
-          return this.firstname +" "+  this.lastname;
+          return this.Fname +" "+  this.Lname;
         },
 
         showresponse:function(){
 
+        },
+
+        Fname:function(){
+          return this.firstname.trim();
+        },
+        Lname:function(){
+          return this.lastname.trim()
+        },
+
+        emailexist:function(){
+            return this.exist
         }
       }
     };
@@ -254,6 +286,12 @@
       height: 100vh;
       /* padding-top: 5%; */
     }
+
+      .error-msg{
+                    color: #d03238;
+                    display: block;
+                    /* margin: 8px 0; */
+              }
 
 
     button {
