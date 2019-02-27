@@ -7,7 +7,7 @@
                     </small>
                     
                     <aside style=" line-height:18px;"><small class="text-muted">
-                      Copyright © 2018 E-Notary, Inc. All rights reserved.</small>
+                      Copyright © 2019 E-Notary, Inc. All rights reserved.</small>
                     </aside>
                   </footer>
 </template>

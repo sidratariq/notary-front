@@ -12,14 +12,14 @@ const mutations = {
 
     setupload: state => {
         state.uploadphoto = !state.uploadphoto;
-        console.log("value of flag is:" + state.uploadphoto)
+        // console.log("value of flag is:" + state.uploadphoto)
     }
 }
 
 const actions = {
     changephoto: ({ commit }) => {
         commit('setupload')
-        console.log(state.uploadphoto)
+        // console.log(state.uploadphoto)
 
     }
 };

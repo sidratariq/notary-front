@@ -9,9 +9,10 @@
 
          <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
-         <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
          <a>  <router-link class="nav-link menuitem"  active-class="active" to="/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link></a>
          <a> <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/draft"><i class="far fa-edit menuicon"></i><span>Draft</span></router-link></a>
+         <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
+         
          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/delete"><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link></a>
 
           </div>

@@ -53,10 +53,10 @@
         data:function(){
             return{
                 // email:this.$route.params.email,
-                email:localStorage.getItem('email'),
+            
                 show: false,
                 verify_code:'',
-                email:this.$route.params.email,
+                // email:this.$route.params.email,
                 show:false
             }
         },
@@ -71,7 +71,7 @@
             },
 
             submit(){
-                 this.$http.post('http://192.168.10.7:8000/verifyEmail', {
+                 this.$http.post('http://localhost:8000/verifyEmail', {
                      "email":this.email,
                      "VerificationCode":this.verify_code
                 })
@@ -93,6 +93,9 @@
         computed:{
             div_show:function(){
                 return this.show
+            },
+            email:function(){
+                return localStorage.getItem('email');
             }
         }
         }

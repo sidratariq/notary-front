@@ -1,17 +1,18 @@
                                             <template>
                                                 <header >
                                             <div class="logo">
-                                                <!-- <img style="z-index=999" src="../../assets/icons/SVG/SVG/simple.svg"  -->
-                                                <img style="z-index=999" src="../../assets/icons/logo.svg" 
-                                                @click="gohome" alt="" height="57px" width="87px" srcset="">
+                                                <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
+                                                <img style="z-index=999" src="" 
+                                                @click="gohome" alt="" height="57px" width="87px" srcset="../../assets/icons/SVG/SVG/simple.svg">
                                                 </div> 
 
                                                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                                              
                                                 <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
                                                     <ul class="nav" >
                                                         <router-link class="nav-link" active-class="activee" to="/dashboard" @click="changefile" exact tag="li"><a >Home</a></router-link>
                                                         <router-link class="nav-link" active-class="activee" to="/manage_inbox" exact tag="li"><a>Manage</a></router-link>
-                                                        <router-link class="nav-link template" active-class="activee"   tag="li" exact   to="/template"><a>Template</a></router-link>
+                                                        <!-- <router-link class="nav-link template" active-class="activee"   tag="li" exact   to="/template"><a>Template</a></router-link> -->
                                                     </ul>
                                                 </nav>
         
@@ -23,24 +24,37 @@
                                                 
 
                                                   <div class="dropdown drop" v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
-                                                  <button class="dropdown float-right sethover" style="border:1px solid transparent; background-color:#005cb9; margin-top:5px"   type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  <button class="dropdown float-right sethover" style="border:1px solid transparent; background-color:#1b499f; margin-top:2px"   type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     
                                                     <span class=" setspan">
-                                                        <img class="rounded-circle" src="../../assets/icons/sidra.jpeg"  width="100%" height="100%" alt="" srcset="">
-                                                    </span>
+                                                        <img class="rounded-circle" :src="profilepic"  width="100%" height="100%" alt="" srcset="">
+                                                    </span> 
                                                   </button>
-                                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:254px">
+                                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
                                                       <a class="dropdown-item" style="border-bottom: 1px solid #e9e9e9;" href="#">
-                                                          <div> 
-                                                        <img style="width:40%" class="rounded-circle" src="../../assets/icons/sidra.jpeg"  width="100%" height="100%" alt="" srcset="">
+                                                        <div class="row"> 
 
-                                                            <span style="font-size:13px">
+                                                        <!-- <div class="col-md-12 col-lg-12"> -->
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <img  class="rounded-circle" :src=profilepic  width="100%" height="100%" alt="" srcset="">
+                                                            </div>
+
+                                                            <div class="col-lg-8 col-md-8">
+                                                                <div class="row" style="font-size:13px;">
                                                                  {{email}}
-                                                            </span>
+                                                                </div>
+                                                                
+                                                                <div class="row" style="font-size:13px;">
+                                                                 {{username}}
 
-                                                        <!-- <div> -->
-                                                            <!-- <span style="font-size:13px">39565587</span>         -->
-                                                        <!-- </div> -->
+
+                                                                </div>
+                                                            <!-- </div> -->
+                                                        </div>
+
+                                                    
+
+                                                       
                                                         </div>
                                                         
                                                       </a>
@@ -71,7 +85,7 @@
                                 },
                                 methods:{
                                      
-                                     gohome(){
+                                   gohome(){
                                         if(this.$route.path == '/commingsoon'){
                                               
                                             this.$router.push('/home')
@@ -87,14 +101,20 @@
                                                 //    this.$store.getters.getavalible
                                             }
                                         },
+
                                     computed:{
                                         
                                         email:function(){
-                                            return this.$store.getters.getemail;
+                                            return localStorage.getItem("user_email")
                                         },
 
                                         profilepic:function(){
-                                            return this.$store.getters.getprofile
+                                            return 'http://localhost:8000/'+localStorage.getItem("user_image")
+                                            
+                                        },
+
+                                        username:function(){
+                                            return localStorage.getItem("user_name")
                                         }
 
                                     },
@@ -110,9 +130,6 @@
 
                                         <style scoped>
 
-                                        *{
-                                            /* border: 1px solid black; */
-                                        }
                                         
                                         /* small screen */
                                         *{
@@ -161,11 +178,14 @@
                                     }
 
                                     header{
-                                            background-color: #005cb9;
+                                            /* previous */
+                                            /* background-color: #005cb9; */
+                                            background-color: #1b499f;
+                                            color:#1b499f;
                                             width: 100%;
                                             height: var(--height);
                                             z-index: 999;
-                                            
+                                               
                                     }
 
                                     .template{
@@ -183,7 +203,7 @@
                                         left: 0;
                                         display: block;
                                         width: 100%;
-                                            background-color: #005cb9;
+                                            background-color: #1b499f;
 
                                         transform: scale(1,0);
                                         transform-origin: top;
@@ -212,7 +232,6 @@
                                     }
 
                                     .nav-link{
-                                        /* border: 1px solid ; */
                                         width: 100px;
                                     }
 
@@ -289,11 +308,6 @@
                                         color: red;
                                     }
                                     
-                                
-
-
-                                    
-
                                     @media screen and (min-width:756px) {
                                         
                                         .menu-item{
@@ -337,7 +351,7 @@
                                         nav{
                                             all: unset;
                                             grid-column: 2/4;
-                                            background-color: #005cb9;
+                                            background-color: #1b499f;
                                             height: 50px;
                                         }
 
@@ -393,7 +407,7 @@
                                         }
 
                                         .drop ul li span:hover{
-                                            background-color: #0075ec;
+                                            background-color: #005cb9;
                                         }
 
                                         .drop li span{
@@ -424,10 +438,6 @@
                                             transform-origin: left;
                                             transition: transform ease-in-out 250ms;
                                         }
-
-                                    
-
-                                
 
                                         .dropdown ul {
                                             position: absolute;

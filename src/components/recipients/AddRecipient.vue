@@ -1,6 +1,6 @@
             <template>
             
-                <div>
+                <div class="set-top">
                     <head_head></head_head>
 
                     <div class="container set-middle padding">
@@ -170,11 +170,8 @@
             *{
                      background-color: rgb(244, 244, 244);
                      /* border: 1px solid black; */
-
-
              }
-
-
+            
             .set-middle{
                 /* margin-right: 150px; */
                 margin-left: 200px;

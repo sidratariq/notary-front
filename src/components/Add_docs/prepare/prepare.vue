@@ -114,10 +114,6 @@
             <h6> Delete Document</h6>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-
-          
-
-
             <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
             <p>Are you sure you want to delete document</p>
             </div>
@@ -126,12 +122,8 @@
             <button type="button" @click="Delete" class="btn btn-primary" data-dismiss="modal">Delete</button>
             <button type="button" class="btn" id="cancel" data-dismiss="modal">Cancel</button>
             </div>
-
-        
-        
         </div>
-        </div>
-         
+        </div>     
         </div>
 
         </div>
@@ -181,10 +173,10 @@
                     // to make progress bar still at 100
                     if(this.progress > 100){
                     this.progress = 100
-                    console.log(this.filestatus[0])
+                    // console.log(this.filestatus[0])
                     //updating the file name   
                     this.filestatus[0] = this.filename
-                    console.log("after"+this.filestatus[0])
+                    // console.log("after"+this.filestatus[0])
                     this.$store.dispatch('act_status',this.filestatus[0])
                     return this.progress
                     }

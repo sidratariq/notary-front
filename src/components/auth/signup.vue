@@ -3,7 +3,7 @@
                         <head_head></head_head>
                         <div v-if="globalname" class="row row-set">
                         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                            {{$v.$invalid}}
+                            <!-- {{$v.$invalid}} -->
                         </div>
                           <!-- this is awesome time -->
                         <div  class="col-md-4 col-lg-4 col-sm-6 col-xs-12"  >
@@ -192,7 +192,7 @@
         onSubmit() {
 
           if(!this.$v.$invalid){
-            this.$http.post('http://192.168.10.7:8000/signup', {"email": this.email,
+            this.$http.post('http://localhost:8000/signup', {"email": this.email,
                 "password":this.password,
                 "name": this.name,
                 "company":this.company,
@@ -201,7 +201,8 @@
             .then(response => {
                 if(response.status ==200){
                   
-                  this.$router.push("/verify/rimsha335@gmail.com")
+                  this.$router.push("/verify")
+                  localStorage.setItem("email",this.email)
                   console.log("chal gyaa code")
                 }
                 else{

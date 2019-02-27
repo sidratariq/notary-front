@@ -141,15 +141,39 @@
 
                                     this.Userdata = response;
                                     console.log(this.Userdata)
-                                  
+
+                                    // setting local data for future use
+                                    localStorage.setItem("user_name",this.Userdata.Userdata.Name);
+                                    localStorage.setItem("user_email",this.Userdata.Userdata.Email);
+                                    localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
+                                    localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
+                                    localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
+                                    localStorage.setItem("user_company",this.Userdata.Userdata.Company);
+                                    localStorage.setItem("user_token",this.Userdata.Token);
+                                    localStorage.setItem("user_signto",this.Userdata.WaitingME);
+                                    localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
+                                    localStorage.setItem("user_expire",0)
+
+                                    console.log(localStorage.getItem("user_name"));
+                                    console.log(localStorage.getItem("user_email"));
+                                    console.log(localStorage.getItem("user_image"));
+                                    console.log(localStorage.getItem("user_initial"));
+                                    console.log(localStorage.getItem("user_signature"));
+                                    console.log(localStorage.getItem("user_company"));
+                                    console.log(localStorage.getItem("use_token"));
+                                    console.log(localStorage.getItem("user_signto"));
+                                    console.log(localStorage.getItem("user_waiting"));
+                                    console.log(localStorage.getItem("user_expire"));
+
+
+
                                     // setting up store values
                                     this.$store.dispatch("change_username",this.Userdata.Userdata.Name);
                                     this.$store.dispatch("change_userprofilepic",this.Userdata.Userdata.Picture);
                                     this.$store.dispatch("changeinitial",this.Userdata.Userdata.Initials);
                                     this.$store.dispatch("changesignature",this.Userdata.Userdata.Sign);
                                     this.$store.dispatch("changecompany",this.Userdata.Userdata.Company);
-
-
+                                    
                                     // console.log(this.Userdata.Userdata.Company)
                                     // console.log(this.Userdata.Userdata.CreationTime)
                                     // console.log(this.Userdata.Userdata.Email)
@@ -170,14 +194,7 @@
                                     // Picture
                                     // Sign
                                     // Userid
-                                    let usertoken = this.Userdata.Token;
-                                    let waiting = this.Userdata.WaitingME;
-                                    let waitingother = this.Userdata.WaitingOther;
-
-
-                                    console.log("usertoken"+ usertoken);
-                                    console.log("Documents to sign"+ waiting);
-                                    console.log("Waiting for others"+ waitingother);
+                                    
                                   //  console.log(typeof(response))
 
                                   // console.log('======= Object.keys ==========');    

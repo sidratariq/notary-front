@@ -1,4 +1,4 @@
-        <template>
+<template>
           
 
         <transition name="modal">
@@ -89,18 +89,16 @@
         </template>
 
         <script>
-
         import stylemodal from './stylemodal.vue'
         import uploadmodal from './uplaodmodal.vue'
         import drawmodal from './drawmodal.vue'
-
         export default {
           data(){
             return {
               display:1,
-              fullname:'sidra tariq',
+              fullname: localStorage.getItem("user_name"),
               hash:'AE9DB71A4A854B1...',
-              initials:'asim'
+              initials:''
             }
           },
             
@@ -111,108 +109,82 @@
                     this.$store.dispatch('changeflag')                  
                 },
             },
-
             components:{
               stylemodal,
               uploadmodal,
               drawmodal
-
             }
         }
         </script>
 
         <style scoped>
-
         @import url('https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff|Mrs+Saint+Delafield|Qwigley');
         @import url('https://fonts.googleapis.com/css?family=Allura');
-
         .modal{
           display: block;
           background: rgba(30, 30, 30, 0.5);
           /* background-color: #1e1e1e; */
           /* opacity: 0.5;  */
         }
-
          form{
           margin: 10px;
         }
-
-
         hr {
             border: 0;
             border-top: 1px solid rgba(0,0,0,.1);
             margin-top: 0%;
             margin-bottom:0%; 
         }
-
         .modal-content{
           width:900px; 
           opacity: 1;
           position:relative
         }
-
-
         .modal-header h3 {
           margin-top: 0;
           color: #42b983;
         }
-
         .set-margin{
             margin-right:5px;
         }
-
         .modal-body {
           margin: 20px 0;
         }
-
         .modal-default-button {
           float: right;
         }
-
         .modal-enter {
           opacity: 0;
         }
-
         .modal-leave-active {
           opacity: 0;
         }
-
         .nodisplay{
           display: none;
         }
-
-
-
-
         .modal-dialog{
           margin-left:17%; 
           margin-top:2%;
         }
-
         .modal_title{
             border-bottom: 1px solid #e9e9e9;
             overflow: hidden;
             padding: 20px 24px;
             position: relative;
         }
-
         input{
         border-radius: 2px; 
         }
-
         
-
         .first-input{
           padding-left:1%;
            width:40%; 
            float:left
         }
-
         .second-input{
           width:50%;
           float:right;
         }
-
         input:focus{
           border: blue;
         }
@@ -226,20 +198,15 @@
                cursor:pointer;
                 color: #868686;
         }
-
         .btn-cross:hover{
           color: #005cb9;
         }
-
-
           nav{
                   all: unset;
                   height: 50px;
                   border-top:1px solid silver;
                   border-bottom:1px solid silver; 
-
               }
-
                 .nav li a{
                   background: 0 0;
               border: 0;
@@ -254,7 +221,6 @@
               padding: 0 0 16px 0;
               text-transform: uppercase;
                 }
-
                                 
               /*yee uraw full py ay gaa  */
               nav a{
@@ -269,7 +235,6 @@
                   margin-bottom: 0;
                   width: 81px;
               }
-
               .nav a::after{
                   content: '';
                   display: block; 
@@ -285,18 +250,14 @@
                   transform-origin: left;
                   transition: transform ease-in-out 250ms;      
               }
-
               .nav a:hover{
                   border-bottom-color: #2463d1;
                   transition: transform ease-in-out 250ms;      
                   color: #2463d1;
               }
-
               nav a:hover::after{
                   transform: scale(1,1);
-
               }
-
               .stylesign{
                 background: #eaeaea;
                 border: 0;
@@ -305,34 +266,25 @@
                 color: #1e1e1e;
                 width: 100%;
                 overflow-y: auto;
-
               }
-
               tr{
               margin: 2%;
               }
-
-
               .heightset{
                   height: 18px;
               }
-
               .displayset{
                     display: block;
                     min-height: 18px;
                     min-width: 18px;
                     position: relative;
-
               }
-
               /* .first-input label{
                 
               } */
-
               .displayset input{
                 margin-left: 50px;
               }
-
               .sign-container{
                     border-left: 2px solid #005cb9;
                     border-radius: 8px;
@@ -348,29 +300,22 @@
                     border-top-width: 2px;
                     top: -2px;
               }
-
         .signby{
               font-weight: 700;
               top: -8px;
               font-size: 10px;
               left: 21px;
-
               position: absolute;
-
-
         
         }
-
         
         .bottom {
               font-size: 10px;
               font-weight: 700;
-
               left: 21px;
               position: absolute;
               bottom: 0px;
           }
-
         .font{
           font-size: 25px;
           position: absolute;
@@ -381,35 +326,25 @@
           /* // font-family: 'Allura', cursive; */
           font-family: 'Mrs Saint Delafield', cursive;
         }
-
       .modal-footer{
             justify-content: start;
             margin-left:5px;
              margin-right:5px;
       }
-
     /* // global css */
           
           tr:hover{
             opacity: 0.75;
             background-color: #BBC2C2;
           }
-
           table{
                 height:550px;
-
           }
-
           .btn-black:hover{
             text-decoration: none;
             color: #2463d1;
           }
-
           .btn-black{
             color: black;
-
           }
-
         </style>
-
-

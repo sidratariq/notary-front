@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid  mx-0" id="app">
+  <div  id="app">
    
       <router-view></router-view>
       <footer_footer ></footer_footer >
@@ -19,13 +19,11 @@ export default {
 }
 </script>
 
-<style scoped >
-  *{
-    margin: 0%;
-  }
+<style>
 
-  #app{
-    padding: 0;
-  }
+body{
+  background-color: rgb(244, 244, 244);
+}
+
 
 </style>

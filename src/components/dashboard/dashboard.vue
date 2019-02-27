@@ -23,7 +23,7 @@
           </li>
 
           <li class="signature">
-            <!-- compoennet here -->
+            <!-- component here -->
             <signature></signature>
           </li>
         </ul>
@@ -33,9 +33,9 @@
           <!-- user actions from database -->
           <li @click="routechange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">0</span>
+              <span class="userAction_number large-screen">{{Doctosign}}</span>
               <span class="userAction_status">Action Required</span>
-              <span class="userAction_number small-screen">0</span>
+              <span class="userAction_number small-screen">{{Doctosign}}</span>
               <!-- <span style="z-index:9999"> <img src="../../assets/icons/angle-double-right-solid.svg" alt=""></span> -->
             </a>
           </li>
@@ -43,18 +43,18 @@
           <!--waiting for others from database  -->
           <li @click="routewaitchange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">1</span>
+              <span class="userAction_number large-screen">{{waiting}}</span>
               <span class="userAction_status">Waiting for Others</span>
-              <span class="userAction_number small-screen">1</span>
+              <span class="userAction_number small-screen">{{waiting}}</span>
             </a>
           </li>
 
           <!-- expiring soon from database -->
           <li @click="routeexpirechange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">0</span>
+              <span class="userAction_number large-screen">{{expiring}}</span>
               <span class="userAction_status">Expiring Soon</span>
-              <span class="userAction_number small-screen">0</span>
+              <span class="userAction_number small-screen">{{expiring}}</span>
             </a>
           </li>
         </ul>
@@ -82,12 +82,9 @@ import { mapActions } from "vuex";
 export default {
   data: function() {
     return {
-      quotes: ["Just a Quote to see something"],
-      maxQuotes: 10,
       showModal: false,
       fileavalible: this.$store.getters.getavalible,
       userdata:{
-        
       }
     };
   },
@@ -129,6 +126,21 @@ export default {
 
     uploadflag() {
       return this.$store.getters.getupload;
+    },
+    
+    //  localStorage.setItem("user_signto",this.Userdata.WaitingME);
+                                    // localStorage.setItem("user_waitingforother",this.Userdata.WaitingOther);
+                                    // localStorage.setItem("user_expire",0)
+    Doctosign(){
+      return localStorage.getItem("user_signto")
+    },
+
+    waiting(){
+      return localStorage.getItem("user_waiting")
+    },
+
+    expiring(){
+      return localStorage.getItem("user_expire")
     }
   },
   mounted(){

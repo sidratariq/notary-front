@@ -29,13 +29,13 @@ const getters ={
     },
 
     getemail: state=>{
-        console.log("chal bhi rhaa hn mein"+state.Userdata.UserEmail)
+        // console.log("chal bhi rhaa hn mein"+state.Userdata.UserEmail)
 
         return state.Userdata.UserEmail
     },
     
     getprofilepicture:state=>{
-        console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
+        // console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
         return state.Userdata.UserProfilepicture
     },
 
@@ -104,27 +104,27 @@ const mutations = {
 const actions = {
 
     change_username: ({commit},payload) => {
-        console.log("mutation running")
+        // console.log("mutation running")
         commit('setusername',payload);
     },        
 
     change_userprofilepic:({commit},payload)=>{
-        console.log("mutation running")
+        // console.log("mutation running")
         commit('setprofilepicture',payload);
     },
 
     changeinitial:({commit},payload)=>{
-        console.log("mutation running")
+        // console.log("mutation running")
         commit('setinitial',payload)
     },
 
     changesignature:({commit},payload)=>{
-        console.log("mutation running")
+        // console.log("mutation running")
         commit('setsignature',payload)
     },
 
     changecompany:({commit},payload)=>{
-        console.log("mutation running")
+        // console.log("mutation running")
         
         commit('setcompany',payload)
     }

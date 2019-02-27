@@ -66,16 +66,12 @@ export const routes = [
             component:userhome
         },
 
-
-        // end of tutorial
-
         // **** dashboard route set****//
         {
             path:'/dashboard',
             component:dashboard,
             name:dashboard
         },
-
         
         //*** manage routes with child and parents ***/
         {path:'/manage_inbox',
@@ -109,7 +105,8 @@ export const routes = [
                 path:'/login',
                 component:login, 
             },{
-                path:'/verify/:email',
+                // path:'/verify/:email',
+                path:'/verify',
                 component:verify
             },
 
