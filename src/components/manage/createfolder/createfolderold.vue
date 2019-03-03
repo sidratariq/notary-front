@@ -35,15 +35,7 @@
                                </div>
                       
                         </span>
-                        
-                            <!-- <ul v-for="(value,key) in (folder.subfolder)" :key="key">
-                              <li>
-                                
-                              </li>
-                            </ul> -->
-                        
-                        </li>
-                       
+                        </li> 
                         </ul>   
                         </li>
                     </ul>
@@ -101,12 +93,17 @@
     },
       methods:{
       
-                    chalo(indexno){
+                    chalo(){
+                    // chalo(indexno){
+
                         this.folders.push(this.foldername);
+                        
                         
 
                     },
-                     subfolder($event){
+                     subfolder(){
+                    //  subfolder($event){
+
                     // let parent = $event.currentTarget.parentElement.id;
                     // let newfolder = document.createElement('li')
                     // let name = document.createTextNode(this.subfoldername)
@@ -117,10 +114,14 @@
 
                 },
 
-                rename($event){
-                 console.log($event.currentTarget.parentElement) 
+                rename(){
+                // rename($event){
+// 
+                //  console.log($event.currentTarget.parentElement) 
                 },
-                delete($event){
+                delete(){
+                // delete($event){
+
 
                 }
                 

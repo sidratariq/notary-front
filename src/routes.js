@@ -9,6 +9,10 @@ import verify from './components/auth/verficationscreen.vue'
 // import newpassword from './components/auth/newpassword.vue'
 
 
+// ******* learning routes ************///
+import User from './components/template/user/User.vue'
+import userhome from './components/template/Home.vue'
+// ******* learning routes ************///
 
 import adddocs from './components/Add_docs/adddocs.vue'
 import commingsoon from './components/commingsoon/comming.vue'
@@ -19,9 +23,6 @@ import expiringsoon from './components/manage/expiringsoon/expiringsoon.vue'
 import waitingforother from './components/manage/waitingforother/waitingforother.vue'
 
 
-// routes tutorial
-import User from './components/template/user/User.vue'
-import userhome from './components/template/Home.vue'
 
 // make a bundle of dashoard
 import dashboard from './components/dashboard/dashboard.vue'
@@ -53,18 +54,17 @@ const draft  = resolve =>{
 
 
 export const routes = [
-        
-        // tutorial    
-        {
-            path:'/user',
-            component: User,
+        // ********* tutorial********    
+      {
+        path:'/user',
+        component: User,
+    },
 
-        },
-
-        {
-            path:'/userhome',
-            component:userhome
-        },
+    {
+        path:'/userhome',
+        component:userhome
+    },
+        // ********* tutorial********    
 
         // **** dashboard route set****//
         {
@@ -74,30 +74,33 @@ export const routes = [
         },
         
         //*** manage routes with child and parents ***/
-        {path:'/manage_inbox',
+        {path:'/manage_inbox/:id',
+        //         path:'/user/:id',
+
         component: manage_inbox,
         children:[
             {path:'',name:'inbox',component: inbox},
-            {   path:'/sent',component: sent},        
-            {   path:'/delete', component: deletee },         
-            {   path:'/draft',component: draft,  },      
+            
+            // {   path:'/sent',component: sent},        
+            // {   path:'/delete', component: deletee },         
+            // {   path:'/draft',component: draft,  },      
             // {   path:'/home:id', component: home,  },
-            {
-                path:'/actionrequired',
-                component:actionrequired
-            },
-            {
-                path:'/completed',
-                component:completed
-            },
-            {
-                path:'/expiringsoon',
-                component:expiringsoon
-            },
-            {
-                path:'/waitingforother',
-                component:waitingforother
-            }
+            // {
+            //     path:'/actionrequired',
+            //     component:actionrequired
+            // },
+            // {
+                // path:'/completed',
+                // component:completed
+            // },
+            // {
+                // path:'/expiringsoon',
+                // component:expiringsoon
+            // },
+            // {
+                // path:'/waitingforother',
+                // component:waitingforother
+            // }
             ]
             },   
 
@@ -126,7 +129,6 @@ export const routes = [
         path:'/redirect-me',
         redirect:'/login'
     },
-
     {
         path:'*',
         redirect:'/login'

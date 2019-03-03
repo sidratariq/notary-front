@@ -1,13 +1,11 @@
 <template>
-        <div class=""  >
-
-
-
+        <div class="">
+            {{name}}
                              <div class="row sethidden"  v-if="!checked">
                     
 
                             <div class="col-lg-7 ">
-                                <span class="setinbox set" style="" >Inbox</span>
+                                <span class="setinbox set" style="" ></span>
                             </div>
 
                             <div class="col-lg-5 searchbar">
@@ -51,12 +49,30 @@
         import search from './search/search.vue'
 
 export default {
+    data(){
+        return{
+            id:this.$route.params.id
+
+        }
+    },
+      watch:{
+            '$route'(to,from){
+                this.id = to.params.id;
+            }
+        }
+    ,
+
+    computed:{
+        name:function(){
+            return this.$route.params.id
+        }
+    },
     props:[
         'checked','nooffilesselected'
     ],
   components:{
                 search
-            }
+            },
 }
 </script>
 

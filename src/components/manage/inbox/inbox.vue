@@ -3,7 +3,7 @@
                     <div class="container-fluid mx-0">
 
                             <div>
-                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected">Inbox</head_head>
+                                <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected"></head_head>
                             </div>
 
                             <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
@@ -95,7 +95,7 @@
             }
 
             .makescroll{
-                overflow-y: auto;
+                /* overflow-y: auto; */
 
             }
 

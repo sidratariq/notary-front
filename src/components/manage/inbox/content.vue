@@ -10,7 +10,7 @@
                         <!-- 2 -->
                     <th style="width:2%;"><span></span></th>
                         <!-- 3 -->
-                    <th style="width:50%;" ><span>Subject</span></th>
+                    <th style="width:50%;"><span>Subject</span></th>
                         <!-- 4 -->
                     <th style="width:20%; padding-left:0px;" ><span >Status</span></th>
                         <!-- 5 -->
@@ -21,6 +21,92 @@
 
 
                     <!-- list of selected item field from database -->
+                    <router-link to="/detail/something" tag="tr"  :for="select.id" v-for="(select,key) in selectsArray" v-bind:key="key" class="setborder" :class="{'clicked':checked}">
+
+                        <!-- checkbox colum__1 -->
+                            <td style="text-align:center; padding:5px">
+                            
+                            <input class="checkbox" :value="select.id"
+                                    v-model="selected"
+                                    :id="select.id"
+                                    :sector="select.id" 
+                                    :class="select.class" 
+                                    :default="select.default" 
+                                    type="checkbox" @change="emitevent">    
+                                    {{key}}
+                                    <!-- {{select}} -->
+                            </td>
+
+                             <!-- status__2 -->
+                            <td>
+                            <i :class="{'far fa-clock':status[key]=='Waiting for others',
+                            'fas fa-ban voided':status[key]=='Voided',
+                            'fas fa-exclamation-circle reqaction':status[key]=='Need to sign',
+                            'fas fa-check sucess':status[key]=='Completed'}" ></i>
+                            </td>
+                            
+
+                             <!-- status__3 Subject-->
+                            <td class="setpadding">
+                                <ul>
+                                <!-- subject -->
+                                <li class="setfont ">    
+                                    <a style="color: #1e1e1e; cursor:pointer; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">
+                                    {{subjectname}}
+                                    </a>
+                                </li>
+
+                                <!-- recipient -->
+                                <li>
+                                <small class="text-muted">{{recepient[key]}}</small>
+                                </li>
+                                
+                                </ul>
+                            </td>
+
+                            <!-- status__4 status  -->
+                            <td>
+                            
+                                <p style="font-size:13px">
+                                {{status[key]}}
+                                </p>
+                            </td>
+
+                            <!-- status__5 Last change  -->
+                            <td>
+                                <ul style="padding-left:0px" >
+                                    
+                                    <li class="date">
+                                    11/29/2018
+                                    </li>
+                                    <li>
+                                        <small class="text-muted">12:21:23 pm</small>
+                                    </li>
+                                </ul>
+                            </td>
+
+                             <!-- drop down__6 -->
+                            <td>
+                            <div class="btn-group" >
+                                <button class="btn btn-sm dropdown-toggle" :class="{'btn-primary':action[key]=='Sign','btn-white':action[key]=='Move'}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{action[key]}}
+                                </button>
+                                <div class="dropdown-menu">
+                                    <div class="row">
+                                        <div class="col-12">
+                                        <a class="dropdown-item date padding" href="#">Move</a>
+                                        <a class="dropdown-item date padding" href="#">Export As CSV</a>
+                                        <a class="dropdown-item date padding" href="#">Delete</a>
+                                        </div>
+                                </div>
+                                </div>
+                            </div>
+                            </td>
+
+                    </router-link>
+
+
+                    <!-- list of selected item field from database -->                        
                     <tr :for="select.id" v-for="(select,key) in selectsArray" v-bind:key="select.id" class="setborder" :class="{'clicked':checked}"  >
 
                             <!-- checkbox colum__1 -->
@@ -124,7 +210,6 @@
 
 
     <script>
-                import head_head from './inbox_header.vue'
 
                 export default {
                     data(){
@@ -222,7 +307,6 @@
                     },
                 
                     components:{
-                        head_head
                     }
                 
                 }
@@ -230,10 +314,6 @@
 
 
                 <style scoped>
-
-            
-
-
                 .sucess{
                     color:#008938;
                 }
@@ -255,7 +335,7 @@
                 }
 
                 .makescroll{
-                    overflow-y: auto;
+                    /* overflow-y: auto; */
 
                 }
 

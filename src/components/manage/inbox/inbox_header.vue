@@ -1,9 +1,9 @@
 <template>
-        <div class="setborder"  >
 
+        <div class="setborder"  >
                  <div class="row sethidden"  v-if="!flag">
                 <div class="col-lg-7 ">
-                    <span class="setinbox set"><slot></slot></span>
+                    <span class="setinbox set">{{name}}</span>
                 </div>
                 <div class="col-lg-5 searchbar">
                  <search searchvalue='Search Inbox and folders' ></search>
@@ -61,22 +61,30 @@ export default {
         return{
             // flag:this.checked,
             // filesselected:this.nooffilesselected
+            id:this.$route.params.id
+
         }
     },
     props:[
         'checked','nooffilesselected'
     ],
-  components:{
+
+    components:{
                 search
             },
+    
     methods:{
         emitchange(){
             this.$emit('changecheck',this.flag)
         }
     },
+
     computed:{
         flag:function(){
             return this.checked
+        },
+        name:function(){
+            return this.$route.params.id
         }
     }
 }
@@ -138,7 +146,7 @@ export default {
 
 
             .makescroll{
-                overflow-y: auto;
+                /* overflow-y: auto; */
 
             }
 

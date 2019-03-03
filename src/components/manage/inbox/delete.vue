@@ -89,7 +89,7 @@
             }
 
             .makescroll{
-                overflow-y: auto;
+                /* overflow-y: auto; */
 
             }
 

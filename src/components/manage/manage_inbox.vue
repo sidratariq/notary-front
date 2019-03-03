@@ -9,20 +9,21 @@
 
          <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
-         <a>  <router-link class="nav-link menuitem"  active-class="active" to="/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link></a>
-         <a> <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/draft"><i class="far fa-edit menuicon"></i><span>Draft</span></router-link></a>
-         <a> <router-link class="nav-link menuitem"  active-class="active" to="/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link></a>
-         
-         <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/delete"><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link></a>
+         <router-link class="nav-link menuitem"  active-class="active" to="/manage_inbox/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link> 
+         <router-link class="nav-link menuitem"  active-class="active" to="/manage_inbox/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link>
+         <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/manage_inbox/draft"><i class="far fa-edit menuicon"></i><span>Draft</span></router-link>
+         <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/manage_inbox/delete"><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link>
 
           </div>
 
           <div class="envelopclass">
           <h6 class="text-centerr">quick views</h6>
-          <a><router-link class="nav-link menuitem"  active-class="active" to="/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link></a>
-          <a><router-link class="nav-link menuitem"   active-class="active" to="/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link></a>
-          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link></a>
-          <a><router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link></a>
+        
+          <router-link class="nav-link menuitem"  active-class="active" to="/manage_inbox/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link>
+          <router-link class="nav-link menuitem"   active-class="active" to="/manage_inbox/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link>
+          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/manage_inbox/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link>
+          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/manage_inbox/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link>
+
            </div>
 
        
@@ -35,7 +36,10 @@
         </div>
       <div class="col-10 col-lg-10 col-md-10 col-xs-12 content-area " > 
 
-        <router-view></router-view>
+        <router-view>
+
+          
+        </router-view>
 
         <!-- <test></test> -->
         
@@ -147,16 +151,16 @@
     padding-top: 7px; 
   }
 
-  a:hover{
+  li:hover{
     text-decoration: none;
 
   }
 
-  a:focus{
+  li:focus{
     font-weight: bolder;
   }
 
-  a:active{
+  li:active{
     font-weight: bolder;
 
   }
