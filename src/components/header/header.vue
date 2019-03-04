@@ -11,7 +11,7 @@
                                                 <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
                                                     <ul class="nav" >
                                                         <router-link class="nav-link" active-class="activee" to="/dashboard" @click="changefile" exact tag="li"><a >Home</a></router-link>
-                                                        <router-link class="nav-link" active-class="activee" to="/manage_inbox/Inbox" exact tag="li"><a>Manage</a></router-link>
+                                                        <router-link class="nav-link" active-class="activee" to="/manage" exact tag="li"><a>Manage</a></router-link>
                                                         <router-link class="nav-link template" active-class="activee"   tag="li" exact   to="/template"><a>Template</a></router-link>
                                                     </ul>
                                                 </nav>

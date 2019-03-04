@@ -9,21 +9,19 @@
 
          <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
-         <router-link class="nav-link menuitem"  active-class="active" to="/manage_inbox/inbox" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link> 
-         <router-link class="nav-link menuitem"  active-class="active" to="/manage_inbox/sent" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link>
-         <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/manage_inbox/draft"><i class="far fa-edit menuicon"></i><span>Draft</span></router-link>
-         <router-link class="nav-link menuitem"  active-class="active" tag="li" exact   to="/manage_inbox/delete"><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link>
+         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage'}" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link> 
+         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'sent'}}" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link>
+         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Draft'}}" tag="li" exact   ><i class="far fa-edit menuicon"></i><span>Draft</span></router-link>
+         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Delete'}}" tag="li" exact ><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link>
 
           </div>
 
           <div class="envelopclass">
-          <h6 class="text-centerr">quick views</h6>
-        
-          <router-link class="nav-link menuitem"  active-class="active" to="/manage_inbox/actionrequired" exact tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link>
-          <router-link class="nav-link menuitem"   active-class="active" to="/manage_inbox/waitingforother" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/manage_inbox/expiringsoon"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link>
-          <router-link class="nav-link menuitem"  active-class="active" tag="li" exact to="/manage_inbox/completed"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link>
-
+          <h6 class="text-centerr">quick views</h6>        
+          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Actions Required'}}" exact   tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span>Actions Required</span></router-link>
+          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Waiting for Others'}}" exact  tag="li"><i class="far fa-clock menuicon"></i><span>Waiting for Others</span></router-link>
+          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Expiring Soon'}}" exact  tag="li"><i class="fas fa-exclamation-triangle menuicon"></i><span>Expiring Soon</span></router-link>
+          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Completed'}}" exact  tag="li"><i class="fas fa-check menuicon"></i><span>Completed</span></router-link>
            </div>
 
        
@@ -36,11 +34,11 @@
         </div>
       <div class="col-10 col-lg-10 col-md-10 col-xs-12 content-area " > 
 
-        <router-view>
+        <!-- <router-view> -->
+        <!-- </router-view> -->
+        <inbox></inbox>
 
-          
-        </router-view>
-
+        
         <!-- <test></test> -->
         
       </div>
@@ -55,6 +53,7 @@
   import btn_btn from './button.vue';
   // import inner_header from "./inbox/inbox_header.vue"
   import folders from "./createfolder/createfolderold.vue"
+  import inbox from "./inbox/inbox.vue"
   // import test from "./createfolder/oldversion/addrecipients.vue"
 
   export default {
@@ -71,6 +70,7 @@
         btn_btn,
         // inner_header,
         folders,
+        inbox
         // test
     },
       methods:{

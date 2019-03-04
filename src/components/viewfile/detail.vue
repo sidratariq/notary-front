@@ -60,11 +60,11 @@
                                             </div>
                                         
                                         <!-- print and download -->
-                                        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding" >
+                                        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding yee wlaa" >
 
-                                            <div class="row setpadding" >
+                                            <div class="row setpadding" style="margin-left:0px; margin-right:0px" >
                                                 
-                                                <div class="col-3 setpadding" >
+                                                <div class="col-3 setpadding "  >
 
                                                 </div>
 
@@ -331,6 +331,7 @@
 
                 .adjustpadding{
                     padding: 15px;
+                    /* padding-left: 35px; */
                 }
 
                 i{

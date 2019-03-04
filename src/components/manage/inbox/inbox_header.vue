@@ -25,10 +25,10 @@
                     
 
                      <div class="col-1">
-                                            <button class="btn  btn-sm apply " type="button" >
-                                            Restore
-                                            </button>
-                                        </div>
+                        <button class="btn  btn-sm apply " type="button" >
+                        Restore
+                        </button>
+                    </div>
 
 
                      <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >
@@ -61,7 +61,7 @@ export default {
         return{
             // flag:this.checked,
             // filesselected:this.nooffilesselected
-            id:this.$route.params.id
+            // id:"Inbox"
 
         }
     },
@@ -84,7 +84,12 @@ export default {
             return this.checked
         },
         name:function(){
-            return this.$route.params.id
+            if(this.$route.query.view == undefined){
+                return 'Inbox'
+            }
+            else{
+                return this.$route.query.view
+            }
         }
     }
 }
@@ -96,10 +101,7 @@ export default {
             /* background-color: green; */
             /* border: 1px solid black; */
         }
-
-
-
-        
+                
         .setpadding{
             padding-left: 1%;
         }

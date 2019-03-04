@@ -13,7 +13,7 @@ export default {
     msg: String
   },
   components:{
-    footer_footer
+    footer_footer,
   }
   
 }
