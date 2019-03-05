@@ -109,13 +109,13 @@ export default {
     },
 
     routechange() {
-      this.$router.push("/actionrequired");
+      this.$router.push({name:'manage',query:{view:'Action Required'}});
     },
     routewaitchange() {
-      this.$router.push("/waitingforother");
+      this.$router.push({name:'manage',query:{view:'Waiting for Others'}});
     },
     routeexpirechange() {
-      this.$router.push("/expiringsoon");
+      this.$router.push({name:'manage',query:{view:'Expiring Soon'}});
     }
   },
 
@@ -131,6 +131,8 @@ export default {
     //  localStorage.setItem("user_signto",this.Userdata.WaitingME);
                                     // localStorage.setItem("user_waitingforother",this.Userdata.WaitingOther);
                                     // localStorage.setItem("user_expire",0)
+
+                                    
     Doctosign(){
       return localStorage.getItem("user_signto")
     },

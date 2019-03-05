@@ -10,7 +10,7 @@
          <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
          <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage'}" exact tag="li"><i class="fas fa-box-open menuicon"></i><span>Inbox</span> </router-link> 
-         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'sent'}}" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link>
+         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Sent'}}" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span> Sent</span> </router-link>
          <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Draft'}}" tag="li" exact   ><i class="far fa-edit menuicon"></i><span>Draft</span></router-link>
          <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Delete'}}" tag="li" exact ><i class="fas fa-trash menuicon"></i><span>Delete</span></router-link>
 

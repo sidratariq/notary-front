@@ -6,7 +6,7 @@
                     <span class="setinbox set">{{name}}</span>
                 </div>
                 <div class="col-lg-5 searchbar">
-                 <search searchvalue='Search Inbox and folders' ></search>
+                 <search :searchvalue='searchvalue' ></search>
                 </div> 
                 </div>
                     
@@ -80,16 +80,42 @@ export default {
     },
 
     computed:{
+
         flag:function(){
             return this.checked
         },
+
         name:function(){
             if(this.$route.query.view == undefined){
                 return 'Inbox'
             }
             else{
+                console.log(this.$route.query.view)
                 return this.$route.query.view
             }
+        },
+        
+        searchvalue:function(){
+            if(this.$route.query.view == undefined){
+                return 'Search Inbox and folders'
+            }
+
+             if(this.$route.query.view == 'Delete'){
+                return 'Search Delete'
+            }
+            
+            if(this.$route.query.view == 'Draft'){
+                return 'Search Draft'
+            }
+
+             if(this.$route.query.view == 'Sent'){
+                return 'Search Sent and folders'
+            }
+
+            if(this.$route.query.view == 'Actions Required' || this.$route.query.view == 'Waiting for Others' || this.$route.query.view == 'Expiring Soon' || this.$route.query.view == 'Completed'  ){
+                return 'Seach Quick Views'
+            }
+
         }
     }
 }

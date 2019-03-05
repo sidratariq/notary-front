@@ -16,8 +16,9 @@
 
                         <ul style="padding:0px 3px 0px 24px" :class="{hide:avalible}">
                         <li class="whenhover" id="subfolder" v-for="(folder,key) in folders" :key="key">
+                          <router-link :to="{name:'manage',query:{view:folders[key].name}}" exact active-class="active">
                           <i class="fas fa-folder menuicon" style="padding:4px">
-                          </i>({{folder.name}}){{folder.id}} <span>
+                          </i>{{folder.name}}{{key}} <span>
 
                                <div class="btn-group" >                              
 
@@ -35,14 +36,9 @@
                                </div>
                       
                         </span>
-                        </li> 
-                        </ul>   
-                        </li>
-                    </ul>
-                     </div>    
 
 
-       <!-- Modal content-->
+                         <!-- Modal content-->
           <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -59,7 +55,7 @@
                </div>
                
                <div class="modal-footer">
-                <button type="button" @click="chalo(key)" class="btn btn-primary" data-dismiss="modal">Create</button>
+                <button type="button" @click="chalo()" class="btn btn-primary" data-dismiss="modal">Create</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
               </div>
               </form>
@@ -67,6 +63,15 @@
              </div>
             </div>
             </div> 
+            </router-link>
+                        </li> 
+                        </ul>   
+                        </li>
+                    </ul>
+                     </div>    
+
+
+      
         
             </div>
           </template>
@@ -82,9 +87,9 @@
         avalible:false,
         foldername:'',
         newname:'chalrhaahai',
-        folders:[{name:'F1',id:1,subfolder:[{id:'1[0]',name:'subfolder1[0]'}]},
+        folders:[{name:'F1',id:1},
                  {name:'F2',id:2},
-                 {name:'F3',id:3,subfolder:[{id:'3[0]',name:'subfolder3[0]',subfolder:[{id:'3[0][0]',name:'internalsubfolder'}]}]},
+                 {name:'F3',id:3},
                  {name:'F4',id:4}]
       };
     },
@@ -96,7 +101,7 @@
                     chalo(){
                     // chalo(indexno){
 
-                        this.folders.push(this.foldername);
+                        this.folders.push({name:this.foldername});
                         
                         
 

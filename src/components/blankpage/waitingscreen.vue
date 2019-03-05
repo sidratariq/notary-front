@@ -1,7 +1,7 @@
 <template>
     <div class="container main text-center"> 
-        <img src="../.././assets/icons/blank.png" width="150px" height="85px"  class="rounded mx-auto d-block" alt="">
-        <img src="../.././assets/icons/loading.gif" width="40px" height="40px" class="rounded mx-auto d-block" alt="">
+        <img src="../.././assets/icons/blank.png" width="144px" height="50px"  class="rounded mx-auto d-block" alt="">
+        <img src="../.././assets/icons/loading.gif" width="25px" height="25px" class="rounded mx-auto d-block" alt="">
      </div> 
 
    
