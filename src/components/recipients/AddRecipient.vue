@@ -1,7 +1,6 @@
             <template>
             
                 <div class="set-top">
-                    <head_head></head_head>
 
                     <div class="container set-middle padding">
 
@@ -10,7 +9,6 @@
                     <!-- from here -->
                     <div class="setpadding setborder">
                         
-
                         <!-- sender -->
                         <div class="col-md-12 col-xs-12 col-lg-12 setrelative">
                         <p class="text-muted removemargin sizing" >Sender</p>
@@ -21,38 +19,34 @@
                         </div>
 
                         <!--REcipients  -->
-                        
                         <div class="col-md-12 col-xs-12 col-lg-12 setrelative setmargin " >
                         <p class="text-muted removemargin sizing" >Recipients</p>
                         <span class="setround">
                             <i class="fas fa-user inside"></i>
                         </span>
                         </div>
-
-        
-                        
+                
                         <!-- list of recipinets -->
-                   <recipient_box :no_of_recipient="no_of_recipient" :index='index'
-                     v-for="(key,index) in quotes" :key="index"
-                    @DeleteRecipient='Remove()'> i am key{{key}} ******i am value{{index}}</recipient_box>
+                        <recipient_box :no_of_recipient="no_of_recipient" :index='index'
+                          v-for="(key,index) in quotes" :key="index"
+                         @DeleteRecipient='Remove()'> i am key{{key}} ******i am value{{index}}</recipient_box>
 
 
-                    <div class="btn btn-primary btn-white to-upper" @click="newRecipient()">
+                        <div class="btn btn-primary btn-white to-upper" @click="newRecipient()">
                                   <span class="set-color" >
                                         <i class="fas fa-user-plus" ></i>
                                   </span>
                                     Add Recipient
-                    </div>
+                        </div>
                     
-                    <!-- to here -->
+                        <!-- to here -->
 
-                     <div class="col-md-12 col-xs-12 col-lg-12 setrelative set-top">
-                        <p class=" removemargin to-lower"  style="font-weight:400; color:#333" >Once an envelope has been routed to all recipients, and documents signed, each recipient will get a completed copy.</p>
-                        <span class="setround">
-                            <i class="fas fa-check inside"></i>
-                        </span>
-                    </div>
-
+                        <div class="col-md-12 col-xs-12 col-lg-12 setrelative set-top">
+                            <p class=" removemargin to-lower"  style="font-weight:400; color:#333" >Once an envelope has been routed to all recipients, and documents signed, each recipient will get a completed copy.</p>
+                            <span class="setround">
+                                <i class="fas fa-check inside"></i>
+                            </span>
+                        </div>
                     
                     </div>
 
@@ -81,7 +75,7 @@
                                 </div>
         
                                 <div class="col-6">
-                                <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper" >start</button>
+                                <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper"  @click="changeroute">start</button>
 
                                 </div>
 
@@ -112,8 +106,6 @@
             import {mapActions} from 'vuex'
             import recipient_box from './Recipient.vue'
             
-            import head_head from '../header/header.vue'
-
             export default {
 
             data(){
@@ -125,7 +117,6 @@
             },
 
             components:{
-                head_head,
                 recipient_box
             },
 
@@ -148,6 +139,11 @@
                         alert("you need to have atleast one recipient")
                     }
                 },
+
+                changeroute(){
+                    this.$router.push('/playground')
+                }
+
 
 
 

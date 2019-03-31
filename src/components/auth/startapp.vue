@@ -131,7 +131,7 @@
                                 	"email": this.currentemail,
                                   "password":this.password})
                                   .then(res => {
-                                    // console.log(res.bodyText)
+                                    // console.log("lalaland"+res.bodyText)
                                     if(res.status == 200){
                                           this.$router.push('/dashboard')                                    
                                       }
@@ -140,7 +140,7 @@
                                   .then(response => {
 
                                     this.Userdata = response;
-                                    console.log(this.Userdata)
+                                    console.log("Token:"+response.Token)
 
                                     // setting local data for future use
                                     localStorage.setItem("user_name",this.Userdata.Userdata.Name);
@@ -154,17 +154,16 @@
                                     localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
                                     localStorage.setItem("user_expire",0)
 
-                                    console.log(localStorage.getItem("user_name"));
-                                    console.log(localStorage.getItem("user_email"));
-                                    console.log(localStorage.getItem("user_image"));
-                                    console.log(localStorage.getItem("user_initial"));
-                                    console.log(localStorage.getItem("user_signature"));
-                                    console.log(localStorage.getItem("user_company"));
-                                    console.log(localStorage.getItem("use_token"));
-                                    console.log(localStorage.getItem("user_signto"));
-                                    console.log(localStorage.getItem("user_waiting"));
-                                    console.log(localStorage.getItem("user_expire"));
-
+                                    // console.log(localStorage.getItem("user_name"));
+                                    // console.log(localStorage.getItem("user_email"));
+                                    // console.log(localStorage.getItem("user_image"));
+                                    // console.log(localStorage.getItem("user_initial"));
+                                    // console.log(localStorage.getItem("user_signature"));
+                                    // console.log(localStorage.getItem("user_company"));
+                                    // console.log(localStorage.getItem("use_token"));
+                                    // console.log(localStorage.getItem("user_signto"));
+                                    // console.log(localStorage.getItem("user_waiting"));
+                                    // console.log(localStorage.getItem("user_expire"));
 
 
                                     // setting up store values

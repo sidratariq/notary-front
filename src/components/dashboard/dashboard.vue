@@ -1,7 +1,6 @@
 <template>
   <div class="main" :class="{modalavalible:flag}">
     <!-- header  -->
-    <head_head></head_head>
 
     <!--signatures and styles  -->
     <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12" v-if="flag"></modal>
@@ -20,6 +19,11 @@
               class="OliveReact-Avatar"
               style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;); "
             ></span>
+
+             <span @click="getclick">
+            <img :src="profilepic" class="OliveReact-Avatar" alt="">
+            </span>
+
           </li>
 
           <li class="signature">
@@ -71,7 +75,6 @@
 </template>
 
 <script>
-import head_head from "../header/header.vue";
 import dragdrop from "../dragdrop/dragdrop.vue";
 import modal from "../modals/modal.vue";
 import uploadphoto from "../modals/photoupload.vue";
@@ -127,6 +130,12 @@ export default {
     uploadflag() {
       return this.$store.getters.getupload;
     },
+
+    profilepic:function(){
+        return 'http://localhost:8000/'+localStorage.getItem("user_image")
+    },
+    
+    
     
     //  localStorage.setItem("user_signto",this.Userdata.WaitingME);
                                     // localStorage.setItem("user_waitingforother",this.Userdata.WaitingOther);
@@ -150,7 +159,6 @@ export default {
   }
   ,
   components: {
-    head_head,
     dragdrop,
     modal,
     uploadphoto,

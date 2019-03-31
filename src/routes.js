@@ -6,6 +6,7 @@
     import signup from './components/auth/signup.vue'
     import userpreferences from './components/auth/userpreferences.vue'
     import verify from './components/auth/verficationscreen.vue'
+    import playground from './components/playground/playground'
     // import newpassword from './components/auth/newpassword.vue'
 
     import authentication from './components/blankpage/waitingscreen'
@@ -14,15 +15,11 @@
     // ******* learning routes ************///
     import User from './components/template/user/User.vue'
     import userhome from './components/template/Home.vue'
+    
     // ******* learning routes ************///
-
     import adddocs from './components/Add_docs/adddocs.vue'
     import commingsoon from './components/commingsoon/comming.vue'
     import detail from './components/viewfile/detail.vue'
-    import actionrequired from './components/manage/Actionrequired/actionrequired.vue'
-    import completed from './components/manage/completed/completed.vue'
-    import expiringsoon from './components/manage/expiringsoon/expiringsoon.vue'
-    import waitingforother from './components/manage/waitingforother/waitingforother.vue'
 
 
 
@@ -85,7 +82,6 @@
             children:[
                 // {path:'',name:'inbox',component: inbox},
                 //   {path:'/detail/:id',component:detail },
-                
                 // {   path:'/sent',component: sent},        
                 // {   path:'/delete', component: deletee },         
                 // {   path:'/draft',component: draft,  },      
@@ -172,4 +168,9 @@
             path:'/addrecipient',
             component:addrecipient
         },
+
+        {
+            path:'/playground',
+            component:playground
+        }
     ];

@@ -9,6 +9,7 @@
               <div>
                   <h1 class="modal_title">Profile Photo </h1>
                   <span class="btn-cross" @click="close()" >x</span> 
+                  
               </div>
 
               <hr>
@@ -43,8 +44,8 @@
                 <hr>
                 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info" @click="close()" > Done </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="clicked()" >Cancel</button>
+                    <button type="button" class="btn btn-outline-info" @click="changeimage()" > Done </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="close" >Cancel</button>
                 </div>
 
 
@@ -76,7 +77,12 @@
                       this.flag= !this.flag;
                   },
 
+                  closee(){
+                    this.flag = false;
+                  },
+
                   close(){
+
                       this.$store.dispatch('changephoto')                   
                   },
 
@@ -94,8 +100,49 @@
                         reader.readAsDataURL(input.files[0])
 
                       }
-                    },            
+                    },   
+                    
+                    changeimage(){
+
+
+                          this.$http.post('http://localhost:8000/uploadProfilePic', {
+                                'userfile': this.profilepic , headers: {'Token':localStorage.getItem('user_token')}
+
+                          },{emulateJSON: true}
+                               )
+                                  .then(res => {
+                                   
+                                    if(res.status == 200){
+                                          console.log("sucess"+res)                                    
+                                      }
+                                    return res.json()
+                                  })
+                                  .then(response => {
+
+                                    this.Userdata = response;
+                                    console.log("Token:"+response.Token)
+                                    },
+                                error => {
+                                    console.log(error)
+                                });
+                      
+
+
+
+                    }
               },
+
+              computed:{
+                
+                usertoken:function(){
+                  return localStorage.getItem('user_token')
+                },
+
+                profilepic:function(){
+                  return localStorage.getItem('imgsource')
+                }
+
+              }
 
 
 

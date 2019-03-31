@@ -110,7 +110,6 @@
 
                                         profilepic:function(){
                                             return 'http://localhost:8000/'+localStorage.getItem("user_image")
-                                            
                                         },
 
                                         username:function(){

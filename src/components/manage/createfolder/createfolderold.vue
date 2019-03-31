@@ -204,7 +204,7 @@
   }
 
   .foldericon:hover{
-    color: #2463d1;
+    /* color: #2463d1; */
 
   }
 
@@ -322,7 +322,7 @@
   }
 
   .foldericon:hover{
-    color: #2463d1;
+    /* color: #2463d1; */
     
 
   }

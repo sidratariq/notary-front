@@ -26,8 +26,11 @@ position:fixed;
  left:0;
   right:0;
  text-align:center;
-      background-color: rgb(244, 244, 244);
+ background-color: rgb(244, 244, 244);
+ border: 1px solid #eeeeee;
 }
+
+
 
 
 

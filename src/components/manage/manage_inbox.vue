@@ -2,7 +2,6 @@
 
       <div class="container-fluid"  style="" >
         <div class="row">
-        <head_head></head_head>
         <div class="col-2 col-xs-0  content-bar" >
           <btn_btn></btn_btn>
           <div>
@@ -49,7 +48,6 @@
 
   <script>
 
-  import head_head from '../header/header.vue';
   import btn_btn from './button.vue';
   // import inner_header from "./inbox/inbox_header.vue"
   import folders from "./createfolder/createfolderold.vue"
@@ -66,7 +64,6 @@
     },
 
     components:{
-        head_head,
         btn_btn,
         // inner_header,
         folders,

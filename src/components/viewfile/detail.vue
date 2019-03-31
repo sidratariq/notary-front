@@ -1,7 +1,6 @@
                         <template>
 
                                 <div class="container-fluid mx-0" style="">
-                                    <head_head></head_head>   
                                     
                                 <div class="row mx-0">
                                 
@@ -152,8 +151,6 @@
 
                         <script>
 
-                        // import search from '../search.vue'
-                        import head_head from '../header/header.vue';
                         import sidebar from './FileSidePreview'
                         import strip from './movestrip.vue'
                         import recipient from './recipients.vue' 
@@ -177,7 +174,6 @@
                         
                             },
                             components:{
-                                head_head,
                                 sidebar,
                                 strip,
                                 recipient

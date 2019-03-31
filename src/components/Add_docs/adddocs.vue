@@ -1,7 +1,6 @@
 <template>
         
             <div class="main" >
-                <head_head></head_head>
                 <div class="container">
                 <h2 class="setpadding">Add Documents</h2>
 
@@ -31,7 +30,6 @@
         import {mapActions} from 'vuex'
 
         
-        import head_head from '../header/header.vue'
         import dragdrop from '../dragdrop/dragdrop.vue'
         import uploadfile from './prepare/prepare.vue'
 
@@ -51,7 +49,6 @@
         },
 
         components:{
-            head_head,
             dragdrop,
             uploadfile
         },

@@ -1,6 +1,5 @@
     <template>
         <div class="row mx-0">
-            <head_head></head_head>
         <div class="signatures-preferences ng-scope container" >
             <!-- // changes -->
     <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12" v-if="flag"></modal>
@@ -206,7 +205,6 @@
     </template>
 
     <script>
-        import head_head from '../header/header.vue'
         import uploadphoto from "../modals/photoupload.vue";
         import modal from "../modals/modal.vue";
         import { mapActions } from "vuex";
@@ -214,7 +212,6 @@
 
     export default {
     components:{
-        head_head,
         uploadphoto,
         modal
 
