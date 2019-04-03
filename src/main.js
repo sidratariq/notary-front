@@ -7,10 +7,10 @@
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
     import Vuelidate from 'vuelidate'
-    import vueSignature from "vue-signature"
-    import {store} from './store/store';
 
+    import vueSignature from "vue-signature"
     
+    import {store} from './store/store';
 
     Vue.use(VueResource);
     Vue.use(Vuelidate)
@@ -26,6 +26,12 @@
         mode:'history'
       }
     );
+
+    Vue.directive('rainbow',{
+      bind(el,binding,vnode){
+        el.style.background = '#' + Math.random().toString().slice(2,8);
+      }
+    })
 
     // const tutor = new VueRouter( 
     //   {

@@ -15,7 +15,7 @@
                         <strong class="sizing to-lower">sidra tariq</strong>
                         <span class="setround">
                             <i class="far fa-paper-plane inside"></i>
-                        </span>
+                        </span> 
                         </div>
 
                         <!--REcipients  -->
@@ -27,16 +27,19 @@
                         </div>
                 
                         <!-- list of recipinets -->
-                        <recipient_box :no_of_recipient="no_of_recipient" :index='index'
-                          v-for="(key,index) in quotes" :key="index"
-                         @DeleteRecipient='Remove()'> i am key{{key}} ******i am value{{index}}</recipient_box>
+                        <recipient_box  :index='index'
+                          v-for="(key,index) in recipeints"  :key="index" :currentrecipient="recipeints[index]"
+                         @DeleteRecipient='Remove(index)'> 
+                         </recipient_box>
 
 
                         <div class="btn btn-primary btn-white to-upper" @click="newRecipient()">
+
                                   <span class="set-color" >
                                         <i class="fas fa-user-plus" ></i>
                                   </span>
                                     Add Recipient
+
                         </div>
                     
                         <!-- to here -->
@@ -110,9 +113,7 @@
 
             data(){
                 return{
-                maxQuotes:10,
-                quotes:['Just a quote'],
-                recipeint:[{name:'',email:''}]
+                recipeints:[{name:'',email:'',NeedtoSign:true,Receiveacopy:false}]
                 }
             },
 
@@ -127,13 +128,12 @@
             methods:{
 
                 newRecipient(recipeint){
-                    this.quotes.push(recipeint)
-
+                    this.recipeints.push({name:'',email:'',NeedtoSign:false,Receiveacopy:false})
                 },
                 
                 Remove(index){
-                    if(this.quotes.length>1){
-                        this.quotes.splice(index,1);
+                    if(this.recipeints.length>1){
+                        this.recipeints.splice(index,1);
                     }
                     else{
                         alert("you need to have atleast one recipient")
@@ -143,18 +143,9 @@
                 changeroute(){
                     this.$router.push('/playground')
                 }
-
-
-
-
-
-            
             },
             computed:{
 
-                no_of_recipient:function(){
-                    return this.recipeint.length
-                }
                 
             }
             }

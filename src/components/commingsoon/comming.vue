@@ -1,12 +1,10 @@
         <template>
             <div class="commingsoon">
 
-                <head_head></head_head>
                 <div class="row rowset ">
                        
                     <div class="col-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <img src="../../assets/icons/commingsoon.svg" class="rounded mx-auto d-block"  height="100%" width="100%" alt="">
-
+                        <img src="../../assets/icons/commingsoon.svg" class="rounded mx-auto d-block"  height="100%" width="100%" alt="">
                     </div>
 
                     <div class="col-4 col-lg-6 col-md-6 col-sm-6 col-xs-8 settitle">
@@ -27,10 +25,8 @@
         </template>
 
         <script>
-        import head_head from '../header/header.vue'
         export default {
             components:{
-            head_head
             }
 
         }

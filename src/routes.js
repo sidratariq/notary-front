@@ -7,6 +7,7 @@
     import userpreferences from './components/auth/userpreferences.vue'
     import verify from './components/auth/verficationscreen.vue'
     import playground from './components/playground/playground'
+    import testing from './components/testing/testing'
     // import newpassword from './components/auth/newpassword.vue'
 
     import authentication from './components/blankpage/waitingscreen'
@@ -172,5 +173,10 @@
         {
             path:'/playground',
             component:playground
+        },
+
+        {
+            path:'/testing',
+            component:testing
         }
     ];

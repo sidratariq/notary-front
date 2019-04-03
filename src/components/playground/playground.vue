@@ -11,11 +11,13 @@
                     <span class="round-body small" style="border:1px solid #f5c431; background-color:#ffd65b; color:#ffd65b" >.</span>
                     {{recipient[0]}}  
                 </button>
+
                 <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" v-for="(recipient,index) in recipient" :key="index" href="#">{{recipient[index]}}</a>
-                  
                 </div>
-            </div>
+                </div>
+
+
           </div>
           
         </div>
@@ -41,6 +43,7 @@
                         <li>
                             <hr style="1px solid #ccc">
                         </li>
+
                         <li>    
                              <button><i class="fas fa-user"></i><span>Name</span></button>
                         </li>
@@ -57,19 +60,18 @@
                              <button> <i class="far fa-building"></i><span>Text</span></button>
                          </li>
 
-
-
-
-
-
                      </ul>
 
                </div>
            </div>
            
            <div class="col-8" style="background-color:#badcdf">
-               
-              
+            
+            <!-- <embed src="../../assets/Blockusign.pdf" type="application/pdf"   height="700px" width="500"> -->
+            <!-- <embed src="../../assets/sample.pdf" type="application/pdf"   height="700px" width="500"> -->
+
+    
+            
            
            </div>
            
@@ -92,8 +94,7 @@
            <div class="col">
                     
               <button type="button" class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper" style="border:1px solid #ccc; background-color:white">back</button>
-
-              <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper"  >start</button>
+              <button class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper" @click="changeroute"  >start</button>
 
            </div>
                             </div>
@@ -110,12 +111,24 @@
 
         data:function(){
             return{
-                recipient:['sidra','anas']
+                recipient:['sidra','anas'],
+              
             }
         },
 
         components:{
-            sidebar
+            sidebar,
+
+        },
+
+        methods:{
+            
+            changeroute(){
+                this.$router.push('/testing')
+            },
+
+       
+
         }
     }
 </script>
