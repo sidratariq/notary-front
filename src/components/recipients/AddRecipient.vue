@@ -9,6 +9,7 @@
                             <!-- {{username}} -->
                             {{present}} => i am for email
                             {{validuser}} =>iam for user
+                            {{combined}}
 
                             
                             <transition name="fade">
@@ -18,8 +19,8 @@
                             <!-- from here -->
                             <div class="setpadding setborder">
                                 
-                                {{recipeints}}
-                                {{error}}
+                                <!-- {{recipeints}}
+                                {{error}} -->
 
                                 <!-- sender -->
                                 <div class="col-md-12 col-xs-12 col-lg-12 setrelative">
@@ -50,7 +51,7 @@
                                 <div class="form-group crush">
                                     <input type="email" class="form-control" v-model="recipeints[index].email" @keydown="textchange($event)"     id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email*">
                                     <!-- <small v-if="show==false" class="text-muted"> (wrong)show == false{{show}}</small> -->
-                                    <small v-if="show == true"> Please enter a valid email address</small>
+                                    <small v-if="show == false"> Please enter a valid email address</small>
                                 </div>
 
                                 <!-- <slot></slot> -->
@@ -223,47 +224,14 @@
                             }
                         },
                         
-                        changeroute(){
-                        // console.log("function started"+this.error)
+                        changeroute(){                   
 
-                           this.recipeints.forEach(element => {
-                            this.error = false
-
-                            if ((Object.values(element)[1] == "") || this.reg.test(Object.values(element)[1]) == false){
-                                 return this.error = true;
-                                 
+                            if (this.combined == true) {      
+                            this.$router.push('/playground')
                             }
-
-                            // if ( this.reg.test(Object.values(element)[1]) == false ) {
-                            //     this.error = true
-                            // }
-                            
-                               });
-
-
-                                if (this.error == false) {
-                                this.$router.push('/playground')
+                            else{
+                                console.log("show error")
                             }
-                    
-                        //     // console.log(Object.values(element)[1])
-                        //     console.log(this.reg.test(Object.values(element)[1])+"value of regec")
-
-
-                        //     if(Object.values(element)[1] == "" || !this.reg.test(Object.values(element)[1])){
-                        //         // console.log("empty check" + "invalid check")
-                        //         this.error= true
-                        //         // console.log("Loop running"+this.error)
-                        //         return this.error;
-                        //     }
-                            
-                        //     console.log("outside the loop"+this.error)
-                        //     });
-
-                        // //  alert(this.error)
-
-                        //     if (this.error == false) {      
-                        //     this.$router.push('/playground')
-                        //     }
                                                 
                         },
 
@@ -277,12 +245,9 @@
                                this.username = false
                            }
 
-                           if(username.length>100){
-                               this.username = false
-                           }
                            
-                           else{    
-                               this.username = true
+                           if(username.length>0 && username.length<100){
+                                this.username = true
                            }
                         },
 
@@ -290,7 +255,8 @@
                             this.show = false;
                             let log = $event.target.value;
                             let  show = this.reg.test($event.target.value)
-                            if(show == false || show.length >100){
+
+                            if(show != false || show.length <100){
                                 this.show = true
                             }
                             else{
@@ -318,14 +284,13 @@
 
                         validuser(){
                             return this.username
+                        },
+                        combined(){
+                            return this.show && this.username
                         }
                     },
                     mounted(){
-                        // var age = 5;
-                        // while(age < 10){
-                        //     console.log("Your age is less than 10")
-                        //     age++
-                        // }
+                   
                     }
                     }
                     </script>
