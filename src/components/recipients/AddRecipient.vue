@@ -1,27 +1,23 @@
-            <template>
+<template>
                     
                         <div class="set-top">
 
                             <div class="container set-middle padding">
 
-                            <h2>Add Recipients</h2>
-
-                            <!-- {{username}} -->
-                            {{present}} => i am for email
-                            {{validuser}} =>iam for user
-                            {{combined}}
+                            <h2 >Add Recipients</h2>
 
                             
                             <transition name="fade">
-                            <div  v-if="error" class="alert alert-danger" transition="expand">Please Enter a Valid email address</div>
+                            <div  v-if="error" class="alert alert-danger w-75 setplace" transition="expand">Please Enter a Valid email address<span class="pull-left" style="position:absolute; right:7px; font-size:0.8em; font-wight:bold" @click="error=false">x</span></div>
+                            </transition>
+
+                             <transition name="fade">
+                            <div  v-if="errorname" class="alert alert-danger w-75 changeplace" transition="expand">Please Enter a Valid user name<span class="pull-left" style="position:absolute; right:7px; font-size:0.8em; font-wight:bold" @click="errorname=false">x</span></div>
                             </transition>
     
                             <!-- from here -->
                             <div class="setpadding setborder">
                                 
-                                <!-- {{recipeints}}
-                                {{error}} -->
-
                                 <!-- sender -->
                                 <div class="col-md-12 col-xs-12 col-lg-12 setrelative">
                                 <p class="text-muted removemargin sizing" >Sender</p>
@@ -49,52 +45,55 @@
                                 
                                 <form>
                                 <div class="form-group crush">
-                                    <input type="email" class="form-control" v-model="recipeints[index].email" @keydown="textchange($event)"     id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email*">
-                                    <!-- <small v-if="show==false" class="text-muted"> (wrong)show == false{{show}}</small> -->
-                                    <small v-if="show == false"> Please enter a valid email address</small>
+                                    <input type="email" class="form-control" v-model="recipeints[index].email"     id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email*">
                                 </div>
-
                                 <!-- <slot></slot> -->
                                 <div class="form-group">
-                                    <input type="text" class="form-control" v-model="recipeints[index].name" @keydown="enteruser($event)"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name*">
+                                    <input type="text" class="form-control" v-model="recipeints[index].name"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name*">
                                 </div>
-
                                 </form>
 
                                 </div>
 
-                                    <!--Drop down place  -->
-                                <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
-                                    <div class="row">
-                                        <div class="col-md-4"></div>
-                                        <!-- Drop down for options -->
-                                        <div class="col-md-4">
-                                        </div>
-                                        <div class="col-md-4">
-                                        <p style="color:white">dajdkadkj</p>
-                                        </div>
-                                    </div>   
+                                            <!--Drop down place  -->
+                                        <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
+
+                                            <div class="row">
+                                                <div class="col-md-4"></div>
+
+                                                <!-- Drop down for options -->
+                                                <div class="col-md-4">
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                <p style="color:white">dajdkadkj</p>
+                                                </div>
+                                            </div>   
 
 
-                                    <!-- 2nd -->
-                                    <div class="row">
-                                    <div class="col-md-4"></div>
-                                    <!-- Drop down for options -->
-                                    <div class="col-md-5">
-                                        <div class="dropdown">                    
-                                    <button class="btn  dropdown-toggle" type="button" style="font-size:13px; " id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-file-signature"></i>                                            
-                                    NEEDS TO SIGN
-                                    </button>
+                                                <!-- 2nd -->
+                                                <div class="row">
+                                                <div class="col-md-4"></div>
+                                            
+                                                <!-- Drop down for options -->
+                                                <div class="col-md-5">
+                                                    <div class="dropdown">                    
+                                                <button class="btn  dropdown-toggle" type="button" style="font-size:13px; " id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    
+                                                <i class="fas fa-file-signature"></i>                                            
 
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    NEEDS TO SIGN
+                                                </button>
 
-                                    <button class="dropdown-item" type="button" style="font-size:13px; "> 
-                                        <span>
-                                        <i class="fas fa-file-signature"></i>
-                                        </span>
-                                        Need to Sign
-                                    </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <button class="dropdown-item" type="button" style="font-size:13px; "> 
+
+                                                <span>
+                                                <i class="fas fa-file-signature"></i>
+                                                </span>
+                                                Need to Sign
+
+                                            </button>
                                         
                                             <button class="dropdown-item" style="font-size:13px;" type="button"><span>
                                                 <i class="far fa-closed-captioning"></i>
@@ -106,13 +105,12 @@
                                             
                                         </div>
                                         <!-- end of drop down -->
-
-                                                </div>
+                                        </div>
                                             
                                             <div class="col-md-3">
-                                                        <span class="float-right">
-                                                        <i class="fas fa-times-circle" v-on:click="Remove(index)"></i>
-                                                        </span>
+                                                <span class="float-right">
+                                                <i class="fas fa-times-circle" v-on:click="Remove(index)"></i>
+                                                </span>
                                             </div>
                                             </div>
 
@@ -196,10 +194,8 @@
                             recipeints:[{name:'',email:'',NeedtoSign:true,Receiveacopy:false}],
                             reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
                             reg2:/[a-zA-Z]/,
-                            error:false,
-                            show : undefined,
-                            username:undefined,
-                            length:[]
+                            error:undefined,
+                            errorname:undefined
                             
                         }
                     },
@@ -210,7 +206,6 @@
                     },
                     
                     methods:{
-
                         newRecipient(recipeint){
                             this.recipeints.push({name:'',email:'',NeedtoSign:false,Receiveacopy:false})
                         },
@@ -223,75 +218,95 @@
                                 alert("you need to have atleast one recipient")
                             }
                         },
-                        
-                        changeroute(){                   
 
-                            if (this.combined == true) {      
-                            this.$router.push('/playground')
+                           changeroute(){
+                        console.log("function started"+this.error)
+                        let validemail =[];
+                        let validusername=[];
+                        let validname=[];
+                        let validarray =[];
+
+                        this.error = false
+
+                        // get all the email in an array 
+                        this.recipeints.forEach(element =>{
+                            validemail.push(Object.values(element)[1]);
+                            validusername.push(Object.values(element)[0])
+                            
+                        });
+
+                        console.log(validusername)
+
+                        // check the regex of array make and array containing true or false[true,true,false]
+                        validemail.forEach(element =>{
+                           validarray.push(this.reg.test(element)) 
+                        })
+
+                        // check for valid username
+                        validusername.forEach(element=>{
+                            if(element.length > 0 && element.length<100 && this.reg2.test(element)){
+                                validname.push(true)
                             }
                             else{
-                                console.log("show error")
+                                validname.push(false)
                             }
-                                                
-                        },
+                        })
 
-                        enteruser($event){
-                           this.username = false;
-                           let username = $event.target.value;
+                        console.log(validname)
+                        // check for invalid username error message
+                        var j = 0;
+                        var count1 = 0
 
-                           console.log(this.reg2.test($event.target.value))
-                           console.log(username) 
-                           if(username =='' || username.length == 0){
-                               this.username = false
-                           }
-
-                           
-                           if(username.length>0 && username.length<100){
-                                this.username = true
-                           }
-                        },
-
-                        textchange($event){
-                            this.show = false;
-                            let log = $event.target.value;
-                            let  show = this.reg.test($event.target.value)
-
-                            if(show != false || show.length <100){
-                                this.show = true
+                        while(j<validname.length){
+                            if(validname[j] == false){
+                                count1 ++
                             }
-                            else{
-                                this.show = false
-                            }
+                            j++
+                        }
 
-                            // console.log('log'+log + 'show' + show)
+                        if(count1 >0){
+                            this.errorname = true
+                        }
+
+
+                        // if array contain false means there is an error we can't move
+                             var i = 0
+                             var count = 0
+
+                             while ( i < validarray.length) {
+                                 if (validarray[i] == false) {
+                                     count ++
+                                 }
+                                 i++
+                             }
+
+
+
+                             if(count >0){
+                                 this.error = true;
+                             }
+
+                            //  check for valid user name and email
+                             if (count == 0 && count1 ==0) {
+                                 localStorage.setItem('recipients',this.recipeints)
+                                 this.$router.push('/playground')
+                             }
+                    
+                                                                      
                         },
-
+                     
                         createderror(){
-
                         },
-
                         isEmailValid: function(index) {
-                            // console.log( (this.currentrecipients[index].email == "")? "" : (this.reg.test(this.currentrecipients[index].email)) ? 'true' : 'false');
+                
                             console.log( (this.currentrecipients[index].email == "")? "nothing" : (this.reg.test(this.currentrecipients[index].email)) ? 'true' : 'false')
                         },
                     },
-
                     computed:{
-
-                        present(){
-                            return this.show
-                        },
-
-                        validuser(){
-                            return this.username
-                        },
-                        combined(){
-                            return this.show && this.username
-                        }
+                        
                     },
-                    mounted(){
-                   
-                    }
+
+                  
                     }
                     </script>
 
@@ -301,10 +316,24 @@
                             background-color: rgb(244, 244, 244);
                             /* border: 1px solid black; */
                     }
+
+                    .alert{
+                        position: absolute!important;
+                        z-index: 9999;
+                    }
+
+                    .changeplace{
+                        top:60px!important;
+                    }
+
+                    .setplace{
+                        top:120px!important;
+                    }
                     
                     .set-middle{
                         /* margin-right: 150px; */
                         margin-left: 200px;
+
                     }
                     .set-recipient{
                         padding: 30px;
@@ -398,21 +427,16 @@
                     text-transform: uppercase;
                     vertical-align: middle;
                 }
-
-
                 .fade-enter{
                     opacity: 0;
                 }
-
                 .fade-enter-active{
                     transition: opacity 1s;
                 }
-
                 .fade-leave-active{
                     transition: opacity 1s ;
                     opacity: 0;
                 }
-
                 .cross::after{    
                         content: 'X';
                         border: 1px solid black;
