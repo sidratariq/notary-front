@@ -4,7 +4,11 @@
 
                             <div class="container set-middle padding">
 
-                            <h2 >Add Recipients</h2>
+                            <h2>Add Recipients</h2>
+
+                            <!-- {{username}} -->
+                            {{present}} => i am for email
+                            {{validuser}} =>iam for user
 
                             
                             <transition name="fade">
@@ -44,55 +48,52 @@
                                 
                                 <form>
                                 <div class="form-group crush">
-                                    <input type="email" class="form-control" v-model="recipeints[index].email"     id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email*">
+                                    <input type="email" class="form-control" v-model="recipeints[index].email" @keydown="textchange($event)"     id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email*">
+                                    <!-- <small v-if="show==false" class="text-muted"> (wrong)show == false{{show}}</small> -->
+                                    <small v-if="show == true"> Please enter a valid email address</small>
                                 </div>
+
                                 <!-- <slot></slot> -->
                                 <div class="form-group">
-                                    <input type="text" class="form-control" v-model="recipeints[index].name"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name*">
+                                    <input type="text" class="form-control" v-model="recipeints[index].name" @keydown="enteruser($event)"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name*">
                                 </div>
+
                                 </form>
 
                                 </div>
 
-                                            <!--Drop down place  -->
-                                        <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
-
-                                            <div class="row">
-                                                <div class="col-md-4"></div>
-
-                                                <!-- Drop down for options -->
-                                                <div class="col-md-4">
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                <p style="color:white">dajdkadkj</p>
-                                                </div>
-                                            </div>   
+                                    <!--Drop down place  -->
+                                <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <!-- Drop down for options -->
+                                        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4">
+                                        <p style="color:white">dajdkadkj</p>
+                                        </div>
+                                    </div>   
 
 
-                                                <!-- 2nd -->
-                                                <div class="row">
-                                                <div class="col-md-4"></div>
-                                            
-                                                <!-- Drop down for options -->
-                                                <div class="col-md-5">
-                                                    <div class="dropdown">                    
-                                                <button class="btn  dropdown-toggle" type="button" style="font-size:13px; " id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    
-                                                <i class="fas fa-file-signature"></i>                                            
+                                    <!-- 2nd -->
+                                    <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <!-- Drop down for options -->
+                                    <div class="col-md-5">
+                                        <div class="dropdown">                    
+                                    <button class="btn  dropdown-toggle" type="button" style="font-size:13px; " id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-file-signature"></i>                                            
+                                    NEEDS TO SIGN
+                                    </button>
 
-                                                    NEEDS TO SIGN
-                                                </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <button class="dropdown-item" type="button" style="font-size:13px; "> 
-
-                                                <span>
-                                                <i class="fas fa-file-signature"></i>
-                                                </span>
-                                                Need to Sign
-
-                                            </button>
+                                    <button class="dropdown-item" type="button" style="font-size:13px; "> 
+                                        <span>
+                                        <i class="fas fa-file-signature"></i>
+                                        </span>
+                                        Need to Sign
+                                    </button>
                                         
                                             <button class="dropdown-item" style="font-size:13px;" type="button"><span>
                                                 <i class="far fa-closed-captioning"></i>
@@ -193,7 +194,11 @@
                         return{
                             recipeints:[{name:'',email:'',NeedtoSign:true,Receiveacopy:false}],
                             reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
-                            error:false
+                            reg2:/[a-zA-Z]/,
+                            error:false,
+                            show : undefined,
+                            username:undefined,
+                            length:[]
                             
                         }
                     },
@@ -204,6 +209,7 @@
                     },
                     
                     methods:{
+
                         newRecipient(recipeint){
                             this.recipeints.push({name:'',email:'',NeedtoSign:false,Receiveacopy:false})
                         },
@@ -216,43 +222,110 @@
                                 alert("you need to have atleast one recipient")
                             }
                         },
+                        
                         changeroute(){
-                        console.log("function started"+this.error)
+                        // console.log("function started"+this.error)
 
-                        this.recipeints.forEach(element => {
-                            console.log(Object.values(element)[1])
+                           this.recipeints.forEach(element => {
+                            this.error = false
 
-                            if(Object.values(element)[1] == "" || !this.reg.test(Object.values(element)[1])){
-                                console.log("empty check" + "invalid check")
-                                this.error= true
-                                console.log("Loop running"+this.error)
-                                return this.error;
+                            if ((Object.values(element)[1] == "") || this.reg.test(Object.values(element)[1]) == false){
+                                 return this.error = true;
+                                 
                             }
-                            else{
-                                console.log("error not happended i am regex value"+!this.reg.test(Object.values(element)[1]))
-                            }
+
+                            // if ( this.reg.test(Object.values(element)[1]) == false ) {
+                            //     this.error = true
+                            // }
                             
-                                console.log("outside the loop"+this.error)
-                            });
+                               });
 
-                        //  alert(this.error)
-                            if (this.error == false) {      
-                            this.$router.push('/playground')
+
+                                if (this.error == false) {
+                                this.$router.push('/playground')
                             }
+                    
+                        //     // console.log(Object.values(element)[1])
+                        //     console.log(this.reg.test(Object.values(element)[1])+"value of regec")
+
+
+                        //     if(Object.values(element)[1] == "" || !this.reg.test(Object.values(element)[1])){
+                        //         // console.log("empty check" + "invalid check")
+                        //         this.error= true
+                        //         // console.log("Loop running"+this.error)
+                        //         return this.error;
+                        //     }
+                            
+                        //     console.log("outside the loop"+this.error)
+                        //     });
+
+                        // //  alert(this.error)
+
+                        //     if (this.error == false) {      
+                        //     this.$router.push('/playground')
+                        //     }
                                                 
                         },
 
-                        createderror(){
+                        enteruser($event){
+                           this.username = false;
+                           let username = $event.target.value;
+
+                           console.log(this.reg2.test($event.target.value))
+                           console.log(username) 
+                           if(username =='' || username.length == 0){
+                               this.username = false
+                           }
+
+                           if(username.length>100){
+                               this.username = false
+                           }
+                           
+                           else{    
+                               this.username = true
+                           }
                         },
+
+                        textchange($event){
+                            this.show = false;
+                            let log = $event.target.value;
+                            let  show = this.reg.test($event.target.value)
+                            if(show == false || show.length >100){
+                                this.show = true
+                            }
+                            else{
+                                this.show = false
+                            }
+
+                            // console.log('log'+log + 'show' + show)
+                        },
+
+                        createderror(){
+
+                        },
+
                         isEmailValid: function(index) {
-                
                             // console.log( (this.currentrecipients[index].email == "")? "" : (this.reg.test(this.currentrecipients[index].email)) ? 'true' : 'false');
                             console.log( (this.currentrecipients[index].email == "")? "nothing" : (this.reg.test(this.currentrecipients[index].email)) ? 'true' : 'false')
                         },
-
                     },
+
                     computed:{
-                        
+
+                        present(){
+                            return this.show
+                        },
+
+                        validuser(){
+                            return this.username
+                        }
+                    },
+                    mounted(){
+                        // var age = 5;
+                        // while(age < 10){
+                        //     console.log("Your age is less than 10")
+                        //     age++
+                        // }
                     }
                     }
                     </script>
