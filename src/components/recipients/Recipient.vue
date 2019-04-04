@@ -1,4 +1,4 @@
-    <template>
+ <template>
         
                         <div class="col-md-12 col-lg-12 use-extra" >
                                     <!--  v-rainbow -->
@@ -6,17 +6,12 @@
                                         <!-- email and name of recipient -->
                                         <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
                                         <form>
-                                            <!-- {{no_of_recipient}}
-                                            {{index}} -->
-                                                <!-- {{currentrecipient}} -->
-                                                <!-- {{recipients}} -->
-                                                <!-- {{Object.keys(recipeints)}} -->
-                                                <!-- {{Object.values(recipeints)}} -->
+                                                <slot></slot>
+                                           
                                                 {{currentrecipients.name}}
                                                 {{currentrecipients.email}}
                                                 {{currentrecipients.NeedtoSign}}
                                                 {{currentrecipients.Receiveacopy}}
-
 
                                             <div class="form-group crush">
                                                 <input type="email" class="form-control" v-model="currentrecipients.email"   :keyup="logEmail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email*">
@@ -104,10 +99,7 @@
     </template>
 
     <script>
-
     import {required,minLength} from "vuelidate/lib/validators";
-
-
     export default {
         data(){
                     return{
@@ -122,7 +114,6 @@
                 },
         props:{
             currentrecipient:{
-
             },
             index:{
                 type:Number
@@ -133,32 +124,25 @@
             remove(id) {
                 this.$emit('DeleteRecipient',id)
             },
-
             logEmail(){
                 console.log()
             },
-
             logName(){
-
             }
         },
-
         mounted: function(){
             console.log(Object.keys(this.recipeints))
             // console.log(Object.values(this.recipeints))
         }
-
     }
     </script>
 
     <style scoped>
-
         *{
             /* border: 1px solid black; */
         }
             
         
-
         .cross::after{    
                     content: 'X';
                     border: 1px solid black;
@@ -177,8 +161,6 @@
                     font-weight: bold;
                     display: block;
                 }
-
-
                 .timeline_dot::after {
                     background-color: #ccc;
                     border-radius: 2px;
@@ -189,29 +171,21 @@
                     position: absolute;
                     top: 60px;
                     left: -46px;
-
                 }
-
                 .setpadding{
                     padding-left: 40px;
                     z-index: -1;
                 }
-
                 .crush{
                     padding-top: 20px;
                     padding-left:0px; 
                 }
-
                 .use-extra{
                     position:relative;
                     border:1px solid #ccc;
                     background-color:#ffffff;
                     margin-top: 4px;
                     margin-bottom: 6px;
-
                 }
-
-
             
-
     </style>
