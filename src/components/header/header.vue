@@ -1,6 +1,7 @@
                                             <template>
-                                                <header >
+                                                <header v-if="(this.$route.path)!='/login'" >
                                             <div class="logo">
+
                                                 <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
                                                 <img style="z-index=999" src="" 
                                                 @click="gohome" alt="" height="57px" width="87px" srcset="../../assets/icons/SVG/SVG/simple.svg">
@@ -22,6 +23,8 @@
                                                     <span ></span>
                                                 </label>
                                                 
+                                              
+
 
                                                   <div class="dropdown drop" v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
                                                   <button class="dropdown float-right sethover" style="border:1px solid transparent; background-color:#1b499f; margin-top:2px"   type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,21 +108,23 @@
                                     computed:{
                                         
                                         email:function(){
-                                            return localStorage.getItem("user_email")
-                                        },
+                                            return JSON.parse(localStorage.getItem("Userdata")).Userdata.Email 
+                                                                                   },
 
                                         profilepic:function(){
-                                            return 'http://localhost:8000/'+localStorage.getItem("user_image")
+                                            return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
+
                                         },
 
                                         username:function(){
-                                            return localStorage.getItem("user_name")
+                                            return JSON.parse(localStorage.getItem("Userdata")).Userdata.Name
                                         }
 
                                     },
                                         
 
                                             mounted(){
+                                                // console.log('http://localhost:8000/'+localStorage.getItem("user_image"))
                                             }
 
                                             

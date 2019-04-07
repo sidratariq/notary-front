@@ -140,19 +140,23 @@
                                   .then(response => {
 
                                     this.Userdata = response;
-                                    console.log("Token:"+response.Token)
+                                    console.log(response.Token)
 
                                     // setting local data for future use
-                                    localStorage.setItem("user_name",this.Userdata.Userdata.Name);
-                                    localStorage.setItem("user_email",this.Userdata.Userdata.Email);
-                                    localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
-                                    localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
-                                    localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
-                                    localStorage.setItem("user_company",this.Userdata.Userdata.Company);
-                                    localStorage.setItem("user_token",this.Userdata.Token);
-                                    localStorage.setItem("user_signto",this.Userdata.WaitingME);
-                                    localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
-                                    localStorage.setItem("user_expire",0)
+
+                                    console.log("user_name",this.Userdata)
+                                    localStorage.setItem("Userdata",JSON.stringify(this.Userdata))
+
+                                    // localStorage.setItem("user_name",this.Userdata.Userdata.Name);
+                                    // localStorage.setItem("user_email",this.Userdata.Userdata.Email);
+                                    // localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
+                                    // localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
+                                    // localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
+                                    // localStorage.setItem("user_company",this.Userdata.Userdata.Company);
+                                    // localStorage.setItem("user_token",this.Userdata.Token);
+                                    // localStorage.setItem("user_signto",this.Userdata.WaitingME);
+                                    // localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
+                                    // localStorage.setItem("user_expire",0)
 
                                     // console.log(localStorage.getItem("user_name"));
                                     // console.log(localStorage.getItem("user_email"));

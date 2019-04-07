@@ -33,12 +33,11 @@
         </div>
       <div class="col-10 col-lg-10 col-md-10 col-xs-12 content-area " > 
 
-        <!-- <router-view> -->
-        <!-- </router-view> -->
+       
         <inbox></inbox>
 
         
-        <!-- <test></test> -->
+       
         
       </div>
 

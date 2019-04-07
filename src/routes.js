@@ -34,24 +34,6 @@
             },'manage');
     };
 
-    const sent = resolve =>{
-        require.ensure(['./components/manage/sent/sent.vue'],()=>{
-            resolve(require('./components/manage/sent/sent.vue'));
-        },'manage');
-    };
-
-    const deletee = resolve =>{
-        require.ensure(['./components/manage/inbox/delete.vue'],()=>{
-            resolve(require('./components/manage/inbox/delete.vue'));
-        },'manage');
-    };
-
-    const draft  = resolve =>{
-        require.ensure(['./components/manage/draft/draft.vue'],()=>{
-            resolve(require('./components/manage/draft/draft.vue'));
-        },'manage');
-    };
-
 
     export const routes = [
             // ********* tutorial********    

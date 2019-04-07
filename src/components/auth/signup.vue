@@ -1,6 +1,5 @@
                     <template>
                         <div>
-                        <head_head></head_head>
                         <div v-if="globalname" class="row row-set">
                         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                             <!-- {{$v.$invalid}} -->
@@ -12,11 +11,11 @@
 
                                   
                                  <ul class="list-group">
-                    <li class="list-group-item" v-for="(u,key) in errors" :key="key">
-                    <transition name="fade">
-                    <div   class="alert alert-info" transition="expand">{{u}}</div>
-                    </transition></li>
-                    </ul>
+                                  <li class="list-group-item" v-for="(u,key) in errors" :key="key">
+                                  <transition name="fade">
+                                  <div   class="alert alert-info" transition="expand">{{u}}</div>
+                                  </transition></li>
+                                  </ul>
                                   <form @submit.prevent="onSubmit">
                                   <div class="row">
                                   <div class="col-6">
@@ -51,7 +50,7 @@
                                   <!-- phone no validations -->
                                   <div class="col-12">
                                     <input type="text" class="form-control" @blur="$v.number.$touch()" v-model="number" placeholder="Phone no">
-                                    <small v-if="!$v.number.minLen" :class="{invalid:true}">Phone number must be 11 digit long</small>
+                                    <small v-if="!$v.number.minLen" :class="{invalid:true}">Phone number must be 8 digit long</small>
                                   </div>
 
                                   <!-- password validation regex required -->
@@ -103,7 +102,6 @@
       
     } from "vuelidate/lib/validators";
 
-    import head_head from '../header/header.vue'
     import verification from './verficationscreen.vue'
 
 
@@ -158,7 +156,7 @@
         number: {
             required,
             numeric,
-            minLen: minLength(11),
+            minLen: minLength(8),
             maxLen: maxLength(15)
             
           },
@@ -176,7 +174,6 @@
 
         // components
         components:{
-            head_head,
             verification
         },
 
@@ -232,6 +229,7 @@
           this.exist = false;
         }
       },
+
       computed:{
         flag:function(){
           if (/\s/.test(this.$v.email.$model)) {
@@ -261,7 +259,9 @@
         emailexist:function(){
             return this.exist
         }
-      }
+      },
+
+     
     };
     </script>
 

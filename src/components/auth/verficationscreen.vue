@@ -57,17 +57,17 @@
                 show: false,
                 verify_code:'',
                 // email:this.$route.params.email,
-                show:false
             }
         },
         methods:{
             
             resendcode:function(){
-                this.show = !this.show;
+                this.show = false;
                 setTimeout(() =>{
-                    this.show = !this.show;
+                    this.show = true;
+                    console.log(show)
                 },5000) 
-
+                this.show= true
             },
 
             submit(){

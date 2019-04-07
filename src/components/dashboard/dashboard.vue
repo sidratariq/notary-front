@@ -4,8 +4,7 @@
 
     <!--signatures and styles  -->
     <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12" v-if="flag"></modal>
-
-    <!-- user profile change -->
+  
     <uploadphoto v-if="uploadflag"></uploadphoto>
 
     <div class="outer-container">
@@ -14,11 +13,7 @@
         <ul class="first">
           <!-- user image image from server database -->
           <li>
-            <span
-              @click="getclick"
-              class="OliveReact-Avatar"
-              style="background-image: url(&quot;https://docucdn-a.akamaihd.net/olive/18.21.0/img/avatar-placeholder-white.png&quot;); "
-            ></span>
+            
 
              <span @click="getclick">
             <img :src="profilepic" class="OliveReact-Avatar" alt="">
@@ -37,9 +32,9 @@
           <!-- user actions from database -->
           <li @click="routechange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">{{Doctosign}}</span>
+              <span class="userAction_number large-screen">{{waitingMe}}</span>
               <span class="userAction_status">Action Required</span>
-              <span class="userAction_number small-screen">{{Doctosign}}</span>
+              <span class="userAction_number small-screen">{{waitingMe}}</span>
               <!-- <span style="z-index:9999"> <img src="../../assets/icons/angle-double-right-solid.svg" alt=""></span> -->
             </a>
           </li>
@@ -47,9 +42,9 @@
           <!--waiting for others from database  -->
           <li @click="routewaitchange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">{{waiting}}</span>
+              <span class="userAction_number large-screen">{{WaitingOther}}</span>
               <span class="userAction_status">Waiting for Others</span>
-              <span class="userAction_number small-screen">{{waiting}}</span>
+              <span class="userAction_number small-screen">{{WaitingOther}}</span>
             </a>
           </li>
 
@@ -75,12 +70,12 @@
 </template>
 
 <script>
-import dragdrop from "../dragdrop/dragdrop.vue";
-import modal from "../modals/modal.vue";
-import uploadphoto from "../modals/photoupload.vue";
-import signature from "./signature.vue";
 
-import { mapActions } from "vuex";
+    import dragdrop from "../dragdrop/dragdrop.vue";
+    import modal from "../modals/modal.vue";
+    import uploadphoto from "../modals/photoupload.vue";
+    import signature from "./signature.vue";
+    import { mapActions } from "vuex";
 
 export default {
   data: function() {
@@ -132,15 +127,16 @@ export default {
     },
 
     profilepic:function(){
-        return 'http://localhost:8000/'+localStorage.getItem("user_image")
-    },
-    
-    
-    
-    //  localStorage.setItem("user_signto",this.Userdata.WaitingME);
-                                    // localStorage.setItem("user_waitingforother",this.Userdata.WaitingOther);
-                                    // localStorage.setItem("user_expire",0)
+        // JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
+        return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture   },
 
+    waitingMe:function(){
+      return JSON.parse(localStorage.getItem('Userdata')).WaitingME
+    },
+    WaitingOther:function(){
+      return JSON.parse(localStorage.getItem('Userdata')).WaitingOther
+    }
+    ,
                                     
     Doctosign(){
       return localStorage.getItem("user_signto")

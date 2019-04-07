@@ -1,8 +1,6 @@
 <template>
-          
-
-        <transition name="modal">
-
+    
+    <transition name="modal">
         <div class="modal">
           <div class="modal-dialog" role="document">
 
@@ -26,7 +24,7 @@
                <div class="col-6">
                 <div class="row">
                 <label style="margin-top:2%;" for="fullname" class="col-4">Name</label>
-               <input type="text"  class="form-control col-8"  v-model="fullname" placeholder="Full Name" id="fullname"> 
+                <input type="text"  class="form-control col-8"  v-model="fullname" placeholder="Full Name" id="fullname"> 
                  </div>
                </div>
 
@@ -89,9 +87,11 @@
         </template>
 
         <script>
+
         import stylemodal from './stylemodal.vue'
         import uploadmodal from './uplaodmodal.vue'
         import drawmodal from './drawmodal.vue'
+
         export default {
           data(){
             return {
@@ -106,7 +106,9 @@
             methods:{
                 
                 clicked(){
-                    this.$store.dispatch('changeflag')                  
+                    this.$store.dispatch('changeflag') 
+                    localStorage.setItem('Avalible',false)   
+                    console.log(localStorage.getItem('Avalible'))              
                 },
             },
             components:{
@@ -120,11 +122,10 @@
         <style scoped>
         @import url('https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff|Mrs+Saint+Delafield|Qwigley');
         @import url('https://fonts.googleapis.com/css?family=Allura');
+       
         .modal{
           display: block;
           background: rgba(30, 30, 30, 0.5);
-          /* background-color: #1e1e1e; */
-          /* opacity: 0.5;  */
         }
          form{
           margin: 10px;
@@ -135,37 +136,46 @@
             margin-top: 0%;
             margin-bottom:0%; 
         }
+
         .modal-content{
           width:900px; 
           opacity: 1;
           position:relative
         }
+
         .modal-header h3 {
           margin-top: 0;
           color: #42b983;
         }
+
         .set-margin{
             margin-right:5px;
         }
+
         .modal-body {
           margin: 20px 0;
         }
+
         .modal-default-button {
           float: right;
         }
+
         .modal-enter {
           opacity: 0;
         }
         .modal-leave-active {
           opacity: 0;
         }
+
         .nodisplay{
           display: none;
         }
+
         .modal-dialog{
           margin-left:17%; 
           margin-top:2%;
         }
+
         .modal_title{
             border-bottom: 1px solid #e9e9e9;
             overflow: hidden;
@@ -181,6 +191,7 @@
            width:40%; 
            float:left
         }
+
         .second-input{
           width:50%;
           float:right;
@@ -191,21 +202,21 @@
         
         .btn-cross{
           position:absolute;
-           top:6px;
-            right:6px;
-             height:16px;
-              width: 16px;
-               cursor:pointer;
-                color: #868686;
+          top:6px;
+          right:6px;
+          height:16px;
+          width: 16px;
+          cursor:pointer;
+          color: #868686;
         }
         .btn-cross:hover{
           color: #005cb9;
         }
           nav{
-                  all: unset;
-                  height: 50px;
-                  border-top:1px solid silver;
-                  border-bottom:1px solid silver; 
+            all: unset;
+            height: 50px;
+            border-top:1px solid silver;
+            border-bottom:1px solid silver; 
               }
                 .nav li a{
                   background: 0 0;

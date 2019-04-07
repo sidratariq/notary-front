@@ -135,7 +135,7 @@
               computed:{
                 
                 usertoken:function(){
-                  return localStorage.getItem('user_token')
+                  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTQ1NjA5MzQsImlhdCI6MTU1NDU1MzczNCwiaXNzIjoiRU5vdGFyeSIsInVzZXJpZCI6ImE0NzJjNmZiLTA1NzMtNGYwMi1hNGUxLTFiN2E3ZDBmNmYwNCJ9.8-MZB7Yj34-aOUpBVngCY6sMsz0kGlby2SleLVno1wQ'
                 },
 
                 profilepic:function(){

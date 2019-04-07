@@ -1,0 +1,19 @@
+      <div class="dropdown">                    
+                                                <button class="btn  dropdown-toggle" type="button" style="font-size:13px; " id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-file-signature"></i>                                            
+                                                NEEDS TO SIGN
+                                                </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <button class="dropdown-item" type="button" style="font-size:13px; "> 
+                                                <span>
+                                                <i class="fas fa-file-signature"></i>
+                                                </span>
+                                                Need to Sign
+                                            </button>
+                                            <button class="dropdown-item" style="font-size:13px;" @click="ReceiveaCopy" type="button"><span>
+                                                <i class="far fa-closed-captioning"></i>
+                                                Receives a Copy
+                                            </span>
+                                            </button>
+                                            </div>
+                                        </div>

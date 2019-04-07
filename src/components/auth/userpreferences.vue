@@ -25,14 +25,14 @@
 
                                             <div class="col-md-5">
                                                  <div class="row">
-                                                   <strong data-qa="preferences-user-name" class="ng-binding">Sidra Tariq</strong>
+                                                   <strong data-qa="preferences-user-name" >{{username}}</strong>
                                                    <button class="btn btn-link" style="display:inline" data-toggle="modal" data-target="#deletedocument" href="#">Edit</button>
                                                  </div>
 
                                                  <div class="row">
                                                     <span>
                                                     <!-- email here -->
-                                                     sidratariq48@gmail.com
+                                                     {{email}}
                                                     </span>   
                                                  </div>
                                             </div>
@@ -67,12 +67,7 @@
                         </h2>
 
                         <div class="col-2-5">
-                            <!-- <div class="form-group" >
-                                <label class="label ng-binding" for="company">Company</label>
-                                <input type="text" class="input-text ng-pristine ng-untouched ng-valid ng-not-empty" id="company"  data-qa="preferences-company-input" data-kwimpalastatus="alive" data-kwimpalaid="1551144858268-28">
-                            </div> -->
-
-                            
+                                                     
                             <div class="form-group" style="padding-left:73.469px" >
                                 <label class="label" for="jobtitle">Company</label>
                                 <input type="text" class="input-text ng-pristine ng-valid ng-not-empty ng-touched" id="jobtitle"  data-qa="preferences-job-title-input" data-kwimpalastatus="alive" data-kwimpalaid="1551144858268-29">
@@ -229,11 +224,22 @@
         return this.$store.getters.getupload;
         },
         profilepic:function(){
-        return 'http://localhost:8000/'+localStorage.getItem("user_image")                                        
+            return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
+                                            
         },
         flag() {
          return this.$store.getters.getflag;
-        }
+        },
+        userinformation(){
+            
+        },
+          username:function(){
+                return JSON.parse(localStorage.getItem("Userdata")).Userdata.Name
+            },
+
+        email:function(){
+                return JSON.parse(localStorage.getItem("Userdata")).Userdata.Email 
+            },
     }
 
     }

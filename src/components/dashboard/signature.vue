@@ -5,7 +5,7 @@
             <!-- signature image from user choosen from database -->
             <!-- <img src="../../assets/icons/signature.gif" class="signatureChrome_signature"  alt="Signature"> -->
             <span class="initial-text set-color">Create your Signature</span>
-            <span class="set-color">AE9DB71A4A854B1...</span>
+            <span class="set-color">{{userid}}</span>
      </button>
 
 </template>
@@ -29,6 +29,12 @@
                         this.$store.dispatch('changeflag')
                     }                        
                     },
+            computed:{
+                userid:function(){
+                     return JSON.parse(localStorage.getItem('Userdata')).Userdata.Userid
+
+                }
+            }
 }
 </script>
 

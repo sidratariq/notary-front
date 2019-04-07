@@ -3,12 +3,12 @@
     import VueRouter from 'vue-router'
     import VueResource from 'vue-resource'
     import {routes} from './routes.js'
+    import vueSignature from "vue-signature"
     // import {tutorial} from './tutorialroutes.js'
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
     import Vuelidate from 'vuelidate'
 
-    import vueSignature from "vue-signature"
     
     import {store} from './store/store';
 

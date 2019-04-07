@@ -9,11 +9,13 @@
                 <div class="dropdown">
                 <button class="btn btn-sm  btn-utility dropdown-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="round-body small" style="border:1px solid #f5c431; background-color:#ffd65b; color:#ffd65b" >.</span>
-                    {{recipient[0]}}  
+                    {{recipients[0].name}}
+                    
                 </button>
 
                 <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" v-for="(recipient,index) in recipient" :key="index" href="#">{{recipient[index]}}</a>
+                  <a class="dropdown-item" v-for="(recipient,index) in recipients" :key="index" href="#">{{recipients[index].name}}</a>
+
                 </div>
                 </div>
 
@@ -69,7 +71,7 @@
             
             <!-- <embed src="../../assets/Blockusign.pdf" type="application/pdf"   height="700px" width="500"> -->
             <!-- <embed src="../../assets/sample.pdf" type="application/pdf"   height="700px" width="500"> -->
-
+            {{recipients}}
     
             
            
@@ -125,10 +127,17 @@
             
             changeroute(){
                 this.$router.push('/testing')
-            },
+            }
+        },
 
-       
-
+        computed:{
+            recipients:function(){
+             let recipinet =JSON.parse(localStorage.getItem('recipients'));
+            //  let okay = JSON.parse(recipinet)
+            //  console.log(okay)
+              return recipinet
+            //   Object.
+}
         }
     }
 </script>

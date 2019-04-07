@@ -4,8 +4,9 @@
                   
                   
                   <div class="sig-panel first">
-                      <span class="snap" @click="clear()">clear</span>
-                      <vueSignature ref="signature"  :sigOption="option" ></vueSignature> 
+                      <!-- <span class="snap" @click="clear()">clear</span> -->
+                      <!-- <vueSignature ref="signature"  :sigOption="option" ></vueSignature>  -->
+                      <usersignature></usersignature>
                       <hr>
 
                       
@@ -13,9 +14,10 @@
 
 
                   <div class="sig-panel second ">
-                                              <span class="snap1" @click="clear">clear</span>
+                                              <!-- <span class="snap1" @click="clear">clear</span> -->
 
-                      <vueSignature ref="signature" :sigOption="option"  ></vueSignature> 
+                      <!-- <vueSignature ref="signature" :sigOption="option"  ></vueSignature>  -->
+                      <userinitial></userinitial>
                       <hr>
                   </div>
 
@@ -35,6 +37,9 @@
       </template>
 
       <script>
+        import usersignature from './usersignature.vue'
+        import userinitial from './signatureinitial.vue'
+
 
       export default {
           data:function(){
@@ -45,19 +50,15 @@
               }
             }
           },
+          components:{
+            usersignature,
+            userinitial
+          },
           methods:{
          
         
-          clear(){
-              var _this = this;
-              _this.$refs.signature.clear();
-              // console.log(this.$refs.signature)
-          },
+        
 
-          undo(){
-              var _this = this;
-              _this.$refs.signature.undo();
-          },
         
          
 
