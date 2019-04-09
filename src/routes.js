@@ -9,7 +9,7 @@
     import playground from './components/playground/playground'
     import testing from './components/testing/testing'
     // import newpassword from './components/auth/newpassword.vue'
-
+    import suckyground from './components/suckyground.vue'
     import authentication from './components/blankpage/waitingscreen'
 
 
@@ -27,16 +27,20 @@
     // make a bundle of dashoard
     import dashboard from './components/dashboard/dashboard.vue'
     import addrecipient from './components/recipients/AddRecipient.vue'
-import { nextTick } from 'q';
 
-    const inbox = resolve =>{
-            require.ensure(['./components/manage/inbox/inbox.vue'],()=>{
-                resolve(require('./components/manage/inbox/inbox.vue'));
-            },'manage');
-    };
+    // const inbox = resolve =>{
+    //         require.ensure(['./components/manage/inbox/inbox.vue'],()=>{
+    //             resolve(require('./components/manage/inbox/inbox.vue'));
+    //         },'manage');
+    // };
 
 
     export const routes = [
+
+        {   
+            path:'/suckyground',
+            component:suckyground
+        },
             // ********* tutorial********    
         {
             path:'/user',

@@ -3,17 +3,10 @@
 
                   <div class="row" style="margin-top:10%">
                     <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" >
-                      <!-- {{password}} -->
-                      <!-- {{currentemail}} -->
-                      <!-- {{ -->
-                        <!-- $v.password.$invalid -->
-                      <!-- }} -->
-
-                    <ul class="list-group">
+              
+                  <ul class="list-group">
                     <li class="list-group-item" v-for="(u,key) in user" :key="key">
-                      {{u}}{{key}}
-
-                      
+                      {{u}}{{key}}            
                     </li>
                     </ul>
 
@@ -131,73 +124,71 @@
                                 	"email": this.currentemail,
                                   "password":this.password})
                                   .then(res => {
-                                    // console.log("lalaland"+res.bodyText)
+                                    let Userdata = res.body;
+                                    console.log(Userdata)
                                     if(res.status == 200){
-                                          this.$router.push('/dashboard')                                    
-                                      }
+                                    console.log("i am stuck")
+                                    this.$router.push('/dashboard')   
+                                    
+                                    localStorage.setItem("user_name",Userdata.Userdata.Name);
+                                    localStorage.setItem("user_id",Userdata.Userdata.Userid);
+                                    localStorage.setItem("user_email",Userdata.Userdata.Email);
+                                    localStorage.setItem("user_ProfilePic",Userdata.Userdata.Picture);
+                                    localStorage.setItem("user_initial",Userdata.Userdata.Initials);
+                                    localStorage.setItem("user_signature",Userdata.Userdata.Sign);
+                                    localStorage.setItem("user_company",Userdata.Userdata.Company);
+                                    localStorage.setItem("user_token",Userdata.Token);
+                                    localStorage.setItem("user_Actions",Userdata.WaitingME);
+                                    localStorage.setItem("user_WaitingOther",Userdata.WaitingOther);
+                                    localStorage.setItem("user_Expire",Userdata.ExpiringSoon)
+                                    this.$router.push('/dashboard')   
+                                    console.log("i am stuck 2")
                                     return res.json()
+
+
+                                    }
                                   })
                                   .then(response => {
 
-                                    this.Userdata = response;
-                                    console.log(response.Token)
+                                    // this.Userdata = response;
+
+                                    // console.log(response.Token)
 
                                     // setting local data for future use
+                                    // console.log("user_name",this.Userdata)
+                                    // localStorage.setItem("Userdata",JSON.stringify(this.Userdata))
+                                    // localStorage.setItem("user_name",this.Userdata.Userdata.Name);
+                                    // localStorage.setItem("user_email",this.Userdata.Userdata.Email);
+                                    // localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
+                                    // localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
+                                    // localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
+                                    // localStorage.setItem("user_company",this.Userdata.Userdata.Company);
+                                    // localStorage.setItem("user_token",this.Userdata.Token);
+                                    // localStorage.setItem("user_signto",this.Userdata.WaitingME);
+                                    // localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
+                                    // localStorage.setItem("user_expire",0)
 
-                                    console.log("user_name",this.Userdata)
-                                    localStorage.setItem("Userdata",JSON.stringify(this.Userdata))
-
-                                    localStorage.setItem("user_name",this.Userdata.Userdata.Name);
-                                    localStorage.setItem("user_email",this.Userdata.Userdata.Email);
-                                    localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
-                                    localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
-                                    localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
-                                    localStorage.setItem("user_company",this.Userdata.Userdata.Company);
-                                    localStorage.setItem("user_token",this.Userdata.Token);
-                                    localStorage.setItem("user_signto",this.Userdata.WaitingME);
-                                    localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
-                                    localStorage.setItem("user_expire",0)
-
-                                    console.log(localStorage.getItem("user_name"));
-                                    console.log(localStorage.getItem("user_email"));
-                                    console.log(localStorage.getItem("user_image"));
-                                    console.log(localStorage.getItem("user_initial"));
-                                    console.log(localStorage.getItem("user_signature"));
-                                    console.log(localStorage.getItem("user_company"));
-                                    console.log(localStorage.getItem("use_token"));
-                                    console.log(localStorage.getItem("user_signto"));
-                                    console.log(localStorage.getItem("user_waiting"));
-                                    console.log(localStorage.getItem("user_expire"));
+                                    // console.log(localStorage.getItem("user_name"));
+                                    // console.log(localStorage.getItem("user_email"));
+                                    // console.log(localStorage.getItem("user_image"));
+                                    // console.log(localStorage.getItem("user_initial"));
+                                    // console.log(localStorage.getItem("user_signature"));
+                                    // console.log(localStorage.getItem("user_company"));
+                                    // console.log(localStorage.getItem("use_token"));
+                                    // console.log(localStorage.getItem("user_signto"));
+                                    // console.log(localStorage.getItem("user_waiting"));
+                                    // console.log(localStorage.getItem("user_expire"));
 
 
                                     // setting up store values
-                                    this.$store.dispatch("change_username",this.Userdata.Userdata.Name);
-                                    this.$store.dispatch("change_userprofilepic",this.Userdata.Userdata.Picture);
-                                    this.$store.dispatch("changeinitial",this.Userdata.Userdata.Initials);
-                                    this.$store.dispatch("changesignature",this.Userdata.Userdata.Sign);
-                                    this.$store.dispatch("changecompany",this.Userdata.Userdata.Company);
-                                    
-                                    // console.log(this.Userdata.Userdata.Company)
-                                    // console.log(this.Userdata.Userdata.CreationTime)
-                                    // console.log(this.Userdata.Userdata.Email)
-                                    // console.log(this.Userdata.Userdata.Initials)
-                                    // console.log(this.Userdata.Userdata.Name)
-                                    // console.log(this.Userdata.Userdata.Phone)
-                                    // console.log(this.Userdata.Userdata.Picture)
-                                    // console.log(this.Userdata.Userdata.Sign)
-                                    // console.log(this.Userdata.Userdata.Userid)
-                                    
-                                    // CreationTime
-                                    // Email
-                                    // Initials
-                                    // Name
-                                    // Phone
-                                    // Picture
-                                    // Sign
-                                    // Userid
-                                    
+                                    // this.$store.dispatch("change_username",this.Userdata.Userdata.Name);
+                                    // this.$store.dispatch("change_userprofilepic",this.Userdata.Userdata.Picture);
+                                    // this.$store.dispatch("changeinitial",this.Userdata.Userdata.Initials);
+                                    // this.$store.dispatch("changesignature",this.Userdata.Userdata.Sign);
+                                    // this.$store.dispatch("changecompany",this.Userdata.Userdata.Company);
+                                                                      
                                      },
-                                  error => {
+                                     error => {
                                     if(error.body =='INVALID PASSWORD'){
                                       this.invalid_password = true
                                     }

@@ -32,9 +32,9 @@
           <!-- user actions from database -->
           <li @click="routechange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">{{waitingMe}}</span>
+              <span class="userAction_number large-screen">{{ActionRequired}}</span>
               <span class="userAction_status">Action Required</span>
-              <span class="userAction_number small-screen">{{waitingMe}}</span>
+              <span class="userAction_number small-screen">{{ActionRequired}}</span>
               <!-- <span style="z-index:9999"> <img src="../../assets/icons/angle-double-right-solid.svg" alt=""></span> -->
             </a>
           </li>
@@ -42,9 +42,9 @@
           <!--waiting for others from database  -->
           <li @click="routewaitchange()">
             <a class="userAction" href>
-              <span class="userAction_number large-screen">{{WaitingOther}}</span>
+              <span class="userAction_number large-screen">{{WaitingOthers}}</span>
               <span class="userAction_status">Waiting for Others</span>
-              <span class="userAction_number small-screen">{{WaitingOther}}</span>
+              <span class="userAction_number small-screen">{{WaitingOthers}}</span>
             </a>
           </li>
 
@@ -129,27 +129,20 @@ export default {
     profilepic:function(){
         // JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
         // return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture 
-        return 'http://localhost:8000/'+ localStorage.getItem("user_image")
+        return 'http://localhost:8000/'+ localStorage.getItem("user_ProfilePic")
           },
 
-    waitingMe:function(){
-      return JSON.parse(localStorage.getItem('Userdata')).WaitingME
+    ActionRequired:function(){
+      return localStorage.getItem("user_Actions")      
     },
-    WaitingOther:function(){
-      return JSON.parse(localStorage.getItem('Userdata')).WaitingOther
-    }
-    ,
                                     
-    Doctosign(){
-      return localStorage.getItem("user_signto")
-    },
 
-    waiting(){
-      return localStorage.getItem("user_waiting")
+    WaitingOthers(){
+      return localStorage.getItem("user_WaitingOther")
     },
 
     expiring(){
-      return localStorage.getItem("user_expire")
+      return localStorage.getItem("user_Expire")
     }
   },
   mounted(){
@@ -169,7 +162,8 @@ export default {
 
   destroyed() {
     document.removeEventListener("keyup", this.escapeKeyListener);
-  }
+  },
+  
 };
 </script>
 
@@ -275,7 +269,7 @@ ul li {
   color: #fff;
 }
 
-.signatureChrome {
+.signatureChrome {  
   background: 0 0;
   border: none;
   font-size: 11px;

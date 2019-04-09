@@ -1,170 +1,48 @@
 <template>
-  <div class="container">
-    <!-- <button @click="axiosrun">okay</button> -->
-    <button @click="runresource">sent</button>
-    <button @click="getinput">Input</button>
-    <p @click="display" ref="foo"> I'm text inside the component.</p>
-    <!-- <button @click="getdraft">Draft</button> -->
-    <!-- <button @click=""></button> -->
-    <!-- <button @click="get"></button> -->
-    <!-- {{counter}} -->
+  <div id="app">
+    <!-- <img width="25%" src="./assets/logo.png"> -->
+    <!-- <div ref="okay"></div>
+    <div ref="okay1"></div>
+    <div ref="okay2"></div> -->
+    <HelloWorld ref1='hello'/>
 
-
-    <!-- {{run()}} -->
+    <HelloWorld ref='hello'/>
+    <img :src="output">
   </div>
 </template>
 
 <script>
-
-import html2canvas from 'html2canvas'
-import axios from "axios";
+import HelloWorld from "./hellovue";
+import html2canvas from 'html2canvas';
 
 export default {
-  data(){
-    return {
-      counter:0
-      }
+  name: "App",
+  components: {
+    HelloWorld
   },
-  methods: {
-    run() {
-      let n = +prompt('Enter the number to which you want to find the prime number','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTQ2NDkzMDUsImlhdCI6MTU1NDY0MjEwNSwiaXNzIjoiRU5vdGFyeSIsInVzZXJpZCI6ImE0NzJjNmZiLTA1NzMtNGYwMi1hNGUxLTFiN2E3ZDBmNmYwNCJ9.jRFBog9nhvxrfNN3GExKUK_t_JphtojtQ_OsDdZmFMo');
-      // label:for(let i=2;i<=n;i++){
-      //   for( let k=2;k<i;k++) {
-      //         if(i%k==0){
-      //             continue label;
-      //         }
-      //         else{
-      //             console.log("it is a prime"+i)
-      //         }
-      //     }
-      // }
+  data: () => ({
+    output: ""
+  }),
+  async mounted () {
+    let el = this.$refs.hello.$el;
+    console.log(el)
+    let el1 = this.$refs
+    console.log(el+'el')
 
-      nextPrime: for (let i = 2; i <= n; i++) {
-        // for each i...
-
-        for (let j = 2; j < i; j++) {
-          // look for a divisor..
-          if (i % j == 0) continue nextPrime; // not a prime, go next i
-        }
-
-        console.log(i); // a prime
-      }
-    },
-    axiosrun() {
-      axios
-        .get("http://localhost:8000/sent", {
-          headers: {
-            Token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTQ2NDkzMDUsImlhdCI6MTU1NDY0MjEwNSwiaXNzIjoiRU5vdGFyeSIsInVzZXJpZCI6ImE0NzJjNmZiLTA1NzMtNGYwMi1hNGUxLTFiN2E3ZDBmNmYwNCJ9.jRFBog9nhvxrfNN3GExKUK_t_JphtojtQ_OsDdZmFMo"
-          }
-        })
-        .then(res => console.log(res))
-        .catch(error => console.log(error));
-    },
-
-    display(){
-      console.log(this.$refs.foo)
-      let vc = this
-  alert("Descargando reporte visual")
-  html2canvas(vc.showCaptureRef).then(canvas => {
-      vc.document.body.appendChild(canvas)
-  }).catch((error) => {
-    console.log("Erorr descargando reporte visual")
-    alert("Error descargando el reporte visual")
-  });
-    },
-
-
-    // for sent route
-    runresource() {
-      this.$http
-        .get("http://localhost:8000/sent", {
-          headers: {
-            Token:this.token
-          }
-        })
-        .then(res => {
-          // console.log("lalaland"+res.bodyText)
-          if (res.status == 200) {
-            // this.$router.push("/dashboard");
-            console.log("aleezay pleezay")
-            console.log(res)
-          }
-          return res.json();
-        })
-        .then(
-          response => {},
-          error => {
-            // this.show =true
-          }
-        );
-    },  
-
-   
-
-    // for draft
-      getinput(){
-         this.$http
-        .get("http://localhost:8000/inbox", {
-          headers: {
-            Token:this.token
-          }
-        })
-        .then(res => {
-          // console.log("lalaland"+res.bodyText)
-          if (res.status == 200) {
-            // this.$router.push("/dashboard");
-            console.log("aleezay pleezay")
-            console.log(res)
-          }
-          return res.json();
-        })
-        .then(
-          response => {},
-          error => {
-            // this.show =true
-          }
-        );
-    },
-
-  },
-  computed:{
-
-      token(){
-              return localStorage.getItem("user_token")
-          },
-      
-      
-      },
-
-  beforeCreate(){
-    console.log("i get fire in the first place"+typeof(this.counter))
-  },
-
-  
-
-  created() {
-    setInterval(() => {
-      this.counter++
-    }, 100)
-  },
-
- beforeUpdate() {
-    console.log(this.counter) // Logs the counter value every second, before the DOM updates.
-  },
-  mounted() {
-    // Element might not have been added to the DOM yet
-    this.$nextTick(() => {
-        // Element has been definitely added to the DOM
-       console.log(this.$el.textContent); // I'm text inside the component.
-    });
+    console.log(el1+"el1")
+    // this.output = (await html2canvas(el)).toDataURL();
+    // console.log(this.output)
   }
-
-
-      
-  
 };
 </script>
 
-<style>
+<style scoped>
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

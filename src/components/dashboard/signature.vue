@@ -14,7 +14,7 @@
 
     import {mapActions} from 'vuex'
 
-
+    
         export default {
     
 
@@ -31,7 +31,7 @@
                     },
             computed:{
                 userid:function(){
-                     return JSON.parse(localStorage.getItem('Userdata')).Userdata.Userid
+                     return localStorage.getItem('user_id')
 
                 }
             }

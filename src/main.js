@@ -4,9 +4,7 @@
     import VueResource from 'vue-resource'
     import {routes} from './routes.js'
     import VueSignaturePad from 'vue-signature-pad';
-    // import vueSignature from "vue-signature"
-    // import VueHtml2Canvas from 'vue-html2canvas';
-    // import {tutorial} from './tutorialroutes.js'
+   
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
     import Vuelidate from 'vuelidate'

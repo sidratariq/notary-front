@@ -20,7 +20,7 @@
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button"
           id="start-now"
-          @click.prevent="filesChange($event.target)"
+          
         >{{content}}</button>
       </label>
     </form>
