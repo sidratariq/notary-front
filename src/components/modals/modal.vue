@@ -11,22 +11,25 @@
                 <h3  style="margin-bottom:0px" class="modal_title">Create Your own signature</h3>
                 <span class="btn-cross" @click="clicked()" >x</span>
             </div>
-            <!-- <hr> -->
+            <hr>
 
             <!-- form for initials and fullname -->
-            <!-- <form @submit.prevent="onSubmit">
+            <form @submit.prevent="onSubmit">
               <div class="row">
                <div class="col-lg-8 col-md-6">
-               <div class="row"> -->
+               <div class="row">
                <!-- full name entry -->
-               <!-- <div class="col-6">
+               <div class="col-6">
                 <div class="row">
                 <label style="margin-top:2%;" for="fullname" class="col-4">Name</label>
                 <input type="text"  class="form-control col-8"  v-model="fullname" placeholder="Full Name" id="fullname"> 
+                "Allow to create" {{signdisable}}
+                "Allow to create initial"{{uplaodedInitial}}
                  </div>
-               </div> -->
+
+               </div>
                 <!-- Initials entry -->
-               <!-- <div class="col-6">   
+               <div class="col-6">   
                <div class="row">
                <label style="margin-top:2%;" for="initials" class="col-4">Initials</label>
                <input type="text" class="form-control col-8"  v-model="initials" placeholder="Initials" id="initials"> 
@@ -35,13 +38,13 @@
                 </div>
                 </div>
               </div>
-            </form> -->
-            <!-- <hr> -->
+            </form>
+            <hr>
 
           <!-- nav bar for choose,draw and upload -->
           <nav>
               <ul class="nav">
-                  <!-- <li class="nav-link" id="choose" exact ><a @click="display =1"> CHOOSE</a></li> -->
+                  <li class="nav-link" id="choose" exact ><a @click="display =1"> CHOOSE</a></li>
                   <li class="nav-link" id="draw" exact ><a @click="display=2">Draw</a></li>
                   <li class="nav-link" id="upload" exact ><a @click="display=3">Upload</a></li>
               </ul>
@@ -50,13 +53,13 @@
 
             <div>
               <!--upload signature via style choose option -->
-              <!-- <stylemodal :fullname="fullname" :initial="initials" v-if="display ==1"></stylemodal> -->
+              <stylemodal :fullname="fullname" :initial="initials" v-if="display ==1"></stylemodal>
 
               <!-- style choose via draw option  -->
               <drawmodal v-if="display == 2" class="overflow:scroll">draw</drawmodal>
               
               <!-- style choose via signature upload -->
-              <uploadmodal v-if="display == 3">upload</uploadmodal>
+              <uploadmodal @avaliblesign="uploadSignature = $event" @avalibleinitial="uplaodedInitial = $event" v-if="display == 3">upload</uploadmodal>
 
             </div>
 
@@ -67,7 +70,7 @@
               
               <!-- create and cancel signature -->
               <div class="modal-footer">
-                  <button type="button" :disabled="true" class="btn btn-outline-info" @click="clicked()" > Create </button>
+                  <button type="button" :disabled="uploadSignature==false && uplaodedInitial == false" class="btn btn-outline-info" @click="clicked()" > Create </button>
                   <button type="button" class="btn btn-link btn-black" data-dismiss="modal"  @click="clicked()" >Cancel</button>
               </div>
 
@@ -87,10 +90,12 @@
         export default {
           data(){
             return {
-              display:2,
+              display:1,
               fullname: localStorage.getItem("user_name"),
               hash:'AE9DB71A4A854B1...',
-              initials:''
+              initials:'',
+              signdisable:false,
+              initialdisable:false
             }
           },
             
@@ -109,9 +114,26 @@
               drawmodal
             },
             computed:{
-              allowtocreate(){
-                return this.$store.getters.getsignavalible;
+              
+              uploadSignature:{
+                  set(value){
+                    this.signdisable=value
+                  },
+                  get(){
+                    return this.signdisable
+                  }
+              },
+
+              uplaodedInitial:{
+                set(value){
+                  this.initialdisable=value
+                },
+                get(){
+                  return this.initialdisable
+                }
               }
+
+
             }
         }
         </script>

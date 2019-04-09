@@ -98,15 +98,20 @@ export default {
             this.user_signature = dataURL;
             console.log("Signature log"+dataURL)
             this.signatureFlag = true;
-            // this.$store.dispatch(changesignature(true))
+            this.$emit("avaliblesign",this.signatureFlag)
             return (this.signatureFlag = true);
           }
 
           // check whether user has uploaded initial
           else {
-            console.log(this.initialFlag + "here 2");
+            // console.log(this.initialFlag + "here 2");
             this.user_initial = dataURL;
             this.initialFlag = true;
+            
+            this.$emit("avalibleinitial",this.initialFlag)
+            // console.log(this.initialFlag + "here 2");
+
+
           }
 
           console.log(this.signatureFlag + "here 3");
@@ -120,11 +125,9 @@ export default {
 
   computed: {
     showsign() {
-       console.log("inside show signature"+this.signatureFlag)
       return this.signatureFlag;
     },
     showinitial() {
-      console.log("inside show initial" + this.initialFlag);
       return this.initialFlag;
 
     },
