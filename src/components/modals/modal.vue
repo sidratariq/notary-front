@@ -1,6 +1,5 @@
 <template>
-    
-    <transition name="modal">
+      <transition name="modal">
         <div class="modal">
           <div class="modal-dialog" role="document">
 
@@ -23,8 +22,7 @@
                 <div class="row">
                 <label style="margin-top:2%;" for="fullname" class="col-4">Name</label>
                 <input type="text"  class="form-control col-8"  v-model="fullname" placeholder="Full Name" id="fullname"> 
-                "Allow to create" {{signdisable}}
-                "Allow to create initial"{{uplaodedInitial}}
+               
                  </div>
 
                </div>

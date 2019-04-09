@@ -2,10 +2,7 @@
     <div id="app">
         <span class="snap1" @click="clear">clear</span>
         <vueSignature ref="signature" :sigOption="option" :w="'509px'" :h="'230px'"></vueSignature> 
-        <!-- <button @click="save">Save</button>
-        <button @click="clear">Clear</button>
-        <button @click="undo">Undo</button>
-        <button @click="addWaterMark">addWaterMark</button> -->
+      
     </div>
 </template>
 
