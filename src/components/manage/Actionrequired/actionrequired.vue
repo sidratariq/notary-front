@@ -9,7 +9,6 @@
                             <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
 
 
-                                <!-- im from parent and i am parent {{nooffilesselected}} -->
                     </div>
 
             </template>

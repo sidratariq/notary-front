@@ -1,81 +1,73 @@
-                                            <template>
-                                                <header v-if="(this.$route.path)!='/login'" >
-                                            <div class="logo">
+            <template>
+                <header v-if="(this.$route.path)!='/login'" >
+            <div class="logo">
 
-                                                <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
-                                                <img style="z-index=999" src="" 
-                                                @click="gohome" alt="" height="57px" width="87px" srcset="../../assets/icons/SVG/SVG/simple.svg">
-                                                </div> 
+                    <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
+                    <img style="z-index=999" src="" 
+                    @click="gohome" alt="" height="57px" width="87px" srcset="../../assets/icons/SVG/SVG/simple.svg">
+                    </div> 
 
-                                                <input type="checkbox" id="nav-toggle" class="nav-toggle">
-                                              
-                                                <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
-                                                    <ul class="nav" >
-                                                        <router-link class="nav-link" active-class="activee" to="/dashboard" @click="changefile" exact tag="li"><a >Home</a></router-link>
-                                                        <router-link class="nav-link" active-class="activee" to="/manage" exact tag="li"><a>Manage</a></router-link>
-                                                        <router-link class="nav-link template" active-class="activee"   tag="li" exact   to="/template"><a>Template</a></router-link>
-                                                    </ul>
-                                                </nav>
+                    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                    <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
+                        <ul class="nav" >
+                            <router-link class="nav-link" active-class="activee" to="/dashboard" @click="changefile" exact tag="li"><a >Home</a></router-link>
+                            <router-link class="nav-link" active-class="activee" to="/manage" @click="defaultrequest" exact tag="li"><a>Manage</a></router-link>
+                            <!-- <router-link class="nav-link template" active-class="activee"   tag="li" exact   to="/template"><a>Template</a></router-link> -->
+                        </ul>
+                    </nav>
         
-                                                <label v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')" for="nav-toggle" class="nav-toggle-label">
-                                                    <span ></span>
-                                                    <span ></span>
-                                                    <span ></span>
-                                                </label>
+                    <label v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')" for="nav-toggle" class="nav-toggle-label">
+                        <span ></span>
+                        <span ></span>
+                        <span ></span>
+                    </label>
+
+                    <!-- <button @click="logout()">najdj</button> -->
                                                 
                                               
 
 
-                                                  <div class="dropdown drop" v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
-                                                  <button class="dropdown float-right sethover" style="border:1px solid transparent; background-color:#1b499f; margin-top:2px"   type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown drop" v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
+                    <button class="dropdown float-right sethover" style="border:1px solid transparent; background-color:#1b499f; margin-top:2px"   type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     
-                                                    <span class=" setspan">
-                                                        <img class="rounded-circle" :src="profilepic"  width="100%" height="100%" alt="" srcset="">
-                                                    </span> 
-                                                  </button>
-                                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                                                      <a class="dropdown-item" style="border-bottom: 1px solid #e9e9e9;" href="#">
-                                                        <div class="row"> 
+                    <span class=" setspan">
+                        <img class="rounded-circle" :src="profilepic"  width="100%" height="100%" alt="" srcset="">
+                    </span> 
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                        <a class="dropdown-item" style="border-bottom: 1px solid #e9e9e9;" href="#">
+                          <div class="row"> 
 
-                                                        <!-- <div class="col-md-12 col-lg-12"> -->
-                                                            <div class="col-lg-4 col-md-4">
-                                                                <img  class="rounded-circle" :src=profilepic  width="100%" height="100%" alt="" srcset="">
-                                                            </div>
+                    <!-- <div class="col-md-12 col-lg-12"> -->
+                        <div class="col-lg-4 col-md-4">
+                            <img  class="rounded-circle" :src=profilepic  width="100%" height="100%" alt="" srcset="">
+                           </div>
 
-                                                            <div class="col-lg-8 col-md-8">
-                                                                <div class="row" style="font-size:13px;">
-                                                                 {{email}}
-                                                                </div>
+                        <div class="col-lg-8 col-md-8">
+                            <div class="row" style="font-size:13px;">
+                             {{email}}
+                            </div>
                                                                 
-                                                                <div class="row" style="font-size:13px;">
-                                                                 {{username}}
+                            <div class="row" style="font-size:13px;">
+                             {{username}}
 
 
-                                                                </div>
-                                                            <!-- </div> -->
-                                                        </div>
-
-                                                    
-
-                                                       
-                                                        </div>
+                                </div>
+                            <!-- </div> -->
+                        </div>                             
+                        </div>
                                                         
-                                                      </a>
-
-                                                      <a class="dropdown-item " style="font-size:13px" href="#">Logout</a>
-                                                      <a class="dropdown-item" @click="settingpage" style="font-size:13px" href="#">My preferences</a>
-                                                  </div>
-                                                </div>  
-
-
-                                                </header>
-
-
-
-                                            </template>
+                        </a>
+                        <a class="dropdown-item" @click="logout" style="font-size:13px" href="#">Logout</a>
+                        <a class="dropdown-item" @click="settingpage" style="font-size:13px" href="#">My preferences</a>
+                      </div>
+                    </div>  
+                    </header>
+                    </template>
 
             <script>
-            
+
+            import axios from "axios";
             import {mapActions} from 'vuex' 
                            
                     export default {
@@ -87,7 +79,54 @@
                                      }
                                 },
                                 methods:{
-                                     
+                                    defaultrequest(){
+                                          this.$http
+                                           .get("http://localhost:8000/inbox", {
+                                             headers: {
+                                               Token:this.token
+                                             }
+                                           })
+                                           .then(res => {
+                                             console.log("lalaland"+res.bodyText)
+                                             if (res.status == 200) {
+                                               // this.$router.push("/dashboard");
+                                               console.log("aleezay pleezay")
+                                               console.log(res)
+                                             }
+                                             return res.json();
+                                           })
+                                           .then(
+                                             response => {},
+                                             error => {
+                                               // this.show =true
+                                             }
+                                           );
+                                    },
+                                   logout(){
+                                    console.log(this.token)
+                                    this.$http
+                                    .get("http://localhost:8000/Logout", {
+                                      headers: {
+                                        'Token': this.token
+                                      }
+                                    })
+                                    .then(res => {
+                                      // console.log("lalaland"+res.bodyText)
+                                      if (res.status == 200) {
+                                        // this.$router.push("/dashboard");
+                                        console.log("aleezay pleezay")
+                                        console.log(res)
+                                      }
+                                      return res.json();
+                                    })
+                                    .then(
+                                      response => {},
+                                      error => {
+                                        // this.show =true
+                                      }
+                                    );
+                                  }
+                                   ,
                                    gohome(){
                                         if(this.$route.path == '/commingsoon'){
                                               
@@ -106,7 +145,9 @@
                                         },
 
                                     computed:{
-                                        
+                                        token(){
+                                            return localStorage.getItem("user_token")
+                                        },
                                         email:function(){
                                             return JSON.parse(localStorage.getItem("Userdata")).Userdata.Email 
                                                                                    },
@@ -121,11 +162,10 @@
                                         }
 
                                     },
-                                        
-
-                                            mounted(){
-                                                // console.log('http://localhost:8000/'+localStorage.getItem("user_image"))
-                                            }
+                                               
+                                    mounted(){
+                                        // console.log('http://localhost:8000/'+localStorage.getItem("user_image"))
+                                    }
 
                                             
                                         };

@@ -5,10 +5,8 @@
                             <div>
                                 <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected"></head_head>
                             </div>
-
-                            <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
-
-
+                            <!-- <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                     -->
+                            <nofile></nofile>
 
                     </div>
 
@@ -17,6 +15,7 @@
             <script>
             import head_head from './inbox_header.vue'
             import content_bar from './content.vue'
+            import nofile from '../Untitled.vue'
             // import createfolder from '../createfolder/createfolders.vue'
 
             export default {
@@ -34,9 +33,7 @@
                         {id: 'beauty', name: 'Beauty', class: 'industry', default: true},
                         {id: 'branding', name: 'Branding', class: 'industry', default: true},
                         {id: 'btob', name: 'B to B', class: 'industry', default: false}
-                    ],
-
-                    
+                    ],                   
                         }
 
                 },
@@ -60,6 +57,7 @@
                 components:{
                     head_head,
                     content_bar,
+                    nofile
                     // createfold/er
                 }
             

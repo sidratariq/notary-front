@@ -19,10 +19,6 @@
                         <th style="width:16.5%; "><span></span></th> 
                         </tr>
 
-
-                    
-
-
                         <!-- list of selected item field from database -->                        
                         <tr :for="select.id" v-for="(select,key) in selectsArray" v-bind:key="select.id" class="setborder" :class="{'clicked':checked}"  >
 

@@ -287,10 +287,10 @@
             }
 
             input[type="checkbox"]{
-    width: 17px; /*Desired width*/
-    height: 17px; /*Desired height*/
-    cursor: pointer;
-    }
+            width: 17px; /*Desired width*/
+            height: 17px; /*Desired height*/
+            cursor: pointer;
+            }
 
     .dropdown-menu{
         min-width: 10rem;

@@ -6,7 +6,7 @@
         <!-- signature image from user choosen from database -->
         <img
           style="position:absolute;left:20px;top:20px;"
-          :src="profilepic"
+          :src="value"
           class="signatureChrome_signature"
           alt="Signature"
         >
@@ -28,7 +28,11 @@ export default {
       // this.$store.dispatch('changeflag')
     }
   },
+  props:['value'],
   computed: {
+    initialsignature(){
+      return this.user_initial
+    },
     profilepic: function() {
       return (
         "http://localhost:8000/" +JSON.parse(localStorage.getItem("Userdata")).Userdata.Picture

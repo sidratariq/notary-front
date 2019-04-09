@@ -64,6 +64,7 @@ export default {
 
     computed:{
         name:function(){
+         
             return this.$route.params.id
         }
     },

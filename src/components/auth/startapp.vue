@@ -86,7 +86,7 @@
 
         import login from "./login.vue"
         import foot_footer from "../footer/footer.vue"
-        import { mapActions } from "vuex";
+        // import { mapActions } from "vuex";
 
               
           export default {
@@ -147,13 +147,13 @@
                                     console.log("user_name",this.Userdata)
                                     localStorage.setItem("Userdata",JSON.stringify(this.Userdata))
 
-                                    // localStorage.setItem("user_name",this.Userdata.Userdata.Name);
-                                    // localStorage.setItem("user_email",this.Userdata.Userdata.Email);
-                                    // localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
-                                    // localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
-                                    // localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
-                                    // localStorage.setItem("user_company",this.Userdata.Userdata.Company);
-                                    // localStorage.setItem("user_token",this.Userdata.Token);
+                                    localStorage.setItem("user_name",this.Userdata.Userdata.Name);
+                                    localStorage.setItem("user_email",this.Userdata.Userdata.Email);
+                                    localStorage.setItem("user_image",this.Userdata.Userdata.Picture);
+                                    localStorage.setItem("user_initial",this.Userdata.Userdata.Initials);
+                                    localStorage.setItem("user_signature",this.Userdata.Userdata.Sign);
+                                    localStorage.setItem("user_company",this.Userdata.Userdata.Company);
+                                    localStorage.setItem("user_token",this.Userdata.Token);
                                     // localStorage.setItem("user_signto",this.Userdata.WaitingME);
                                     // localStorage.setItem("user_waiting",this.Userdata.WaitingOther);
                                     // localStorage.setItem("user_expire",0)
@@ -187,8 +187,6 @@
                                     // console.log(this.Userdata.Userdata.Sign)
                                     // console.log(this.Userdata.Userdata.Userid)
                                     
-
-
                                     // CreationTime
                                     // Email
                                     // Initials
@@ -198,46 +196,8 @@
                                     // Sign
                                     // Userid
                                     
-                                  //  console.log(typeof(response))
-
-                                  // console.log('======= Object.keys ==========');    
-                                  // Object.keys(response).map(e => {
-                                  //     // iterate through object
-                                  //     if(typeof(response[e])=="object"){
-                                  //       let userdata = Object.entries(response[e]);
-                                  //       console.log("object keys"+userdata+typeof(userdata))
-                                  //       for(let key in userdata){
-                                  //         console.log(userdata[key])
-                                  //       } 
-                                  //     }
-                                  //     console.log(`key= ${e} value = ${response[e]}`)
-                                  // });
-
-
-                                  // Object.entries(response).forEach(([key, value]) => {
-                                  //   console.log(`key= ${key} value = ${value}`)
-                                  // })
-                                  
-                                  
-                                //  let userdata = Object.entries(response);
-                                  // for( let outer in userdata){
-                                      // for(let inner in userdata[outer]){
-                                        // console.log("outer"+outer+"inner"+inner+userdata[outer][inner])                                     
-                                      // }
-                                  // }
-
-                                    // _____________
-                                    // console.log(response)
-                                    // const resultArray = [];
-                                    // for (let key in response){
-                                    //   console.log(key)
-                                    //   resultArray.push(key);
-                                    // }
-                                    // this.user = resultArray
-                                    // console.log(this.user)
-                                    // console.log(resultArray)
-                                    },
-                                error => {
+                                     },
+                                  error => {
                                     if(error.body =='INVALID PASSWORD'){
                                       this.invalid_password = true
                                     }

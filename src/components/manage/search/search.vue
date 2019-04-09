@@ -118,6 +118,8 @@
       position:relative;
       margin-top:10px;
       margin-left:20px; 
+      font-size: 12px;
+      padding: 1px;
 
     }
 

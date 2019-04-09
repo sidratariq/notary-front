@@ -86,13 +86,17 @@ export default {
         },
 
         name:function(){
-            if(this.$route.query.view == undefined){
-                return 'Inbox'
+            if( this.$route.query.folder != undefined && this.$route.query.view == undefined){
+                return this.$route.query.folder
             }
             else{
-                console.log(this.$route.query.view)
+                if(this.$route.query.folder == undefined && this.$route.query.view == undefined){
+                    return 'Inbox'
+                }
                 return this.$route.query.view
             }
+            
+            // }
         },
         
         searchvalue:function(){

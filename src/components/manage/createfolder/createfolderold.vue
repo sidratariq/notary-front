@@ -16,9 +16,9 @@
 
                         <ul style="padding:0px 3px 0px 24px" :class="{hide:avalible}">
                         <li class="whenhover" id="subfolder" v-for="(folder,key) in folders" :key="key">
-                          <router-link :to="{name:'manage',query:{view:folders[key].name}}" exact active-class="active">
+                          <router-link :to="{name:'manage',query:{folder:folders[key].name}}" exact active-class="active">
                           <i class="fas fa-folder menuicon" style="padding:4px">
-                          </i>{{folder.name}}{{key}} <span>
+                          </i><span class="setlayout">{{folder.name}}{{key}}</span> <span>
 
                                <div class="btn-group" >                              
 
@@ -158,6 +158,10 @@
 
   .menuicon,.foldericon{
     color: #868686;
+  }
+
+  .setlayout{
+    font-size:14px;
   }
 
  .setdropdown, .plusicon{

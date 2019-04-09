@@ -4,6 +4,7 @@
     import VueResource from 'vue-resource'
     import {routes} from './routes.js'
     import vueSignature from "vue-signature"
+    // import VueHtml2Canvas from 'vue-html2canvas';
     // import {tutorial} from './tutorialroutes.js'
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
@@ -15,6 +16,7 @@
     Vue.use(VueResource);
     Vue.use(Vuelidate)
     Vue.use(vueSignature)
+    // Vue.use(VueHtml2Canvas);
 
     Vue.config.productionTip = false
     Vue.use(VueRouter);
@@ -42,7 +44,7 @@
 
 
     router.beforeEach((to,from,next)=>{
-      // console.log("beforeEach Global");
+      console.log("beforeEach Global");
       next();
     });
 

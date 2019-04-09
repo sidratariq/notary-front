@@ -6,6 +6,7 @@
     import contractfile from './modules/contract'
     import file_avalible from './modules/fileavalible.js'
     import userdata from './modules/user.js'
+    import uploadsignature from './modules/createsignn.js'
     import * as actions from './actions.js'
     import * as mutations from './mutations.js'
     import * as getters from './getters.js'
@@ -31,12 +32,7 @@
             picupload,
             contractfile,
             file_avalible,
-            userdata
+            userdata,
+            uploadsignature
         }
-
-
-            
-
-
-
     });

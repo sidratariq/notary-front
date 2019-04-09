@@ -27,6 +27,7 @@
     // make a bundle of dashoard
     import dashboard from './components/dashboard/dashboard.vue'
     import addrecipient from './components/recipients/AddRecipient.vue'
+import { nextTick } from 'q';
 
     const inbox = resolve =>{
             require.ensure(['./components/manage/inbox/inbox.vue'],()=>{
@@ -127,7 +128,11 @@
         {
             path:'/adddocs',
             component:adddocs,
-            name:adddocs
+            name:adddocs,
+            beforeEnter:() =>{
+                console.log('akjhakdakh');
+                next()
+            }
 
         },
 
