@@ -8,7 +8,7 @@
                     <div  class="col-md-4 col-lg-4 col-sm-4 col-xs-12 text-center" >
                     
                     <transition  name="fade">
-                    <div class="alert alert-info" transition="expand">Account created sucessfully</div>
+                    <div v-if="show" class="alert alert-info okay" transition="expand">Account created sucessfully</div>
                     </transition>
 
                     <img src="../../assets/icons/esnotary.png" >
@@ -62,12 +62,12 @@
         methods:{
             
             resendcode:function(){
-                this.show = false;
+                this.show = true;
                 setTimeout(() =>{
-                    this.show = true;
+                    this.show = false;
                     console.log(show)
                 },5000) 
-                this.show= true
+                // this.show= false
             },
 
             submit(){
@@ -82,6 +82,7 @@
                     this.$router.push('/login')
                     console.log(response)
                 }
+                
                 },
             error => {
                 console.log(error);
@@ -106,6 +107,10 @@
             background-color: white;
             /* border: 1px solid black; */
 
+        }
+
+        .okay{
+            position: absolute;
         }
 
         .text-center{

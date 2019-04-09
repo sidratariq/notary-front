@@ -129,10 +129,7 @@ import { nextTick } from 'q';
             path:'/adddocs',
             component:adddocs,
             name:adddocs,
-            beforeEnter:() =>{
-                console.log('akjhakdakh');
-                next()
-            }
+            
 
         },
 

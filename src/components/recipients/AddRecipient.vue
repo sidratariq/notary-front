@@ -124,7 +124,7 @@
                                                 <span class="set-color" >
                                                         <i class="fas fa-user-plus seteffect" ></i>
                                                 </span>
-                                                    Add Recipient
+                                                    Add Another
                                         </div>
                                     
                                         <!-- to here -->

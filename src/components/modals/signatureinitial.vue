@@ -32,7 +32,7 @@ export default {
         },
         clear(){
             var _this = this;
-            _this.$refs.signature.clearSignature();
+            _this.$refs.signature.clear();
         },
         undo(){
             var _this = this;

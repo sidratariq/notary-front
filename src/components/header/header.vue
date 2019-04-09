@@ -1,5 +1,5 @@
             <template>
-                <header v-if="(this.$route.path)!='/login'" >
+                <header v-if="((this.$route.path)!='/login')" >
             <div class="logo">
 
                     <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
@@ -8,7 +8,7 @@
                     </div> 
 
                     <input type="checkbox" id="nav-toggle" class="nav-toggle">
-                    <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')">
+                    <nav v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' && this.$route.path!='/verify')">
                         <ul class="nav" >
                             <router-link class="nav-link" active-class="activee" to="/dashboard" @click="changefile" exact tag="li"><a >Home</a></router-link>
                             <router-link class="nav-link" active-class="activee" to="/manage" @click="defaultrequest" exact tag="li"><a>Manage</a></router-link>
@@ -153,8 +153,8 @@
                                                                                    },
 
                                         profilepic:function(){
-                                            return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
-
+                                            return 'http://localhost:8000/'+ localStorage.getItem('user_image')
+                                                    
                                         },
 
                                         username:function(){

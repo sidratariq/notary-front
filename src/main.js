@@ -3,7 +3,8 @@
     import VueRouter from 'vue-router'
     import VueResource from 'vue-resource'
     import {routes} from './routes.js'
-    import vueSignature from "vue-signature"
+    import VueSignaturePad from 'vue-signature-pad';
+    // import vueSignature from "vue-signature"
     // import VueHtml2Canvas from 'vue-html2canvas';
     // import {tutorial} from './tutorialroutes.js'
     import 'bootstrap'
@@ -15,7 +16,8 @@
 
     Vue.use(VueResource);
     Vue.use(Vuelidate)
-    Vue.use(vueSignature)
+    Vue.use(VueSignaturePad);
+    // Vue.use(vueSignature)
     // Vue.use(VueHtml2Canvas);
 
     Vue.config.productionTip = false
@@ -43,10 +45,10 @@
     // );
 
 
-    router.beforeEach((to,from,next)=>{
-      console.log("beforeEach Global");
-      next();
-    });
+    // router.beforeEach((to,from,next)=>{
+    //   console.log("beforeEach Global");
+    //   next();
+    // });
 
     new Vue({
       router,

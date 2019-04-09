@@ -128,7 +128,9 @@ export default {
 
     profilepic:function(){
         // JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
-        return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture   },
+        // return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture 
+        return 'http://localhost:8000/'+ localStorage.getItem("user_image")
+          },
 
     waitingMe:function(){
       return JSON.parse(localStorage.getItem('Userdata')).WaitingME

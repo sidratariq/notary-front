@@ -5,8 +5,8 @@
                             <div>
                                 <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected"></head_head>
                             </div>
-                            <!-- <content_bar :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                     -->
-                            <nofile></nofile>
+                            <content_bar v-if="this.$route.query.view == 'Sent'"  :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
+                            <nofile v-if="this.$route.query.view != 'Sent'"></nofile>
 
                     </div>
 
