@@ -11,6 +11,7 @@
     // import newpassword from './components/auth/newpassword.vue'
     import suckyground from './components/suckyground.vue'
     import authentication from './components/blankpage/waitingscreen'
+    import  temporary from './components/temporary.vue'
 
 
     // ******* learning routes ************///
@@ -28,8 +29,14 @@
     import dashboard from './components/dashboard/dashboard.vue'
     import addrecipient from './components/recipients/AddRecipient.vue'
 
-    export const routes = [
 
+    export const routes = [
+        
+        {
+            path:'/temprary',
+            component:temporary,
+            name:'temporary'
+        },
         {   
             path:'/suckyground',
             component:suckyground,

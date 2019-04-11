@@ -2,8 +2,6 @@
   <div class="main" :class="{modalavalible:flag}">
     <!-- header  -->
 
-
-      {{userdata}}
     <!--signatures and styles  -->
     <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12" v-if="flag"></modal>
   
@@ -84,7 +82,8 @@ export default {
     return {
       showModal: false,
       fileavalible: this.$store.getters.getavalible,
-      
+      userdata:{
+      }
     };
   },
 
@@ -132,9 +131,6 @@ export default {
         // return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture 
         return 'http://localhost:8000/'+ localStorage.getItem("user_ProfilePic")
           },
-    userdata:function(){
-      console.log( this.$store.state)
-    },
 
     ActionRequired:function(){
       return localStorage.getItem("user_Actions") || 0   

@@ -268,17 +268,8 @@
       },
 
       // beforeRouteLeave(to,from,next){
-      //     if(this.exist == true){
-      //       next()
-      //     }
-      //     else{
-      //       if(confirm("Are you sure?")){
-      //         next()
-      //       }
-      //       else{
-      //         next(false)
-      //       }
-      //     }
+      //   console.log(to)
+      //   next(false)
       // }
 
      

@@ -8,7 +8,7 @@
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
     import Vuelidate from 'vuelidate'    
-    import {store} from './store/store';
+    import {store} from './store/store.js';
 
     Vue.use(VueResource);
     Vue.use(Vuelidate)
