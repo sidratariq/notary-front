@@ -140,16 +140,20 @@ export default {
         .then(res => {
           // console.log("lalaland"+res.bodyText)
           if (res.status == 200) {
-            // this.$router.push("/dashboard");
-            console.log("aleezay pleezay");
-            console.log(res);
+            console.log("stuck in logout")
+            this.$router.push("/login");
+            // console.log("aleezay pleezay");
+            // console.log(res);
+            localStorage.clear()
+            // this.$router.push("/login");
+
+            return res.json();
           }
-          return res.json();
+          
         })
         .then(
-          response => {},
-          error => {
-            // this.show =true
+            error => {
+            
           }
         );
     },

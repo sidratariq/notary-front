@@ -10,12 +10,11 @@
                                   <h3>Sign Up</h3>
 
                                   
-                                 <ul class="list-group">
-                                  <li class="list-group-item" v-for="(u,key) in errors" :key="key">
-                                  <transition name="fade">
+                              
+                                  <transition v-if="exist" name="fade">
                                   <div   class="alert alert-info" transition="expand">{{u}}</div>
-                                  </transition></li>
-                                  </ul>
+                                  </transition>
+                              
                                   <form @submit.prevent="onSubmit">
                                   <div class="row">
                                   <div class="col-6">
@@ -99,7 +98,7 @@
       maxLength,
       alpha,
       alphaNum,
-      
+
     } from "vuelidate/lib/validators";
 
     import verification from './verficationscreen.vue'
@@ -121,6 +120,8 @@
           exist: false,
           globalname: true,
           errors:[],
+          nextroute:false
+
 
         };
       },
@@ -187,7 +188,7 @@
         },
         
         onSubmit() {
-
+              
           if(!this.$v.$invalid){
             this.$http.post('http://localhost:8000/signup', {"email": this.email,
                 "password":this.password,
@@ -196,8 +197,10 @@
                 "phone":this.number
                 })
             .then(response => {
+                
                 if(response.status ==200){
-                  
+                  console.log(this)
+                  this.nextroute = true;
                   this.$router.push("/verify")
                   localStorage.setItem("email",this.email)
                   console.log("chal gyaa code")
@@ -208,12 +211,15 @@
                 
 
                 },
-            error => {
+               error => {
+                 console.log(error.bodyText)
                 if(error.body == "EMAIL_ALREADY_EXISTS"){
-                    this.exist = true;
+                    this.email= true;
+                    // this.exist = true;
+                    setTimeout((()=>this.exist = false),1000)
                 }
                 this.errors.push(error.body)
-                  console.log(error.body)
+                console.log(error.body)
 
             });
           }
@@ -261,6 +267,20 @@
         }
       },
 
+      // beforeRouteLeave(to,from,next){
+      //     if(this.exist == true){
+      //       next()
+      //     }
+      //     else{
+      //       if(confirm("Are you sure?")){
+      //         next()
+      //       }
+      //       else{
+      //         next(false)
+      //       }
+      //     }
+      // }
+
      
     };
     </script>
@@ -276,6 +296,10 @@
       text-align: center;
       overflow: hidden;
       margin: 0%;
+    }
+
+    .alert{
+      position: absolute;
     }
 
     h3 {

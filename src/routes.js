@@ -28,33 +28,30 @@
     import dashboard from './components/dashboard/dashboard.vue'
     import addrecipient from './components/recipients/AddRecipient.vue'
 
-    // const inbox = resolve =>{
-    //         require.ensure(['./components/manage/inbox/inbox.vue'],()=>{
-    //             resolve(require('./components/manage/inbox/inbox.vue'));
-    //         },'manage');
-    // };
-
-
     export const routes = [
 
         {   
             path:'/suckyground',
-            component:suckyground
+            component:suckyground,
+            name:'suckyground'
         },
             // ********* tutorial********    
         {
             path:'/user',
             component: User,
+            name:'User'
         },
 
         {
             path:'/userhome',
-            component:userhome
+            component:userhome,
+            name:'userhome'
         },
 
         {
             path:'/authentication',
-            component:authentication
+            component:authentication,
+            name:'authentication'
         },
             // **** dashboard route set****//
             {
@@ -68,50 +65,46 @@
             component: manage_inbox,
             name:'manage',
             children:[
-                // {path:'',name:'inbox',component: inbox},
-                //   {path:'/detail/:id',component:detail },
-                // {   path:'/sent',component: sent},        
-                // {   path:'/delete', component: deletee },         
-                // {   path:'/draft',component: draft,  },      
-                // {   path:'/home:id', component: home,  },
-                // {
-                //     path:'/actionrequired',
-                //     component:actionrequired
-                // },
-                // {
-                    // path:'/completed',
-                    // component:completed
-                // },
-                // {
-                    // path:'/expiringsoon',
-                    // component:expiringsoon
-                // },
-                // {
-                    // path:'/waitingforother',
-                    // component:waitingforother
-                // }
+              
                 ]
                 },   
 
                 {
                     path:'/login',
-                    component:login, 
-                },{
+                    component:login,
+                    name:'login' 
+                },
+                {
                     // path:'/verify/:email',
                     path:'/verify',
-                    component:verify
+                    component:verify,
+                    name:'verify',
+                    beforeEnter:(to,from,next)=>{
+                        // if(to.name == '/signup'){
+                        //     console.log(Object.keys(to)+'to');
+                        //     console.log(Object.keys(from)+'from');
+                        //  //    console.log(next+'next');
+                        //     next(true)
+                        // }
+                        console.log(from)
+                        // console.log(Object.entries(to))
+                        next()
+
+                    }
                 },
 
 
         {
             path:'/signup',
             component:signup,
+            name:'signup'
         
         },
     
         {
             path:'/template',
-            component: template
+            component: template,
+            name:'template'
         },
 
         {
@@ -120,32 +113,33 @@
         },
         {
             path:'*',
-            redirect:'/login'
+            redirect:'/login',
+
         },
 
         {
             path:'/forget',
             component:forget,
-            name:forget
+            name:forget,
+
         },
 
         {
             path:'/adddocs',
             component:adddocs,
-            name:adddocs,
-            
-
+            name:'adddocs',
         },
 
         {
             path:'/commingsoon',
             component:commingsoon,
-            name:commingsoon
+            name:'commingsoon'
         },
 
         {  
             path:'/detail/:id',
-            component:detail
+            component:detail,
+            name:'detail'
         },
         
         {
@@ -155,16 +149,19 @@
 
         {
             path:'/addrecipient',
-            component:addrecipient
+            component:addrecipient,
+            name:'addrecipient'
         },
 
         {
             path:'/playground',
-            component:playground
+            component:playground,
+            name:'playground'
         },
 
         {
             path:'/testing',
-            component:testing
+            component:testing,
+            name:'testing'
         }
     ];

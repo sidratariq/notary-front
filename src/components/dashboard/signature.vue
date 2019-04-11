@@ -14,7 +14,7 @@
 
     import {mapActions} from 'vuex'
 
-    
+
         export default {
     
 
@@ -29,7 +29,7 @@
                         this.$store.dispatch('changeflag')
                     }                        
                     },
-            computed:{
+                computed:{
                 userid:function(){
                      return localStorage.getItem('user_id')
 

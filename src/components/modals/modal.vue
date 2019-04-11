@@ -100,11 +100,11 @@
             props:['showModal'],
             methods:{
                 
-                clicked(){
-                    this.$store.dispatch('changeflag') 
-                    localStorage.setItem('Avalible',false)   
-                    console.log(localStorage.getItem('Avalible'))              
-                },
+            clicked(){
+                this.$store.dispatch('changeflag') 
+                localStorage.setItem('Avalible',false)   
+                console.log(localStorage.getItem('Avalible'))              
+            },
             },
             components:{
               stylemodal,

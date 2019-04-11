@@ -41,10 +41,7 @@
                     file:'',
                     idk:true, 
                     btnvalue:'',
-                  
 
-
-                    
                 }
                 },
 

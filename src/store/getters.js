@@ -3,7 +3,7 @@ export const  value = state =>{
 };
 
 export const  username = state =>{
-    return state.username
+    return state.usernamer
 }
 
 export const  email = state =>{
