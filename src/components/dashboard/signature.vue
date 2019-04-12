@@ -2,9 +2,7 @@
     
      <button @click="clicked" class="signatureChrome signatureChrome-inverse">
             <span class="set-color">E-Notarized by:</span>
-            <!-- signature image from user choosen from database -->
-            <!-- <img src="../../assets/icons/signature.gif" class="signatureChrome_signature"  alt="Signature"> -->
-            <span class="initial-text set-color">Create your Signature</span>
+            <span class="initial-text" id="set-color">Create your Signature</span>
             <span class="set-color">{{userid}}</span>
      </button>
 
@@ -31,7 +29,8 @@
                     },
                 computed:{
                 userid:function(){
-                     return localStorage.getItem('user_id')
+                    //  getuserid
+                    return this.$store.getters.getuserid
 
                 }
             }
@@ -70,33 +69,14 @@
     position: relative;
     }
 
-    
-
-    /* .signatureChrome { */
-    /* background: 0 0; */
-    /* border: none; */
-    /* font-size: 11px; */
-    /* font-weight: 700; */
-    /* line-height: 11px; */
-    /* min-width: 140px; */
-    /* padding: 0 0 0 25px; */
-    /* position: relative; */
-    /* text-align: left; */
-    /* font-weight: bold; */
-    /* border: 1px solid black; */
-    /* } */
-    .signatureChrome{
-
-    }
-
     .signatureChrome:hover{
         cursor: pointer;
         color: white;
     }
 
-
-
- 
+    #set-color{
+        color: black;
+    }
     .initial-text{
         display: block;
         font-size: 18px;
@@ -107,12 +87,12 @@
         font-family: 'Parisienne', cursive;
     }
 
-    *{
+    /* *{
         color: #bad3f8;
-    }
+    } */
 
     *:hover{
-        color: white;
+        color:  #bad3f8;
     }
 
     .signatureChrome:hover{

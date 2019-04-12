@@ -9,13 +9,15 @@
                 <div class="dropdown">
                 <button class="btn btn-sm  btn-utility dropdown-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="round-body small" style="border:1px solid #f5c431; background-color:#ffd65b; color:#ffd65b" >.</span>
-                    {{recipients[0].name}}
+                    <!-- {{recipients[0].name}} -->
+                
                     
                 </button>
 
                 <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" v-for="(recipient,index) in recipients" :key="index" href="#">{{recipients[index].name}}</a>
-
+                  <a class="dropdown-item"  href="#">recipients[index].name</a>
+                  <!-- <a class="dropdown-item" v-for="(recipient,index) in recipients" :key="index" href="#">{{recipients[index].name}}</a> -->
+                 
                 </div>
                 </div>
 
@@ -71,7 +73,7 @@
             
             <!-- <embed src="../../assets/Blockusign.pdf" type="application/pdf"   height="700px" width="500"> -->
             <!-- <embed src="../../assets/sample.pdf" type="application/pdf"   height="700px" width="500"> -->
-            {{recipients}}
+            <helloworld></helloworld>
     
             
            
@@ -107,7 +109,7 @@
 </template>
 
 <script>
-
+    import helloworld from './HelloWorld.vue'
     import sidebar from './filepreview.vue'
     export default {
 
@@ -120,6 +122,7 @@
 
         components:{
             sidebar,
+            helloworld
 
         },
 
@@ -135,7 +138,7 @@
              let recipinet =JSON.parse(localStorage.getItem('recipients'));
             //  let okay = JSON.parse(recipinet)
             //  console.log(okay)
-              return recipinet
+              return recipinet || false
             //   Object.
 }
         }
@@ -143,6 +146,16 @@
 </script>
 
 <style scoped>
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #2c3e50;
+  margin-top: 60px;
+  
+}
 
     *{
         /* border: 1px solid black; */

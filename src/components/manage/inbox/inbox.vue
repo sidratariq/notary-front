@@ -5,8 +5,10 @@
                             <div>
                                 <head_head :checked="checked" @changecheck="checked = $event" :nooffilesselected="nooffilesselected"></head_head>
                             </div>
-                            <content_bar v-if="this.$route.query.view == 'Sent'"  :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
-                            <nofile v-if="this.$route.query.view != 'Sent'"></nofile>
+                            <content_bar   :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                    
+
+                            <!-- <content_bar v-if="this.$route.query.view == 'Sent'"  :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                     -->
+                            <!-- <nofile v-if="this.$route.query.view != 'Sent'"></nofile> -->
 
                     </div>
 
@@ -15,7 +17,7 @@
             <script>
             import head_head from './inbox_header.vue'
             import content_bar from './content.vue'
-            import nofile from '../Untitled.vue'
+            import nofile from '../Emptybox.vue'
             // import createfolder from '../createfolder/createfolders.vue'
 
             export default {

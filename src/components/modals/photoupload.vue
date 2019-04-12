@@ -87,14 +87,14 @@
                   },
 
                   showImage(event){
-
+                      let store = this.$store;
                       let input = event.target;
                       if(event.target.files.length > 0){
 
                         let reader = new FileReader();
                         reader.onload = function(){
                           var dataURL = reader.result;
-                          localStorage.setItem('imgsource',dataURL);
+                          store.dispatch('change_userprofilepic',dataURL)
                           document.getElementById('image').src = dataURL;                          
                         }
                         reader.readAsDataURL(input.files[0])
@@ -135,11 +135,13 @@
               computed:{
                 
                 usertoken:function(){
-                  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTQ1NjA5MzQsImlhdCI6MTU1NDU1MzczNCwiaXNzIjoiRU5vdGFyeSIsInVzZXJpZCI6ImE0NzJjNmZiLTA1NzMtNGYwMi1hNGUxLTFiN2E3ZDBmNmYwNCJ9.8-MZB7Yj34-aOUpBVngCY6sMsz0kGlby2SleLVno1wQ'
+                  // getToken
+                 return this.$store.getters.getToken
+
                 },
 
                 profilepic:function(){
-                  return localStorage.getItem('imgsource')
+                 return this.$store.getters.change_userprofilepic
                 }
 
               }

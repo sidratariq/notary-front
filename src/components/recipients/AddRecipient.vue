@@ -277,6 +277,7 @@
 
                                 if(count1 >0){
                                     this.errorname = true
+                                    setInterval(()=>this.errorname=false,3000)
                                 }
 
 
@@ -295,6 +296,8 @@
 
                                     if(count >0){
                                         this.error = true;
+
+                                        setInterval(()=>this.error=false,2000)
                                     }
 
                                     //  check for valid user name and email

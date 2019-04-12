@@ -1,6 +1,9 @@
         <template>
                 <div class="row makescroll">
-
+                
+                <h1>
+                    {{counter}}
+                </h1>
                 <table style="width:100%;">
                                         
                         <!-- headings side -->
@@ -128,6 +131,7 @@
                         data(){
 
                             return{
+                            counter:'',
                             checked:false,
                             nooffilesselected:0,
                             subjectname:'Please Sign: SubjectName',
@@ -164,7 +168,23 @@
                         },
 
                         computed:{
-                            
+                            display:() =>{
+                              if(this.$route.query.view =='Sent'){
+                                  return this.counter = 'I am in sent';
+                              }
+                              if(this.$route.query.view =='Draft'){
+                                  return this.counter = 'I am in draft';
+                                //   return this.counter+1
+                              }
+                              if(this.$route.query.view =='Delete'){
+                                  return this.counter = 'I am in Delete';
+                              }
+                              if(this.$route.query.view == undefined){
+                                  return this.counter = 'I am in Inbox';
+                                  
+                              }
+                            },
+                             
                             returnvalue:function(){
                                 let newfiles = this.selected.length;
                                 return newfiles;
@@ -220,9 +240,6 @@
                                 }
                                 }, // END selectAll
                         },
-                    
-                        components:{
-                        }
                     
                     }
                     </script>

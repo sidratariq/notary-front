@@ -127,21 +127,20 @@ export default {
     },
 
     profilepic:function(){
-        // JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture
-        // return 'http://localhost:8000/'+ JSON.parse(localStorage.getItem('Userdata')).Userdata.Picture 
-        return 'http://localhost:8000/'+ localStorage.getItem("user_ProfilePic")
-          },
+      return this.$store.getters.getprofilepicture || 0
+    },
 
     ActionRequired:function(){
-      return localStorage.getItem("user_Actions") || 0   
+      return this.$store.getters.getosign || 0
+      
     },
                                     
     WaitingOthers(){
-      return localStorage.getItem("user_WaitingOther") || 0
+      return this.$store.getters.getwaiting || 0
     },
 
     expiring(){
-      return localStorage.getItem("user_Expire") || 0
+      return this.$store.getters.getexpiringsoon || 0
     }
   },
   mounted(){

@@ -145,7 +145,7 @@ export default {
             // console.log("aleezay pleezay");
             // console.log(res);
             localStorage.clear()
-            // this.$router.push("/login");
+            this.$router.push("/login");
 
             return res.json();
           }
@@ -174,18 +174,20 @@ export default {
 
   computed: {
     token() {
-      return localStorage.getItem("user_token");
+      return this.$store.getters.getToken
     },
     email: function() {
-      return localStorage.getItem("user_email");
+      return this.$store.getters.getemail
     },
 
     profilepic: function() {
-      return "http://localhost:8000/" + localStorage.getItem("user_ProfilePic");
+      return this.$store.getters.getprofilepicture || 0
+     
     },
 
     username: function() {
-      return "http://localhost:8000/" + localStorage.getItem("user_name");
+      return this.$store.getters.getusername
+      
     
     }
   },

@@ -38,36 +38,40 @@ const getters ={
     
     getprofilepicture:state=>{
         // console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
-        return state.Userdata.UserProfilepicture
+    //   return this.$store.getters.getprofilepicture || 0
+        return "http://localhost:8000/"+ state.Userdata.UserProfilepicture
     },
 
     getinitials:state=>{
-        return state.UserInitials
+        return state.Userdata.UserInitials
     },
 
     getsignature:state=>{
-        return state.UserSignature;
+        return state.Userdata.UserSignature;
     },
 
     getcompany:state=>{
-        return state.UserCompany
+        return state.Userdata.UserCompany
     },
 
     getphone:state=>{
-    return state.UserPhone    
+    return state.Userdata.UserPhone    
     },
 
     // these should be in the contract
     getwaiting:state=>{
-        return state.Waitingforother;
+        return state.Userdata.Waitingforother;
     },
 
-    gertosign:state=>{
-        return state.Tosign
+    getosign:state=>{
+        return state.Userdata.Tosign
     },
 
     getexpiringsoon:state=>{
-        return state.Expiringsoon
+        return state.Userdata.Expiringsoon
+    },
+    getToken:state=>{
+        return state.Userdata.UserToken
     }
 };
 
@@ -127,6 +131,10 @@ const mutations = {
 
     setExpiringsoon:(state,payload)=>{
         state.Userdata.Expiringsoon = payload
+    },
+    setToken:(state,payload)=>{
+        state.Userdata.UserToken = payload
+
     }
 
 
@@ -186,6 +194,10 @@ const actions = {
     changeExpiringsoon:({commit},payload)=>{
         commit('setExpiringsoon',payload)
     },
+
+    changeToken:({commit},payload)=>{
+        commit('setToken',payload)
+    }
 };
 
 export default{

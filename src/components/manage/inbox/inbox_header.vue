@@ -1,5 +1,4 @@
 <template>
-
         <div class="setborder"  >
                  <div class="row sethidden"  v-if="!flag">
                 <div class="col-lg-7 ">
@@ -17,9 +16,21 @@
                      <span class="">{{nooffilesselected}} Selected</span>
                      
                     </div> 
-                    <div class="col-1 topset">
+                    <div class="col-1 topset" style="padding-top:0px; padding-bottom:7px">
                          <button class="btn  btn-sm apply " type="button" >
                            MOVE
+                        </button>
+                    </div>
+
+                    <div class="col-1 topset" style="padding-top:0px; padding-bottom:7px">
+                         <button class="btn  btn-sm apply " type="button" >
+                           Continue
+                        </button>
+                    </div>
+
+                     <div class="col-1 topset" style="padding-top:0px; padding-bottom:7px">
+                         <button class="btn  btn-sm apply " type="button" >
+                           Resend
                         </button>
                     </div>
                     
@@ -32,7 +43,7 @@
 
 
                      <div class="btn-group" style="padding-right: 0px;padding-left: 8px;" >
-                       <button class="btn  btn-sm dropdown-toggle apply" style="height:30px;padding-left: 8px; margin-top:8px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <button class="btn  btn-sm dropdown-toggle apply" style="height:30px;padding-left: 8px; margin-top:0px" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                          MORE
                        </button>
                        <div class="dropdown-menu">
@@ -41,14 +52,7 @@
                        </div>
                      </div>                                                                  
                      </div>         
-                    </div>   
-
-
-                    <!-- new event -->
-                
-                        
-
-                     
+                    </div>      
         </div>
      
 </template>
@@ -129,7 +133,7 @@ export default {
 
         *{
             /* background-color: green; */
-            /* border: 1px solid black; */
+            border: 1px solid black;
         }
                 
         .setpadding{

@@ -1,7 +1,9 @@
 const state  ={
     filename:'',
     filesrc:'',
-    status:['Finishing...']
+    status:['Finishing...'],
+    contractdata:[],
+    
 };
 
 const getters ={
@@ -14,7 +16,11 @@ const getters ={
     },
     getstatus: state=>{
         return state.status[0]
+    },
+    getcontractdata:state=>{
+        return state.contractdata
     }
+
 };
 
 const mutations = {
@@ -28,6 +34,10 @@ const mutations = {
 
     setstatus:(state,payload)=>{
         state.status[0] = payload
+    },
+    setcontractdata:(state,payload)=>{
+        alert(typeof(payload))
+        state.contractdata = payload
     }
 
 };
@@ -44,6 +54,9 @@ const actions = {
 
     act_status:({commit},payload)=>{
         commit('setstatus',payload)
+    },
+    act_contractdata:({commit},payload)=>{
+        commit('setcontractdata',payload)
     }
 };
 
