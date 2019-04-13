@@ -1,21 +1,19 @@
         <template>
                 <div class="row makescroll">
-                
-                <h1>
-                    {{counter}}
-                </h1>
                 <table style="width:100%;">
                                         
                         <!-- headings side -->
                         <tr>
-                            <!-- 1 -->
-                        <th style="width:5%;"><span></span></th>
+                         
                             <!-- 2 -->
-                        <th style="width:2%;"><span></span></th>
+                        <th style="width:3%;"><span></span></th>
                             <!-- 3 -->
-                        <th style="width:50%;"><span>Subject</span></th>
+                        <th style="width:40%;"><span>Subject</span></th>
                             <!-- 4 -->
-                        <th style="width:20%; padding-left:0px;" ><span >Status</span></th>
+                        <th style="width:15%; padding-left:0px;" ><span >Status</span></th>
+
+                        <th style="width:6%; padding-left:0px;" ><span >Verify</span></th>
+                        
                             <!-- 5 -->
                         <th style="width:14.5%; padding-left:0px;"><span >Last change</span></th>
                             <!-- 6 -->
@@ -25,26 +23,15 @@
                         <!-- list of selected item field from database -->                        
                         <tr :for="select.id" v-for="(select,key) in usercontracts" v-bind:key="select.id" class="setborder" :class="{'clicked':checked}"  >
 
-                                <!-- checkbox colum__1 -->
-                                <td style="text-align:center; padding:5px">
-                                
-                                <input class="checkbox" :value="select.id"
-                                        v-model="selected"
-                                        :id="select.id"
-                                        :sector="select.id" 
-                                        :class="select.class" 
-                                        :default="select.default" 
-                                        type="checkbox" @change="emitevent">    
-                                        <!-- {{key}} -->
-                                        <!-- {{select}} -->
-                                </td>
-     
                                 <!-- status__2 -->
-                                <td @click="routechange(key)">
-                                <i :class="{'far fa-clock':select.Status=='In Progress',
-                                'fas fa-ban voided':select.Status=='Voided',
-                                'fas fa-exclamation-circle reqaction':select.Status=='Need to sign',
-                                'fas fa-check sucess':select.Status=='Completed'}" ></i>
+                                <td @click="routechange(key)" style="padding:2px">
+                                    <span style="padding:4px">
+                                          <i :class="{'far fa-clock':select.Status=='In Progress',
+                                            'fas fa-ban voided':select.Status=='Voided',
+                                            'fas fa-exclamation-circle reqaction':select.Status=='Need to sign',
+                                            'fas fa-check sucess':select.Status=='Completed'}" style="margin:2px" ></i>
+                                    </span>
+                              
                                 </td>
 
                                 <!-- status__3 Subject-->
@@ -73,6 +60,14 @@
                                     </p>
                                 </td>
 
+                                <!-- status__4 status  -->
+                                <td @click="routechange(key)">
+                                
+                                    <p style="font-size:13px">
+                                    {{select.Status}}
+                                    </p>
+                                </td>
+
                                 <!-- status__5 Last change  -->
                                 <td @click="routechange(key)">
                                     <ul style="padding-left:0px" >
@@ -88,7 +83,9 @@
                                 </td>
                                             
                                 <!-- drop down__6 -->
-                                <td>
+                                <td style="
+    padding-left: 46px;
+">
                                 <div class="btn-group" >
                                     <button class="btn btn-sm dropdown-toggle" :class="{'btn-primary':action[key]=='Sign','btn-white':action[key]=='Move'}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{action[key]}}
@@ -113,19 +110,7 @@
                             </table>
 
 
-                            <div id="app">  
-                            <div id="default-settings">
-                            
-                                <label class="pref-button">
-                                    <input type="checkbox" v-model="selectAll" @change="emitevent">
-                                    <span>Select All</span></label>
-                                <label>{{selected.length}}</label>
-                            </div>    
-                            
-                        
-                            
-                            <!-- <span>Selected Ids: {{ returnvalue }}</span>                     -->
-                            </div>
+                          
                 </div>
 
         </template>
@@ -175,8 +160,9 @@
 
                         computed:{
                             display:() =>{
+                              
                               if(this.$route.query.view =='Sent'){
-                                  return this.counter = 'I am in sent';
+                                  
                               }
                               if(this.$route.query.view =='Draft'){
                                   return this.counter = 'I am in draft';
@@ -272,6 +258,9 @@
 
 
                     <style scoped>
+
+                    *{
+                    }
                     .sucess{
                         color:#008938;
                     }

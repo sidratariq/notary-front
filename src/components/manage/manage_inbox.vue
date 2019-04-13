@@ -8,19 +8,22 @@
 
          <h6 class="text-centerr">ENVELOPES</h6>
             <!-- <menu-icon style=" fill-color:#868686; padding-right:4px"></menu-icon> -->
-         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage'}" exact tag="li"><i class="fas fa-box-open menuicon"></i><span class="setlayout">Inbox</span> </router-link> 
-         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Sent'}}" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span class="setlayout"> Sent</span> </router-link>
-         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Draft'}}" tag="li" exact   ><i class="far fa-edit menuicon"></i><span class="setlayout">Draft</span></router-link>
-         <router-link class="nav-link menuitem" active-class="active"  :to="{name:'manage',query:{view:'Delete'}}" tag="li" exact ><i class="fas fa-trash menuicon"></i><span class="setlayout">Delete</span></router-link>
+         <router-link class="nav-link menuitem" @click.native="sendtoinbox()" active-class="active"   :to="{name:'manage'}" exact tag="li"><i class="fas fa-box-open menuicon"></i><span class="setlayout">Inbox</span> </router-link> 
+         <router-link class="nav-link menuitem" @click.native="sendrequest()" active-class="active"  :to="{name:'manage',query:{view:'Sent'}}" exact tag="li"><i class="far fa-paper-plane menuicon"></i><span class="setlayout" > Sent</span> </router-link>
+         <router-link class="nav-link menuitem" @click.native="sendtodraft()" active-class="active"  :to="{name:'manage',query:{view:'Draft'}}" tag="li" exact   ><i class="far fa-edit menuicon"></i><span class="setlayout">Draft</span></router-link>
+         <!-- no route avalible -->
+         <router-link class="nav-link menuitem" ctive-class="active"  :to="{name:'manage',query:{view:'Delete'}}" tag="li" exact ><i class="fas fa-trash menuicon"></i><span class="setlayout">Delete</span></router-link>
 
           </div>
-
+<!-- // @click="sendtoactionrequire
+@click="sendexpire
+@click="sendtowait -->
           <div class="envelopclass">
           <h6 class="text-centerr">quick views</h6>  
-          <router-link class="nav-link menuitem" actthththive-class="active" :to="{name:'manage',query:{view:'Actions Required'}}" exact   tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span class="setlayout">Actions Required</span></router-link>
-          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Waiting for Others'}}" exact  tag="li"><i class="far fa-clock menuicon"></i><span class="setlayout">Waiting for Others</span></router-link>
-          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Expiring Soon'}}" exact  tag="li"><i class="fas fa-exclamation-triangle menuicon"></i><span class="setlayout">Expiring Soon</span></router-link>
-          <router-link class="nav-link menuitem" active-class="active" :to="{name:'manage',query:{view:'Completed'}}" exact  tag="li"><i class="fas fa-check menuicon"></i><span class="setlayout">Completed</span></router-link>
+          <router-link class="nav-link menuitem" @click.native="sendtoactionrequire()"  active-class="active" :to="{name:'manage',query:{view:'Actions Required'}}" exact   tag="li"><i class="fas fa-exclamation-circle menuicon"></i><span class="setlayout">Actions Required</span></router-link>
+          <router-link class="nav-link menuitem" @click.native="sendtowait()" active-class="active" :to="{name:'manage',query:{view:'Waiting for Others'}}" exact  tag="li"><i class="far fa-clock menuicon"></i><span class="setlayout">Waiting for Others</span></router-link>
+          <router-link class="nav-link menuitem" @click.native="sendexpire()" active-class="active" :to="{name:'manage',query:{view:'Expiring Soon'}}" exact  tag="li"><i class="fas fa-exclamation-triangle menuicon"></i><span class="setlayout">Expiring Soon</span></router-link>
+          <router-link class="nav-link menuitem" @click.native="sendcompleted()"  active-class="active" :to="{name:'manage',query:{view:'Completed'}}" exact  tag="li"><i class="fas fa-check menuicon"></i><span class="setlayout">Completed</span></router-link>
            </div>
 
        
@@ -62,6 +65,12 @@
       };
     },
 
+    computed:{
+      token() {
+      return this.$store.getters.getToken
+    },
+    },
+
     components:{
         btn_btn,
         // inner_header,
@@ -70,8 +79,206 @@
         // test
     },
       methods:{
-                  
+                  InlineButtonClickHandler:function(){
+                    alert(
+
+                      "i am running"
+                    )
+                  },
+      sendrequest() {
+      let token= this.token;
+      let store = this.$store
+      let contracts = []
+      this.$http
+        .get("http://localhost:8000/sent", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+
+          contracts = JSON.parse(res.bodyText)
+          // alert(typeof(contracts))
+          store.dispatch('act_contractdata',contracts)
+          console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json();
+          }
+
+        }).then(
+
+        )
+        .then(
+            error => {
+            
+          }
+        );
+    },
+
+    sendtoinbox(){
+      let token= this.token;
+      let store = this.$store
+      let contracts = []
+      this.$http
+        .get("http://localhost:8000/inbox", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+            console.log(res)
+        //   contracts = JSON.parse(res.bodyText)
+        //   alert(typeof(contracts))
+        //   store.dispatch('act_contractdata',contracts)
+        //   console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json()
+          }
+
+        }).then(
+
+        )
+        .then(
+            error => {
+            
+          }
+        );
+    },
+
+        sendtowait() {
+      let token = this.token;
+      let store = this.$store;
+      let contracts = [];
+      this.$http
+        .get("http://localhost:8000/waitingForOther", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          contracts = JSON.parse(res.bodyText);
+          // alert(typeof(contracts))
+          store.dispatch("act_contractdata", contracts);
+          // console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json();
+          }
+        })
+        .then()
+        .then(error => {});
+    },
+
+        sendtoactionrequire() {
+      let token = this.token;
+      let store = this.$store;
+      let contracts = [];
+      this.$http
+        .get("http://localhost:8000/actionReq", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          contracts = JSON.parse(res.bodyText);
+          // alert(typeof(contracts))
+          store.dispatch("act_contractdata", contracts);
+          // console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json();
+          }
+        })
+        .then()
+        .then(error => {});
+    },
+
+        sendtodraft(){
+      let token= this.token;
+      let store = this.$store
+      let contracts = []
+      this.$http
+        .get("http://localhost:8000/drafts", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+
+          contracts = JSON.parse(res.bodyText)
+          // alert(typeof(contracts))
+          store.dispatch('act_contractdata',contracts)
+          console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json();
+          }
+
+        }).then(
+
+        )
+        .then(
+            error => {
+            
+          }
+        );
+    },
+
+      sendexpire() {
+      let token = this.token;
+      let store = this.$store;
+      let contracts = [];
+      this.$http
+        .get("http://localhost:8000/expSoon", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          contracts = JSON.parse(res.bodyText);
+          // alert(typeof(contracts))
+          store.dispatch("act_contractdata", contracts);
+          // console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json();
+          }
+        })
+        .then()
+        .then(error => {});
+    },
+
+    sendcompleted(){
+      // "/completed"
+
+      let token = this.token;
+      let store = this.$store;
+      let contracts = [];
+      this.$http
+        .get("http://localhost:8000/completed", {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          contracts = JSON.parse(res.bodyText);
+          // alert(typeof(contracts))
+          store.dispatch("act_contractdata", contracts);
+          // console.log(contracts.length)
+
+          if (res.status == 200) {
+            return res.json();
+          }
+        })
+        .then()
+        .then(error => {});
+    }
+
                 },
+
+        
                
   };
   </script>
