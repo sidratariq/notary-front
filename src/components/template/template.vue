@@ -12,7 +12,54 @@
         <button class="btn btn-secondary" @click="sendexpire()">Expiring soon</button>
         <button class="btn btn-secondary" @click="sendtowait()">WFO</button>
 
+        <ul >
+          <li v-for="(i,j) in usercontracts" :key="j">
+           <p>
+            <strong>contract id</strong>  {{i.ContractID}}
+            </p> 
 
+            <p>
+         <strong>file path</strong> {{imgsource(i.Filepath) }}
+             
+            </p> 
+
+            <p>
+             <strong>status</strong>  {{i.Status}}
+            </p>
+
+            <p>
+            <strong>Creation</strong>   {{i.ContractcreationTime}}
+            </p>
+
+            <p>
+            <strong>Creator</strong>  {{i.Creator}}
+            </p>
+
+            <p>
+              {{i.DelStatus}}
+            </p>
+
+            <p>
+              {{i.UpdateTime}}
+            </p>
+
+            <p>
+              {{i.ContractName}}
+            </p>
+            <p>
+              {{i.ExpirationTime}}
+            </p>
+            <p>
+              {{i.Blockchain}}
+            </p>
+
+            <p>
+              {{i.Message}}
+            </p>
+
+
+          </li>
+        </ul>
     </div>
 </template>
 
@@ -34,8 +81,12 @@ computed:{
     token() {
       return this.$store.getters.getToken
     },
+
 },
 methods:{
+       imgsource(i){
+        return 'localhost:8000/'+i
+      },
       sendrequest() {
       let token= this.token;
       let store = this.$store
@@ -49,7 +100,7 @@ methods:{
         .then(res => {
 
           contracts = JSON.parse(res.bodyText)
-          alert(typeof(contracts))
+          // alert(typeof(contracts))
           store.dispatch('act_contractdata',contracts)
           console.log(contracts.length)
 
@@ -85,7 +136,7 @@ methods:{
         //   console.log(contracts.length)
 
           if (res.status == 200) {
-            return res
+            return res.json()
           }
 
         }).then(
@@ -111,7 +162,7 @@ methods:{
         .then(res => {
 
           contracts = JSON.parse(res.bodyText)
-          alert(typeof(contracts))
+          // alert(typeof(contracts))
           store.dispatch('act_contractdata',contracts)
           console.log(contracts.length)
 
@@ -141,9 +192,9 @@ methods:{
         .then(res => {
 
           contracts = JSON.parse(res.bodyText)
-          alert(typeof(contracts))
+          // alert(typeof(contracts))
           store.dispatch('act_contractdata',contracts)
-          console.log(contracts.length)
+          // console.log(contracts.length)
 
           if (res.status == 200) {
             return res.json();
@@ -172,9 +223,9 @@ methods:{
         .then(res => {
 
           contracts = JSON.parse(res.bodyText)
-          alert(typeof(contracts))
+          // alert(typeof(contracts))
           store.dispatch('act_contractdata',contracts)
-          console.log(contracts.length)
+          // console.log(contracts.length)
 
           if (res.status == 200) {
             return res.json();
@@ -204,9 +255,9 @@ methods:{
         .then(res => {
 
           contracts = JSON.parse(res.bodyText)
-          alert(typeof(contracts))
+          // alert(typeof(contracts))
           store.dispatch('act_contractdata',contracts)
-          console.log(contracts.length)
+          // console.log(contracts.length)
 
           if (res.status == 200) {
             return res.json();

@@ -23,7 +23,7 @@
                         </tr>
 
                         <!-- list of selected item field from database -->                        
-                        <tr :for="select.id" v-for="(select,key) in selectsArray" v-bind:key="select.id" class="setborder" :class="{'clicked':checked}"  >
+                        <tr :for="select.id" v-for="(select,key) in usercontracts" v-bind:key="select.id" class="setborder" :class="{'clicked':checked}"  >
 
                                 <!-- checkbox colum__1 -->
                                 <td style="text-align:center; padding:5px">
@@ -38,13 +38,13 @@
                                         <!-- {{key}} -->
                                         <!-- {{select}} -->
                                 </td>
-
+     
                                 <!-- status__2 -->
                                 <td @click="routechange(key)">
-                                <i :class="{'far fa-clock':status[key]=='Waiting for others',
-                                'fas fa-ban voided':status[key]=='Voided',
-                                'fas fa-exclamation-circle reqaction':status[key]=='Need to sign',
-                                'fas fa-check sucess':status[key]=='Completed'}" ></i>
+                                <i :class="{'far fa-clock':select.Status=='In Progress',
+                                'fas fa-ban voided':select.Status=='Voided',
+                                'fas fa-exclamation-circle reqaction':select.Status=='Need to sign',
+                                'fas fa-check sucess':select.Status=='Completed'}" ></i>
                                 </td>
 
                                 <!-- status__3 Subject-->
@@ -53,13 +53,13 @@
                                     <!-- subject -->
                                     <li class="setfont ">    
                                         <a style="color: #1e1e1e; cursor:pointer; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;">
-                                        {{subjectname}}
+                                        {{select.ContractName}}
                                         </a>
                                     </li>
 
                                     <!-- recipient -->
                                     <li>
-                                    <small class="text-muted">{{recepient[key]}}</small>
+                                    <small class="text-muted">{{select.Creator}}</small>
                                     </li>
                                     
                                     </ul>
@@ -69,7 +69,7 @@
                                 <td @click="routechange(key)">
                                 
                                     <p style="font-size:13px">
-                                    {{status[key]}}
+                                    {{select.Status}}
                                     </p>
                                 </td>
 
@@ -78,7 +78,8 @@
                                     <ul style="padding-left:0px" >
                                         
                                         <li class="date">
-                                        11/29/2018
+                                        <!-- 11/29/2018 -->
+                                        {{select.ContractcreationTime}}
                                         </li>
                                         <li>
                                             <small class="text-muted">12:21:23 pm</small>
@@ -95,9 +96,14 @@
                                     <div class="dropdown-menu">
                                         <div class="row">
                                             <div class="col-12">
-                                            <a class="dropdown-item date padding" href="#">Move</a>
-                                            <a class="dropdown-item date padding" href="#">Export As CSV</a>
-                                            <a class="dropdown-item date padding" href="#">Delete</a>
+                                            <a v-if='avalible==false' class="dropdown-item date padding" href="#">Move</a>
+                                            <a v-if='avalible==false' class="dropdown-item date padding" href="#">Export As CSV</a>
+                                            <a v-if='avalible==false' class="dropdown-item date padding" href="#">Delete</a>
+                                            <a v-if=avalible class="dropdown-item date padding" href="#">Continue</a>
+                                            <a class="dropdown-item date padding" href="#">Resend</a>
+                                            <a v-if=avalible class="dropdown-item date padding" href="#">Restore</a>
+
+
                                             </div>
                                     </div>
                                     </div>
@@ -129,7 +135,7 @@
 
                     export default {
                         data(){
-
+                            
                             return{
                             counter:'',
                             checked:false,
@@ -184,6 +190,15 @@
                                   
                               }
                             },
+                            avalible:function(){
+                            if(this.$route.query.view =='Delete'){
+                                return true
+                            }
+                            else{
+                                return false
+                            }
+
+                             },
                              
                             returnvalue:function(){
                                 let newfiles = this.selected.length;
@@ -239,6 +254,17 @@
                                 }
                                 }
                                 }, // END selectAll
+
+                                usercontracts(){
+      let haha =  this.$store.getters.getcontractdata;
+    //   console.log(typeof(haha))
+    //   alert(haha)
+      return haha
+
+    },
+    token() {
+      return this.$store.getters.getToken
+    },
                         },
                     
                     }
