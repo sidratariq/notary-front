@@ -12,6 +12,8 @@
     import suckyground from './components/suckyground.vue'
     import authentication from './components/blankpage/waitingscreen'
     import  temporary from './components/temporary.vue'
+    import  extra from './components/extra.vue'
+
 
 
     // ******* learning routes ************///
@@ -31,7 +33,11 @@
 
 
     export const routes = [
-        
+        {
+            path:'/extra',
+            component:extra,
+            name:'extra'
+        },
         {
             path:'/temprary',
             component:temporary,

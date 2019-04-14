@@ -71,9 +71,11 @@ export default {
     }
   },
   methods: {
+
     imgsource(i) {
       return "localhost:8000/" + i;
     },
+
     sendrequest() {
       let token = this.token;
       let store = this.$store;
@@ -86,7 +88,6 @@ export default {
         })
         .then(res => {
           contracts = JSON.parse(res.bodyText);
-          // alert(typeof(contracts))
           store.dispatch("act_contractdata", contracts);
           console.log(contracts.length);
 
@@ -97,8 +98,9 @@ export default {
         .then()
         .then(error => {});
     },
-    // /drafts
-    sendtoinbox() {
+
+      //drafts
+      sendtoinbox() {
       let token = this.token;
       let store = this.$store;
       let contracts = [];

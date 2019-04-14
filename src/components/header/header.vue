@@ -28,19 +28,21 @@
         >
           <a>Home</a>
         </router-link>
+
         <router-link
           class="nav-link"
           active-class="activee"
           to="/manage"
           @click="defaultrequest"
           exact
-          tag="li"
+          tag="li" @click.native="sendrequest(current ='/inbox')"
         >
           <a>Manage</a>
         </router-link>
-        <router-link class="nav-link template" active-class="activee" tag="li" exact to="/template">
+
+        <!-- <router-link class="nav-link template" active-class="activee" tag="li" exact to="/template">
           <a>Template</a>
-        </router-link>
+        </router-link>-->
       </ul>
     </nav>
 
@@ -107,28 +109,28 @@ export default {
     };
   },
   methods: {
-    defaultrequest() {
+    sendrequest(args) {
+      let token = this.token;
+      let store = this.$store;
+      let contracts = [];
       this.$http
-        .get("http://localhost:8000/inbox", {
+        .get("http://localhost:8000/" + args, {
           headers: {
-            Token: this.token
+            Token: token
           }
         })
         .then(res => {
+          contracts = JSON.parse(res.bodyText);
+          store.dispatch("act_contractdata", contracts);
+
           if (res.status == 200) {
-              console.log("i dont get run ")
-            this.$router.push("/login");
-             return res.json();
+            return res.json();
           }
-         
         })
-        .then(
-          response => {},
-          error => {
-            // this.show =true
-          }
-        );
+        .then()
+        .then(error => {});
     },
+
     logout() {
       console.log(this.token);
       this.$http
@@ -138,24 +140,16 @@ export default {
           }
         })
         .then(res => {
-          // console.log("lalaland"+res.bodyText)
           if (res.status == 200) {
-            console.log("stuck in logout")
+            console.log("stuck in logout");
             this.$router.push("/login");
-            // console.log("aleezay pleezay");
-            // console.log(res);
-            localStorage.clear()
+            localStorage.clear();
             this.$router.push("/login");
 
             return res.json();
           }
-          
         })
-        .then(
-            error => {
-            
-          }
-        );
+        .then(error => {});
     },
     gohome() {
       if (this.$route.path == "/commingsoon") {
@@ -174,21 +168,18 @@ export default {
 
   computed: {
     token() {
-      return this.$store.getters.getToken
+      return this.$store.getters.getToken;
     },
     email: function() {
-      return this.$store.getters.getemail
+      return this.$store.getters.getemail;
     },
 
     profilepic: function() {
-      return this.$store.getters.getprofilepicture || 0
-     
+      return this.$store.getters.getprofilepicture || 0;
     },
 
     username: function() {
-      return this.$store.getters.getusername
-      
-    
+      return this.$store.getters.getusername;
     }
   },
 

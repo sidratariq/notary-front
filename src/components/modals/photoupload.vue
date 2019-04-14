@@ -1,372 +1,361 @@
           <template>
-          <transition name="modal">
-          <div class="modal">
-
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-
-              <!-- heading content -->
-              <div>
-                  <h1 class="modal_title">Profile Photo </h1>
-                  <span class="btn-cross" @click="close()" >x</span> 
-                  
-              </div>
-
-              <hr>
-                 
-                  <form v-if="!flag" class="set-height" enctype="multipart/form-data"  >
-                      
-                      <!-- image upload -->
-                      <input type="file" class="drag_input" id="file-select" @change="showImage($event),clicked()"  accept="image/*">
-                      <label for="file-select" class="effect6 text-center" style="height:98%; width:98%;  border:1px solid #005cb9; position:relative; border-radius:2px;">
-                     
-                      
-                      <img src="../../assets/icons/emptyuser.svg" width="150px" height="150px" style="position:absolute; top:50px; left:130px;" alt="=Upload your picture">
-                      <img src="../../assets/icons/mask.svg" width="70px" height="70px"  style=" position:absolute; top:98px; left:168px" >
-
-                      <span class="snap">Drag &amp; drop
-                        <h6>your photo here,or<span class="snapblue"> browser</span></h6>
-                      </span>  
-                      
-                      <span v-if="flag" class="snap" >Drag &amp; drop
-                        <h6>your photo here,or<span class="snapblue">browser</span></h6>
-                      </span>  
-
-                      </label>              
-                  </form>
-
-                  <div  v-if="flag" class="set-height" >
-                      <input type="file" id="changepic" accept="image/*"  @change="showImage($event)" class="drag_input">
-                      <label for="changepic" class="btn btn-primary changepic"> CHANGE PHOTO</label>
-                      <img src="" id="image" width="100%" height="80%" alt="">
-                  </div>
-                
-                <hr>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-info" @click="changeimage()" > Done </button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"  @click="close" >Cancel</button>
-                </div>
-
-
-                
-              </div>
-            </div>
+  <transition name="modal">
+    <div class="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <!-- heading content -->
+          <div>
+            <h1 class="modal_title">Profile Photo</h1>
+            <span class="btn-cross" @click="close()">x</span>
           </div>
-          </transition> 
-          </template>
+
+          <hr>
+
+          <form v-if="!flag" class="set-height" enctype="multipart/form-data">
+            <!-- image upload -->
+            <input
+              type="file"
+              class="drag_input"
+              id="file-select"
+              @change="showImage($event),clicked()"
+              accept="image/*"
+            >
+            <label
+              for="file-select"
+              class="effect6 text-center"
+              style="height:98%; width:98%;  border:1px solid #005cb9; position:relative; border-radius:2px;"
+            >
+              <img
+                src="../../assets/icons/emptyuser.svg"
+                width="150px"
+                height="150px"
+                style="position:absolute; top:50px; left:130px;"
+                alt="=Upload your picture"
+              >
+              <img
+                src="../../assets/icons/mask.svg"
+                width="70px"
+                height="70px"
+                style=" position:absolute; top:98px; left:168px"
+              >
+
+              <span class="snap">
+                Drag &amp; drop
+                <h6>
+                  your photo here,or
+                  <span class="snapblue">browser</span>
+                </h6>
+              </span>
+
+              <span v-if="flag" class="snap">
+                Drag &amp; drop
+                <h6>
+                  your photo here,or
+                  <span class="snapblue">browser</span>
+                </h6>
+              </span>
+            </label>
+          </form>
+
+          <div v-if="flag" class="set-height">
+            <input
+              type="file"
+              id="changepic"
+              accept="image/*"
+              @change="showImage($event)"
+              class="drag_input"
+            >
+            <label for="changepic" class="btn btn-primary changepic">CHANGE PHOTO</label>
+            <img src id="image" width="100%" height="80%" alt>
+          </div>
+
+          <hr>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-info" @click="changeimage()">Done</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="close">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</template>
 
           <script>
+export default {
+  data() {
+    return {
+      name: "sidra tariq",
+      hash: "AE9DB71A4A854B1...",
+      flag: false,
+      selectedfiles: null,
+      viewimage: "",
+      idk: ""
+    };
+  },
 
-          export default {
-            data(){
-              return {
-                name:'sidra tariq',
-                hash:'AE9DB71A4A854B1...',
-                flag:false,
-                selectedfiles:null,
-                viewimage:'',
-                idk:''
+  methods: {
+    clicked() {
+      this.flag = !this.flag;
+    },
 
-              }
-            },
-             
-              methods:{
+    closee() {
+      this.flag = false;
+    },
 
-                  clicked(){
-                      this.flag= !this.flag;
-                  },
+    close() {
+      this.$store.dispatch("changephoto");
+    },
 
-                  closee(){
-                    this.flag = false;
-                  },
+    showImage(event) {
+      let store = this.$store;
+      let input = event.target;
+      if (event.target.files.length > 0) {
+        let reader = new FileReader();
+        reader.onload = function() {
+          var dataURL = reader.result;
+          store.dispatch("changeimagesource", dataURL);
+          document.getElementById("image").src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
 
-                  close(){
+    changeimage() {
+        
+      
+      let formData = new FormData();
+      formData.append('userfile',this.imgsource)
+      alert(this.imgsource)
+			this.$http.post( 'http://localhost:8000/uploadProfilePic',
+				formData,
+				{
+				
+				}
+				).then(response=>{
+ 
+ 
+ 
+				})
+				.catch(response=>{
+					console.log(response);
+				});
+    }
+  },
 
-                      this.$store.dispatch('changephoto')                   
-                  },
+  computed: {
+    token() {
+      return this.$store.getters.getToken;
+    },
 
-                  showImage(event){
-                      let store = this.$store;
-                      let input = event.target;
-                      if(event.target.files.length > 0){
+    imgsource(){
+      return this.$store.getters.getimagesource;
+    },
 
-                        let reader = new FileReader();
-                        reader.onload = function(){
-                          var dataURL = reader.result;
-                          store.dispatch('change_userprofilepic',dataURL)
-                          document.getElementById('image').src = dataURL;                          
-                        }
-                        reader.readAsDataURL(input.files[0])
-
-                      }
-                    },   
-                    
-                    changeimage(){
-
-
-                          this.$http.post('http://localhost:8000/uploadProfilePic', {
-                                'userfile': this.profilepic , headers: {'Token':localStorage.getItem('user_token')}
-
-                          },{emulateJSON: true}
-                               )
-                                  .then(res => {
-                                   
-                                    if(res.status == 200){
-                                          console.log("sucess"+res)                                    
-                                      }
-                                    return res.json()
-                                  })
-                                  .then(response => {
-
-                                    this.Userdata = response;
-                                    console.log("Token:"+response.Token)
-                                    },
-                                error => {
-                                    console.log(error)
-                                });
-                      
-
-
-
-                    }
-              },
-
-              computed:{
-                
-                usertoken:function(){
-                  // getToken
-                 return this.$store.getters.getToken
-
-                },
-
-                profilepic:function(){
-                 return this.$store.getters.change_userprofilepic
-                }
-
-              }
-
-
-
-              
-
-          }
-          </script>
+    profilepic: function() {
+      return this.$store.getters.change_userprofilepic;
+    }
+  }
+};
+</script>
 
           <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff|Mrs+Saint+Delafield|Qwigley");
+@import url("https://fonts.googleapis.com/css?family=Allura");
 
-          @import url('https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff|Mrs+Saint+Delafield|Qwigley');
-          @import url('https://fonts.googleapis.com/css?family=Allura');
+.modal {
+  display: block;
+  background: rgba(30, 30, 30, 0.5);
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 2%;
+}
 
-          .modal{
-            display: block;
-            background: rgba(30, 30, 30, 0.5);
-            padding-left:20%; padding-right:20%; padding-top:2%;
+hr {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 
-          }
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
 
-          hr {
-              border: 0;
-              border-top: 1px solid rgba(0,0,0,.1);
+.modal-content {
+  width: 470px;
+}
 
-              margin-top: 0%;
-              margin-bottom:0%; 
-          }
+.changepic {
+  background-color: #f9f9f9;
+  border-color: #ccc;
+  color: #1e1e1e;
+  font-size: 13px;
+  font-weight: bold;
+}
 
-          .modal-content{
-            width:470px; 
-          }
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
 
-          .changepic{
-                background-color: #f9f9f9;
-                border-color: #ccc;
-                color: #1e1e1e;
-                font-size: 13px;
-                font-weight: bold;
-          }
+.set-margin {
+  margin-right: 5px;
+  background-color: #f6f6f6;
+}
 
+.set-height {
+  height: 350px;
+  padding: 1%;
+  padding-left: 2.5%;
+  position: relative;
+}
 
+.btn-cross {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  color: #868686;
+}
 
-          .modal-header h3 {
-            margin-top: 0;
-            color: #42b983;
-          }
+.btn-cross:hover {
+  color: #005cb9;
+}
 
-          .set-margin{
-              margin-right:5px;
-              background-color: #f6f6f6;
-          }
+.modal-body {
+  margin: 20px 10px;
+}
 
-          .set-height{
-            height: 350px;
-            padding: 1%;
-            padding-left:2.5%; 
-            position: relative;
-          }
+.modal-default-button {
+  float: right;
+}
 
+.modal-enter {
+  opacity: 0;
+}
 
-      .btn-cross{
-            position:absolute;
-            top:6px;
-            right:6px;
-            height:16px;
-            width: 16px;
-            cursor:pointer;
-            color: #868686;
-          }
+.modal-leave-active {
+  opacity: 0;
+}
 
-          .btn-cross:hover{
-            color: #005cb9;
-          }
+.modal-dialog {
+  margin-left: 20%;
+  margin-top: 2%;
+}
 
-          .modal-body {
-            margin: 20px 10px;
-          }
+.modal_title {
+  font-size: 25px;
+  line-height: 24px;
+  border-bottom: 1px solid #e9e9e9;
+  overflow: hidden;
+  padding: 20px 24px;
+  position: relative;
+}
 
-          .modal-default-button {
-            float: right;
-          }
+input {
+  border-radius: 2px;
+}
 
-          .modal-enter {
-            opacity: 0;
-          }
+.first-input {
+  padding-left: 1%;
+  width: 40%;
+  float: left;
+}
 
-          .modal-leave-active {
-            opacity: 0;
-          }
-     
+.second-input {
+  width: 50%;
+  float: right;
+}
 
+input:focus {
+  border: blue;
+}
 
-          .modal-dialog{
-            margin-left:20%; 
-            margin-top:2%;
-          }
+.snapblue {
+  color: #005cb9;
+  font-size: 15px;
+}
 
-          .modal_title{
-              font-size: 25px;
-              line-height: 24px;
-              border-bottom: 1px solid #e9e9e9;
-              overflow: hidden;
-              padding: 20px 24px;
-              position: relative;
-          }
+.heightset {
+  height: 18px;
+}
 
-          input{
-          border-radius: 2px; 
-          }
+.displayset {
+  display: block;
+  min-height: 18px;
+  min-width: 18px;
+  position: relative;
+}
 
-          .first-input{
-            padding-left:1%;
-            width:40%; 
-            float:left
-          }
+.displayset input {
+  margin-left: 50px;
+}
 
-          .second-input{
-            width:50%;
-            float:right;
-          }
+.sign-container {
+  border-left: 2px solid #005cb9;
+  border-radius: 8px;
+  display: block;
+  height: 55px;
+  margin: 4px 0;
+  overflow: visible;
+  position: relative;
+}
 
-          input:focus{
-            border: blue;
-          }
+.sign-container::before {
+  border-top-left-radius: 8px;
+  border-top-width: 2px;
+  top: -2px;
+}
 
-          .snapblue{
-            color: #005cb9;
-            font-size: 15px;
-          }
-                                  
-          .heightset{
-              height: 18px;
-          }
+.effect6:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
 
-          .displayset{
-           display: block;
-           min-height: 18px;
-           min-width: 18px;
-           position: relative;
-          }
+.effect6:active {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
 
-          .displayset input{
-            margin-left: 50px;
-          }
+.effect6:before,
+.effect6:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  top: 50%;
+  bottom: 0;
+  left: 10px;
+  right: 10px;
+  border-radius: 100px / 10px;
+}
 
-          .sign-container{
-            border-left: 2px solid #005cb9;
-            border-radius: 8px;
-            display: block;
-            height: 55px;
-            margin: 4px 0;
-            overflow: visible;
-            position: relative;
-          }
-          
-          .sign-container::before{
-            border-top-left-radius: 8px;
-            border-top-width: 2px;
-            top: -2px;
-          }
+.modal-footer {
+  justify-content: start;
+}
 
-         
-                  
-          .effect6:hover{
-              box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-          }
-                
+.snap {
+  font-size: 2rem;
+  position: absolute;
+  bottom: 50px;
+  left: 110px;
+  color: #4c4c4c;
+}
 
-          .effect6:active{
-                box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-            
-          }
+.snap:hover {
+  text-decoration-line: underline;
+  color: #005cb9;
+}
 
-                
-                
-          .effect6:before, .effect6:after
-          {
-              content:"";
-              position:absolute; 
-              z-index:-1;
-              box-shadow:0 0 20px rgba(0,0,0,0.8);
-              top:50%;
-              bottom:0;
-              left:10px;
-              right:10px;
-              border-radius:100px / 10px;
-          }
-    
-
-          .modal-footer{
-                justify-content: start;
-          }
-
-          .snap{
-            font-size:2rem;
-             position:absolute;
-              bottom:50px;
-               left:110px;
-            color: #4c4c4c;
-          }
-
-     
-           .snap:hover{
-            text-decoration-line: underline;
-            color: #005cb9;
-          }
-
-              .drag_input{
-                  border: 0;
-                  clip: rect(0 0 0 0);
-                  height: 1px;
-                  margin: -1px;
-                  overflow: hidden;
-                  padding: 0;
-                  position: absolute;
-                  white-space: nowrap;
-                  width: 1px;
-              }
-
-
-
-      
-          </style>
+.drag_input {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+</style>
 
 

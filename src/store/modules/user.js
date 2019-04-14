@@ -9,7 +9,6 @@ const state  ={
         UserCompany:'dadad',
         UserPhone:'dadada',
         UserToken:'dadada',
-
         // these should be in the contract module
         Waitingforother:'1',
         Tosign:'1',  
@@ -86,7 +85,6 @@ const mutations = {
 
     setuserid:(state,payload)=>{
         state.Userdata.Userid = payload;
-
     },
 
     setuseremail:(state,payload)=>{

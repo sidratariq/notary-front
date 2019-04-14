@@ -1,10 +1,14 @@
 const state = {
-    uploadphoto: false
+    uploadphoto: false,
+    imagesource:''
 };
 
 const getters = {
     getupload: state => {
         return state.uploadphoto
+    },
+    getimagesource:state =>{
+        return state.imagesource
     }
 };
 
@@ -12,15 +16,21 @@ const mutations = {
 
     setupload: state => {
         state.uploadphoto = !state.uploadphoto;
-        // console.log("value of flag is:" + state.uploadphoto)
+    },
+
+    setimagesource:(state,payload) =>{
+        state.imagesource = payload
     }
+    
 }
 
 const actions = {
     changephoto: ({ commit }) => {
         commit('setupload')
-        // console.log(state.uploadphoto)
+    },
 
+    changeimagesource:({commit},payload)=>{
+        commit('setimagesource',payload)
     }
 };
 

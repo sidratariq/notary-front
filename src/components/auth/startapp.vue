@@ -155,6 +155,9 @@ export default {
               store.dispatch("changeTosign", Userdata.WaitingME);
               store.dispatch("changeExpiringsoon", Userdata.ExpiringSoon);
               store.dispatch("changeToken", Userdata.Token);
+              console.log('token',this.$store.getters.getToken)
+      // return this.$store.getters.getToken;
+              // 
 
               return res.json();
             }

@@ -36,7 +36,6 @@ const mutations = {
         state.status[0] = payload
     },
     setcontractdata:(state,payload)=>{
-        alert(typeof(payload))
         state.contractdata = payload
     }
 
