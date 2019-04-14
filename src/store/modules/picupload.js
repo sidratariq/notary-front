@@ -30,6 +30,7 @@ const actions = {
     },
 
     changeimagesource:({commit},payload)=>{
+        console.log("1**")
         commit('setimagesource',payload)
     }
 };

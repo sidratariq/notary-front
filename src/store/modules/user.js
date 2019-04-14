@@ -93,7 +93,7 @@ const mutations = {
     },
 
     setprofilepicture: (state,payload) =>{
-        // console.log(payload)
+        console.log(payload+'in2*')
 
         state.Userdata.UserProfilepicture = payload;
     },
@@ -157,7 +157,7 @@ const actions = {
     },  
 
     change_userprofilepic:({commit},payload)=>{
-        // console.log("mutation running")
+        console.log("mutation running set profile picsture")
         commit('setprofilepicture',payload);
     },
 

@@ -4,6 +4,10 @@
     <button @click="$refs.fileInput.click()">Pick a file</button>
     <button @click="onupload">upload</button>
     <img :src=imgsource alt="">
+
+    <h6>
+      <button>Search</button>
+    </h6>
   </div>
 </template>
 
@@ -47,6 +51,8 @@ export default {
           },
           {
             onUploadProgress: progressEvent => {
+            console.log("i am not running")
+
               console.log(
                 "Upload Progess" +
                   Math.round((progressEvent.loaded / progressEvent.total) * 10)
@@ -55,8 +61,20 @@ export default {
           }
         )
         .then(res => {
-          console.log(res);
+         alert(res);
+         return res.json()
         });
+        //
+
+  // axios.post('my-domain.com/file-upload', formData, {
+  //   onUploadProgress: progressEvent => {
+  //     console.log(progressEvent.loaded / progressEvent.total)
+  //   }
+  // })
+
+
+
+        //  
     }
   },
 

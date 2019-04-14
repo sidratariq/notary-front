@@ -4,11 +4,12 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <!-- heading content -->
+          {{(before==iamcomputed)}}
+          
           <div>
             <h1 class="modal_title">Profile Photo</h1>
             <span class="btn-cross" @click="close()">x</span>
           </div>
-
           <hr>
 
           <form v-if="!flag" class="set-height" enctype="multipart/form-data">
@@ -91,7 +92,8 @@ export default {
     return {
       flag: false,
       selectedFile: null,
-      filesource:''
+      filesource:'',
+      
     };
   },
 
@@ -111,14 +113,17 @@ export default {
 
     onFileSelected(event) {
       let store = this.$store;
-      let filesource = this.imagesource
-      this.selectedFile = event.target.files[0];
+
+      // let filesource = this.imagesource
+      console.log("1 sourc change")
+      alert(this.selectedFile)
       if (event.target.files.length > 0) {
+        this.selectedFile = event.target.files[0];
         let reader = new FileReader();
         reader.onload = function() {
           var dataURL = reader.result;
+          console.log("1*")
           store.dispatch("changeimagesource", dataURL);
-          // document.getElementById("image").src = dataURL;
         };
         reader.readAsDataURL(this.selectedFile);
       }
@@ -129,7 +134,10 @@ export default {
       onupload() {
       let close = this.closee
       let token = this.token;
+      let store = this.$store;
+
       const formData = new FormData();
+      console.log(this.selectedFile)
       formData.append("userfile", this.selectedFile);
 
       axios
@@ -140,25 +148,22 @@ export default {
             headers: {
               Token: token
             }
-          },
-          {
-            onUploadProgress: progressEvent => {
-              console.log(
-                "Upload Progess" +
-                  Math.round((progressEvent.loaded / progressEvent.total) * 10)
-              );
-            }
-          }
-        )
+          })
         .then(res => {
-          console.log(res);
+          console.log(res.data+'2')
+          let setdata = res.data; 
+          store.dispatch("change_userprofilepic",setdata);
           this.close()
         });
+      
     }
 
   },
 
   computed: {
+    iamcomputed(){
+      return this.$store.getters.getprofilepicture 
+    },
     token() {
       return this.$store.getters.getToken;
     },

@@ -133,6 +133,7 @@ export default {
             password: this.password
           })
           .then(res => {
+            console.log(res)
             let Userdata = res.body;
             alert(res.body)
             // alert(typeof(res.body))
