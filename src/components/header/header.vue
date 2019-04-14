@@ -33,7 +33,7 @@
           class="nav-link"
           active-class="activee"
           to="/manage"
-          @click="defaultrequest"
+         
           exact
           tag="li" @click.native="sendrequest(current ='/inbox')"
         >
@@ -141,12 +141,10 @@ export default {
         })
         .then(res => {
           if (res.status == 200) {
-            console.log("stuck in logout");
             this.$router.push("/login");
             localStorage.clear();
             this.$router.push("/login");
-
-            return res.json();
+            return res
           }
         })
         .then(error => {});
@@ -184,7 +182,6 @@ export default {
   },
 
   mounted() {
-    // console.log('http://localhost:8000/'+localStorage.getItem("user_image"))
   }
 };
 </script>

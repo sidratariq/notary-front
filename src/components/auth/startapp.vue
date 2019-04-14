@@ -134,7 +134,8 @@ export default {
           })
           .then(res => {
             let Userdata = res.body;
-            alert(typeof(res.body))
+            alert(res.body)
+            // alert(typeof(res.body))
             
             if (res.status == 200) {
               this.$router.push("/dashboard");

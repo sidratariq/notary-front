@@ -1,4 +1,4 @@
-          <template>
+<template>
   <transition name="modal">
     <div class="modal">
       <div class="modal-dialog" role="document">
@@ -17,7 +17,7 @@
               type="file"
               class="drag_input"
               id="file-select"
-              @change="showImage($event),clicked()"
+              @change="onFileSelected($event),clicked()"
               accept="image/*"
             >
             <label
@@ -62,18 +62,18 @@
               type="file"
               id="changepic"
               accept="image/*"
-              @change="showImage($event)"
+              @change="onFileSelected($event)"
               class="drag_input"
             >
             <label for="changepic" class="btn btn-primary changepic">CHANGE PHOTO</label>
-            <img src id="image" width="100%" height="80%" alt>
+            <img :src=imgsource id="image" width="100%" height="80%" alt>
           </div>
 
           <hr>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-outline-info" @click="changeimage()">Done</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="close">Cancel</button>
+            <button type="button" class="btn btn-outline-info" :class="{allow:selectedFile==null}" :disabled="selectedFile==null" @click="onupload">Done</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" @click="close">Cancel</button>
           </div>
         </div>
       </div>
@@ -81,16 +81,17 @@
   </transition>
 </template>
 
-          <script>
+<script>
+
+import axios from "axios";
+
+
 export default {
   data() {
     return {
-      name: "sidra tariq",
-      hash: "AE9DB71A4A854B1...",
       flag: false,
-      selectedfiles: null,
-      viewimage: "",
-      idk: ""
+      selectedFile: null,
+      filesource:''
     };
   },
 
@@ -107,40 +108,54 @@ export default {
       this.$store.dispatch("changephoto");
     },
 
-    showImage(event) {
+
+    onFileSelected(event) {
       let store = this.$store;
-      let input = event.target;
+      let filesource = this.imagesource
+      this.selectedFile = event.target.files[0];
       if (event.target.files.length > 0) {
         let reader = new FileReader();
         reader.onload = function() {
           var dataURL = reader.result;
           store.dispatch("changeimagesource", dataURL);
-          document.getElementById("image").src = dataURL;
+          // document.getElementById("image").src = dataURL;
         };
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsDataURL(this.selectedFile);
       }
     },
 
-    changeimage() {
-        
-      
-      let formData = new FormData();
-      formData.append('userfile',this.imgsource)
-      alert(this.imgsource)
-			this.$http.post( 'http://localhost:8000/uploadProfilePic',
-				formData,
-				{
-				
-				}
-				).then(response=>{
- 
- 
- 
-				})
-				.catch(response=>{
-					console.log(response);
-				});
+   
+
+      onupload() {
+      let close = this.closee
+      let token = this.token;
+      const formData = new FormData();
+      formData.append("userfile", this.selectedFile);
+
+      axios
+        .post(
+          "http://localhost:8000/uploadProfilePic",
+          formData,
+          {
+            headers: {
+              Token: token
+            }
+          },
+          {
+            onUploadProgress: progressEvent => {
+              console.log(
+                "Upload Progess" +
+                  Math.round((progressEvent.loaded / progressEvent.total) * 10)
+              );
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+          this.close()
+        });
     }
+
   },
 
   computed: {
@@ -154,7 +169,12 @@ export default {
 
     profilepic: function() {
       return this.$store.getters.change_userprofilepic;
-    }
+    },
+
+  
+  },
+  mounted(){
+    
   }
 };
 </script>
@@ -169,6 +189,13 @@ export default {
   padding-left: 20%;
   padding-right: 20%;
   padding-top: 2%;
+}
+
+.allow{
+  background-color: #d8edfa;
+    border-color: #d8edfa;
+    color: #fff;
+    cursor: not-allowed;
 }
 
 hr {

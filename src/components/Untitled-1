@@ -1,0 +1,66 @@
+<template>
+    <div class="container">
+        
+  	<input  type="file" @change="fileSelected" >
+  	<a class="button is-primary is-small" @click="uplaodFile">Upload</a>
+    </div>
+</template>
+
+<script>
+export default {
+data:function() {
+        return{
+		file :''
+
+        }
+	},
+	
+	methods :{
+		uplaodFile: function(){
+            console.log(this.file)
+            let formData = new FormData();
+			formData.append('upload_file',this.file)
+			
+			this.$http.post( 'http://localhost:8000/uploadProfilePic',
+				formData,
+				{
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}
+				).then(response=>{
+ 
+ 
+ 
+				})
+				.catch(response=>{
+					console.log(response);
+				});
+ this.$http.post( 'http://localhost:8000/uploadProfilePic',
+				formData,
+				{
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				}
+				).then(response=>{
+ 
+ 
+ 
+				})
+				.catch(response=>{
+					console.log(response);
+				});
+ 
+			},
+ 
+			fileSelected:function($event){
+            this.file =$event.target.files[0]    
+            }
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

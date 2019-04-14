@@ -35,7 +35,6 @@
               <span class="userAction_number large-screen">{{ActionRequired}}</span>
               <span class="userAction_status">Action Required</span>
               <span class="userAction_number small-screen">{{ActionRequired}}</span>
-              <!-- <span style="z-index:9999"> <img src="../../assets/icons/angle-double-right-solid.svg" alt=""></span> -->
             </a>
           </li>
 

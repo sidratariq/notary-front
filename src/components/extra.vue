@@ -1,51 +1,75 @@
 <template>
-    <div class="container">
-        
-  	<input  type="file" @change="fileSelected" >
-  	<a class="button is-primary is-small" @click="uplaodFile">Upload</a>
-    </div>
+  <div class="container">
+    <input style="display:none" ref="fileInput" type="file" @change="onFileSelected" name id>
+    <button @click="$refs.fileInput.click()">Pick a file</button>
+    <button @click="onupload">upload</button>
+    <img :src=imgsource alt="">
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-data:function() {
-        return{
-		file :''
+  data() {
+    return {
+      selectedFile: null,
+      filesource:''
+    };
+  },
+  methods: {
+    onFileSelected(event) {
+      let store = this.$store;
+      let filesource = this.imagesource
+      this.selectedFile = event.target.files[0];
+      if (event.target.files.length > 0) {
+        let reader = new FileReader();
+        reader.onload = function() {
+          var dataURL = reader.result;
+          store.dispatch("changeimagesource", dataURL);
+          // document.getElementById("image").src = dataURL;
+        };
+        reader.readAsDataURL(this.selectedFile);
+      }
+    },
+    onupload() {
+      let token = this.token;
+      const formData = new FormData();
+      formData.append("userfile", this.selectedFile);
 
-        }
-	},
-	
-	methods :{
-		uplaodFile: function(){
-            console.log(this.file)
-            let formData = new FormData();
-			formData.append('upload_file',this.file)
-			
-			this.$http.post( 'http://localhost:8000/uploadProfilePic',
-				formData,
-				{
-					headers: {
-						'Content-Type': 'application/json'
-					}
-				}
-				).then(response=>{
- 
- 
- 
-				})
-				.catch(response=>{
-					console.log(response);
-				});
- 
-			},
- 
-			fileSelected:function($event){
-            this.file =$event.target.files[0]    
+      axios
+        .post(
+          "http://localhost:8000/uploadProfilePic",
+          formData,
+          {
+            headers: {
+              Token: token
             }
+          },
+          {
+            onUploadProgress: progressEvent => {
+              console.log(
+                "Upload Progess" +
+                  Math.round((progressEvent.loaded / progressEvent.total) * 10)
+              );
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+        });
     }
-}
+  },
+
+  computed: {
+    token() {
+      return this.$store.getters.getToken;
+    },
+     imgsource(){
+      return this.$store.getters.getimagesource;
+    }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>
