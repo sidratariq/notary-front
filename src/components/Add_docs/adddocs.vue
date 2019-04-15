@@ -4,9 +4,8 @@
                 <div class="container">
                 <h2 class="setpadding">Add Documents</h2>
 
-                    <uploadfile v-if="fileavalible"></uploadfile>
-
-                    <dragdrop v-if="!fileavalible" ></dragdrop>
+                    <uploadfile v-if="fileavalible==true"></uploadfile>
+                    <dragdrop v-if="fileavalible==false" ></dragdrop>
 
                     <div class="row set">
                             <div class="col-10" style="padding-left:-15px, padding-right:-15px" ></div>
@@ -30,7 +29,7 @@
         import {mapActions} from 'vuex'
 
         
-        import dragdrop from '../dragdrop/dragdrop.vue'
+        import dragdrop from './dragdrop/dragdrop.vue'
         import uploadfile from './prepare/prepare.vue'
 
         export default {

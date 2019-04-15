@@ -48,16 +48,16 @@
                 computed: {
                     content:function(){
                         
-                        if(this.$route.path == '/dashboard'){
-                        this.btnvalue = 'Start'
-                        this.idk = false                    
-                        return this.btnvalue
-                        }
+                      if(this.$route.path == '/dashboard'){
+                          this.btnvalue = 'Start'
+                          this.idk = false                    
+                          return this.btnvalue
+                      }
 
                         if(this.$route.path == '/adddocs'){
-                        this.btnvalue = 'UPload'
-                        this.idk = true                 
-                        return this.btnvalue
+                          this.btnvalue = 'UPload'
+                          this.idk = true                 
+                          return this.btnvalue
                         }
                     },
                     fileavalible:function(){
@@ -77,8 +77,8 @@
 
 
                         showImage(event){ 
-
                             let input = event.target;
+                            let store = this.$store;
 
                             if(event.target.files.length > 0){
                                 // console.log(event.target.files[0].name) 
@@ -90,21 +90,24 @@
                                 reader.onload = function(){
                                 
                                 var dataURL = reader.result;
-                                localStorage.setItem('imgsource',dataURL);
+                                // localStorage.setItem('imgsource',dataURL);
 
-                                // document.getElementById('image').src = dataURL;                          
+                                // document.getElementById('image').src = dataURL;  
+                                store.dispatch('act_filename',event.target.files[0].name)
+                                store.dispatch('act_filesrc',dataURL)
+                                // this.store.dispatch('act_avalible')                        
 
                                 // set file and file name for future use
-                                localStorage.setItem('imgsource',dataURL);
-                                localStorage.setItem('filename',event.target.files[0].name)
+                                // localStorage.setItem('imgsource',dataURL);
+                                // localStorage.setItem('filename',event.target.files[0].name)
                                 
                                 // set store values
                                 }
                                 reader.readAsDataURL(input.files[0])
 
 
-                                this.$store.dispatch('act_filename',localStorage.getItem('filename'))
-                                this.$store.dispatch('act_filesrc',localStorage.getItem('imgsource'))
+                                // this.$store.dispatch('act_filename',localStorage.getItem('filename'))
+                                // this.$store.dispatch('act_filesrc',localStorage.getItem('imgsource'))
                                 this.$store.dispatch('act_avalible')
 
                                 this.$router.push('/adddocs')

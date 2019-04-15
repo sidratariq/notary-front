@@ -7,9 +7,10 @@ const state  ={
 };
 
 const getters ={
+    
     getfilename:state =>{
         return state.filename;
-            },
+    },
 
     getfilesrc: state =>{
         return state.filesrc
@@ -41,13 +42,15 @@ const mutations = {
 
 };
 
-const actions = {
-
+    const actions = {
     act_filename: ({commit},payload) => {
+        console.log(payload+'payload')
         commit('setfilename',payload);
     },        
 
     act_filesrc:({commit},payload)=>{
+        console.log(payload+'imagesource')
+
         commit('setfilesrc',payload);
     },
 

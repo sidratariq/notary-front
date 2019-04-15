@@ -70,7 +70,7 @@
 
 <script>
 
-    import dragdrop from "../dragdrop/dragdrop.vue";
+    import dragdrop from "../Add_docs/dragdrop/dragdrop.vue";
     import modal from "../modals/modal.vue";
     import uploadphoto from "../modals/photoupload.vue";
     import signature from "./signature.vue";

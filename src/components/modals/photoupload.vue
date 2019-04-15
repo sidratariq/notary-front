@@ -4,7 +4,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <!-- heading content -->
-          {{(before==iamcomputed)}}
+          <!-- {{(before==iamcomputed)}} -->
           
           <div>
             <h1 class="modal_title">Profile Photo</h1>

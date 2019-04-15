@@ -9,29 +9,31 @@
 export default {
 data:function(){
   return{
-    
+    value:""
   }
 },
 
 methods:{
   run(){
-
-     let token = this.token;
-      this.$http
-        .post("http://localhost:8000/searchContract", {
+      let token = this.token
+      console.log(token)
+    	 this.$http
+        .post("http://localhost:8000/searchContract", { "ContractName": "", 'Status': "All", "Date": "Last one week" }, {
           headers: {
-            Token: token
+            Token: this.token
           }
         })
         .then(res => {
-         console.log(res.bodyText)
-
           if (res.status == 200) {
-            return res.json();
+            console.log(res.body)
+            return res.json()
           }
         })
-        .then()
-        .then(error => {});
+        .then(error => {
+          alert("error")
+        });
+        
+        
   }
 },
 computed:{

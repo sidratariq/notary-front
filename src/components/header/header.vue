@@ -1,4 +1,4 @@
-            <template>
+<template>
   <header v-if="((this.$route.path)!='/login')">
     <div class="logo">
       <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->

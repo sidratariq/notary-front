@@ -93,9 +93,8 @@ const mutations = {
     },
 
     setprofilepicture: (state,payload) =>{
-        console.log(payload+'in2*')
-
         state.Userdata.UserProfilepicture = payload;
+        window.location.reload()
     },
 
     setinitial:(state,payload)=>{

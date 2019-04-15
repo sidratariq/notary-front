@@ -1,88 +1,71 @@
     <template>
-  <form @submit.prevent="onSubmit">
-    <div class="row mx-0 setheight">
-      <div class="setsearch col-lg-9">
-        <input
-          class="setsearchborder"
-          type="text"
-          placeholder="Search Contracts"
-          @click="openfilter = !openfilter"
-        >
+  <div class="row mx-0 setheight">
+    <div class="setsearch col-lg-9">
+      <input
+        class="setsearchborder"
+        type="text"
+        placeholder="Search Contracts"
+        @click="openfilter = !openfilter"
+      >
 
-        <div v-if="openfilter" class="filter">
-          <ul class="setlist">
-            <!-- // status -->
-            <li style="min-height:64px">
-              <!--Search by status-->
-              <div class="form-group" style="padding-left: 0px;">
-                <label for="exampleFormControlSelect1">Status</label>
-                <select class="form-control" style="max-height:30px" id="exampleFormControlSelect1">
-                  <option>All</option>
-                  <option>In Progess</option>
-                  <option>Completed</option>
-                  <option>Declined</option>
-                  <option>Voided</option>
-                </select>
-              </div>
-            </li>
+      <div v-if="openfilter" class="filter">
+        <ul class="setlist">
+          <!-- // status -->
+          <li style="min-height:64px">
+            <!--Search by status-->
+            <div class="form-group" style="padding-left: 0px;">
+              <label for="exampleFormControlSelect1">Status</label>
+              <select class="form-control" v-model="status" style="max-height:30px" id="exampleFormControlSelect1">
+                <option @change="status='All'">All</option>
+                <option @change="status='In Progress'">In Progress</option>
+                <option @change="status='Completed'">Completed</option>
+                <option @change="status='DRAFT'">DRAFT</option>
+                <option @change="status='Voided'">Voided</option>
 
-            <!-- // sent by -->
-            <li style="min-height:64px">
-              <!-- Search by Sent -->
-              <div class="form-group" style="padding-left: 0px;">
-                <label for="exampleFormControlSelect1">Sent</label>
-                <!--  -->
-                <select class="form-control" style="max-height:30px" id="exampleFormControlSelect1">
-                  <option>By Anyone</option>
-                  <option>By Me</option>
-                  <option>To Me</option>
-                </select>
-              </div>
-            </li>
+              </select>
+            </div>
+          </li>
 
-            <!-- Date set -->
 
-            <li style="min-height:64px">
-              <!--Search by date  -->
-              <div class="form-group" style="padding-left: 0px;">
-                <label for="exampleFormControlSelect1">Date</label>
-                <select class="form-control" style="max-height:30px" id="exampleFormControlSelect1">
-                  <option>All</option>
-                  <option>Last 12 Months</option>
-                  <option>Last 6 Months</option>
-                  <option>Last 30 days</option>
-                  <option>Last Week</option>
-                  <option>Last 24 Hours</option>
-                  <option @click="custom = !custom">Custom</option>
-                </select>
-              </div>
-              <!-- <setdate></setdate> -->
-            </li>
+          <!-- Date set -->
+          <li style="min-height:64px">
+            <!--Search by date  -->
+            <div class="form-group" style="padding-left: 0px;">
+              <label for="exampleFormControlSelect2">Date</label>
+              <select class="form-control"  v-model="date" style="max-height:30px" id="exampleFormControlSelect2">
+                <option @change="date='All'">All</option>
+                <option @change="date='Last one year'">Last one year</option>
+                <option @change="date='Last six months'">Last six months</option>
+                <option @change="date='Last one month'">Last one month</option>
+                <option @change="date='Last one week'">Last one week</option>
+                <option @change="date='Last one day'">Last one day</option>
+              </select>
+            </div>
+            <!-- <setdate></setdate> -->
+          </li>
 
-            <!-- Custom date -->
-            <li v-if="custom" style="min-height:64px">
-              <input type="date" name id>
-              <input type="date" name id>
-            </li>
+          <!-- Custom date -->
+          <li v-if="custom" style="min-height:64px">
+            <input type="date" name id>
+            <input type="date" name id>
+          </li>
 
-            <!-- Apply and reset buttons -->
-            <li style="min-height:44px">
-              <button type="submit" class="btn btn-primary">Apply</button>
-              <span></span>
-              <button type="submit" class="btn btn-link">Reset</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-3 setposition" style="margin-top:10px; z-index:1;">
-        <div @click="openfilter = !openfilter">
-          <i class="fas fa-sliders-h setposition setfont" style="color:#999"></i>
-          <span class="setspan ">FILTERS</span>
-        </div>
+          <!-- Apply and reset buttons -->
+          <li style="min-height:44px">
+            <button type="submit" @click="searchalgo()" class="btn btn-primary">Apply</button>
+            <span></span>
+          </li>
+        </ul>
       </div>
     </div>
-  </form>
+
+    <div class="col-3 setposition" style="margin-top:10px; z-index:1;">
+      <div @click="openfilter = !openfilter">
+        <i class="fas fa-sliders-h setposition setfont" style="color:#999"></i>
+        <span class="setspan">FILTERS</span>
+      </div>
+    </div>
+  </div>
 </template>
 
     <script>
@@ -91,8 +74,69 @@ export default {
     return {
       openfilter: false,
       custom: false,
-      check: true
+      check: true,
+      statusselected:'All',
+      Dateselected:'All',
+      contractname:''
     };
+  },
+  methods: {
+    run(args){
+      alert(args)
+      this.status=args
+    },
+
+    searchalgo() {
+     let token = this.token
+     let date = this.date
+     let status = this.status
+    let store = this.$store;
+     let contracts = []
+     let contractname = this.contractname
+      console.log(date+"date")
+      console.log(status+"status")
+
+    	 this.$http
+        .post("http://localhost:8000/searchContract", { "ContractName": contractname, 'Status': status, "Date": date }, {
+          headers: {
+            Token: this.token
+          }
+        })
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res.body)
+            contracts = res.body
+            store.dispatch("act_contractdata", contracts);
+            return res.json()
+          }
+        })
+        .then(error => {
+          console.log("error")
+        });
+    }
+  },
+
+  computed: {
+    token() {
+      return this.$store.getters.getToken;
+    },
+    status:{
+      set(value){
+        this.statusselected = value;
+      
+      },
+      get(){
+          return this.statusselected;
+      }
+    },
+    date:{
+      set(value){
+        this.Dateselected= value;
+      },
+      get(){
+        return this.Dateselected;
+      }
+    }
   }
 };
 </script>
@@ -102,8 +146,6 @@ export default {
   box-sizing: border-box;
   /* border: 1px solid black; */
 }
-
-
 
 .form-control {
   font-size: 0.75rem;
@@ -141,7 +183,7 @@ form {
   /* left:1px; */
   right: -120px;
   min-width: 414px;
-  height: 363px;
+  height: 300px;
 }
 
 .setlist {
