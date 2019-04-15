@@ -4,14 +4,14 @@
                 <div class="container">
                 <h2 class="setpadding">Add Documents</h2>
 
-                    <uploadfile v-if="fileavalible==true"></uploadfile>
-                    <dragdrop v-if="fileavalible==false" ></dragdrop>
-
+                    <uploadfile @buttonenable="enable=$event" v-if="fileavalible ==true" ></uploadfile>
+                    <dragdrop   v-if="fileavalible ==false"  ></dragdrop>
+                    {{enable}}
                     <div class="row set">
                             <div class="col-10" style="padding-left:-15px, padding-right:-15px" ></div>
                             
                             <div class="col-2 " style="padding-left:-15px, padding-right:-15px">
-                            <button class="btn-main btn-large btn btn-primary btn-sm float-right" @click="$router.push('/addrecipient')">NEXT</button>
+                            <button class="btn-main btn-large btn btn-primary btn-sm float-right" :disabled="enable<100" @click="$router.push('/addrecipient')">NEXT</button>
                             </div>
                     </div>
 
@@ -43,7 +43,8 @@
                 // fileavalible:this.$store.getters.getavalible,
                 noofdocs:[
                 
-                ]
+                ],
+                allow:0
             }
         },
 
@@ -72,6 +73,14 @@
 
                 else{
                     return false
+                }
+            },
+            enable:{
+                set(value){
+                    this.allow = value
+                },
+                get(){
+                    return this.allow
                 }
             }
         }

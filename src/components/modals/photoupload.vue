@@ -3,9 +3,7 @@
     <div class="modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <!-- heading content -->
-          <!-- {{(before==iamcomputed)}} -->
-          
+               
           <div>
             <h1 class="modal_title">Profile Photo</h1>
             <span class="btn-cross" @click="close()">x</span>

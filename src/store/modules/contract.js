@@ -3,7 +3,7 @@ const state  ={
     filesrc:'',
     status:['Finishing...'],
     contractdata:[],
-    
+    fileavalible:false
 };
 
 const getters ={
@@ -20,6 +20,9 @@ const getters ={
     },
     getcontractdata:state=>{
         return state.contractdata
+    },
+    getavalible:state =>{
+        return state.fileavalible
     }
 
 };
@@ -38,6 +41,9 @@ const mutations = {
     },
     setcontractdata:(state,payload)=>{
         state.contractdata = payload
+    },
+    setavalible:(state,payload) =>{
+        state.fileavalible = payload;
     }
 
 };
@@ -59,6 +65,11 @@ const mutations = {
     },
     act_contractdata:({commit},payload)=>{
         commit('setcontractdata',payload)
+    },
+    act_avalible:({commit},payload)=>{
+
+        commit('setavalible',payload)
+
     }
 };
 

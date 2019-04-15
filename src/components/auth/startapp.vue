@@ -32,7 +32,7 @@
                 v-model="password"
                 @blur="$v.password.$touch()"
                 class="form-control"
-                style="width:90%"
+                style="width:90%; font-size:0.75rem"
                 aria-describedby="emailHelp"
                 placeholder="Enter password"
               >

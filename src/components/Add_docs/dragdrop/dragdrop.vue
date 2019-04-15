@@ -19,7 +19,7 @@
         <span class="spanset">Drag documents here to get started</span>
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button"
-          id="start-now"
+          id="start-now" @click="filesChange()"
           
         >{{content}}</button>
       </label>
@@ -90,26 +90,15 @@
                                 reader.onload = function(){
                                 
                                 var dataURL = reader.result;
-                                // localStorage.setItem('imgsource',dataURL);
-
-                                // document.getElementById('image').src = dataURL;  
                                 store.dispatch('act_filename',event.target.files[0].name)
                                 store.dispatch('act_filesrc',dataURL)
-                                // this.store.dispatch('act_avalible')                        
+                                store.dispatch('act_avalible',true)
 
-                                // set file and file name for future use
-                                // localStorage.setItem('imgsource',dataURL);
-                                // localStorage.setItem('filename',event.target.files[0].name)
-                                
-                                // set store values
+                              
                                 }
                                 reader.readAsDataURL(input.files[0])
 
-
-                                // this.$store.dispatch('act_filename',localStorage.getItem('filename'))
-                                // this.$store.dispatch('act_filesrc',localStorage.getItem('imgsource'))
-                                this.$store.dispatch('act_avalible')
-
+                               
                                 this.$router.push('/adddocs')
 
                             }
