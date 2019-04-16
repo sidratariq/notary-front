@@ -5,9 +5,15 @@ const state  ={
     contractdata:[],
     fileavalible:false,
     contractsource:'',
+    // for tareget selectd contract
     selectedcontract:{},
+
+    // for selected contract detail at manage screen
+    contractdata:{},
+
     recipients:[],
-    contractid:''
+    contractid:'',
+
 };
 
 const getters ={

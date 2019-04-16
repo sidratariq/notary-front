@@ -39,7 +39,7 @@
         :class="{'clicked':checked}"
       >
         <!-- status__2 -->
-        <td @click="routechange(key)" style="padding:2px">
+        <td @click="routechange(select.Creator)" style="padding:2px">
           <span style="padding:4px">
             <i
               :class="{'far fa-clock':select.Status=='In Progress',
@@ -53,9 +53,10 @@
         </td>
 
         <!-- status__3 Subject-->
-        <td class="setpadding" @click="routechange(key)">
+        <td class="setpadding" @click="routechange(select.ContractID)">
           <ul>
             <!-- subject -->
+            
             <li class="setfont">
               <a
                 style="color: #1e1e1e; cursor:pointer; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;"
@@ -70,17 +71,20 @@
         </td>
 
         <!-- status__4 status  -->
-        <td @click="routechange(key)">
+        <td @click="routechange(select.ContractID)">
           <p style="font-size:13px">{{select.Status}}</p>
         </td>
 
         <!-- status__4 status  -->
-        <td @click="routechange(key)">
-          <p style="font-size:13px">{{select.Blockchain}}</p>
+        <td @click="routechange(select.ContractID)">
+          <!-- {{select.Blockchain}} -->
+          <p style="font-size:13px">
+            <i class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
+          </p>
         </td>
 
         <!-- status__5 Last change  -->
-        <td @click="routechange(key)">
+        <td @click="routechange(select.ContractID)">
           <ul style="padding-left:0px">
             <li class="date">{{select.ContractcreationTime.split(' ')[1]}}</li>
             <li>
@@ -104,11 +108,8 @@
               <div class="row">
                 <div class="col-12">
                   <a v-if="avalible==false" class="dropdown-item date padding" href="#">Move</a>
-                  <a
-                    v-if="avalible==false"
-                    class="dropdown-item date padding"
-                    href="#"
-                  >Export As CSV</a>
+                  <a v-if="avalible==false" class="dropdown-item date padding" href="#">Export As CSV</a>
+                  <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
                   <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
                   <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
                   <a class="dropdown-item date padding" href="#">Resend</a>
@@ -138,7 +139,8 @@ export default {
         "From:sidra",
         "From:sidra"
       ],
-      action: ["Sign", "Move", "Sign", "Move", "Sign", "Move", "Sign"],
+ 
+      action: ["Sign", "Move", "Sign", "Move", "Sign", "Move", "Sign"]
     };
   },
 
@@ -148,10 +150,35 @@ export default {
     },
 
     routechange(args) {
+      let token = this.token;
+      console.log(token)
       let change = "/detail/" + args;
+       this.$http
+          .post("http://localhost:8000/ContractDetails", {'ContractID':args}, {
+            headers: {
+              Token: token
+            }
+          })
+          .then(res => {
+            if (res.status == 200) {
+              console.log(res.body);
+              alert("code red")
+              return res;
+            }
+            // return res;
+          })
+          .catch(error => {
+            console.log(error);
+          });
       this.$router.push(change);
       console.log(args);
+    },
+    
+    showdetail(contractid){
+       
+       console.log("contract id"+contractid)
     }
+
   },
   props: {
     defaultSelects: [Array],
@@ -168,11 +195,13 @@ export default {
       }
     },
 
-usercontracts() {
+
+
+    usercontracts() {
       let haha = this.$store.getters.getcontractdata;
       return haha;
     },
-    token() {
+     token: function() {
       return this.$store.getters.getToken;
     }
   }

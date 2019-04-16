@@ -82,7 +82,7 @@ export default {
             }
 
             .date{
-                padding-left:0px; 
+                /* padding-left:0px;  */
                 color: rgb(51, 51, 51);
                 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                 font-weight: normal;
