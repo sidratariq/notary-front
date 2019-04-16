@@ -223,9 +223,7 @@ export default {
               <style >
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
-* {
-  /* border: 1px solid black; */
-}
+
 
 .text-center {
   height: 100vh;
@@ -242,7 +240,6 @@ export default {
 .error-msg {
   color: #d03238;
   display: block;
-  /* margin: 8px 0; */
 }
 
 h5 {

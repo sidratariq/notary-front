@@ -52,9 +52,12 @@
 
           <!-- Apply and reset buttons -->
           <li style="min-height:44px">
-            <button type="submit" @click="searchalgo()" class="btn btn-primary">Apply</button>
+            <button type="submit" @click="searchalgo()" class="btn btn-sm btn-primary">Apply</button>
             <span></span>
+            <button type="submit" @click="openfilter = !openfilter" class="btn btn-sm btn-secondary">Cancel</button>
+
           </li>
+
         </ul>
       </div>
     </div>

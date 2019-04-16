@@ -84,7 +84,7 @@
           <ul style="padding-left:0px">
             <li class="date">{{select.ContractcreationTime.split(' ')[1]}}</li>
             <li>
-              <small class="text-muted">{{select.ContractcreationTime.split(' ')[2]}}</small>
+              <small class="text-muted">{{select.ContractcreationTime.split(' ')[2]|| " "}}</small>
             </li>
           </ul>
         </td>
@@ -112,7 +112,6 @@
                   <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
                   <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
                   <a class="dropdown-item date padding" href="#">Resend</a>
-                  <a v-if="avalible" class="dropdown-item date padding" href="#">Restore</a>
                 </div>
               </div>
             </div>

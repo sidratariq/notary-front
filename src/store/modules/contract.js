@@ -5,7 +5,9 @@ const state  ={
     contractdata:[],
     fileavalible:false,
     contractsource:'',
-    selectedcontract:{}
+    selectedcontract:{},
+    recipients:[],
+    contractid:''
 };
 
 const getters ={
@@ -31,6 +33,13 @@ const getters ={
     },
     getcontractsource:state=>{
         return state.contractsource
+    },
+    getrecipient:state=>{
+        return state.recipients
+    },
+
+    getcontractid:state=>{
+        return state.contractid
     }
 
 };
@@ -60,6 +69,15 @@ const mutations = {
 
     setcontractselected:(state,payload)=>{
         state.selectedcontract =payload
+    },
+
+    setrecipients:(state,payload)=>{
+        console.log(payload)
+        state.recipients = payload
+    },
+
+    setcontractid:(state,payload)=>{
+        state.contractid = payload
     }
 
 };
@@ -88,7 +106,15 @@ const mutations = {
     },
     act_selectedcontract:({commit},payload)=>{
         commit('setcontractselected',payload)
+    },
+    act_recipients:({commit},payload)=>{
+        console.log(payload)
+        commit('setrecipients',payload)
+    },
+    act_contractid:({commit},payload)=>{
+        commit('setcontractid',payload)
     }
+
 };
 
 export default{

@@ -1,19 +1,74 @@
-      <div class="dropdown">                    
-                                                <button class="btn  dropdown-toggle" type="button" style="font-size:13px; " id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-file-signature"></i>                                            
-                                                NEEDS TO SIGN
-                                                </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <button class="dropdown-item" type="button" style="font-size:13px; "> 
-                                                <span>
-                                                <i class="fas fa-file-signature"></i>
-                                                </span>
-                                                Need to Sign
-                                            </button>
-                                            <button class="dropdown-item" style="font-size:13px;" @click="ReceiveaCopy" type="button"><span>
-                                                <i class="far fa-closed-captioning"></i>
-                                                Receives a Copy
-                                            </span>
-                                            </button>
-                                            </div>
-                                        </div>
+let token = this.token
+                                let validemail =[];
+                                let validusername=[];
+                                let validname=[];
+                                let validarray =[];
+
+                                this.error = false
+
+                                // get all the email in an array 
+                                this.recipeints.forEach(element =>{
+                                    validemail.push(Object.values(element)[1]);
+                                    validusername.push(Object.values(element)[0])
+                                    
+                                });
+
+
+                                // check the regex of array make and array containing true or false[true,true,false]
+                                validemail.forEach(element =>{
+                                validarray.push(this.reg.test(element)) 
+                                })
+
+                                // check for valid username
+                                validusername.forEach(element=>{
+                                    if(element.length > 0 && element.length<100 && this.reg2.test(element)){
+                                        validname.push(true)
+                                    }
+                                    else{
+                                        validname.push(false)
+                                    }
+                                })
+
+                                // check for invalid username error message
+                                var j = 0;
+                                var count1 = 0
+
+                                while(j<validname.length){
+                                    if(validname[j] == false){
+                                        count1 ++
+                                    }
+                                    j++
+                                }
+
+                                if(count1 >0){
+                                    this.errorname = true
+                                    setInterval(()=>this.errorname=false,3000)
+                                }
+
+
+                                // if array contain false means there is an error we can't move
+                                    var i = 0
+                                    var count = 0
+
+                                    while ( i < validarray.length) {
+                                        if (validarray[i] == false) {
+                                            count ++
+                                        }
+                                        i++
+                                    }
+
+
+
+                                    if(count >0){
+                                        this.error = true;
+
+                                        setInterval(()=>this.error=false,2000)
+                                    }
+
+                                    //  check for valid user name and email
+                                    if (count == 0 && count1 ==0) {
+                                        // localStorage.setItem('recipients',JSON.stringify(this.recipeints))
+                                        console.log(this.recipeints+"ready to rock")
+                                        this.$router.push('/playground')
+                                    }
+                            

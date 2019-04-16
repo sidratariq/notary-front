@@ -142,7 +142,7 @@ export default {
         .then(res => {
           if (res.status == 200) {
             this.$router.push("/login");
-            localStorage.clear();
+            localStorage.removeItem('vuex')
             this.$router.push("/login");
             return res
           }
@@ -187,8 +187,8 @@ export default {
 </script>
 
 
-                                        <style scoped>
-/* small screen */
+<style scoped>
+
 * {
   margin: 0;
   padding: 0;

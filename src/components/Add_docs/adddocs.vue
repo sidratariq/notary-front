@@ -49,14 +49,14 @@ export default {
     AddDoc() {
       let store = this.$store;
       let token = this.token;
-      console.log(token )
+      // console.log(token )
       //   console.log(this.selectedFile);
 
       const formData = new FormData();
       formData.append("contractName", this.contractname);
       formData.append("contractFile", this.selectedFile);
 
-      console.log(formData);
+      // console.log(formData);
 
       // /newContract
 
@@ -70,8 +70,9 @@ export default {
         .then(res => {
           console.log(res);
           if (res.status == 200) {
-              console.log(res.data)
-               this.$router.push("/addrecipient");
+              // console.log(res.data)
+              store.dispatch("act_contractid",res.data)
+              this.$router.push("/addrecipient");
           }
          
         }).then(error=>{

@@ -127,12 +127,7 @@
             </script>
 
         <style scoped>
-* {
-}
-.setheight {
-  /* height: 50vh; */
-  
-}
+
 .panel-fileDrop {
   border: 1px solid #d9d9d9;
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -260,8 +255,6 @@
   padding: 50px 0;
 }
 @media only screen and (max-width: 520px) {
-  .media-apply {
-    /* display: none; */
-  }
+
 }
 </style>
