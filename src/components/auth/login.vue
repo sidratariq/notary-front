@@ -7,7 +7,7 @@
           v-model="email"
           class="form-control" 
           @input="$v.email.$touch()"
-          style="width:90%; font-size:0.75rem"
+          style="width:90%; font-size:0.85rem"
           aria-describedby="emailHelp"
           placeholder="Enter email"
          autocomplete="on"

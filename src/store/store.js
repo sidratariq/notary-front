@@ -4,7 +4,6 @@ import VuexPersist from 'vuex-persist';
 import userdata from './modules/user.js';
 import picupload from './modules/picupload'
 import flag from './modules/flag.js'
-import file_avalible from './modules/fileavalible.js'
 import contractfile from './modules/contract'
 
 
@@ -69,7 +68,6 @@ export const store = new Vuex.Store({
       userdata,
       flag,
       picupload,
-      file_avalible,
       contractfile
   }
 

@@ -70,6 +70,10 @@
                         else {
                             return false
                         }
+                    },
+
+                     token() {
+                        return this.$store.getters.getToken;
                     }
                 },
 
@@ -92,7 +96,9 @@
                                 var dataURL = reader.result;
                                 store.dispatch('act_filename',event.target.files[0].name)
                                 store.dispatch('act_filesrc',dataURL)
+                                store.dispatch('act_selectedcontract',event.target.files[0])
                                 store.dispatch('act_avalible',true)
+
 
                               
                                 }

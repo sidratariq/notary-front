@@ -150,7 +150,7 @@ export default {
         .then(res => {
           console.log(res.data+'2')
           let setdata = res.data; 
-          store.dispatch("change_userprofilepic",setdata);
+          // store.dispatch("change_userprofilepic",setdata);
           this.close()
         });
       

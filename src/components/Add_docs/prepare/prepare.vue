@@ -3,7 +3,7 @@
       <div class="col-12 set">
         <div class="row">
           <div class="col-1" style=" padding-right: 0px;">
-            <img src="../../../assets/icons/image.svg" alt srcset>
+            <img src="../../../assets/icons/image.svg" style="margin:7px" alt srcset>
           </div>
           
           <div class="col-11" style="padding-left: 0px; padding-right: 0px;">
@@ -70,24 +70,27 @@
       </div>
 
       <p v-show="false">{{progressbar}}</p>
+
+
+      
     
 
       <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="max-width:800px">
+        <div class="modal-dialog" style="max-width:500px">
           <!--Rename folder-->
           <div class="modal-content">
             <div class="modal-header">
-              <h5>Rename</h5>
+              <h6><strong>Rename</strong></h6>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <form @submit.prevent>
               <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
                 <label for="foldername">Name</label>
-                <input
+                <input style="font-size:0.95rem"
                   type="text"
                   class="form-control"
-                  v-model.lazy="filename"
+                  v-model.lazy="changename"
                   id="foldername"
                   aria-describedby="emailHelp"
                 >
@@ -97,10 +100,10 @@
                 <button
                   type="button"
                   @click="Rename"
-                  class="btn btn-primary"
+                  class="btn btn-sm btn-primary"
                   data-dismiss="modal"
                 >Rename</button>
-                <button type="button" class="btn" id="cancel" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm" id="cancel" data-dismiss="modal">Cancel</button>
               </div>
             </form>
           </div>
@@ -155,7 +158,8 @@
     data() {
       return {
         progress: 0,
-        filestatus: ["Finishing...."]
+        filestatus: ["Finishing...."],
+        changename:''
       };
     },
 
@@ -187,18 +191,14 @@
           this.progress = 100;
           this.$store.dispatch("act_status",this.filename);
           this.$emit("buttonenable",this.progress)
-
-        
-        
-      
       }
     },
     methods: {
       Rename() {
       //   localStorage.setItem("filename", this.filename);
-        this.$store.dispatch("act_filename", this.filename);
+        this.$store.dispatch("act_filename", this.changename);
         // console.log(this.$store.getters.filename)
-        console.log(this.filename);
+        alert(this.filename);
       },
 
       ViewDocument() {
@@ -206,7 +206,7 @@
       },
 
       Delete() {
-        this.$store.dispatch("act_avalible");
+        this.$store.dispatch("act_avalible",false);
       }
     }
   };

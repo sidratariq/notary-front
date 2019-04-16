@@ -32,7 +32,7 @@
                 v-model="password"
                 @blur="$v.password.$touch()"
                 class="form-control"
-                style="width:90%; font-size:0.75rem"
+                style="width:90%; font-size:15px"
                 aria-describedby="emailHelp"
                 placeholder="Enter password"
               >
@@ -158,8 +158,6 @@ export default {
               store.dispatch("changeExpiringsoon", Userdata.ExpiringSoon);
               store.dispatch("changeToken", Userdata.Token);
               console.log('token',this.$store.getters.getToken)
-      // return this.$store.getters.getToken;
-              // 
 
               return res.json();
             }

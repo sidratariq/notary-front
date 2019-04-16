@@ -3,7 +3,9 @@ const state  ={
     filesrc:'',
     status:['Finishing...'],
     contractdata:[],
-    fileavalible:false
+    fileavalible:false,
+    contractsource:'',
+    selectedcontract:{}
 };
 
 const getters ={
@@ -23,6 +25,12 @@ const getters ={
     },
     getavalible:state =>{
         return state.fileavalible
+    },
+    getselectedcontract:state=>{
+        return state.selectedcontract
+    },
+    getcontractsource:state=>{
+        return state.contractsource
     }
 
 };
@@ -44,19 +52,24 @@ const mutations = {
     },
     setavalible:(state,payload) =>{
         state.fileavalible = payload;
+    },
+
+    setcontractsource:(state,payload)=>{
+        state.contractsource =payload
+    },
+
+    setcontractselected:(state,payload)=>{
+        state.selectedcontract =payload
     }
 
 };
 
     const actions = {
     act_filename: ({commit},payload) => {
-        console.log(payload+'payload')
         commit('setfilename',payload);
     },        
 
     act_filesrc:({commit},payload)=>{
-        console.log(payload+'imagesource')
-
         commit('setfilesrc',payload);
     },
 
@@ -69,7 +82,12 @@ const mutations = {
     act_avalible:({commit},payload)=>{
 
         commit('setavalible',payload)
-
+    },
+    act_contractsource:({commit},payload)=>{
+        commit('setcontractsource',payload)
+    },
+    act_selectedcontract:({commit},payload)=>{
+        commit('setcontractselected',payload)
     }
 };
 
