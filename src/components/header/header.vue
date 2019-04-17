@@ -15,7 +15,7 @@
 
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <nav
-      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' && this.$route.path!='/verify')"
+      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' && this.$route.path!='/verify' && this.$route.path!='/forget')"
     >
       <ul class="nav">
         <router-link
@@ -33,9 +33,9 @@
           class="nav-link"
           active-class="activee"
           to="/manage"
-         
           exact
-          tag="li" @click.native="sendrequest(current ='/inbox')"
+          tag="li"
+          @click.native="sendrequest(current ='/inbox')"
         >
           <a>Manage</a>
         </router-link>
@@ -60,7 +60,7 @@
 
     <div
       class="dropdown drop"
-      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon')"
+      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' &&this.$route.path!='/forget')"
     >
       <button
         class="dropdown float-right sethover"
@@ -142,9 +142,9 @@ export default {
         .then(res => {
           if (res.status == 200) {
             this.$router.push("/login");
-            localStorage.removeItem('vuex')
+            localStorage.removeItem("vuex");
             this.$router.push("/login");
-            return res
+            return res;
           }
         })
         .then(error => {});
@@ -152,7 +152,16 @@ export default {
     gohome() {
       if (this.$route.path == "/commingsoon") {
         this.$router.push("/home");
-      } else {
+      }
+      else if((this.$route.path == "/forget")){
+        this.$router.push("/login");
+      }
+      else if((this.$route.path == "/signup")){
+        this.$router.push("/login");
+
+      }
+      
+       else {
         this.$router.push("/dashboard");
       }
     },
@@ -181,14 +190,12 @@ export default {
     }
   },
 
-  mounted() {
-  }
+  mounted() {}
 };
 </script>
 
 
 <style scoped>
-
 * {
   margin: 0;
   padding: 0;

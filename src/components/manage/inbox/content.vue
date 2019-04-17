@@ -36,8 +36,8 @@
         v-for="(select,key) in usercontracts"
         v-bind:key="select.id"
         class="setborder"
-        :class="{'clicked':checked}"
-      >
+        :class="{'clicked':checked}">
+        
         <!-- status__2 -->
         <td @click="routechange(select.Creator)" style="padding:2px">
           <span style="padding:4px">
@@ -151,6 +151,7 @@ export default {
 
     routechange(args) {
       let token = this.token;
+      let store = this.$store;
       console.log(token)
       let change = "/detail/" + args;
        this.$http
@@ -162,6 +163,7 @@ export default {
           .then(res => {
             if (res.status == 200) {
               console.log(res.body);
+              store.dispatch('act_contractdata',res.body)
               alert("code red")
               return res;
             }

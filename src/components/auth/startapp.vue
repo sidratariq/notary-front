@@ -116,8 +116,29 @@ export default {
     },
 
     forgetpassword: function() {
+     let currentemail = this.currentemail;
+      if(this.currentemail!=''){
+        this.$http
+        .post("http://localhost:8000/sendCode", { "email": currentemail })
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res.body);
+            alert("code red");
+            this.$router.push("/forget");
+            return res;
+          }
+          
+        })
+        .catch(error => {
+          console.log(error);
+        });
+        localStorage.setItem('email',currentemail)
+        
+      }
+      else{
+        alert("please enter an email address to continue")
+      }
       // changes route to forgetpassword
-      this.$router.push("/forget");
     },
 
     login: function() {

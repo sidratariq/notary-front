@@ -46,7 +46,11 @@ const getters ={
 
     getcontractid:state=>{
         return state.contractid
+    },
+    getcontractdata:state=>{
+        return state.contractdata
     }
+
 
 };
 
@@ -84,7 +88,13 @@ const mutations = {
 
     setcontractid:(state,payload)=>{
         state.contractid = payload
+    },
+
+    setcontractdata:(state,payload)=>{
+        state.contractdata = payload
     }
+
+
 
 };
 
@@ -119,6 +129,9 @@ const mutations = {
     },
     act_contractid:({commit},payload)=>{
         commit('setcontractid',payload)
+    },
+    act_contractdata:({commit},payload)=>{
+        commit('setcontractdata',payload)
     }
 
 };

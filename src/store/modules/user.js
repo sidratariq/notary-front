@@ -3,7 +3,7 @@ const state  ={
         UserName:'sidra',
         Userid:'pidra',
         UserEmail:'okay',
-        UserProfilepicture:'akjdakjdkh',
+        UserProfilepicture:null,
         UserInitials:'adadad',
         UserSignature:'dadada',     
         UserCompany:'dadad',
@@ -38,7 +38,13 @@ const getters ={
     getprofilepicture:state=>{
         // console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
     //   return this.$store.getters.getprofilepicture || 0
-        return "http://localhost:8000/"+ state.Userdata.UserProfilepicture
+            if(state.Userdata.UserProfilepicture==null){
+                return null
+            }
+            else{
+                return "http://localhost:8000/"+ state.Userdata.UserProfilepicture
+            }
+        
     },
 
     getinitials:state=>{
