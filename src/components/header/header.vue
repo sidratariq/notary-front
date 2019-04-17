@@ -158,7 +158,9 @@ export default {
       }
       else if((this.$route.path == "/signup")){
         this.$router.push("/login");
-
+      }
+      else if((this.$route.path == "/verify")){
+        this.$router.push("/login");
       }
       
        else {
