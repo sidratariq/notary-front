@@ -110,7 +110,6 @@
 
                     filesChange(){
                                 this.$router.push('/adddocs')
-
                     },
                     setstore(){
 

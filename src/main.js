@@ -30,10 +30,18 @@
     //   console.log("global before each");
     //   next(true)
     // })
+// c0a5cf
+// #acdce6
+// #81afb8
+// #91789e
+// #c0a5cf
 
     Vue.directive('rainbow',{
       bind(el,binding,vnode){
-        el.style.background = '#' + Math.random().toString().slice(2,8);
+        el.style.background ='#' + ((1<<24)*Math.random()|0).toString(16);
+        el.style.color = ((1<<24)*Math.random()|0).toString(16);;
+
+        
       }
     })
 

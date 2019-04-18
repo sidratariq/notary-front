@@ -36,8 +36,8 @@
         v-for="(select,key) in usercontracts"
         v-bind:key="select.id"
         class="setborder"
-        :class="{'clicked':checked}">
-        
+        :class="{'clicked':checked}"
+      >
         <!-- status__2 -->
         <td @click="routechange(select.Creator)" style="padding:2px">
           <span style="padding:4px">
@@ -56,7 +56,7 @@
         <td class="setpadding" @click="routechange(select.ContractID)">
           <ul>
             <!-- subject -->
-            
+
             <li class="setfont">
               <a
                 style="color: #1e1e1e; cursor:pointer; font-family: Helvetica Neue,Helvetica,Arial,sans-serif;"
@@ -86,9 +86,9 @@
         <!-- status__5 Last change  -->
         <td @click="routechange(select.ContractID)">
           <ul style="padding-left:0px">
-            <li class="date">{{select.ContractcreationTime.split(' ')[1]}}</li>
+            <li class="date">{{creationtime(select.ContractcreationTime)[1]}}</li>
             <li>
-              <small class="text-muted">{{select.ContractcreationTime.split(' ')[2]|| " "}}</small>
+              <small class="text-muted">{{creationtime(select.ContractcreationTime)[2]}}</small>
             </li>
           </ul>
         </td>
@@ -108,7 +108,11 @@
               <div class="row">
                 <div class="col-12">
                   <a v-if="avalible==false" class="dropdown-item date padding" href="#">Move</a>
-                  <a v-if="avalible==false" class="dropdown-item date padding" href="#">Export As CSV</a>
+                  <a
+                    v-if="avalible==false"
+                    class="dropdown-item date padding"
+                    href="#"
+                  >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
                   <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
                   <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
@@ -139,7 +143,7 @@ export default {
         "From:sidra",
         "From:sidra"
       ],
- 
+
       action: ["Sign", "Move", "Sign", "Move", "Sign", "Move", "Sign"]
     };
   },
@@ -152,35 +156,47 @@ export default {
     routechange(args) {
       let token = this.token;
       let store = this.$store;
-      console.log(token)
+      console.log(token);
       let change = "/detail/" + args;
-       this.$http
-          .post("http://localhost:8000/ContractDetails", {'ContractID':args}, {
+      this.$http
+        .post(
+          "http://localhost:8000/ContractDetails",
+          { ContractID: args },
+          {
             headers: {
               Token: token
             }
-          })
-          .then(res => {
-            if (res.status == 200) {
-              console.log(res.body);
-              store.dispatch('act_contractdata',res.body)
-              alert("code red")
-              return res;
-            }
-            // return res;
-          })
-          .catch(error => {
-            console.log(error);
-          });
+          }
+        )
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res.body);
+            store.dispatch("act_contractdata", res.body);
+            alert("code red");
+            return res;
+          }
+          // return res;
+        })
+        .catch(error => {
+          console.log(error);
+        });
       this.$router.push(change);
       console.log(args);
     },
-    
-    showdetail(contractid){
-       
-       console.log("contract id"+contractid)
-    }
 
+    showdetail(contractid) {
+      console.log("contract id" + contractid);
+    },
+
+    creationtime(args) {
+      let arrayvalue = [];
+      if (args != undefined) {
+        arrayvalue = args.split(" ");
+        return arrayvalue;
+      } else {
+        return [];
+      }
+    }
   },
   props: {
     defaultSelects: [Array],
@@ -197,24 +213,18 @@ export default {
       }
     },
 
-
-
     usercontracts() {
       let haha = this.$store.getters.getcontractdata;
       return haha;
     },
-     token: function() {
+    token: function() {
       return this.$store.getters.getToken;
     }
   }
 };
 </script>
 
-
-                    <style scoped>
-* {
-  /* border: 1px solid black; */
-}
+ <style scoped>
 .sucess {
   color: #008938;
 }

@@ -5,11 +5,17 @@ const state  ={
     contractdata:[],
     fileavalible:false,
     contractsource:'',
+
+    // signer data
+    signers:[],
     // for tareget selectd contract
     selectedcontract:{},
 
     // for selected contract detail at manage screen
     contractdata:{},
+
+    // path for user to act on
+    contractpath:'',
 
     recipients:[],
     contractid:'',
@@ -49,7 +55,19 @@ const getters ={
     },
     getcontractdata:state=>{
         return state.contractdata
+    },
+
+    // to get the contract path from the server
+    getcontractpath:state=>{
+        return "http://localhost:8000/"+state.contractpath || 0
+    },
+
+    // to get the contract path from the server
+    getsigners:state=>{
+        return state.signers || 0
     }
+
+
 
 
 };
@@ -82,7 +100,6 @@ const mutations = {
     },
 
     setrecipients:(state,payload)=>{
-        console.log(payload)
         state.recipients = payload
     },
 
@@ -91,8 +108,17 @@ const mutations = {
     },
 
     setcontractdata:(state,payload)=>{
+
         state.contractdata = payload
+    },
+
+    setcontractpath:(state,payload)=>{
+        state.contractpath = payload
+    },
+    setsigners:(state,payload)=>{
+        state.signers = payload
     }
+
 
 
 
@@ -124,7 +150,6 @@ const mutations = {
         commit('setcontractselected',payload)
     },
     act_recipients:({commit},payload)=>{
-        console.log(payload)
         commit('setrecipients',payload)
     },
     act_contractid:({commit},payload)=>{
@@ -132,6 +157,14 @@ const mutations = {
     },
     act_contractdata:({commit},payload)=>{
         commit('setcontractdata',payload)
+    },
+    act_contractpath:({commit},payload)=>{
+        commit('setcontractpath',payload)
+    },
+
+    // it saves data of all signers 
+    act_signers:({commit},payload)=>{
+        commit('setsigners',payload)
     }
 
 };

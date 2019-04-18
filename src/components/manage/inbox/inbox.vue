@@ -97,13 +97,7 @@
                 padding: .25rem 1.5rem;
             }
 
-            .makescroll{
-                /* overflow-y: auto; */
-
-            }
-
-
-            #checkbox{
+           #checkbox{
                 margin-right: 5px; 
             } 
             

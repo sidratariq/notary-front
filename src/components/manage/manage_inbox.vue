@@ -1,11 +1,11 @@
     <template>
-  <div class="container-fluid" style>
+  <div class="container-fluid">
     <div class="row">
       <div class="col-2 col-xs-0 content-bar">
         <btn_btn></btn_btn>
         <div>
           <h6 class="text-centerr">ENVELOPES</h6>
-         
+
           <router-link
             class="nav-link menuitem"
             @click.native="sendrequest(current ='/inbox')"
@@ -89,6 +89,7 @@
             <i class="fas fa-exclamation-triangle menuicon"></i>
             <span class="setlayout">Expiring Soon</span>
           </router-link>
+          <!-- /completed -->
           <router-link
             class="nav-link menuitem"
             @click.native="sendrequest(current ='/completed')"
@@ -128,8 +129,7 @@ export default {
   computed: {
     token() {
       return this.$store.getters.getToken;
-    },
-    
+    }
   },
 
   components: {
@@ -171,10 +171,6 @@ export default {
 
     <!-- Add "scoped" attribute to limit CSS to this component only -->
     <style scoped>
-* {
-  /* border:1px solid green */
-}
-
 .container-fluid {
   height: 100vh;
   /* overflow: scroll; */

@@ -56,37 +56,32 @@ export default {
       formData.append("contractName", this.contractname);
       formData.append("contractFile", this.selectedFile);
 
-      // console.log(formData);
-
-      // /newContract
-
       axios
         .post("http://localhost:8000/newContract", formData, {
           headers: {
             Token: token
-
           }
         })
         .then(res => {
           console.log(res);
           if (res.status == 200) {
-              // console.log(res.data)
-              store.dispatch("act_contractid",res.data)
-              this.$router.push("/addrecipient");
-          }
-         
-        }).then(error=>{
 
-        });
+            store.dispatch("act_contractid", res.data.ContractID);
+            store.dispatch("act_contractpath", res.data.Path);
+
+            this.$router.push("/addrecipient");
+          }
+        })
+        .then(error => {});
     }
   },
   computed: {
     fileavalible: function() {
       return this.$store.getters.getavalible;
     },
-     token() {
-                        return this.$store.getters.getToken;
-                    },
+    token() {
+      return this.$store.getters.getToken;
+    },
 
     setimage: function() {
       if (localStorage.getItem("imgsource") != null) {

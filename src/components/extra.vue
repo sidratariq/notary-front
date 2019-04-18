@@ -11,6 +11,8 @@
   Font size is: {{ fontSize }}
 </p>
 
+
+<h1>{{folders}}</h1>
 <div style="height:200px; width:100px; background-color:gray;" :style="{ background: 'url(' + image + ') no-repeat' }">
   
 </div>
@@ -71,7 +73,10 @@ export default {
        backgroundImage() {
         // let overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
         return 'background-image:'+ "url('  this.$store.getters.getfilesrc  ')";
-      }
+      },
+    folders(){
+      return this.$store.getters.getfolder
+    }
 
   }
 };

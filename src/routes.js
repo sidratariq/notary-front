@@ -13,6 +13,8 @@
     import authentication from './components/blankpage/waitingscreen'
     import  temporary from './components/temporary.vue'
     import  extra from './components/extra.vue'
+    import  signnow from './components/signnow.vue'
+
 
 
 
@@ -37,6 +39,11 @@
             path:'/extra',
             component:extra,
             name:'extra'
+        },
+        {
+            path:'/signnow',
+            component:signnow,
+            name:'signnow'
         },
         {
             path:'/temprary',

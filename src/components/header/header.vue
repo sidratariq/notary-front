@@ -35,7 +35,7 @@
           to="/manage"
           exact
           tag="li"
-          @click.native="sendrequest(current ='/inbox')"
+          @click.native="sendrequest()"
         >
           <a>Manage</a>
         </router-link>
@@ -109,25 +109,37 @@ export default {
     };
   },
   methods: {
-    sendrequest(args) {
+    sendrequest() {
       let token = this.token;
       let store = this.$store;
       let contracts = [];
       this.$http
-        .get("http://localhost:8000/" + args, {
+        .get("http://localhost:8000/manage", {
           headers: {
             Token: token
           }
         })
         .then(res => {
-          contracts = JSON.parse(res.bodyText);
-          store.dispatch("act_contractdata", contracts);
+          // contracts = JSON.parse();
+          // store.dispatch("act_contractdata", res.bodyText.InboxContracts);
+         
+
 
           if (res.status == 200) {
-            return res.json();
+             let data = JSON.parse(res.bodyText);
+          let folderlist =data.FolderList
+          
+
+          let inboxcontracts = data.InboxContracts;
+          console.log(folderlist + "folder");
+          console.log(inboxcontracts + "contracts");
+
+
+          store.dispatch("updatefolder", folderlist);
+          store.dispatch("act_contractdata", inboxcontracts);
           }
+          return res.json();
         })
-        .then()
         .then(error => {});
     },
 
@@ -152,18 +164,13 @@ export default {
     gohome() {
       if (this.$route.path == "/commingsoon") {
         this.$router.push("/home");
-      }
-      else if((this.$route.path == "/forget")){
+      } else if (this.$route.path == "/forget") {
         this.$router.push("/login");
-      }
-      else if((this.$route.path == "/signup")){
+      } else if (this.$route.path == "/signup") {
         this.$router.push("/login");
-      }
-      else if((this.$route.path == "/verify")){
+      } else if (this.$route.path == "/verify") {
         this.$router.push("/login");
-      }
-      
-       else {
+      } else {
         this.$router.push("/dashboard");
       }
     },

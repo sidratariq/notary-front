@@ -66,7 +66,8 @@
               <form>
                 <div class="form-group crush">
                   <input
-                    type="email" style="font-size:0.85rem"
+                    type="email"
+                    style="font-size:0.85rem"
                     class="form-control"
                     v-model="recipeints[index].email"
                     id="exampleInputEmail1"
@@ -76,7 +77,8 @@
                 </div>
                 <!-- <slot></slot> -->
                 <div class="form-group">
-                  <input style="font-size:0.85rem"
+                  <input
+                    style="font-size:0.85rem"
                     type="text"
                     class="form-control"
                     v-model="recipeints[index].name"
@@ -280,7 +282,7 @@ export default {
       let token = this.token;
       let recipient = this.recipeints;
 
-      let store = this.$store
+      let store = this.$store;
 
       let validemail = [];
       let validusername = [];
@@ -345,7 +347,6 @@ export default {
 
       //  check for valid user name and email
       if (count == 0 && count1 == 0) {
-        
         // runs and change route when user has entered valid email and username
         this.$http
           .post("http://localhost:8000/addRecipients", recipient, {
@@ -355,12 +356,12 @@ export default {
           })
           .then(res => {
             if (res.status == 200) {
-              console.log(res);
-              store.dispatch('act_recipients',recipient)
-              alert("code red")
-              return res;
+              console.log(res.bodyText);
+              store.dispatch("act_signers", res.bodyText);
+              store.dispatch("act_recipients", recipient);
+              // alert("code red");
             }
-            // return res;
+            return res;
           })
           .catch(error => {
             alert(error);
@@ -422,11 +423,7 @@ export default {
 };
 </script>
 
-                            <style scoped>
-* {
-  /* background-color: rgb(244, 244, 244); */
-}
-
+<style scoped>
 .seteffect:hover {
   background-color: transparent;
   border-color: transparent;

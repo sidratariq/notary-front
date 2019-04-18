@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row h-25">
-      <div class="col-12 col-md-12">
-        <div class="dropdown">
+      <div class="col-12 col-md-12" style="padding-left:0px">
+        <div class="dropdown" style="margin:7px">
           <button
             class="btn btn-sm btn-utility dropdown-none"
             type="button"
@@ -10,78 +10,100 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+          style="width:70px"
           >
-            <span
-              class="round-body small"
-              style="border:1px solid #f5c431; background-color:#ffd65b; color:#ffd65b; "
-            >.</span>
-            {{recipients[0].name}}
-          </button>
 
+            <span class="round-body small-main" v-rainbow>.</span>
+            <span>
+            {{recipients[0].name}}
+           
+
+
+            </span>
+          </button>
           <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
-            
-            <a class="dropdown-item" v-for="(recipient,index) in recipients" :key="index" href="#">{{recipients[index].name}}</a>
+            <a class="dropdown-item" v-for="(recipient,index) in recipients" :key="index" href="#">
+
+              <span class="round-body small" v-rainbow>.</span>
+              <span>
+              {{recipient.name}}
+
+              </span>
+            </a>
           </div>
         </div>
+
       </div>
     </div>
 
-    <div class="row" >
-      <div class="col-2 set-side" style="">
+    <div class="row">
+      <div class="col-2 set-side" style>
         <div class="scroll-container">
           <ul style="height:100%; padding-left:9px; ">
             <li>
-              <button>
-                <i class="fas fa-file-signature"></i>
-                <span>signature</span>
+              <button class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="fas fa-file-signature set"></i>
+                </span>
+                <span class="border">signature</span>
               </button>
             </li>
 
             <li>
-              <button>
-                <i class="fas fa-signature"></i>
-                <span>Initials</span>
+              <button class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="fas fa-signature set"></i>
+                </span>
+                <span class="border">Initials</span>
               </button>
             </li>
 
             <li>
-              <button>
-                <i class="far fa-calendar"></i>
-                <span>Date Signed</span>
+              <button  class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="far fa-calendar set"></i>
+                </span>
+                <span class="border">Date Signed</span>
               </button>
             </li>
 
             <li>
-              <hr style="1px solid #ccc">
-            </li>
-
-            <li>
-              <button>
-                <i class="fas fa-user"></i>
-                <span>Name</span>
+              <button class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="fas fa-user set"></i>
+                </span>
+                <span class="border">Name</span>
               </button>
             </li>
 
             <li>
-              <button>
-                <i class="far fa-envelope"></i>
-                <span>Email</span>
+              <button  class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="far fa-envelope set"></i>
+                </span>
+                <span class="border">Email</span>
               </button>
             </li>
 
             <li>
-              <button>
-                <i class="far fa-building"></i>
-                <span>Company</span>
+              <button  class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="far fa-building set"></i>
+                </span>
+                <span class="border">Company</span>
               </button>
             </li>
 
             <li>
-              <button>
-                <i class="far fa-building"></i>
-                <span>Text</span>
+              <button class="fullwidth">
+                <span class="buttonmargin border">
+                  <i class="fas fa-text-height set"></i>
+                </span>
+                <span class="border">Text</span>
               </button>
             </li>
+
+
           </ul>
         </div>
       </div>
@@ -95,23 +117,24 @@
       </div>
     </div>
 
-    
-    <div class="row" style="border:1px solid green;position:fixed; bottom:45px;z-index:999; background:#ffffff; width:100%">   
-
+    <div
+      class="row"
+      style="position:fixed; bottom:45px;z-index:999; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
+    >
       <div class="col" >
-           <button
-          type="button"
-          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
-          style="border:1px solid #ccc; background-color:white"
-        >back</button>
-        <button
-          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
-          @click="changeroute"
-        >start</button>
-      </div>
 
-      
-   
+        <button
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right" style="margin-top:12px;"
+            @click="SendToRecipients()"
+        >start</button>
+
+        <button
+          type="button"
+          class="OliveReact-Button--sizeLarge  OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="border:1px solid #ccc; margin-top:12px; background-color:white"  @click="changeroute()"
+        >back</button>
+        
+      </div>
     </div>
   </div>
 </template>
@@ -121,9 +144,7 @@ import helloworld from "./HelloWorld.vue";
 import sidebar from "./filepreview.vue";
 export default {
   data: function() {
-    return {
-     
-    };
+    return {};
   },
 
   components: {
@@ -134,13 +155,20 @@ export default {
   methods: {
     changeroute() {
       this.$router.push("/addrecipient");
+    },
+    SendToRecipients(){
+      this.$router.push("/testing");
     }
   },
 
   computed: {
     recipients: function() {
-      let recipinet = this.$store.getters.getrecipient
-      return recipinet || false;
+      let recipientlist = []
+      let recipient = this.$store.getters.getrecipient;
+      recipient.forEach(element => {
+        recipientlist.push(element.name)
+      });
+      return recipient || recipientlist
     }
   }
 };
@@ -156,16 +184,39 @@ export default {
   margin-top: 60px;
 }
 
-
-
 .scroll-container {
   display: block;
   width: 225px;
   height: 100%;
   border: 1px solid #cccccc;
-  background:#f9f9f9;
+  background: #f9f9f9;
   /* z-index: 999; */
-  
+}
+
+.border {
+  border: 2px solid rgb(82, 23, 23);
+}
+
+.fullwidth {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 3px;
+  margin-top: 2px;
+  margin-right: 2px;
+  background-color: #f9f9f9;
+}
+
+.set {
+  padding: 10px;
+  color: #868686;
+}
+
+.setpadding {
+  margin: 7px;
+}
+
+.buttonmargin {
+  margin-right: 12px;
 }
 
 .container-fluid {
@@ -173,8 +224,10 @@ export default {
   /* background-color: brown; */
 }
 
-.set-side{
-padding-left:0px; padding-right:0px; background:red;
+.set-side {
+  padding-left: 0px;
+  padding-right: 0px;
+  background: red;
 }
 
 .h-25 {
@@ -207,7 +260,7 @@ padding-left:0px; padding-right:0px; background:red;
   padding-bottom: 5px;
   padding-top: 5px;
   text-decoration: none;
-  min-width: 168px;
+  min-width: 220px;
   text-transform: none;
 }
 
@@ -220,13 +273,22 @@ ul li {
 }
 
 .small {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
 }
+
+.small-main{
+  margin-left:-40px; 
+}
+
+.small-main span{
+  color: red
+} 
 
 .dropdown-none::after {
   display: inline-block;
-  margin-left: 0.255em;
+  margin-left: 6.255em;
   vertical-align: 0.255em;
   content: "";
   border-top: 0.3em solid;
@@ -236,9 +298,13 @@ ul li {
 }
 
 .OliveReact-Button--sizeLarge {
-  min-height: 44px;
-  min-width: 52px;
+  min-height: 30px;
+  min-width: 50px;
   padding: 7px 18px;
+  margin-top:7px;
+  margin-bottom:7px; 
+  margin-right: 7px;  
+
 }
 
 .OliveReact-Button--main {
