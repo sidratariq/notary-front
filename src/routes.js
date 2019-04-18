@@ -9,7 +9,6 @@
     import playground from './components/playground/playground'
     import testing from './components/testing/testing'
     // import newpassword from './components/auth/newpassword.vue'
-    import suckyground from './components/suckyground.vue'
     import authentication from './components/blankpage/waitingscreen'
     import  temporary from './components/temporary.vue'
     import  extra from './components/extra.vue'
@@ -50,11 +49,7 @@
             component:temporary,
             name:'temporary'
         },
-        {   
-            path:'/suckyground',
-            component:suckyground,
-            name:'suckyground'
-        },
+       
             // ********* tutorial********    
         {
             path:'/user',

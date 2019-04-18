@@ -357,7 +357,7 @@ export default {
           .then(res => {
             if (res.status == 200) {
               console.log(res.bodyText);
-              store.dispatch("act_signers", res.bodyText);
+              store.dispatch("act_signers", JSON.parse(res.bodyText));
               store.dispatch("act_recipients", recipient);
               // alert("code red");
             }
