@@ -1,8 +1,19 @@
 <template>
   <div class="contaier">
-    <button @click="run()">Search</button>
-    {{recipientlist+"i am empty"}}
-    {{token}}
+      <button v-on:click="fontSize++">
+  Increase font size
+</button>
+<button v-on:click="fontSize--">
+  Decrease font size
+</button>
+
+<p v-bind:style="{ fontSize: fontSize + 'px' }">
+  Font size is: {{ fontSize }}
+</p>
+
+<div style="height:200px; width:100px; background-color:gray;" :style="{ background: 'url(' + image + ') no-repeat' }">
+  
+</div>
   </div>
 </template>
 
@@ -10,6 +21,8 @@
 export default {
   data: function() {
     return {
+      fontSize: 10,
+      image:this.$store.getters.getfilesrc
     };
   },
 
@@ -54,7 +67,11 @@ export default {
     recipientlist(){
       console.log(this.$store.getters.getrecipient)
       return this.$store.getters.getrecipient
-    }
+    },
+       backgroundImage() {
+        // let overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
+        return 'background-image:'+ "url('  this.$store.getters.getfilesrc  ')";
+      }
 
   }
 };

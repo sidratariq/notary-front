@@ -4,6 +4,7 @@
     import VueResource from 'vue-resource'
     import {routes} from './routes.js'
     import VueSignaturePad from 'vue-signature-pad';
+    import 'font-awesome/css/font-awesome.css'
 
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'

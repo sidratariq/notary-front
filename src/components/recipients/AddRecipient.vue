@@ -280,6 +280,8 @@ export default {
       let token = this.token;
       let recipient = this.recipeints;
 
+      let store = this.$store
+
       let validemail = [];
       let validusername = [];
       let validname = [];
@@ -353,7 +355,8 @@ export default {
           })
           .then(res => {
             if (res.status == 200) {
-              console.log(res.body);
+              console.log(res);
+              store.dispatch('act_recipients',recipient)
               alert("code red")
               return res;
             }

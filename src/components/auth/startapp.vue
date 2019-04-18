@@ -2,9 +2,7 @@
   <div class="text-center">
     <div class="row" style="margin-top:10%">
       <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-        <ul class="list-group">
-          <li class="list-group-item" v-for="(u,key) in user" :key="key">{{u}}{{key}}</li>
-        </ul>
+        
       </div>
 
       <!-- here the main login things happen -->
@@ -43,7 +41,7 @@
                 :class="{invalid:true}"
               >The password must be 6 character long</small>
               <small v-if="show" class="error-msg">Invalid email or password</small>
-              <small v-if="validpassword" class="error-msg">Invalid password please try again</small>
+              <small v-if="validpassword" class="error-msg">{{errorvalue}}</small>
               <small
                 v-if="validemail"
                 class="error-msg"
@@ -97,8 +95,8 @@ export default {
       flag: true,
       currentemail: "",
       password: "",
-      user: [],
-      errors: [],
+      errors: false,
+      errorvalue:'',
       show: false,
       invalid_password: false,
       invalid_email: false,
@@ -153,7 +151,7 @@ export default {
             email: this.currentemail,
             password: this.password
           })
-          .then(res => {
+          .then(res => {  
             console.log(res)
             let Userdata = res.body;
             alert(res.body)
@@ -180,21 +178,19 @@ export default {
               store.dispatch("changeToken", Userdata.Token);
               console.log('token',this.$store.getters.getToken)
 
-              return res.json();
+              // return res.json();
             }
+            return res.json()
           })
-          .then(error => {
-            if (error.body == "INVALID PASSWORD") {
+          .catch(error => {
+           
               this.invalid_password = true;
-            }
+              this.errorvalue = error.body;
+              setInterval(()=>{
+                this.invalid_password = false;
+              },3000)
 
-            if (error.body == "INVALID EMAIL") {
-              this.invalid_email = true;
-            }
 
-            this.errors.push(error.status);
-            this.errors.push(error.body);
-            // this.show =true
           });
       }
     },

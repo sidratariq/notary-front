@@ -78,9 +78,7 @@ export default {
 </script>
 
 <style scoped>
-* {
-  /* border: 1px solid black; */
-}
+
 
 .sidedisplay {
   background: #e9e9e9;

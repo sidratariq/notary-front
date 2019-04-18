@@ -97,10 +97,7 @@
                                 store.dispatch('act_filename',event.target.files[0].name)
                                 store.dispatch('act_filesrc',dataURL)
                                 store.dispatch('act_selectedcontract',event.target.files[0])
-                                store.dispatch('act_avalible',true)
-
-
-                              
+                                store.dispatch('act_avalible',true)        
                                 }
                                 reader.readAsDataURL(input.files[0])
 
