@@ -5,6 +5,7 @@
     import {routes} from './routes.js'
     import VueSignaturePad from 'vue-signature-pad';
     import 'font-awesome/css/font-awesome.css'
+    import * as svgicon from 'vue-svgicon';
 
     import 'bootstrap'
     import 'bootstrap/dist/css/bootstrap.min.css'
@@ -16,7 +17,9 @@
     Vue.use(VueSignaturePad);
     Vue.config.productionTip = false
     Vue.use(VueRouter);
-
+    Vue.use(svgicon, {
+      tagName: 'svgicon'
+  });
 
 
     const router = new VueRouter( 

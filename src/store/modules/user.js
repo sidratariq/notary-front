@@ -38,12 +38,8 @@ const getters ={
     },
     
     getprofilepicture:state=>{
-        // console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
-    //   return this.$store.getters.getprofilepicture || 0
-           
-    return "http://localhost:8000/"+ state.Userdata.UserProfilepicture
             
-        
+        return "http://localhost:8000/"+ state.Userdata.UserProfilepicture  
     },
 
     getinitials:state=>{

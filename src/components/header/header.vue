@@ -92,7 +92,7 @@
           </div>
         </a>
         <a class="dropdown-item" @click="logout" style="font-size:13px" href="#">Logout</a>
-        <a class="dropdown-item" @click="settingpage" style="font-size:13px" href="#">My preferences</a>
+        <a class="dropdown-item" @click="settingpage" style="font-size:13px" href="#">My Setting</a>
       </div>
     </div>
   </header>
