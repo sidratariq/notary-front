@@ -1,34 +1,33 @@
-const state ={
-    folder:[]
+const state = {
+    folder: []
 };
 
 const getters = {
-    getfolder:state =>{
+    getfolder: state => {
         return state.folder
     }
 };
 
 const mutations = {
 
-    setfolder:(state,payload) =>{
+    setfolder: (state, payload) => {
         state.folder = payload;
         // console.log("value of flag is:" + state.flag)
     },
 
-    addfolder:(state,payload)=>{
+    addfolder: (state, payload) => {
         state.folder.push(payload)
     }
 }
 
 const actions = {
-    updatefolder:({commit},payload)=>{
-        alert(payload)
-        commit('setfolder',payload)
+    updatefolder: ({ commit }, payload) => {
+        commit('setfolder', payload)
         // console.log(state.flag)
     },
 
-    addnewfolder:()=>{
-        commit('addfolder',payload)
+    addnewfolder: () => {
+        commit('addfolder', payload)
     }
 };
 

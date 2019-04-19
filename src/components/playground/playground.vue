@@ -164,6 +164,7 @@ export default {
   computed: {
     recipients: function() {
       let recipientlist = []
+      console.log(recipientlist)
       let recipient = this.$store.getters.getrecipient;
       recipient.forEach(element => {
         recipientlist.push(element.name)

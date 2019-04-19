@@ -32,12 +32,8 @@ export default {
   computed: {
     initialsignature(){
       return this.user_initial
-    },
-    profilepic: function() {
-      return (
-        "http://localhost:8000/" +JSON.parse(localStorage.getItem("Userdata")).Userdata.Picture
-      );
     }
+  
   }
 };
 </script>

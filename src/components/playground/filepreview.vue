@@ -23,7 +23,7 @@
       <!-- file show -->
 
       <div class="col-12 text-center">
-        <a href="http://" target="_blank" rel="noopener noreferrer">
+        <a :href="image" target="_blank" rel="noopener noreferrer">
           <div style="position:relative">
             <img
               :src="image"
@@ -49,21 +49,19 @@ export default {
       // changepic.className =
     }
   },
-  
-  computed:{
-      image(){
-          return this.$store.getters.getfilesrc
-      },
-      filename(){
-          return this.$store.getters.getfilename
-      }
+
+  computed: {
+    image() {
+      return this.$store.getters.getcontractpath;
+    },
+    filename() {
+      return this.$store.getters.getfilename;
+    }
   }
 };
 </script>
 
 <style scoped>
-
-
 .sidedisplay {
   background: #e9e9e9;
   overflow: auto;

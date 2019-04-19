@@ -1,69 +1,69 @@
-const state  ={
-    filename:'',
-    filesrc:'',
-    status:['Finishing...'],
-    contractdata:[],
-    fileavalible:false,
-    contractsource:'',
+const state = {
+    filename: '',
+    filesrc: '',
+    status: ['Finishing...'],
+    contractdata: [],
+    fileavalible: false,
+    contractsource: '',
 
     // signer data
-    signers:[],
+    signers: [],
     // for tareget selectd contract
-    selectedcontract:{},
+    selectedcontract: {},
 
     // for selected contract detail at manage screen
-    contractdata:{},
+    contractdata: {},
 
     // path for user to act on
-    contractpath:'',
+    contractpath: '',
 
-    recipients:[],
-    contractid:'',
+    recipients: [],
+    contractid: '',
 
 };
 
-const getters ={
-    
-    getfilename:state =>{
+const getters = {
+
+    getfilename: state => {
         return state.filename;
     },
 
-    getfilesrc: state =>{
+    getfilesrc: state => {
         return state.filesrc
     },
-    getstatus: state=>{
+    getstatus: state => {
         return state.status[0]
     },
-    getcontractdata:state=>{
+    getcontractdata: state => {
         return state.contractdata
     },
-    getavalible:state =>{
+    getavalible: state => {
         return state.fileavalible
     },
-    getselectedcontract:state=>{
+    getselectedcontract: state => {
         return state.selectedcontract
     },
-    getcontractsource:state=>{
+    getcontractsource: state => {
         return state.contractsource
     },
-    getrecipient:state=>{
+    getrecipient: state => {
         return state.recipients
     },
 
-    getcontractid:state=>{
+    getcontractid: state => {
         return state.contractid
     },
-    getcontractdata:state=>{
+    getcontractdata: state => {
         return state.contractdata
     },
 
     // to get the contract path from the server
-    getcontractpath:state=>{
-        return "http://localhost:8000/"+state.contractpath || 0
+    getcontractpath: state => {
+        return "http://localhost:8000/" + state.contractpath || 0
     },
 
     // to get the contract path from the server
-    getsigners:state=>{
+    getsigners: state => {
         return state.signers || 0
     }
 
@@ -73,49 +73,49 @@ const getters ={
 };
 
 const mutations = {
-    setfilename: (state,payload) =>{
+    setfilename: (state, payload) => {
         state.filename = payload;
-},
+    },
 
-    setfilesrc: (state,payload) =>{
+    setfilesrc: (state, payload) => {
         state.filesrc = payload;
     },
 
-    setstatus:(state,payload)=>{
+    setstatus: (state, payload) => {
         state.status[0] = payload
     },
-    setcontractdata:(state,payload)=>{
+    setcontractdata: (state, payload) => {
         state.contractdata = payload
     },
-    setavalible:(state,payload) =>{
+    setavalible: (state, payload) => {
         state.fileavalible = payload;
     },
 
-    setcontractsource:(state,payload)=>{
-        state.contractsource =payload
+    setcontractsource: (state, payload) => {
+        state.contractsource = payload
     },
 
-    setcontractselected:(state,payload)=>{
-        state.selectedcontract =payload
+    setcontractselected: (state, payload) => {
+        state.selectedcontract = payload
     },
 
-    setrecipients:(state,payload)=>{
+    setrecipients: (state, payload) => {
         state.recipients = payload
     },
 
-    setcontractid:(state,payload)=>{
+    setcontractid: (state, payload) => {
         state.contractid = payload
     },
 
-    setcontractdata:(state,payload)=>{
+    setcontractdata: (state, payload) => {
 
         state.contractdata = payload
     },
 
-    setcontractpath:(state,payload)=>{
+    setcontractpath: (state, payload) => {
         state.contractpath = payload
     },
-    setsigners:(state,payload)=>{
+    setsigners: (state, payload) => {
         state.signers = payload
     }
 
@@ -124,52 +124,52 @@ const mutations = {
 
 };
 
-    const actions = {
-    act_filename: ({commit},payload) => {
-        commit('setfilename',payload);
-    },        
-
-    act_filesrc:({commit},payload)=>{
-        commit('setfilesrc',payload);
+const actions = {
+    act_filename: ({ commit }, payload) => {
+        commit('setfilename', payload);
     },
 
-    act_status:({commit},payload)=>{
-        commit('setstatus',payload)
+    act_filesrc: ({ commit }, payload) => {
+        commit('setfilesrc', payload);
     },
-    act_contractdata:({commit},payload)=>{
-        commit('setcontractdata',payload)
-    },
-    act_avalible:({commit},payload)=>{
 
-        commit('setavalible',payload)
+    act_status: ({ commit }, payload) => {
+        commit('setstatus', payload)
     },
-    act_contractsource:({commit},payload)=>{
-        commit('setcontractsource',payload)
+    act_contractdata: ({ commit }, payload) => {
+        commit('setcontractdata', payload)
     },
-    act_selectedcontract:({commit},payload)=>{
-        commit('setcontractselected',payload)
+    act_avalible: ({ commit }, payload) => {
+
+        commit('setavalible', payload)
     },
-    act_recipients:({commit},payload)=>{
-        commit('setrecipients',payload)
+    act_contractsource: ({ commit }, payload) => {
+        commit('setcontractsource', payload)
     },
-    act_contractid:({commit},payload)=>{
-        commit('setcontractid',payload)
+    act_selectedcontract: ({ commit }, payload) => {
+        commit('setcontractselected', payload)
     },
-    act_contractdata:({commit},payload)=>{
-        commit('setcontractdata',payload)
+    act_recipients: ({ commit }, payload) => {
+        commit('setrecipients', payload)
     },
-    act_contractpath:({commit},payload)=>{
-        commit('setcontractpath',payload)
+    act_contractid: ({ commit }, payload) => {
+        commit('setcontractid', payload)
+    },
+    act_contractdata: ({ commit }, payload) => {
+        commit('setcontractdata', payload)
+    },
+    act_contractpath: ({ commit }, payload) => {
+        commit('setcontractpath', payload)
     },
 
     // it saves data of all signers 
-    act_signers:({commit},payload)=>{
-        commit('setsigners',payload)
+    act_signers: ({ commit }, payload) => {
+        commit('setsigners', payload)
     }
 
 };
 
-export default{
+export default {
     state,
     mutations,
     actions,

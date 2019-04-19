@@ -1,26 +1,24 @@
 <template>
-    <div class="container-fluid">
-
-        <img style="padding-left:190px;padding-top:90px" src="https://docucdn-a.akamaihd.net/olive/images/1.16.0/illustrations/post_sending_send.svg" alt="">
-        <button class="btn-sm btn-primary">
-            Sign Now
-            
-        </button>
-    </div>
+  <div class="container-fluid">
+    <img
+      style="padding-left:190px;padding-top:90px"
+      src="https://docucdn-a.akamaihd.net/olive/images/1.16.0/illustrations/post_sending_send.svg"
+      alt
+    >
+    <button class="btn-sm btn-primary">Sign Now</button>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
-    *{
-        background-color: #ffefc0;
-    }
+* {
+  background-color: #ffefc0;
+}
 
-    .container-fluid{
-        height: 100vh;
-    }
+.container-fluid {
+  height: 100vh;
+}
 </style>

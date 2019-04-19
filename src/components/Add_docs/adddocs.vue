@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       file: {
-        name: "",
+        // name: "",
         filesrc: ""
       },
       // fileavalible:this.$store.getters.getavalible,
@@ -64,7 +64,10 @@ export default {
         })
         .then(res => {
           console.log(res);
+          // let res = JSON.parse(res);
           if (res.status == 200) {
+            console.log(res.data.ContractID)
+            console.log(res.data.Path)
 
             store.dispatch("act_contractid", res.data.ContractID);
             store.dispatch("act_contractpath", res.data.Path);
