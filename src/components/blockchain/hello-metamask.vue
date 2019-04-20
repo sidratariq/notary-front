@@ -28,8 +28,8 @@ export default {
 <style scoped>
 
 *{
- background-color: aquamarine;
- border: 1px solid black;
+ /* background-color: aquamarine; */
+ border: 1px solid red;
 }
 
 .metamask-info {

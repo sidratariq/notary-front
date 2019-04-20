@@ -8,7 +8,6 @@
             <div class="row">
               <p class="setname setmargin">
                 Please E-Notarize: {{contractdata.ContractData.ContractName}}
-                {{contractdata}}
                 <br>
                 <!-- {{contractdata.ContractData}} -->
 
@@ -17,7 +16,7 @@
                     :class="{'far fa-clock':contractstatus=='In Progress',
                            'fas fa-ban voided':contractstatus=='Voided',
                            'fas fa-exclamation-circle reqaction':contractstatus=='In Progress',
-                           'far fa-clipboard':contractstatus=='DRAFT',
+                           'far fa-edit menuicon':contractstatus=='DRAFT',
                            'fas fa-check sucess':contractstatus=='Completed' }"
                     style="margin:2px"
                   ></i>
@@ -48,7 +47,7 @@
                   :class="{'far fa-clock':contractstatus=='In Progress',
                            'fas fa-ban voided':contractstatus=='Voided',
                            'fas fa-exclamation-circle reqaction':contractstatus=='In Progress',
-                           'far fa-clipboard':contractstatus=='DRAFT',
+                           'far fa-edit menuicon':contractstatus=='DRAFT',
                            'fas fa-check sucess':contractstatus=='Completed' }"
                   style="margin:2px"
                 ></i>
@@ -102,30 +101,27 @@
           <div class="col-12">
             <h4>Recipients</h4>
             <hr>
-
-            <recipient v-for="(data,index) in recipient" :key="index"></recipient>
+            <!-- Signers -->
+            <recipient v-for="(data,index) in contractdata.Signers" :date="updatetime[1]" :time="updatetime[2]"  :value="data"  :key="index">{{data}}</recipient>
           </div>
         </div>
 
         <!-- Message -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-12">
-            <h5>Message</h5>
-
+            <h5>Message</h5> -->
             <!-- THIS WILL BE LIST OF MESSAGES -->
-            <div class="col-12">
+            <!-- <div class="col-12">
               <small class="text-muted">No message has been entered.</small>
             </div>
-
-            <hr>
-
-            <div class="col-12">
+            <hr> -->
+            <!-- <div class="col-12">
               <small class="text-muted">No message has been entered.</small>
             </div>
-          </div>
-        </div>
-      </div>
-
+          </div> -->
+        <!-- </div>
+       -->
+    </div>
       <!-- sidebar -->
       <div class="col-2 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 setpadding setsidebar">
         <sidebar></sidebar>
@@ -143,10 +139,7 @@ export default {
   data() {
     return {
       checked: false,
-      recipient: [
-        { name: "", email: "", receiving_date: "", receiving_time: "" },
-        { name: "", email: "", receiving_date: "", receiving_time: "" }
-      ]
+      
     };
   },
 

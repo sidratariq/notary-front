@@ -97,14 +97,16 @@
         <td style="padding-left: 39px;">
           <div class="btn-group">
 
-            <button
+            <button 
               class="btn btn-sm dropdown-toggle"
               :class="{'btn-primary':true}"
               type="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Sign</button>
+            >
+             <!-- v-if="select.Status=='In Progress'" -->
+            Sign</button>
 
                <button
               class="btn btn-sm dropdown-toggle"
@@ -113,7 +115,9 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Move</button>
+            >Move
+             <!-- v-if="select.Status=='Completed'" -->
+            </button>
 
 
 

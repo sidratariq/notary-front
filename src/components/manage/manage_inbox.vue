@@ -44,6 +44,7 @@
             class="nav-link menuitem"
             ctive-class="active"
             :to="{name:'manage',query:{view:'Delete'}}"
+            @click.native="sendrequest(current ='/actionReq')"
             tag="li"
             exact
           >

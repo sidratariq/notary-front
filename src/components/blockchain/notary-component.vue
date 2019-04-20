@@ -1,31 +1,78 @@
 <template>
-  <div class="notary container">
-    <h1>Welcome to E-Notary</h1>Hash to save:
-    <input v-model="calculatehash" placeholder="hash value">
-    Check Owner:
-    <input v-model="checkOwner" placeholder="hash value">
-    <ul>
-      <li v-on:click="saveHash">Save Hash</li>
-      <li v-on:click="FindOwner">Check Owner</li>new changes
-    </ul>
-    <img
-      v-if="pending"
-      id="loader"
-      src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"
-    >
-    <div class="event" v-if="winEvent">
-      <p v-if="winEvent._status" id="has-won">
-        <i aria-hidden="true" class="fa fa-check"></i>
-        Congragulations, you have won {{winEvent._amount}} wei
-      </p>
-      <p v-else id="has-lost">
-        <i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again.
-      </p>
+  <div class="notary container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12">
+        <h3>Save Your contract in blockchain</h3>
+      </div>
+    </div>
+
+    <div class="row" style="border:1px solid black">
+      <div class="col-md-9 col-sm-6 col-lg-9">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 col-sm-3 text-right">
+            <strong>Contract Name:</strong>
+          </div>
+          <div class="col-md-9 col-lg-9 col-sm-9 text-left">E-Mumba stuff.png</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-lg-3 col-sm-3 text-right">
+            <strong>Contract ID:</strong>
+          </div>
+          <div class="col-md-9 col-lg-9 col-sm-9 text-left">7388c04e-8117-4566-a2e0-691c7ea350aa</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-lg-3 col-sm-3 text-right">
+            <strong>Recipients</strong>
+          </div>
+          <div class="col-md-9 col-lg-9 col-sm-9 text-left">list of recipients</div>
+        </div>
+
+       
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-lg-3">
+        <a :href="profilepic" target="_blank" rel="noopener noreferrer">
+          <div style="position:relative">
+            <img
+              :src="profilepic"
+              style=" border:1px solid #ccc; z-index;111"
+              width="100%"
+              height="100%"
+              alt="preview"
+            >
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- file show -->
+
+    <div class="col-12 text-center">
+      Contract hash value
+      <input v-model="calculatehash" placeholder="hash value">
+      Check Owner:
+      <input v-model="checkOwner" placeholder="hash value">
+      <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save Hash</button>
+      <button v-on:click="FindOwner" class="btn btn-sm btn-secondary">Check Owner</button>
+
+      <img
+        v-if="pending"
+        id="loader"
+        src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"
+      >
+
+      <!-- <reipient></reipient> -->
+
+      <hello-metamask/>
     </div>
   </div>
 </template>
 
 <script>
+import HelloMetamask from "./hello-metamask";
+import reipient from "../viewfile/recipients.vue";
+
 export default {
   name: "notary",
   data() {
@@ -113,52 +160,38 @@ export default {
       );
     }
   },
+
+  computed: {
+    profilepic: function() {
+      return this.$store.getters.getprofilepicture || 0;
+    }
+  },
   mounted() {
     console.log("dispatching getContractInstance");
     this.$store.dispatch("getContractInstance");
+  },
+
+  components: {
+    HelloMetamask,
+    reipient
   }
 };
 </script>
 
 <style scoped>
 * {
-  background-color: antiquewhite;
-  border: 1px solid black;
+  /* background-color: antiquewhite; */
+  border: 1px solid green;
 }
 
 .notary {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   text-align: center;
 }
 #loader {
   width: 150px;
 }
-ul {
-  margin: 25px;
-  list-style-type: none;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-column-gap: 25px;
-  grid-row-gap: 25px;
-}
-li {
-  padding: 20px;
-  margin-right: 5px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: #fff;
-  border: -2px solid #bf0d9b;
-  color: #bf0d9b;
-  box-shadow: 3px 5px #bf0d9b;
-}
-li:hover {
-  background-color: #bf0d9b;
-  color: white;
-  box-shadow: 0px 0px #bf0d9b;
-}
-li:active {
-  opacity: 0.7;
-}
+
 * {
   color: #444444;
 }

@@ -33,25 +33,24 @@
               alt="preview"
             >
 
-            <div class="actionbar setpadding">
+            <!-- <div class="actionbar setpadding">
               <div class="row" style="margin:0px">
                 <div class="col-12">
                   <div class="row">
                     <div class="col-6 setpadding">
                       <small class="text-muted">1</small>
                     </div>
-
                     <div class="col-2 setpadding">
                       <i class="fas fa-sync-alt circle"></i>
                     </div>
-
                     <div class="col-2 setpadding">
                       <i class="fas fa-trash circle"></i>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
         </a>
       </div>
@@ -69,6 +68,7 @@ export default {
   computed: {
     imagesoure() {
       let contractdata = this.$store.getters.getcontractdata;
+      console.log(contractdata)
       let imgsource =
         "http://localhost:8000/" + contractdata.ContractData.Filepath;
       return imgsource;
