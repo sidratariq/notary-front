@@ -203,13 +203,15 @@ export default {
 
     Delete() {
       this.$store.dispatch("act_avalible", false);
+      store.dispatch("act_filename",'');
+      store.dispatch("act_filesrc", '');
+      store.dispatch("act_selectedcontract", '');
     }
   }
 };
 </script>
 
 <style scoped>
-
 .modal-header {
   padding: 0.5rem;
 }

@@ -3,7 +3,11 @@ const state  ={
     filesrc:'',
     status:['Finishing...'],
     contractdata:[],
+
+    // for progess bar and upload screen in 
     fileavalible:false,
+
+    // selected contract
     contractsource:'',
 
     // signer data
