@@ -1,15 +1,25 @@
 <template>
-  <div class="notary container-fluid">
+  <div class="notary container setpadding">
     <div class="row setmargin">
-      <div class="col-md-12 col-lg-12 col-sm-12">
-        <h3 class="text-left">Save Your contract in blockchain</h3>
+      <div class="col-5 col-md-5 col-lg-5 col-sm-5">
+        <p style="font-size:1.75rem" class="text-left">Save Your contract in blockchain</p>
+      </div>
+
+      <div v-if="able==true" class="col-2 col-md-2 col-lg-2" style="padding-top:10px">
+        <span>
+          <i id="has-metamask" aria-hidden="true" class="fa fa-check"></i> Metamask installed
+        </span>
+
+        <span v-if="able==false">
+          <i id="no-metamask" aria-hidden="true" class="fa fa-times"></i> Metamask not found
+        </span>
       </div>
     </div>
 
     <div class="row setmargin">
       <div class="col-md-9 col-sm-6 col-lg-9">
         <div class="row">
-          <div class="col-md-3 col-lg-3 col-sm-3 text-right">
+          <div class="col-md-3 col-lg-3 col-sm-3 text-left">
             <strong>Contract Name:</strong>
           </div>
           <div
@@ -18,31 +28,22 @@
         </div>
 
         <div class="row setmargin">
-          <div class="col-md-3 col-lg-3 col-sm-3 text-right">
+          <div class="col-md-3 col-lg-3 col-sm-3 text-left">
             <strong>Contract ID:</strong>
           </div>
           <div class="col-md-9 col-lg-9 col-sm-9 text-left">{{contractdata.ContractData.ContractID}}</div>
         </div>
 
-        <div class="row setmargin">
-
-           <div class="col-md-1 col-lg-1 col-sm-1 text-right"></div>
-          <div class="col-md-9 col-lg-9 col-sm-9 text-left">
-            <strong class="setmargin">
-              <strong>
-                <h4>Recipients</h4>
-              </strong>
-            </strong>
-          </div>
-          <div class="col-md-2 col-lg-2 col-sm-2 text-right"></div>
-        </div>
+     
 
         <div class="row">
+          <div class="col-md-1 col-lg-2 col-sm-1 text-left" style="padding:1.75rem 1.75rem 1.75rem 0rem">
+                <h4>Recipients</h4>
 
-           <div class="col-md-1 col-lg-2 col-sm-1 text-right"></div>
+          </div>
           <div
-            class="col-md-9 col-lg-9 col-sm-9 text-left"
-            style="height:180px; overflow-y:scroll; border:1px solid #ccc"
+            class="col-md-9 col-lg-9 col-sm-12 text-left"
+            style="height:180px; overflow-y:scroll; border:1px solid #ccc; background-color:#ffffff"
           >
             <recipient
               v-for="(data,index) in contractdata.Signers"
@@ -73,29 +74,38 @@
     </div>
     <!-- file show -->
 
-    <div class="col-12 text-center">
+    <div class="col-12 ">
+      <div class="row pull-right">
+           <button
+        :disabled="able"
+        v-on:click="saveHash"
+        class="btn btn-sm btn-primary"
+      >Save in Blockchain</button>
+      <!-- <small class="text-muted">(0.1 ethers will be deducted from your account)</small> -->
+      </div>
+      <div class="clearfix"></div>
+        <div class="row pull-right">
 
-      <hello-metamask/>
-      <p>0.1 ethers will be deducted from your account</p>
-      <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save in Blockchain</button>
+     
+      <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import HelloMetamask from "./hello-metamask";
 import recipient from "../viewfile/recipients.vue";
-import {NETWORKS} from '../../util/constants/networks'
-import {mapState} from 'vuex'
+import { NETWORKS } from "../../util/constants/networks";
+import { mapState } from "vuex";
 
 export default {
   name: "notary",
   data() {
     return {
+      value: "",
       amount: null,
       pending: false,
       winEvent: null,
-     
       checkOwner: ""
     };
   },
@@ -177,11 +187,27 @@ export default {
   },
 
   computed: {
-    contracthash: function(){
-      let value = this.$store.getters.getcontractforhash.ContractHash;      
-      return value
+    able: function() {
+      if (this.isInjected == true && this.network == "Rinkeby network") {
+        return false;
+      } else {
+        return true;
+      }
     },
-    
+    //  isInjected: state => state.web3.isInjected,
+    isInjected: function() {
+      let value = this.$store.state.web3.isInjected;
+      return value;
+    },
+    networkID: function() {
+      let network = NETWORKS[this.$store.state.web3.networkId];
+      return network;
+    },
+    contracthash: function() {
+      let value = this.$store.getters.getcontractforhash.ContractHash;
+      return value;
+    },
+
     profilepic: function() {
       let value = this.$store.getters.getcontractforhash.ContractData.Filepath;
       return "http://localhost:8000/" + value;
@@ -215,10 +241,7 @@ export default {
         changetime = updatetime.split(" ");
         return changetime;
       }
-    },
-
-
-    
+    }
 
     // ContractcreationTime
   },
@@ -228,16 +251,24 @@ export default {
   },
 
   components: {
-    HelloMetamask,
     recipient
   }
 };
 </script>
 
 <style scoped>
-.setmargin {
-  margin-top: 15px;
+
+.row{
+  margin-top: 25px;
+  
 }
+
+.setpadding{
+  padding-left: 0px;
+  padding-right:0px; 
+}
+
+
 
 .notary {
   /* margin-top: 50px; */
@@ -249,5 +280,14 @@ export default {
 
 * {
   color: #444444;
+  /* background-color:rgb(244, 244, 244); */
+  /* background-color: blueviolet */
+}
+
+#has-metamask {
+  color: green;
+}
+#no-metamask {
+  color: red;
 }
 </style>
