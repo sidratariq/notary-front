@@ -74,15 +74,10 @@
     <!-- file show -->
 
     <div class="col-12 text-center">
-      <!-- Contract hash value
-      <input v-model="calculatehash" placeholder="hash value">
-      Check Owner:
-      <input v-model="checkOwner" placeholder="hash value">-->
-      <!-- <button v-on:click="FindOwner" class="btn btn-sm btn-secondary">Check Owner</button> -->
 
       <hello-metamask/>
-
-      <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save Hash</button>
+      <p>0.1 ethers will be deducted from your account</p>
+      <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save in Blockchain</button>
     </div>
   </div>
 </template>
@@ -90,6 +85,8 @@
 <script>
 import HelloMetamask from "./hello-metamask";
 import recipient from "../viewfile/recipients.vue";
+import {NETWORKS} from '../../util/constants/networks'
+import {mapState} from 'vuex'
 
 export default {
   name: "notary",
@@ -98,7 +95,7 @@ export default {
       amount: null,
       pending: false,
       winEvent: null,
-      calculatehash: "",
+     
       checkOwner: ""
     };
   },
@@ -160,9 +157,9 @@ export default {
     },
 
     saveHash(event) {
-      console.log("hash = ", this.calculatehash);
+      console.log("hash = ", this.contracthash);
       this.$store.state.contractInstance().saveHash(
-        this.calculatehash,
+        this.contracthash,
         {
           gas: 500000,
           value: this.$store.state.web3.web3Instance().toWei(0.1, "ether"),
@@ -180,6 +177,11 @@ export default {
   },
 
   computed: {
+    contracthash: function(){
+      let value = this.$store.getters.getcontractforhash.ContractHash;      
+      return value
+    },
+    
     profilepic: function() {
       let value = this.$store.getters.getcontractforhash.ContractData.Filepath;
       return "http://localhost:8000/" + value;
@@ -213,7 +215,10 @@ export default {
         changetime = updatetime.split(" ");
         return changetime;
       }
-    }
+    },
+
+
+    
 
     // ContractcreationTime
   },
