@@ -1,5 +1,7 @@
 <template>
-  <playground></playground>
+  <div>
+    <h1>test field</h1>
+  </div>
 </template>
 
 <script>
