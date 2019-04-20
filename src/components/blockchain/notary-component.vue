@@ -26,10 +26,18 @@
           <div class="col-md-3 col-lg-3 col-sm-3 text-right">
             <strong>Recipients</strong>
           </div>
-          <div class="col-md-9 col-lg-9 col-sm-9 text-left">list of recipients</div>
-        </div>
+          <div class="col-md-9 col-lg-9 col-sm-9 text-left" style="height:180px; overflow-y:scroll">
 
-       
+            <!-- <recipient
+              v-for="(data,index) in contractdata.Signers"
+              :date="updatetime[1]"
+              :time="updatetime[2]"
+              :value="data"
+              :key="index"
+            ></recipient> -->
+
+          </div>
+        </div>
       </div>
 
       <div class="col-md-3 col-sm-6 col-lg-3">
@@ -55,14 +63,11 @@
       <input v-model="checkOwner" placeholder="hash value">
       <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save Hash</button>
       <button v-on:click="FindOwner" class="btn btn-sm btn-secondary">Check Owner</button>
-
-      <img
-        v-if="pending"
-        id="loader"
-        src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif"
-      >
-
-      <!-- <reipient></reipient> -->
+      
+      <p>{{contractdata}}</p>
+      <!-- <p v-for="(data,index) in contractdata" :key="index"> {{data}}</p> -->
+      <!-- <recipient v-for="(data,index) in contractdata.Signers" :date="updatetime[1]" :time="updatetime[2]"  :value="data"  :key="index">{{data}}</recipient> -->
+    
 
       <hello-metamask/>
     </div>
@@ -71,7 +76,7 @@
 
 <script>
 import HelloMetamask from "./hello-metamask";
-import reipient from "../viewfile/recipients.vue";
+import recipient from "../viewfile/recipients.vue";
 
 export default {
   name: "notary",
@@ -164,7 +169,39 @@ export default {
   computed: {
     profilepic: function() {
       return this.$store.getters.getprofilepicture || 0;
+    },
+
+    contractdata() {
+      // console.log(this.$store.getters.getcontractforhash+"whateber")
+      return this.$store.state.ContractHash;
+    },
+
+    contractstatus() {
+      return this.$store.getters.getcontractdata.ContractData.Status;
+    },
+
+    creationtime() {
+      let creationtime = this.$store.getters.getcontractdata.ContractData
+        .ContractcreationTime;
+      let changetime = creationtime.split(" ");
+      return changetime;
+    },
+    updatetime() {
+      let updatetime = this.$store.getters.getcontractdata.ContractData
+        .UpdateTime;
+      let creationtime = this.$store.getters.getcontractdata.ContractData
+        .ContractcreationTime;
+      let changetime = [];
+      if (updatetime == "") {
+        changetime = creationtime.split(" ");
+        return changetime;
+      } else {
+        changetime = updatetime.split(" ");
+        return changetime;
+      }
     }
+
+    // ContractcreationTime
   },
   mounted() {
     console.log("dispatching getContractInstance");
@@ -173,7 +210,7 @@ export default {
 
   components: {
     HelloMetamask,
-    reipient
+    recipient
   }
 };
 </script>
@@ -181,7 +218,7 @@ export default {
 <style scoped>
 * {
   /* background-color: antiquewhite; */
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .notary {

@@ -7,8 +7,8 @@
             <div class="row">
               <div class="col-12">
                 <i class="fas fa-check sucess"></i>
-
-                <strong>{{value.Name}}</strong>
+                      
+                <strong>{{value.Name}}dadadadad</strong>
 
                 <div class="col-12" style="padding-left:22px">
                   <small

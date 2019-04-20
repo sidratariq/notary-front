@@ -10,6 +10,7 @@ import folders from './modules/folder'
 import flag from './modules/flag.js'
 import contractfile from './modules/contract'
 import rect from './modules/rect'
+import hashcontract from './modules/hashcontract'
 
 
 
@@ -124,7 +125,8 @@ export const store = new Vuex.Store({
       picupload,
       contractfile,
       folders,
-      rect
+      rect,
+      hashcontract
   }
 
 

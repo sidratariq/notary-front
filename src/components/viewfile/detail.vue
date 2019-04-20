@@ -9,6 +9,7 @@
               <p class="setname setmargin">
                 Please E-Notarize: {{contractdata.ContractData.ContractName}}
                 <br>
+               
                 <!-- {{contractdata.ContractData}} -->
 
                 <span style="width:16px; height:16px">
@@ -61,7 +62,7 @@
             <div class="row options">
               <!-- move and more button dropdown -->
               <div class="col-md-8 col-lg-10 col-sm-8 col-xs-12">
-                <strip></strip>
+                <strip :contractid="contractdata.ContractData.ContractID"></strip>
               </div>
 
               <!-- print and download -->

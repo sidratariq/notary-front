@@ -189,6 +189,8 @@ export default {
           if (res.status == 200) {
             console.log(res.body);
             store.dispatch("act_contractdata", res.body);
+            this.$router.push(change);
+
             alert("code red");
             return res;
           }
@@ -197,7 +199,6 @@ export default {
         .catch(error => {
           console.log(error);
         });
-      this.$router.push(change);
       console.log(args);
     },
 
