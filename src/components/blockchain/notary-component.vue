@@ -8,6 +8,8 @@
       <li v-on:click="saveHash" >Save Hash</li>
       <li v-on:click="FindOwner" >Check Owner</li>
 
+      new changes
+
     </ul>
     <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
     <div class="event" v-if="winEvent">
