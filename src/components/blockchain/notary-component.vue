@@ -1,42 +1,59 @@
 <template>
   <div class="notary container-fluid">
-    <div class="row">
+    <div class="row setmargin">
       <div class="col-md-12 col-lg-12 col-sm-12">
-        <h3>Save Your contract in blockchain</h3>
+        <h3 class="text-left">Save Your contract in blockchain</h3>
       </div>
     </div>
 
-    <div class="row" style="border:1px solid black">
+    <div class="row setmargin">
       <div class="col-md-9 col-sm-6 col-lg-9">
         <div class="row">
           <div class="col-md-3 col-lg-3 col-sm-3 text-right">
             <strong>Contract Name:</strong>
           </div>
-          <div class="col-md-9 col-lg-9 col-sm-9 text-left">E-Mumba stuff.png</div>
+          <div
+            class="col-md-9 col-lg-9 col-sm-9 text-left"
+          >{{contractdata.ContractData.ContractName}}</div>
         </div>
 
-        <div class="row">
+        <div class="row setmargin">
           <div class="col-md-3 col-lg-3 col-sm-3 text-right">
             <strong>Contract ID:</strong>
           </div>
-          <div class="col-md-9 col-lg-9 col-sm-9 text-left">7388c04e-8117-4566-a2e0-691c7ea350aa</div>
+          <div class="col-md-9 col-lg-9 col-sm-9 text-left">{{contractdata.ContractData.ContractID}}</div>
+        </div>
+
+        <div class="row setmargin">
+
+           <div class="col-md-1 col-lg-1 col-sm-1 text-right"></div>
+          <div class="col-md-9 col-lg-9 col-sm-9 text-left">
+            <strong class="setmargin">
+              <strong>
+                <h4>Recipients</h4>
+              </strong>
+            </strong>
+          </div>
+          <div class="col-md-2 col-lg-2 col-sm-2 text-right"></div>
         </div>
 
         <div class="row">
-          <div class="col-md-3 col-lg-3 col-sm-3 text-right">
-            <strong>Recipients</strong>
-          </div>
-          <div class="col-md-9 col-lg-9 col-sm-9 text-left" style="height:180px; overflow-y:scroll">
 
-            <!-- <recipient
+           <div class="col-md-1 col-lg-2 col-sm-1 text-right"></div>
+          <div
+            class="col-md-9 col-lg-9 col-sm-9 text-left"
+            style="height:180px; overflow-y:scroll; border:1px solid #ccc"
+          >
+            <recipient
               v-for="(data,index) in contractdata.Signers"
               :date="updatetime[1]"
               :time="updatetime[2]"
               :value="data"
               :key="index"
-            ></recipient> -->
-
+            >{{data}}</recipient>
           </div>
+
+          <div class="col-md-2 col-lg-2 col-sm-2 text-right"></div>
         </div>
       </div>
 
@@ -57,19 +74,15 @@
     <!-- file show -->
 
     <div class="col-12 text-center">
-      Contract hash value
+      <!-- Contract hash value
       <input v-model="calculatehash" placeholder="hash value">
       Check Owner:
-      <input v-model="checkOwner" placeholder="hash value">
-      <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save Hash</button>
-      <button v-on:click="FindOwner" class="btn btn-sm btn-secondary">Check Owner</button>
-      
-      <p>{{contractdata}}</p>
-      <!-- <p v-for="(data,index) in contractdata" :key="index"> {{data}}</p> -->
-      <!-- <recipient v-for="(data,index) in contractdata.Signers" :date="updatetime[1]" :time="updatetime[2]"  :value="data"  :key="index">{{data}}</recipient> -->
-    
+      <input v-model="checkOwner" placeholder="hash value">-->
+      <!-- <button v-on:click="FindOwner" class="btn btn-sm btn-secondary">Check Owner</button> -->
 
       <hello-metamask/>
+
+      <button v-on:click="saveHash" class="btn btn-sm btn-primary">Save Hash</button>
     </div>
   </div>
 </template>
@@ -168,12 +181,13 @@ export default {
 
   computed: {
     profilepic: function() {
-      return this.$store.getters.getprofilepicture || 0;
+      let value = this.$store.getters.getcontractforhash.ContractData.Filepath;
+      return "http://localhost:8000/" + value;
     },
 
     contractdata() {
       // console.log(this.$store.getters.getcontractforhash+"whateber")
-      return this.$store.state.ContractHash;
+      return this.$store.getters.getcontractforhash;
     },
 
     contractstatus() {
@@ -216,9 +230,8 @@ export default {
 </script>
 
 <style scoped>
-* {
-  /* background-color: antiquewhite; */
-  /* border: 1px solid green; */
+.setmargin {
+  margin-top: 15px;
 }
 
 .notary {

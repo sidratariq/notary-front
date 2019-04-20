@@ -9,10 +9,11 @@
           </span>
           <!-- {{foldervalue}} -->
           FOLDERS
+          <button @click="CreateNewFolder()" style="display:none" class="btn btn-sm btn-primary">+</button>
           
           <!-- plus sign -->
           <span class="setright" data-toggle="modal" data-target="#myModal">
-            <i class="fas fa-plus foldericon plusicon"></i>
+            <i data-target="#myModal" class="fas fa-plus foldericon plusicon"></i>
           </span>
           <ul style="padding:0px 3px 0px 24px" :class="{hide:avalible}">
             <li class="whenhover" id="subfolder" v-for="(folder,key) in foldervalue" :key="key">
@@ -110,7 +111,7 @@ export default {
   data() {
     return {
       avalible: false,
-      foldername: "",
+      foldername: "test",
       folders: [
         { name: "F1", id: 1 }
       ]
@@ -133,8 +134,8 @@ export default {
     
       let foldername = this.foldername;
       let token = this.token
-
-        this.$http
+        if(foldername!= ''){
+           this.$http
           .post("http://localhost:8000/newFolder",{'folderName':foldername}, {
             headers: {
               Token: token
@@ -153,6 +154,8 @@ export default {
             alert(error);
           });
 
+        }
+       
       // this.folders.push({ name: this.foldername });
     },
     subfolder() {
@@ -199,6 +202,8 @@ export default {
   *{
     /* border: 1px solid black; */
   }
+
+ 
 
 
 .envelopclass {

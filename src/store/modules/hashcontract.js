@@ -1,5 +1,5 @@
 const state ={
-    ContractHash:[]
+    ContractHash:{}
 };
 
 const getters = {

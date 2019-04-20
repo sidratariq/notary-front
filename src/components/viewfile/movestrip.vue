@@ -70,9 +70,11 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
+              console.log(token);
+              console.log(this.contractid)
 
             let value = JSON.parse(res.bodyText)
-
+            // console.log(value)
 
             store.dispatch("updateContracthash", value);
 
