@@ -197,6 +197,8 @@ export default {
 
 
 <style scoped>
+
+
 .voided {
   color: #999;
 }

@@ -1,6 +1,8 @@
 <template>
   <!-- file name -->
-  <div class="col-12 sidedisplay" @click="showpreview">
+
+
+<div class="col-12 sidedisplay"  v-if="show==false" @click="showpreview">
     <div class="row">
       <div class="col-9">
         <div class="col-12">
@@ -23,7 +25,7 @@
       <!-- file show -->
 
       <div class="col-12 text-center">
-        <a :href="image" target="_blank" rel="noopener noreferrer">
+        <a href="http://" target="_blank" rel="noopener noreferrer">
           <div style="position:relative">
             <img
               :src="image"
@@ -36,11 +38,27 @@
         </a>
       </div>
     </div>
+
+    <div class="row">
+      <toolbar></toolbar>
+    </div>
   </div>
+    
+
+  
 </template>
 
-<script>
+<script>  
+
+import toolbar from '../toolbar/toolbar.vue'
+
 export default {
+  data(){
+    return{
+      display:false
+
+    }
+  },
   methods: {
     showpreview() {
       //   this.$refs.change.className
@@ -49,19 +67,34 @@ export default {
       // changepic.className =
     }
   },
+  components: {
+    toolbar
+  },
+  
+  computed:{
+      image(){
+          return this.$store.getters.getfilesrc
+      },
+      filename(){
+          return this.$store.getters.getfilename
+      },
+      show:{
+     set(value){
+        this.display = value;
 
-  computed: {
-    image() {
-      return this.$store.getters.getcontractpath;
-    },
-    filename() {
-      return this.$store.getters.getfilename;
-    }
+     }
+     ,
+     get(){
+       return this.display
+     }
+   }
   }
 };
 </script>
 
 <style scoped>
+
+
 .sidedisplay {
   background: #e9e9e9;
   overflow: auto;

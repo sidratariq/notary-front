@@ -34,7 +34,7 @@
       <tr
         :for="select.id"
         v-for="(select,key) in usercontracts"
-        v-bind:key="select.id"
+        v-bind:key="key"
         class="setborder"
         :class="{'clicked':checked}"
       >
@@ -45,7 +45,7 @@
               :class="{'far fa-clock':select.Status=='In Progress',
                                             'fas fa-ban voided':select.Status=='Voided',
                                             'fas fa-exclamation-circle reqaction':select.Status=='In Progress',
-                                            'far fa-clipboard':select.Status=='DRAFT',
+                                            'far fa-edit menuicon':select.Status=='DRAFT',
                                             'fas fa-check sucess':select.Status=='Completed' }"
               style="margin:2px"
             ></i>
@@ -96,14 +96,27 @@
         <!-- drop down__6 -->
         <td style="padding-left: 39px;">
           <div class="btn-group">
+
             <button
               class="btn btn-sm dropdown-toggle"
-              :class="{'btn-primary':action[key]=='Sign','btn-white':action[key]=='Move'}"
+              :class="{'btn-primary':true}"
               type="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >{{action[key]}}</button>
+            >Sign</button>
+
+               <button
+              class="btn btn-sm dropdown-toggle"
+              :class="{'btn-white':true}"
+              type="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >Move</button>
+
+
+
             <div class="dropdown-menu">
               <div class="row">
                 <div class="col-12">
@@ -144,7 +157,7 @@ export default {
         "From:sidra"
       ],
 
-      action: ["Sign", "Move", "Sign", "Move", "Sign", "Move", "Sign"]
+      
     };
   },
 

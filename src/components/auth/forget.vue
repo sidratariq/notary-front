@@ -144,11 +144,8 @@ export default {
             console.log(res.body);
             alert("code red");
             this.newpassword = true;
-
-          
-            return res;
           }
-          
+            return res;
         })
         .catch(error => {
           console.log(error);

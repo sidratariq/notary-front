@@ -13,9 +13,7 @@ const state  ={
         Waitingforother:'1',
         Tosign:'1',  
         Expiringsoon:'1' 
-    },
-    initialsrc:'',
-    signaturesrc:''
+    }
 
     
 };
@@ -38,8 +36,12 @@ const getters ={
     },
     
     getprofilepicture:state=>{
+        // console.log("chal rhaa hn mein"+state.Userdata.UserProfilepicture)
+    //   return this.$store.getters.getprofilepicture || 0
+           
+    return "http://localhost:8000/"+ state.Userdata.UserProfilepicture
             
-        return "http://localhost:8000/"+ state.Userdata.UserProfilepicture  
+        
     },
 
     getinitials:state=>{
@@ -72,15 +74,7 @@ const getters ={
     },
     getToken:state=>{
         return state.Userdata.UserToken
-    },
-    getinitialsrc:state=>{
-        return state.initialsrc
-    },
-    getsignaturesrc:state=>{
-        return state.signaturesrc
     }
-
-    
 };
 
 
@@ -141,13 +135,6 @@ const mutations = {
     setToken:(state,payload)=>{
         state.Userdata.UserToken = payload
 
-    },
-    setinitialsrc:(state,payload)=>{
-        state.initialsrc = payload
-
-    },
-    setsignatuesrc:(state,payload)=>{
-        state.signaturesrc = payload
     }
 
 
@@ -177,13 +164,11 @@ const actions = {
     },
 
     changeinitial:({commit},payload)=>{
-
-        console.log(payload+'initial')
+        // console.log("mutation running")
         commit('setinitial',payload)
     },
 
     changesignature:({commit},payload)=>{
-        console.log(payload+'sognature')
         commit('setsignature',payload)
     },
 
@@ -212,12 +197,6 @@ const actions = {
 
     changeToken:({commit},payload)=>{
         commit('setToken',payload)
-    },
-    changeinitialsrc:({commit},payload)=>{
-        commit('setinitialsrc',payload)
-    },
-    changesignaturesrc:({commit},payload)=>{
-        commit('setsignaturesrc',payload)
     }
 };
 

@@ -1,7 +1,7 @@
   <template>
   <div class="envelopclass">
     <div>
-      <ul style="padding:0px 24px;">
+      <ul >
         <li id="mylist">
           <!-- caret sign -->
           <span @click="avalible = !avalible" style="padding:4px">
@@ -22,9 +22,18 @@
                 active-class="active"
                  @click.native="sendrequest(folder.FolderID)"
               >
-                <i class="fas fa-folder menuicon" style="padding:4px"></i>
+              <div class="row">
+                <div class="col-1">
+                  <i class="fas fa-folder menuicon" style="padding:4px"></i>
+
+                </div>
+                <div class="col-8">
                 <span class="setlayout">{{folder.FolderName}}</span>
-                <span>
+
+                </div>
+
+                <div class="col-2">
+                   <span class="pull-right">
                   <div class="btn-group">
                     <i
                       data-v-09042f62
@@ -46,6 +55,8 @@
                     </div>
                   </div>
                 </span>
+                </div>
+               
 
                 <!-- Modal content-->
                 <div id="myModal" class="modal fade" role="dialog">
@@ -82,6 +93,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              
               </router-link>
             </li>
           </ul>
@@ -117,10 +130,7 @@ export default {
 
   methods: {
     CreateNewFolder() {
-      // chalo(indexno){
-      // foldername is the model value
-      // token send plus
-      // /newFolder
+    
       let foldername = this.foldername;
       let token = this.token
 
@@ -146,23 +156,14 @@ export default {
       // this.folders.push({ name: this.foldername });
     },
     subfolder() {
-      //  subfolder($event){
-      // let parent = $event.currentTarget.parentElement.id;
-      // let newfolder = document.createElement('li')
-      // let name = document.createTextNode(this.subfoldername)
-      // newfolder.appendChild(name)
-      // newfolder.className = 'fas fa-folder'
-      // parent.appendChild(newfolder)
-      // document.getElementById(parent).appendChild(newfolder)
+
     },
 
     rename() {
-      // rename($event){
-      //
-      //  console.log($event.currentTarget.parentElement)
+     
     },
     delete() {
-      // delete($event){
+      
     },
 
     sendrequest(args){
@@ -195,6 +196,10 @@ export default {
 
   <style scoped>
 
+  *{
+    /* border: 1px solid black; */
+  }
+
 
 .envelopclass {
   margin-top: 20px;
@@ -206,6 +211,7 @@ ul {
 
 ul li {
   list-style: none;
+  padding:4px 0px 4px 0px;
 }
 
 .setright {

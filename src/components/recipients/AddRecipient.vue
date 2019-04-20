@@ -15,6 +15,21 @@
       </transition>
 
       <transition name="fade">
+        <div
+          v-if="invalidrequest==true"
+          class="alert alert-danger w-75 setplace"
+          transition="expand"
+        >
+          {{request}}
+          <span
+            class="pull-left"
+            style="position:absolute; right:7px; font-size:0.8em; font-wight:bold"
+            @click="invalidrequest=false"
+          >x</span>
+        </div>
+      </transition>
+
+      <transition name="fade">
         <div v-if="errorname" class="alert alert-danger w-75 changeplace" transition="expand">
           Please Enter a Valid user name
           <span
@@ -242,7 +257,9 @@ export default {
       reg2: /[a-zA-Z]/,
       error: false,
       errorname: false,
-      norecipient: false
+      norecipient: false,
+      invalidrequest: false,
+      request: ""
     };
   },
   components: {},
@@ -359,14 +376,18 @@ export default {
               console.log(res.bodyText);
               store.dispatch("act_signers", JSON.parse(res.bodyText));
               store.dispatch("act_recipients", recipient);
+              this.$router.push("/playground");
+
               // alert("code red");
             }
             return res;
           })
           .catch(error => {
-            alert(error);
+            this.invalidrequest = true;
+            this.request = error.bodyText;
+            setInterval(() => (this.invalidrequest = false), 3000);
+            // console.log(error.bodyText);
           });
-        this.$router.push("/playground");
       }
     },
 

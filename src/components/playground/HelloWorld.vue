@@ -1,50 +1,38 @@
 <template>
   <div id="app1" >
-    <div
-      id="list" :style="{ background: 'url(' + image + ') no-repeat' }"
-      style="position: relative; width:900px; height:513px; background-color:gray; display:block; "
+    <button @click="show= !show" >Initial</button>
+    {{show}}
+    <div class="list" 
+      id="list" :style="{ background: 'url(' + image + ') ' }"
+      style="position: relative; width:900px; height:600px; background-position: center;display: block; background-size: 100% 100%"
     >
-      <VueDragResize :style="{ background: 'url(' + image + ') no-repeat' }"
-        id="grad1"
-        ref="sign"
-        :minw="100"
-        :minh="100"
-        :aspectRatio="true"
-        :parentW="listWidth"
-        :parentH="listHeight"
-        :parentLimitation="true"
-        :isActive="false"
-        :w="200"
-        :h="200"
-        v-on:resizing="resize"
-        v-on:dragging="resize"
-      >
-        <h3>Sign</h3>
-        <p>{{ top }} х {{ left }}</p>
-        <p>{{ width }} х {{ height }}</p>
-      </VueDragResize>
-
-      <!-- <VueDragResize
-        id="grad1"
-        ref="initial"
-        :minw="100"
-        :minh="100"
-        :aspectRatio="true"
-        :parentW="listWidth"
-        :parentH="listHeight"
-        :parentLimitation="true"
-        :isActive="true"
-        :w="200"
-        :h="200"
-        v-on:resizing="resize1"
-        v-on:dragging="resize1"
-      >
-        <h3>Sign</h3>
-        <p>{{ top1 }} х {{ left1 }}</p>
-        <p>{{ width1 }} х {{ height1 }}</p>
-      </VueDragResize> -->
+            <VueDragResize v-for="(rect, index) in rects"
+                           :key="index"
+                           :w="rect.width"
+                           :h="rect.height"
+                           :x="rect.left"
+                           :y="rect.top"
+                           :parentW="listWidth"
+                           :parentH="listHeight"
+                           :axis="rect.axis"
+                           :isActive="rect.active"
+                           :minw="rect.minw"
+                           :minh="rect.minh"
+                           :isDraggable="rect.draggable"
+                           :isResizable="rect.resizable"
+                           :parentLimitation="rect.parentLim"
+                           :snapToGrid="rect.snapToGrid"
+                           :aspectRatio="rect.aspectRatio"
+                           :z="rect.zIndex"
+                           v-on:activated="activateEv(index)"
+                           v-on:deactivated="deactivateEv(index)"
+                           v-on:dragging="changePosition($event, index)"
+                           v-on:resizing="changeSize($event, index)"
+            >
+                <div class="filler" :style="{backgroundColor:rect.color}">  </div>
+            </VueDragResize>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -55,28 +43,23 @@ export default {
   name: "app",
 
   components: {
-    VueDragResize
+    VueDragResize,
   },
 
   data() {
     return {
-      width: 0,
-      height: 0,
-      top: 0,
-      left: 0,
-      width1: 0,
-      height1: 0,
-      top1: 0,
-      left1: 0,
+
       listWidth: 0,
       listHeight: 0,
-      image:this.$store.getters.getfilesrc
-
+      image:this.$store.getters.getfilesrc,
+      display:false
 
     };
   },
   mounted() {
-    let listEl = document.getElementById("list");
+
+
+     let listEl = document.getElementById("list");
     this.listWidth = listEl.clientWidth;
     this.listHeight = listEl.clientHeight;
     window.addEventListener("resize", () => {
@@ -85,6 +68,24 @@ export default {
     });
   },
   methods: {
+                activateEv(index) {
+                this.$store.dispatch('rect/setActive', {id: index});
+            },
+            deactivateEv(index) {
+                this.$store.dispatch('rect/unsetActive', {id: index});
+            },
+            changePosition(newRect, index) {
+                this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
+                this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
+                this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
+                this.$store.dispatch('rect/setHeight', {id: index, height: newRect.height});
+            },
+            changeSize(newRect, index) {
+                this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
+                this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
+                this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
+                this.$store.dispatch('rect/setHeight', {id: index, height: newRect.height});
+            },
     resize(newRect) {
       this.width = newRect.width;
       this.height = newRect.height;
@@ -100,16 +101,26 @@ export default {
     }
   },
   computed:{
-    //   image(){
-    //      return this.$store.getters.getfilesrc;
-    //   }
+    rects() {
+                return this.$store.state.rect.rects
+            },
+
+   show:{
+     set(value){
+        this.display = value;
+
+     }
+     ,
+     get(){
+       return this.display
+     }
+   }
   }
 };
 </script>
 
 <style>
 .hero-image {
-  background-image: url("./pic.jpg");
   height: 500px;
   background-position: center;
   background-size: cover;
@@ -121,4 +132,41 @@ export default {
   background-color: #cccccc;
   background-image: linear-gradient(red, yellow);
 }
+
+.block{
+  display: block;
+}
+
+.none{
+  display: none;
+
+}
+body {
+        height: 100vh;
+        width: 100vw;
+        background-color: #ECECEC;
+    }
+    #app {
+        margin: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        font-family: 'Lato', sans-serif;
+    }
+    .filler {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        position: absolute;
+    }
+    .list {
+        position: absolute;
+        top: 30px;
+        bottom: 30px;
+        left: 30px;
+        right: 300px;
+        box-shadow: 0 0 2px #AAA;
+        background-color: white;
+    }
 </style>
