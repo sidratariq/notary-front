@@ -28,72 +28,8 @@
 
     <div class="row">
       <div class="col-2 set-side" style>
-        <div class="scroll-container">
-          <ul style="height:100%; padding-left:9px; ">
-            <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="fas fa-file-signature set"></i>
-                </span>
-                <span class="border">signature</span>
-              </button>
-            </li>
-
-            <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="fas fa-signature set"></i>
-                </span>
-                <span class="border">Initials</span>
-              </button>
-            </li>
-
-            <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="far fa-calendar set"></i>
-                </span>
-                <span class="border">Date Signed</span>
-              </button>
-            </li>
-
-            <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="fas fa-user set"></i>
-                </span>
-                <span class="border">Name</span>
-              </button>
-            </li>
-
-            <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="far fa-envelope set"></i>
-                </span>
-                <span class="border">Email</span>
-              </button>
-            </li>
-
-            <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="far fa-building set"></i>
-                </span>
-                <span class="border">Company</span>
-              </button>
-            </li>
-
-            <!-- <li>
-              <button class="fullwidth">
-                <span class="buttonmargin border">
-                  <i class="fas fa-text-height set"></i>
-                </span>
-                <span class="border">Text</span>
-              </button>
-            </li> -->
-          </ul>
-        </div>
+          <choosebar></choosebar>
+         
       </div>
 
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
@@ -130,6 +66,7 @@
 <script>
 import helloworld from "./HelloWorld.vue";
 import sidebar from "./filepreview.vue";
+import choosebar from "./choosebar.vue"
 export default {
   data: function() {
     return {};
@@ -137,7 +74,8 @@ export default {
 
   components: {
     sidebar,
-    helloworld
+    helloworld,
+    choosebar
   },
 
   methods: {
@@ -167,6 +105,10 @@ export default {
 </script>
 
 <style scoped>
+*{
+  /* border: 1px solid black; */
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -219,7 +161,7 @@ export default {
 .set-side {
   padding-left: 0px;
   padding-right: 0px;
-  background: red;
+  /* background: red; */
 }
 
 .h-25 {

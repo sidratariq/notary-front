@@ -86,7 +86,7 @@ export default {
       ],
       selected: "",
       outputsignature: "",
-      outputinitial:""
+      outputinitial: ""
     };
   },
   methods: {
@@ -97,24 +97,24 @@ export default {
       console.log(signature + "signature");
       console.log(initial + "initial");
 
-     this.takesignatureimage(signature);
-     
-    //  outputinitial
-     this.takeinitialimage(initial);
+      this.takesignatureimage(signature);
+
+      //  outputinitial
+      this.takeinitialimage(initial);
     },
 
     async takesignatureimage(name) {
-      console.log(name)
-      print(this.$refs[name][0])
+      console.log(name);
+      print(this.$refs[name][0]);
       console.log(this.$refs);
       let el = this.$refs[name][0];
       this.outputsignature = (await html2canvas(el)).toDataURL();
     },
-     async takeinitialimage(name) {
-      console.log(name)
+    async takeinitialimage(name) {
+      console.log(name);
       console.log(this.$refs);
       let el = this.$refs[name][0];
-      this.outputinitial=  (await html2canvas(el)).toDataURL();
+      this.outputinitial = (await html2canvas(el)).toDataURL();
     }
   }
 
