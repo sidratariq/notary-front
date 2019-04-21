@@ -1,7 +1,11 @@
 <template>
   <div class="setheight">
+
+
+    <img :src=output>
+
     <table class="stylesign">
-      <tr class="apply">
+      <tr v-for="(key,index) in 3" :key="index" class="apply">
         <td style="width:10%">
           <span class="heightset displayset">
             <input
@@ -9,8 +13,8 @@
               class="custom-control-input set-visibility"
               id="defaultUnchecked"
               name="defaultExampleRadios"
-              @click="run()"
-              :value="0"
+              @change="run(key)"
+              :value="key"
               v-model="selected"
             >
           </span>
@@ -20,10 +24,10 @@
             <div class="signby">Signed By</div>
 
             <span
-              ref="signature"
+              :ref="key+'element'+key"
               class="font font-style"
-              :style="{'font-family': fontstyles[0]}"
-            >{{fullname}}</span>
+              :style="{'font-family': fontstyles[index]}"
+            >sidra</span>
 
             <div class="bottom">{{hash}}</div>
           </div>
@@ -34,17 +38,18 @@
           <div class="sign-container">
             <div class="signby">DS</div>
 
-            <span ref="initial" class="font" :style="{'font-family': fontstyles[0]}">{{initial}}</span>
+            <span
+              :ref="key+'element'+key+1"
+              class="font"
+              :style="{'font-family': fontstyles[index]}"
+            >tariq</span>
 
             <!-- <div class="bottom"></div> -->
           </div>
         </td>
       </tr>
     </table>
-  
-  <img :src=newinitial alt="">
-  <img :src=signature alt="">
-
+    {{selected}}
   </div>
 </template>
 
@@ -79,27 +84,30 @@ export default {
         "'Homemade Apple', cursive"
       ],
       selected: "",
-      newinitial: "",
-      signature: ""
+      output:''
     };
   },
   methods: {
     run(args) {
-      let signature = this.$refs["signature"];
-      let initial = this.$refs["initial"];
-      this.signature= this.takeimage(signature);
-      this.newinitial =  this.takeimage(initial);
+      // let increase = args+1
+      let signature = args + "element" + args;
+      let initial = args + "element" + args + 1;
+      console.log(signature+"signature")
+      console.log(initial+"initial")
 
-      console.log(this.signature)
-      console.log(this.newinitial)
+       
+      this.takeimage(signature)
+      this.takeimage(initial)
+
+
+     
     },
 
     async takeimage(name) {
-      // let el = this.$refs[name].$el;
+      console.log(this.$refs)
+      let el = this.$refs[name];
+      this.output = (await html2canvas(el)).toDataURL();
 
-      let output = (await html2canvas(name)).toDataURL();
-      // console.log(output);
-      return output
     }
   }
 

@@ -4,7 +4,16 @@
       <div class="col-5 col-md-5 col-lg-5 col-sm-5">
         <p style="font-size:1.75rem" class="text-left">Save Your contract in blockchain</p>
       </div>
-       <hello-metamask/>
+
+      <div v-if="able==true" class="col-2 col-md-2 col-lg-2" style="padding-top:10px">
+        <span>
+          <i id="has-metamask" aria-hidden="true" class="fa fa-check"></i> Metamask installed
+        </span>
+
+        <span v-if="able==false">
+          <i id="no-metamask" aria-hidden="true" class="fa fa-times"></i> Metamask not found
+        </span>
+      </div>
     </div>
 
     <div class="row setmargin">
@@ -88,7 +97,6 @@
 import recipient from "../viewfile/recipients.vue";
 import { NETWORKS } from "../../util/constants/networks";
 import { mapState } from "vuex";
-import HelloMetamask from '@/components/blockchain/hello-metamask'
 
 export default {
   name: "notary",
@@ -159,6 +167,7 @@ export default {
     },
 
     saveHash(event) {
+      console.log("hash = ", this.contracthash);
       this.$store.state.contractInstance().saveHash(
         this.contracthash,
         {
@@ -169,33 +178,8 @@ export default {
         (err, result) => {
           if (err) {
             console.log("error :", err);
-          }
-         else {
-           let address = this.$store.state.web3.coinbase
-           console.log("address is :"+ address)
-            this.$http
-                .post("http://localhost:8000/updateBlockchainstatus", {
-                  ContractID: this.ContractID,
-                  userid: this.userid,
-                  "publicAddress" : address
-                },
-                {
-                   headers: {
-                     Token : this.token
-                   }
-                }
-                )
-                .then(
-                  response => {
-                    if (response.status == 200) {       
-                      alert("CONTRACT IS SUCCESSFLLY SAVED IN BLOCKCHAIN")
-                    }
-                  },
-                  error => {
-                    console.log(error);
-                    // console.log(response.bodyText)
-                  }
-          );
+          } else {
+            console.log("result :", result);
           }
         }
       );
@@ -204,10 +188,10 @@ export default {
 
   computed: {
     able: function() {
-      if (this.isInjected == true && this.network == "Rinkeby test network") {
-        return true;
-      } else {
+      if (this.isInjected == true && this.network == "Rinkeby network") {
         return false;
+      } else {
+        return true;
       }
     },
     //  isInjected: state => state.web3.isInjected,
@@ -223,15 +207,7 @@ export default {
       let value = this.$store.getters.getcontractforhash.ContractHash;
       return value;
     },
-    token() {
-      return this.$store.getters.getToken;
-    },
-    ContractID: function (){
-      return this.$store.getters.getcontractid
-    },
-    userid: function() {
-      return this.$store.getters.getuserid;
-    },
+
     profilepic: function() {
       let value = this.$store.getters.getcontractforhash.ContractData.Filepath;
       return "http://localhost:8000/" + value;
@@ -275,7 +251,6 @@ export default {
   },
 
   components: {
-     'hello-metamask': HelloMetamask,
     recipient
   }
 };
