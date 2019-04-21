@@ -1,11 +1,12 @@
 <template>
   <div class="setheight">
-
-
-    <!-- <img :src=output> -->
+    <!-- to show output in the screen -->
+    <img :src="outputsignature">
+    <img :src="outputinitial">
 
     <table class="stylesign">
-      <tr v-for="(key,index) in 3" :key="index" class="apply">
+      <!-- dynamically creating rows with dynamic refs to take image of selected signature  -->
+      <tr v-for="(key,index) in 10" :key="index" class="apply">
         <td style="width:10%">
           <span class="heightset displayset">
             <input
@@ -27,7 +28,7 @@
               :ref="key+'element'+key"
               class="font font-style"
               :style="{'font-family': fontstyles[index]}"
-            >sidra</span>
+            >{{fullname}}</span>
 
             <div class="bottom">{{hash}}</div>
           </div>
@@ -42,7 +43,7 @@
               :ref="key+'element'+key+1"
               class="font"
               :style="{'font-family': fontstyles[index]}"
-            >tariq</span>
+            >{{initial}}</span>
 
             <!-- <div class="bottom"></div> -->
           </div>
@@ -84,7 +85,8 @@ export default {
         "'Homemade Apple', cursive"
       ],
       selected: "",
-      output:''
+      outputsignature: "",
+      outputinitial:""
     };
   },
   methods: {
@@ -92,22 +94,27 @@ export default {
       // let increase = args+1
       let signature = args + "element" + args;
       let initial = args + "element" + args + 1;
-      console.log(signature+"signature")
-      console.log(initial+"initial")
+      console.log(signature + "signature");
+      console.log(initial + "initial");
 
-       
-      this.takeimage(signature)
-      this.takeimage(initial)
-
-
+     this.takesignatureimage(signature);
      
+    //  outputinitial
+     this.takeinitialimage(initial);
     },
 
-    async takeimage(name) {
-      console.log(this.$refs)
-      let el = this.$refs[name];
-      this.output = (await html2canvas(el)).toDataURL();
-
+    async takesignatureimage(name) {
+      console.log(name)
+      print(this.$refs[name][0])
+      console.log(this.$refs);
+      let el = this.$refs[name][0];
+      this.outputsignature = (await html2canvas(el)).toDataURL();
+    },
+     async takeinitialimage(name) {
+      console.log(name)
+      console.log(this.$refs);
+      let el = this.$refs[name][0];
+      this.outputinitial=  (await html2canvas(el)).toDataURL();
     }
   }
 

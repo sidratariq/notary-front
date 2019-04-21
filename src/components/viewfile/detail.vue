@@ -85,7 +85,7 @@
                   </div>
 
                   <div class="col-3 setpadding">
-                    <button class="btn btn-sm apply print" type="button">
+                    <button @click="print" class="btn btn-sm apply print" type="button">
                       <i class="fas fa-print circle"></i>
                     </button>
                   </div>
@@ -125,7 +125,7 @@
     </div>
       <!-- sidebar -->
       <div class="col-2 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 setpadding setsidebar">
-        <sidebar></sidebar>
+        <sidebar ref="sidecontract"> </sidebar>
       </div>
     </div>
   </div>
@@ -145,6 +145,9 @@ export default {
   },
 
   methods: {
+    print(){
+      // print(this.$refs.sidecontract)
+    },
     navigateToHome() {
       this.$router.push("/helloworld");
     }

@@ -25,7 +25,7 @@
       <div class="col-12 text-center">
         <a :href="imagesoure" target="_blank" rel="noopener noreferrer">
           <div style="position:relative">
-            <img
+            <img ref="contract"
               :src="imagesoure"
               style=" border:1px solid #ccc; z-index;111"
               width="130px"
@@ -53,6 +53,8 @@
 
           </div>
         </a>
+
+
       </div>
     </div>
   </div>
@@ -63,7 +65,10 @@ export default {
   methods: {
     showpreview() {
       
-    }
+    },
+     print(){
+       print(this.$refs.contract)
+  }
   },
   computed: {
     imagesoure() {
@@ -73,7 +78,9 @@ export default {
         "http://localhost:8000/" + contractdata.ContractData.Filepath;
       return imgsource;
     }
-  }
+  },
+ 
+
 };
 </script>
 
