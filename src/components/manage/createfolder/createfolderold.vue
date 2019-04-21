@@ -1,7 +1,7 @@
   <template>
   <div class="envelopclass">
     <div>
-      <ul >
+      <ul>
         <li id="mylist">
           <!-- caret sign -->
           <span @click="avalible = !avalible" style="padding:4px">
@@ -9,93 +9,97 @@
           </span>
           <!-- {{foldervalue}} -->
           FOLDERS
-          <button @click="CreateNewFolder()" style="display:none" class="btn btn-sm btn-primary">+</button>
-          
-          <!-- plus sign -->
-          <span class="setright" data-toggle="modal" data-target="#myModal">
-            <i data-target="#myModal" class="fas fa-plus foldericon plusicon"></i>
-          </span>
+          <!-- <button @click="CreateNewFolder()"  class="btn btn-sm btn-primary">+</button> -->
+
+         
+          <button
+            type="button"
+            class="btn btn-sm setright"
+            data-toggle="modal"
+            data-target="#myModal"
+          >
+            <i class="fas fa-plus foldericon plusicon"></i>
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4>New Folder</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <form @submit.prevent>
+                  <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
+                    <label for="foldername">Folder name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="foldername"
+                      id="foldername"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter email"
+                    >
+                  </div>
+
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      @click="CreateNewFolder()"
+                      class="btn btn-primary"
+                      data-dismiss="modal"
+                    >Create</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- // end of model -->
+
           <ul style="padding:0px 3px 0px 24px" :class="{hide:avalible}">
             <li class="whenhover" id="subfolder" v-for="(folder,key) in foldervalue" :key="key">
               <router-link
                 :to="{name:'manage',query:{folder:foldervalue[key].FolderName}}"
                 exact
                 active-class="active"
-                 @click.native="sendrequest(folder.FolderID)"
+                @click.native="sendrequest(folder.FolderID)"
               >
-              <div class="row">
-                <div class="col-1">
-                  <i class="fas fa-folder menuicon" style="padding:4px"></i>
+                <div class="row">
+                  <div class="col-1">
+                    <i class="fas fa-folder menuicon" style="padding:4px"></i>
+                  </div>
+                  <div class="col-7">
+                    <span class="setlayout">{{folder.FolderName}}</span>
+                  </div>
 
-                </div>
-                <div class="col-8">
-                <span class="setlayout">{{folder.FolderName}}</span>
+                  <div class="col-2">
+                    <span class="pull-right">
+                      <div class="btn-group">
+                        <i
+                          data-v-09042f62
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          class="fas fa-ellipsis-v setright foldericon setdropdown"
+                          style="padding: 4px;"
+                        ></i>
 
-                </div>
-
-                <div class="col-2">
-                   <span class="pull-right">
-                  <div class="btn-group">
-                    <i
-                      data-v-09042f62
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      class="fas fa-ellipsis-v setright foldericon setdropdown"
-                      style="padding: 4px;"
-                    ></i>
-
-                    <div class="dropdown-menu">
-                      <div class="row">
-                        <div class="col-12">
-                          <a class="dropdown-item date padding" href="#">Move</a>
-                          <a class="dropdown-item date padding" href="#">Export As CSV</a>
-                          <a class="dropdown-item date padding" href="#">Delete</a>
+                        <div class="dropdown-menu">
+                          <div class="row">
+                            <div class="col-12">
+                              <a class="dropdown-item date padding" href="#">Move</a>
+                              <a class="dropdown-item date padding" href="#">Export As CSV</a>
+                              <a class="dropdown-item date padding" href="#">Delete</a>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </span>
-                </div>
-               
-
-                <!-- Modal content-->
-                <div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h4>New Folder</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      </div>
-
-                      <form @submit.prevent>
-                        <div class="form-group" style="padding-left: 10px; padding-right: 10px;">
-                          <label for="foldername">Folder name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="foldername"
-                            id="foldername"
-                            aria-describedby="emailHelp"
-                            placeholder="Enter email"
-                          >
-                        </div>
-
-                        <div class="modal-footer">
-                          <button
-                            type="button"
-                            @click="CreateNewFolder()"
-                            class="btn btn-primary"
-                            data-dismiss="modal"
-                          >Create</button>
-                          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                        </div>
-                      </form>
-                    </div>
+                    </span>
                   </div>
                 </div>
-              </div>
-              
               </router-link>
             </li>
           </ul>
@@ -111,10 +115,7 @@ export default {
   data() {
     return {
       avalible: false,
-      foldername: "test",
-      folders: [
-        { name: "F1", id: 1 }
-      ]
+      foldername: "test"
     };
   },
 
@@ -124,87 +125,82 @@ export default {
     token() {
       return this.$store.getters.getToken;
     },
-    foldervalue(){
-      return this.$store.getters.getfolder
+    foldervalue() {
+      return this.$store.getters.getfolder;
     }
   },
 
   methods: {
     CreateNewFolder() {
-    
       let foldername = this.foldername;
-      let token = this.token
-        if(foldername!= ''){
-           this.$http
-          .post("http://localhost:8000/newFolder",{'folderName':foldername}, {
-            headers: {
-              Token: token
+      let token = this.token;
+      if (foldername != "") {
+        this.$http
+          .post(
+            "http://localhost:8000/newFolder",
+            { folderName: foldername },
+            {
+              headers: {
+                Token: token
+              }
             }
-          })
+          )
           .then(res => {
             if (res.status == 200) {
               console.log(res);
               // store.dispatch('act_recipients',recipient)
-              alert("code red")
-              
+              alert("code red");
             }
             return res;
           })
           .catch(error => {
             alert(error);
           });
+      }
 
-        }
-       
       // this.folders.push({ name: this.foldername });
     },
-    subfolder() {
+    subfolder() {},
 
-    },
+    rename() {},
+    delete() {},
 
-    rename() {
-     
-    },
-    delete() {
-      
-    },
-
-    sendrequest(args){
-      console.log(args)
+    sendrequest(args) {
+      console.log(args);
       let token = this.token;
-      console.log(token)
+      console.log(token);
       let store = this.$store;
       let contracts = [];
       this.$http
-        .post("http://localhost:8000/ContractDetails",{'ContractID':args}, {
-          headers: {
-            Token: token
+        .post(
+          "http://localhost:8000/ContractDetails",
+          { ContractID: args },
+          {
+            headers: {
+              Token: token
+            }
           }
-        })
+        )
         .then(res => {
           contracts = JSON.parse(res.bodyText);
           store.dispatch("act_contractdata", contracts);
-          
 
           if (res.status == 200) {
             return res.json();
           }
         })
-        .then(error => {console.log(error)});
-
+        .then(error => {
+          console.log(error);
+        });
     }
   }
 };
 </script>
 
   <style scoped>
-
-  *{
-    /* border: 1px solid black; */
-  }
-
- 
-
+* {
+  /* border: 1px solid black; */
+}
 
 .envelopclass {
   margin-top: 20px;
@@ -216,7 +212,7 @@ ul {
 
 ul li {
   list-style: none;
-  padding:4px 0px 4px 0px;
+  padding: 4px 0px 4px 0px;
 }
 
 .setright {
@@ -274,8 +270,6 @@ ul li {
 .hide {
   display: none;
 }
-
-
 
 .dropdown {
   height: 200px;
@@ -385,8 +379,6 @@ a:active {
 .hide {
   display: none;
 }
-
-
 
 .active {
   background: #e9e9e9;
