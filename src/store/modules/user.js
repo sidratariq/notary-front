@@ -170,18 +170,18 @@ const actions = {
     },
 
     change_userprofilepic: ({ commit }, payload) => {
-        console.log("mutation running set profile picsture")
+        // console.log("mutation running set profile picsture")
         commit('setprofilepicture', payload);
     },
 
     changeinitial: ({ commit }, payload) => {
-        console.log("mutation running")
+        // console.log("mutation running")
         commit('setinitial', payload)
     },
 
     changesignature: ({ commit }, payload) => {
-        4
-        console.log("mutation running")
+        
+        // console.log("mutation running")
 
 
         commit('setsignature', payload)

@@ -131,8 +131,7 @@ export default {
           
 
           let inboxcontracts = data.InboxContracts;
-          console.log(folderlist + "folder");
-          console.log(inboxcontracts + "contracts");
+
 
 
           store.dispatch("updatefolder", folderlist);

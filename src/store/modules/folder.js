@@ -22,7 +22,6 @@ const mutations = {
 
 const actions = {
     updatefolder:({commit},payload)=>{
-        alert(payload)
         commit('setfolder',payload)
         // console.log(state.flag)
     },
