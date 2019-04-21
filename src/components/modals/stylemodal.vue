@@ -1,60 +1,84 @@
 <template>
-  <div class="setheight">
-    <!-- to show output in the screen -->
-    <img :src="outputsignature">
-    <img :src="outputinitial">
+  <div>
+    <div class="setheight">
+      <!-- to show output in the screen -->
 
-    <table class="stylesign">
-      <!-- dynamically creating rows with dynamic refs to take image of selected signature  -->
-      <tr v-for="(key,index) in 10" :key="index" class="apply">
-        <td style="width:10%">
-          <span class="heightset displayset">
-            <input
-              type="radio"
-              class="custom-control-input set-visibility"
-              id="defaultUnchecked"
-              name="defaultExampleRadios"
-              @change="run(key)"
-              :value="key"
-              v-model="selected"
-            >
-          </span>
-        </td>
-        <td>
-          <div class="sign-container">
-            <div class="signby">Signed By</div>
+      <table class="stylesign">
+        <!-- dynamically creating rows with dynamic refs to take image of selected signature  -->
+        <tr v-for="(key,index) in 10" :key="index" class="apply">
+          <td style="width:10%">
+            <span class="heightset displayset">
+              <input
+                type="radio"
+                class="custom-control-input set-visibility"
+                id="defaultUnchecked"
+                name="defaultExampleRadios"
+                @change="run(key)"
+                :value="key"
+                v-model="selected"
+              >
+            </span>
+          </td>
+          <td>
+            <div class="sign-container">
+              <div class="signby">Signed By</div>
 
-            <span
-              :ref="key+'element'+key"
-              class="font font-style"
-              :style="{'font-family': fontstyles[index]}"
-            >{{fullname}}</span>
+              <span
+                :ref="key+'element'+key"
+                class="font font-style"
+                :style="{'font-family': fontstyles[index]}"
+              >{{fullname}}</span>
 
-            <div class="bottom">{{hash}}</div>
-          </div>
-        </td>
+              <div class="bottom">{{hash}}</div>
+            </div>
+          </td>
 
-        <!-- Initials -->
-        <td style="width:45%; ">
-          <div class="sign-container">
-            <div class="signby">DS</div>
+          <!-- Initials -->
+          <td style="width:45%; ">
+            <div class="sign-container">
+              <div class="signby">DS</div>
 
-            <span
-              :ref="key+'element'+key+1"
-              class="font"
-              :style="{'font-family': fontstyles[index]}"
-            >{{initial}}</span>
+              <span
+                :ref="key+'element'+key+1"
+                class="font"
+                :style="{'font-family': fontstyles[index]}"
+              >{{initial}}</span>
 
-            <!-- <div class="bottom"></div> -->
-          </div>
-        </td>
-      </tr>
-    </table>
-    {{selected}}
+              <!-- <div class="bottom"></div> -->
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+      <small class="text-muted" style="margin:5px;">
+        <img :src="outputsignature">
+        <img :src="outputinitial">
+        By clicking Create, I agree that the signature and initials will be the electronic representation of my signature and initials for all purposes when I (or my agent) use them on envelopes, including legally binding contracts - just the same as a pen-and-paper signature or initial.
+      </small>
+    </div>
+
+    <div class="modal-footer" style="padding-top:9px; padding-bottom:9px">
+      <button
+        type="button"
+        :disabled="outputinitial=='' && outputsignature == ''"
+        class="btn btn-sm btn-outline-info text-right"
+        @click="save"
+      >Create</button>
+      <button
+        type="button"
+        class="btn btn-sm btn-link btn-black text-right"
+        data-dismiss="modal"
+        @click="clicked"
+      >Cancel</button>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 import html2canvas from "html2canvas";
 
 export default {
@@ -105,24 +129,69 @@ export default {
 
     async takesignatureimage(name) {
       console.log(name);
-      print(this.$refs[name][0]);
       console.log(this.$refs);
       let el = this.$refs[name][0];
       this.outputsignature = (await html2canvas(el)).toDataURL();
+      setInterval(() => {
+        this.$emit("signature", this.outputsignature, 3000);
+      });
     },
     async takeinitialimage(name) {
       console.log(name);
       console.log(this.$refs);
       let el = this.$refs[name][0];
       this.outputinitial = (await html2canvas(el)).toDataURL();
+      setInterval(() => {
+        this.$emit("initial", this.outputinitial, 3000);
+      });
+    },
+
+    clicked() {
+      this.$store.dispatch("changeflag");
+      localStorage.setItem("Avalible", false);
+    },
+    save() {
+      let token = this.token;
+      let store = this.$store;
+
+      axios
+        .post(
+          "http://localhost:8000/signbase64",
+          {
+            SignBase64: this.outputsignature,
+            InitialsBase64: this.outputinitial
+          },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+
+          if (res.status == 200) {
+            console.log(res);
+            // console.log(res.data.Signpath);
+            console.log(res.data.InitialsPath);
+            console.log(res.data.Signpath);
+
+            store.dispatch("changeinitial", res.data.InitialsPath);
+            store.dispatch("changesignature", res.data.Signpath);
+
+            // this.clicked();
+          } else {
+            console.log("go to hell");
+          }
+        });
+    }
+  },
+
+  computed: {
+    token() {
+      return this.$store.getters.getToken;
     }
   }
-
-  // computed:{
-  // initial:function(){
-  // return  this.fullname.split(' ')[0].charAt(0) + this.fullname.split(' ')[1].charAt(0)
-  // }
-  // }
 };
 </script>
 

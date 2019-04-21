@@ -4,6 +4,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content" style="width:774px">
           <!-- heading of the content -->
+  
           <div>
             <h4 style="margin-bottom:0px" class="modal_title">Create Your own signature</h4>
             <span class="btn-cross" @click="clicked()">x</span>
@@ -72,7 +73,7 @@
 
           <div>
             <!--upload signature via style choose option -->
-            <stylemodal :fullname="fullname" :initial="initials" v-if="display ==1"></stylemodal>
+            <stylemodal @initial="styleinitials= $event"  @signature="stylesignature = $event"  :fullname="fullname" :initial="initials" v-if="display ==1"></stylemodal>
 
             <!-- style choose via draw option  -->
             <drawmodal v-if="display == 2" class="overflow:scroll">draw</drawmodal>
@@ -88,13 +89,13 @@
           </div>
 
           <small
-            v-if="display!=2"
+            v-if="display==3"
             class="text-muted"
             style="margin:5px;"
           >By clicking Create, I agree that the signature and initials will be the electronic representation of my signature and initials for all purposes when I (or my agent) use them on envelopes, including legally binding contracts - just the same as a pen-and-paper signature or initial.</small>
 
           <!-- create and cancel signature -->
-          <div v-if="display !=2" class="modal-footer" style="padding-top:9px; padding-bottom:9px">
+          <div v-if="display ==3" class="modal-footer" style="padding-top:9px; padding-bottom:9px">
             <button
               type="button"
               :disabled="uploadSignature==false && uplaodedInitial == false"
@@ -131,7 +132,10 @@ export default {
       signdisable: false,
       initialdisable: false,
       forminitial: "",
-      formsignature: ""
+      formsignature: "",
+      stylesignature:'',
+      styleinitials:''
+
     };
   },
 
@@ -161,10 +165,11 @@ export default {
         })
         .then(res => {
           if (res.status == 200) {
-            console.log("yes");
-            console.log(res.data.Signpath);
+            console.log(res);
+            
+
             store.dispatch("changeinitial", res.data.InitialsPath);
-            store.dispatch("changeinitial", res.data.changesignature);
+            store.dispatch("changesignature", res.data.Signpath);
             this.clicked();
           }
         });

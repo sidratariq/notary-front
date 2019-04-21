@@ -117,9 +117,8 @@ const mutations = {
     },
 
     setsignature: (state, payload) => {
-        // console.log(payload)
-        state.Userdata.UserSignature =
-            window.location.reload()
+        state.Userdata.UserSignature = payload;
+        window.location.reload();
 
     },
 
@@ -180,7 +179,7 @@ const actions = {
     },
 
     changesignature: ({ commit }, payload) => {
-        
+
         // console.log("mutation running")
 
 

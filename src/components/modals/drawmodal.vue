@@ -78,36 +78,41 @@ export default {
     save() {
       let token = this.token;
       let store = this.$store;
-      const formData = new FormData();
 
-      let b = this.$refs.signaturePad1.saveSignature();
-      let a = this.$refs.pad2.saveSignature();
+      let signature = this.$refs.signaturePad1.saveSignature();
+      let initial = this.$refs.pad2.saveSignature();
 
-      if (b.isEmpty == false && a.isEmpty == false) {
-        formData.append("userSign", a.data);
-        formData.append("userInitail", b.data);
+      if (signature.isEmpty == false && initial.isEmpty == false) {
+        console.log(signature.data);
+        console.log(initial.data);
 
-        console.log(a.data);
-        console.log(b.data);
+        axios
+          .post(
+            "http://localhost:8000/signbase64",
+            { SignBase64: signature.data, InitialsBase64: initial.data },
+            {
+              headers: {
+                Token: token
+              }
+            }
+          )
+          .then(res => {
+            console.log(res);
 
-        // axios
-        //   .post("http://localhost:8000/uploadSign", formData, {
-        //     headers: {
-        //       Token: token
-        //     }
-        //   })
-        //   .then(res => {
-        //     if (res.status == 200) {
-        //       console.log(a.data);
-        //       console.log(b.data);
-        //       console.log(res.data.Signpath);
-        //       store.dispatch("changeinitial", res.data.InitialsPath);
-        //       store.dispatch("changeinitial", res.data.changesignature);
-        //       this.clicked();
-        //     } else {
-        //       console.log("go to hell");
-        //     }
-        //   });
+            if (res.status == 200) {
+              console.log(res);
+              // console.log(res.data.Signpath);
+              console.log(res.data.InitialsPath);
+              console.log(res.data.Signpath);
+
+              store.dispatch("changeinitial", res.data.InitialsPath);
+              store.dispatch("changesignature", res.data.Signpath);
+
+              this.clicked();
+            } else {
+              console.log("go to hell");
+            }
+          });
       }
     },
 
