@@ -3,13 +3,13 @@
     <span style="position:absolute">E-Notarized by:</span>
     <!-- signature image from user choosen from database -->
     <img
-      v-if="signature!=0"
+      v-if="false"
       style="position:absolute;top:20px;left:20px"
       :src="signature"
       class="signatureChrome_signature"
       alt="Signature"
     >
-    <span v-if="signature==0" class="initial-text" id="set-color">Create your Signature</span>
+    <span  class="initial-text" id="set-color">Create your Signature</span>
     <span style="position:absolute; bottom:-75px; width:100%">{{userid}}</span>
   </div>
 </template>
@@ -32,7 +32,13 @@ export default {
       return this.$store.getters.getuserid;
     },
     signature: function() {
-      return this.$store.getters.getsignature || 0;
+      // "http://localhost:8000/"
+      if(this.$store.getters.getsignature !=' '){
+        return "http://localhost:8000/"+ this.$store.getters.getsignature
+      }
+      else{
+        return 0
+      }
     }
   }
 };

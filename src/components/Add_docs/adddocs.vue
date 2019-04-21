@@ -65,7 +65,7 @@ export default {
         .then(res => {
           console.log(res);
           if (res.status == 200) {
-
+            console.log(res)
             store.dispatch("act_contractid", res.data.ContractID);
             store.dispatch("act_contractpath", res.data.Path);
 

@@ -1,91 +1,102 @@
 <template>
-  <div id="app1" >
-    <button @click="show= !show" >Initial</button>
-    {{show}}
-    <div class="list" 
-      id="list" :style="{ background: 'url(' + image + ') ' }"
-      style="position: relative; width:900px; height:600px; background-position: center;display: block; background-size: 100% 100%"
+  <div id="app1">
+    <!-- <button @click="show= !show" >Initial</button> -->
+    <!-- {{show}} -->
+    <!-- {{image}} -->
+    <div
+      class="list"
+      id="list"
+      :style="{ background: 'url(' + image + ') ' }"
+      style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
     >
-            <VueDragResize v-for="(rect, index) in rects"
-                           :key="index"
-                           :w="rect.width"
-                           :h="rect.height"
-                           :x="rect.left"
-                           :y="rect.top"
-                           :parentW="listWidth"
-                           :parentH="listHeight"
-                           :axis="rect.axis"
-                           :isActive="rect.active"
-                           :minw="rect.minw"
-                           :minh="rect.minh"
-                           :isDraggable="rect.draggable"
-                           :isResizable="rect.resizable"
-                           :parentLimitation="rect.parentLim"
-                           :snapToGrid="rect.snapToGrid"
-                           :aspectRatio="rect.aspectRatio"
-                           :z="rect.zIndex"
-                           v-on:activated="activateEv(index)"
-                           v-on:deactivated="deactivateEv(index)"
-                           v-on:dragging="changePosition($event, index)"
-                           v-on:resizing="changeSize($event, index)"
-            >
-                <div class="filler" :style="{backgroundColor:rect.color}">  </div>
-            </VueDragResize>
-        </div>
+      <VueDragResize
+        v-for="(rect, index) in rects"
+        :key="index"
+        :w="rect.width"
+        :h="rect.height"
+        :x="rect.left"
+        :y="rect.top"
+        :parentW="listWidth"
+        :parentH="listHeight"
+        :axis="rect.axis"
+        :isActive="rect.active"
+        :minw="rect.minw"
+        :minh="rect.minh"
+        :isDraggable="rect.draggable"
+        :isResizable="rect.resizable"
+        :parentLimitation="rect.parentLim"
+        :snapToGrid="rect.snapToGrid"
+        :aspectRatio="rect.aspectRatio"
+        :z="rect.zIndex"
+        v-on:activated="activateEv(index)"
+        v-on:deactivated="deactivateEv(index)"
+        v-on:dragging="changePosition($event, index)"
+        v-on:resizing="changeSize($event, index)"
+      >
+        <div class="filler" :style="{backgroundColor:rect.color}"></div>
+      </VueDragResize>
     </div>
+  </div>
 </template>
 
 <script>
 import VueDragResize from "vue-drag-resize";
 
 export default {
-
   name: "app",
 
   components: {
-    VueDragResize,
+    VueDragResize
   },
 
   data() {
     return {
-
       listWidth: 0,
       listHeight: 0,
-      image:this.$store.getters.getfilesrc,
-      display:false
-
+      image: this.$store.getters.getcontractpath,
+      display: false
     };
   },
   mounted() {
-
-
-     let listEl = document.getElementById("list");
+    let listEl = document.getElementById("list");
     this.listWidth = listEl.clientWidth;
     this.listHeight = listEl.clientHeight;
     window.addEventListener("resize", () => {
-    this.listWidth = listEl.clientWidth;
-    this.listHeight = listEl.clientHeight;
+      this.listWidth = listEl.clientWidth;
+      this.listHeight = listEl.clientHeight;
     });
   },
   methods: {
-                activateEv(index) {
-                this.$store.dispatch('rect/setActive', {id: index});
-            },
-            deactivateEv(index) {
-                this.$store.dispatch('rect/unsetActive', {id: index});
-            },
-            changePosition(newRect, index) {
-                this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
-                this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
-                this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
-                this.$store.dispatch('rect/setHeight', {id: index, height: newRect.height});
-            },
-            changeSize(newRect, index) {
-                this.$store.dispatch('rect/setTop', {id: index, top: newRect.top});
-                this.$store.dispatch('rect/setLeft', {id: index, left: newRect.left});
-                this.$store.dispatch('rect/setWidth', {id: index, width: newRect.width});
-                this.$store.dispatch('rect/setHeight', {id: index, height: newRect.height});
-            },
+    activateEv(index) {
+      this.$store.dispatch("rect/setActive", { id: index });
+    },
+    deactivateEv(index) {
+      this.$store.dispatch("rect/unsetActive", { id: index });
+    },
+    changePosition(newRect, index) {
+      this.$store.dispatch("rect/setTop", { id: index, top: newRect.top });
+      this.$store.dispatch("rect/setLeft", { id: index, left: newRect.left });
+      this.$store.dispatch("rect/setWidth", {
+        id: index,
+        width: newRect.width
+      });
+      this.$store.dispatch("rect/setHeight", {
+        id: index,
+        height: newRect.height
+      });
+    },
+    changeSize(newRect, index) {
+      this.$store.dispatch("rect/setTop", { id: index, top: newRect.top });
+      this.$store.dispatch("rect/setLeft", { id: index, left: newRect.left });
+      this.$store.dispatch("rect/setWidth", {
+        id: index,
+        width: newRect.width
+      });
+      this.$store.dispatch("rect/setHeight", {
+        id: index,
+        height: newRect.height
+      });
+    },
     resize(newRect) {
       this.width = newRect.width;
       this.height = newRect.height;
@@ -100,21 +111,19 @@ export default {
       this.left1 = newRect.left;
     }
   },
-  computed:{
+  computed: {
     rects() {
-                return this.$store.state.rect.rects
-            },
+      return this.$store.state.rect.rects;
+    },
 
-   show:{
-     set(value){
+    show: {
+      set(value) {
         this.display = value;
-
-     }
-     ,
-     get(){
-       return this.display
-     }
-   }
+      },
+      get() {
+        return this.display;
+      }
+    }
   }
 };
 </script>
@@ -133,40 +142,39 @@ export default {
   background-image: linear-gradient(red, yellow);
 }
 
-.block{
+.block {
   display: block;
 }
 
-.none{
+.none {
   display: none;
-
 }
 body {
-        height: 100vh;
-        width: 100vw;
-        background-color: #ECECEC;
-    }
-    #app {
-        margin: 0;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        font-family: 'Lato', sans-serif;
-    }
-    .filler {
-        width: 100%;
-        height: 100%;
-        display: inline-block;
-        position: absolute;
-    }
-    .list {
-        position: absolute;
-        top: 30px;
-        bottom: 30px;
-        left: 30px;
-        right: 300px;
-        box-shadow: 0 0 2px #AAA;
-        background-color: white;
-    }
+  height: 100vh;
+  width: 100vw;
+  background-color: #ececec;
+}
+#app {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: "Lato", sans-serif;
+}
+.filler {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: absolute;
+}
+.list {
+  position: absolute;
+  top: 1px;
+  bottom: 10px;
+  left: 2px;
+  right: 300px;
+  box-shadow: 0 0 2px #aaa;
+  background-color: white;
+}
 </style>

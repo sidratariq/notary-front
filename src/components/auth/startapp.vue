@@ -154,6 +154,7 @@ export default {
           .then(res => {  
             console.log(res)
             let Userdata = res.body;
+            console.log(Userdata)
             alert(res.body)
             // alert(typeof(res.body))
             

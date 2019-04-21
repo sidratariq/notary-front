@@ -1,14 +1,14 @@
 const state = {
     Userdata: {
-        UserName: 'sidra',
-        Userid: 'pidra',
-        UserEmail: 'okay',
+        UserName: '',
+        Userid: '',
+        UserEmail: '',
         UserProfilepicture: '',
-        UserInitials: 'adadad',
-        UserSignature: 'dadada',
-        UserCompany: 'dadad',
-        UserPhone: 'dadada',
-        UserToken: 'dadada',
+        UserInitials: '',
+        UserSignature: '',
+        UserCompany: '',
+        UserPhone: '',
+        UserToken: '',
         // these should be in the contract module
         Waitingforother: '1',
         Tosign: '1',
@@ -47,11 +47,11 @@ const getters = {
     },
 
     getinitials: state => {
-        return "http://localhost:8000/" + state.Userdata.UserInitials
+        return state.Userdata.UserInitials
     },
 
     getsignature: state => {
-        return "http://localhost:8000/" + state.Userdata.UserSignature;
+        return state.Userdata.UserSignature;
     },
 
     getcompany: state => {

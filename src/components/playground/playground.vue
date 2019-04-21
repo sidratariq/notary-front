@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <div class="row h-25">
       <div class="col-12 col-md-12" style="padding-left:0px">
+        
         <div class="dropdown" style="margin:7px">
           <button
             class="btn btn-sm btn-utility dropdown-none"
@@ -10,29 +11,18 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          style="width:70px"
+            style="width:70px"
           >
-
             <span class="round-body small-main" v-rainbow>.</span>
-            <span>
-            {{recipients[0].name}}
-           
-
-
-            </span>
+            <span>{{recipients[0].name}}</span>
           </button>
           <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" v-for="(recipient,index) in recipients" :key="index" href="#">
-
               <span class="round-body small" v-rainbow>.</span>
-              <span>
-              {{recipient.name}}
-
-              </span>
+              <span>{{recipient.name}}</span>
             </a>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -59,7 +49,7 @@
             </li>
 
             <li>
-              <button  class="fullwidth">
+              <button class="fullwidth">
                 <span class="buttonmargin border">
                   <i class="far fa-calendar set"></i>
                 </span>
@@ -77,7 +67,7 @@
             </li>
 
             <li>
-              <button  class="fullwidth">
+              <button class="fullwidth">
                 <span class="buttonmargin border">
                   <i class="far fa-envelope set"></i>
                 </span>
@@ -86,7 +76,7 @@
             </li>
 
             <li>
-              <button  class="fullwidth">
+              <button class="fullwidth">
                 <span class="buttonmargin border">
                   <i class="far fa-building set"></i>
                 </span>
@@ -94,16 +84,14 @@
               </button>
             </li>
 
-            <li>
+            <!-- <li>
               <button class="fullwidth">
                 <span class="buttonmargin border">
                   <i class="fas fa-text-height set"></i>
                 </span>
                 <span class="border">Text</span>
               </button>
-            </li>
-
-
+            </li> -->
           </ul>
         </div>
       </div>
@@ -121,19 +109,19 @@
       class="row"
       style="position:fixed; bottom:45px;z-index:999; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
     >
-      <div class="col" >
-
+      <div class="col">
         <button
-          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right" style="margin-top:12px;"
-            @click="SendToRecipients()"
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="margin-top:12px;"
+          @click="SendToRecipients()"
         >start</button>
 
         <button
           type="button"
-          class="OliveReact-Button--sizeLarge  OliveReact-Button--main OliveReact-Button to-upper float-right"
-          style="border:1px solid #ccc; margin-top:12px; background-color:white"  @click="changeroute()"
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="border:1px solid #ccc; margin-top:12px; background-color:white"
+          @click="changeroute()"
         >back</button>
-        
       </div>
     </div>
   </div>
@@ -156,20 +144,24 @@ export default {
     changeroute() {
       this.$router.push("/addrecipient");
     },
-    SendToRecipients(){
+    SendToRecipients() {
       this.$router.push("/testing");
     }
   },
 
   computed: {
     recipients: function() {
-      let recipientlist = []
+      let recipientlist = [];
       let recipient = this.$store.getters.getrecipient;
       recipient.forEach(element => {
-        recipientlist.push(element.name)
+        recipientlist.push(element.name);
       });
-      return recipient || recipientlist
-    }
+      return recipient || recipientlist;
+    },
+     image(){
+        console.log(this.$store.getters.getcontractpath)
+          return this.$store.getters.getcontractpath
+      },
   }
 };
 </script>
@@ -186,7 +178,7 @@ export default {
 
 .scroll-container {
   display: block;
-  width: 225px;
+  width: 230px;
   height: 100%;
   border: 1px solid #cccccc;
   background: #f9f9f9;
@@ -278,13 +270,13 @@ ul li {
   padding: 3px;
 }
 
-.small-main{
-  margin-left:-40px; 
+.small-main {
+  margin-left: -40px;
 }
 
-.small-main span{
-  color: red
-} 
+.small-main span {
+  color: red;
+}
 
 .dropdown-none::after {
   display: inline-block;
@@ -301,10 +293,9 @@ ul li {
   min-height: 30px;
   min-width: 50px;
   padding: 7px 18px;
-  margin-top:7px;
-  margin-bottom:7px; 
-  margin-right: 7px;  
-
+  margin-top: 7px;
+  margin-bottom: 7px;
+  margin-right: 7px;
 }
 
 .OliveReact-Button--main {

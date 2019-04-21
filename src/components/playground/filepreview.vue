@@ -1,7 +1,6 @@
 <template>
+
   <!-- file name -->
-
-
 <div class="col-12 sidedisplay"  v-if="show==false" @click="showpreview">
     <div class="row">
       <div class="col-9">
@@ -25,7 +24,7 @@
       <!-- file show -->
 
       <div class="col-12 text-center">
-        <a href="http://" target="_blank" rel="noopener noreferrer">
+        <a :href="image" target="_blank" rel="noopener noreferrer">
           <div style="position:relative">
             <img
               :src="image"
@@ -66,14 +65,15 @@ export default {
       // console.log(changepic);
       // changepic.className =
     }
-  },
+  },  
   components: {
     toolbar
   },
   
   computed:{
       image(){
-          return this.$store.getters.getfilesrc
+        console.log(this.$store.getters.getcontractpath)
+          return this.$store.getters.getcontractpath
       },
       filename(){
           return this.$store.getters.getfilename
