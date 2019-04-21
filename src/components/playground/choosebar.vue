@@ -6,23 +6,31 @@
           <h6 class="text-centerr">Choose From Options</h6>
 
           <li class="nav-link menuitem" active-class="active" exact tag="li">
-            <i class="fas fa-file-signature menuicon set"></i>
+            <span style="padding:4px">
+              <i class="fas fa-file-signature menuicon set"></i>
+            </span>
             <span class="setlayout">signature</span>
           </li>
           <li class="nav-link menuitem" active-class="active" exact tag="li">
-            <i class="fas fa-signature set menuicon"></i>
+            <span style="padding:4px">
+              <i class="fas fa-signature set menuicon"></i>
+            </span>
 
             <span class="setlayout">Initials</span>
           </li>
           <li class="nav-link menuitem" active-class="active" tag="li" exact>
             <!-- <i class="far fa-edit menuicon"></i> -->
-            <i class="far fa-calendar menuicon set"></i>
+            <span style="padding:4px">
+              <i class="far fa-calendar menuicon set"></i>
+            </span>
 
             <span class="setlayout">Date Signed</span>
           </li>
 
           <li class="nav-link menuitem" ctive-class="active" tag="li" exact>
-            <i class="fas fa-user menuicon set"></i>
+            <span style="padding:4px">
+              <i class="fas fa-user menuicon set"></i>
+            </span>
 
             <span class="setlayout">Name</span>
           </li>
@@ -31,17 +39,23 @@
         <div class="envelopclass">
           <h6 class="text-centerr">_____________________</h6>
           <li class="nav-link menuitem" active-class="active" exact tag="li">
-            <i class="far fa-envelope set menuicon"></i>
+            <span style="padding:4px">
+              <i class="far fa-envelope set menuicon"></i>
+            </span>
 
             <span class="setlayout">Email</span>
           </li>
 
           <li class="nav-link menuitem" active-class="active" exact tag="li">
-            <i class="far fa-building menuicon"></i>
+            <span style="padding:4px">
+              <i class="far fa-building menuicon"></i>
+            </span>
             <span class="setlayout">Company</span>
           </li>
           <li class="nav-link menuitem" active-class="active" exact tag="li">
-            <i class="fas fa-text-height menuicon"></i>
+            <span style="padding:4px">
+              <i class="fas fa-text-height menuicon"></i>
+            </span>
             <span class="setlayout">Text</span>
           </li>
         </div>
@@ -63,13 +77,19 @@ export default {
 
     <!-- Add "scoped" attribute to limit CSS to this component only -->
     <style scoped>
-    
+
+
 .container-fluid {
   height: 100vh;
 }
 
 .setlayout {
   font-size: 15px;
+}
+
+i {
+  background-color: aquamarine;
+  border: 1px solid #cccccc;
 }
 
 .row {
