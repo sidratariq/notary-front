@@ -90,24 +90,24 @@ export default {
         console.log(a.data);
         console.log(b.data);
 
-        axios
-          .post("http://localhost:8000/uploadSign", formData, {
-            headers: {
-              Token: token
-            }
-          })
-          .then(res => {
-            if (res.status == 200) {
-              console.log(a.data);
-              console.log(b.data);
-              console.log(res.data.Signpath);
-              store.dispatch("changeinitial", res.data.InitialsPath);
-              store.dispatch("changeinitial", res.data.changesignature);
-              this.clicked();
-            } else {
-              console.log("go to hell");
-            }
-          });
+        // axios
+        //   .post("http://localhost:8000/uploadSign", formData, {
+        //     headers: {
+        //       Token: token
+        //     }
+        //   })
+        //   .then(res => {
+        //     if (res.status == 200) {
+        //       console.log(a.data);
+        //       console.log(b.data);
+        //       console.log(res.data.Signpath);
+        //       store.dispatch("changeinitial", res.data.InitialsPath);
+        //       store.dispatch("changeinitial", res.data.changesignature);
+        //       this.clicked();
+        //     } else {
+        //       console.log("go to hell");
+        //     }
+        //   });
       }
     },
 
