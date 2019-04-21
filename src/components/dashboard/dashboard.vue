@@ -4,7 +4,7 @@
 
     <!--signatures and styles  -->
     <modal class="col-lg-12 col-md-12 col-sm-12 col-sm-12" v-if="flag"></modal>
-  
+
     <uploadphoto v-if="uploadflag"></uploadphoto>
 
     <div class="outer-container">
@@ -13,12 +13,9 @@
         <ul class="first">
           <!-- user image image from server database -->
           <li>
-            
-
-             <span @click="getclick">
-            <img :src="profilepic" class="OliveReact-Avatar" alt="">
+            <span @click="getclick">
+              <img :src="profilepic" class="OliveReact-Avatar" alt>
             </span>
-
           </li>
 
           <li class="signature">
@@ -69,20 +66,18 @@
 </template>
 
 <script>
-
-    import dragdrop from "../Add_docs/dragdrop/dragdrop.vue";
-    import modal from "../modals/modal.vue";
-    import uploadphoto from "../modals/photoupload.vue";
-    import signature from "./signature.vue";
-    import { mapActions } from "vuex";
+import dragdrop from "../Add_docs/dragdrop/dragdrop.vue";
+import modal from "../modals/modal.vue";
+import uploadphoto from "../modals/photoupload.vue";
+import signature from "./signature.vue";
+import { mapActions } from "vuex";
 
 export default {
   data: function() {
     return {
       showModal: false,
       fileavalible: this.$store.getters.getavalible,
-      userdata:{
-      }
+      userdata: {}
     };
   },
 
@@ -106,13 +101,16 @@ export default {
     },
 
     routechange() {
-      this.$router.push({name:'manage',query:{view:'Action Required'}});
+      this.$router.push({ name: "manage", query: { view: "Action Required" } });
     },
     routewaitchange() {
-      this.$router.push({name:'manage',query:{view:'Waiting for Others'}});
+      this.$router.push({
+        name: "manage",
+        query: { view: "Waiting for Others" }
+      });
     },
     routeexpirechange() {
-      this.$router.push({name:'manage',query:{view:'Expiring Soon'}});
+      this.$router.push({ name: "manage", query: { view: "Expiring Soon" } });
     }
   },
 
@@ -125,27 +123,23 @@ export default {
       return this.$store.getters.getupload;
     },
 
-    profilepic:function(){
-      return this.$store.getters.getprofilepicture || 0
+    profilepic: function() {
+      return this.$store.getters.getprofilepicture || 0;
     },
 
-    ActionRequired:function(){
-      return this.$store.getters.getosign || 0
-      
-    },
-                                    
-    WaitingOthers(){
-      return this.$store.getters.getwaiting || 0
+    ActionRequired: function() {
+      return this.$store.getters.getosign || 0;
     },
 
-    expiring(){
-      return this.$store.getters.getexpiringsoon || 0
+    WaitingOthers() {
+      return this.$store.getters.getwaiting || 0;
+    },
+
+    expiring() {
+      return this.$store.getters.getexpiringsoon || 0;
     }
   },
-  mounted(){
-
-  }
-  ,
+  mounted() {},
   components: {
     dragdrop,
     modal,
@@ -159,14 +153,12 @@ export default {
 
   destroyed() {
     document.removeEventListener("keyup", this.escapeKeyListener);
-  },
-  
+  }
 };
 </script>
 
 
 <style scoped>
-
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 * {
@@ -266,23 +258,23 @@ ul li {
   color: #fff;
 }
 
-.signatureChrome {  
+.signatureChrome {
   background: 0 0;
   border: none;
   font-size: 11px;
   font-weight: 700;
   line-height: 11px;
-  min-width: 140px; 
+  min-width: 140px;
   padding: 0 0 0 25px;
   position: relative;
   text-align: left;
 }
 
-.signature{
+.signature {
   color: #999;
 }
 
-.signature:hover{
+.signature:hover {
   color: #fff;
 }
 
@@ -399,7 +391,7 @@ ul li {
   display: none;
 }
 
-.signature{
+.signature {
   cursor: pointer;
 }
 
@@ -465,8 +457,8 @@ ul li {
     display: none;
   }
 
-  .panel-fileDrop{
-      display: none;
+  .panel-fileDrop {
+    display: none;
   }
 }
 </style>

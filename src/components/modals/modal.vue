@@ -18,7 +18,11 @@
                   <!-- full name entry -->
                   <div class="col-6">
                     <div class="row">
-                      <label style="margin:2% 0% 2% 0%; font-size:13px" for="fullname" class="col-4">Name</label>
+                      <label
+                        style="margin:2% 0% 2% 0%; font-size:13px"
+                        for="fullname"
+                        class="col-4"
+                      >Name</label>
                       <input
                         type="text"
                         class="form-control col-8"
@@ -31,7 +35,11 @@
                   <!-- Initials entry -->
                   <div class="col-6">
                     <div class="row">
-                      <label style="font-size: 13px;margin-bottom: 0px;margin-top: 9px;" for="initials" class="col-4">Initials</label>
+                      <label
+                        style="font-size: 13px;margin-bottom: 0px;margin-top: 9px;"
+                        for="initials"
+                        class="col-4"
+                      >Initials</label>
                       <input
                         type="text"
                         class="form-control col-8"
@@ -50,7 +58,7 @@
           <!-- nav bar for choose,draw and upload -->
           <nav>
             <ul class="nav">
-              <li class="nav-link" style="padding-bottom:0px"  id="choose" exact>
+              <li class="nav-link" style="padding-bottom:0px" id="choose" exact>
                 <a class="font-size:12px" @click="display =1">CHOOSE</a>
               </li>
               <li class="nav-link" style="padding-bottom:0px" id="draw" exact>
@@ -73,22 +81,25 @@
             <uploadmodal
               @avaliblesign="uploadSignature = $event"
               @avalibleinitial="uplaodedInitial = $event"
+              @datainitial="forminitial = $event"
+              @datasignature="formsignature = $event"
               v-if="display == 3"
             >upload</uploadmodal>
           </div>
 
           <small
+            v-if="display!=2"
             class="text-muted"
             style="margin:5px;"
           >By clicking Create, I agree that the signature and initials will be the electronic representation of my signature and initials for all purposes when I (or my agent) use them on envelopes, including legally binding contracts - just the same as a pen-and-paper signature or initial.</small>
 
           <!-- create and cancel signature -->
-          <div class="modal-footer" style="padding-top:9px; padding-bottom:9px">
+          <div v-if="display !=2" class="modal-footer" style="padding-top:9px; padding-bottom:9px">
             <button
               type="button"
               :disabled="uploadSignature==false && uplaodedInitial == false"
               class="btn btn-sm btn-outline-info text-right"
-              @click="clicked()"
+              @click="CreateSign()"
             >Create</button>
             <button
               type="button"
@@ -104,6 +115,8 @@
 </template>
 
         <script>
+import axios from "axios";
+
 import stylemodal from "./stylemodal.vue";
 import uploadmodal from "./uplaodmodal.vue";
 import drawmodal from "./drawmodal.vue";
@@ -116,7 +129,9 @@ export default {
       hash: "AE9DB71A4A854B1...",
       initials: "",
       signdisable: false,
-      initialdisable: false
+      initialdisable: false,
+      forminitial: "",
+      formsignature: ""
     };
   },
 
@@ -126,6 +141,33 @@ export default {
       this.$store.dispatch("changeflag");
       localStorage.setItem("Avalible", false);
       console.log(localStorage.getItem("Avalible"));
+    },
+    CreateSign() {
+      let token = this.token;
+      let store = this.$store;
+      const formData = new FormData();
+
+      formData.append("userSign", this.formsignature);
+
+      formData.append("userInitail", this.forminitial);
+      console.log(formData);
+
+      console.log("formData" + formData);
+      axios
+        .post("http://localhost:8000/uploadSign", formData, {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          if (res.status == 200) {
+            console.log("yes");
+            console.log(res.data.Signpath);
+            store.dispatch("changeinitial", res.data.InitialsPath);
+            store.dispatch("changeinitial", res.data.changesignature);
+            this.clicked();
+          }
+        });
     }
   },
   components: {
@@ -150,6 +192,10 @@ export default {
       get() {
         return this.initialdisable;
       }
+    },
+
+    token() {
+      return this.$store.getters.getToken;
     }
   }
 };
@@ -202,8 +248,8 @@ hr {
   float: right;
 }
 
-.ancor{
-  font-size:12px;
+.ancor {
+  font-size: 12px;
 }
 
 .modal-enter {

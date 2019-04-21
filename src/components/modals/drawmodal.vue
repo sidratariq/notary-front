@@ -20,13 +20,42 @@
         <hr>
       </div>
     </div>
-    <small class="text-muted">Accepted File Formats: GIF, JPG, PNG, BMP. Max file size 200KB.</small>
+
+    <div class="row" style="background-color:#ffffff">
+      <div class="col-md-12 col-lg-12">
+        <small class="text-muted">Accepted File Formats: GIF, JPG, PNG, BMP. Max file size 200KB.</small>
+
+        <div>
+          <small
+            class="text-muted"
+            style="margin:5px;"
+          >By clicking Create, I agree that the signature and initials will be the electronic representation of my signature and initials for all purposes when I (or my agent) use them on envelopes, including legally binding contracts - just the same as a pen-and-paper signature or initial.</small>
+        </div>
+
+        <!-- create and cancel signature -->
+        <div class="modal-footer" style="padding-top:9px; padding-bottom:9px">
+          <button
+            type="button"
+            :disabled="false"
+            class="btn btn-sm btn-outline-info text-right"
+            @click="save"
+          >Create</button>
+          <button
+            type="button"
+            class="btn btn-sm btn-link btn-black text-right"
+            data-dismiss="modal"
+            @click="clicked()"
+          >Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
       <script>
 import usersignature from "./usersignature.vue";
 import userinitial from "./signatureinitial.vue";
+import axios from "axios";
 
 export default {
   data: function() {
@@ -42,33 +71,75 @@ export default {
     userinitial
   },
   methods: {
+    clicked() {
+      this.$store.dispatch("changeflag");
+      localStorage.setItem("Avalible", false);
+    },
     save() {
+      let token = this.token;
+      let store = this.$store;
+      const formData = new FormData();
+
       let b = this.$refs.signaturePad1.saveSignature();
       let a = this.$refs.pad2.saveSignature();
 
       if (b.isEmpty == false && a.isEmpty == false) {
+        formData.append("userSign", a.data);
+        formData.append("userInitail", b.data);
+
         console.log(a.data);
         console.log(b.data);
-        localStorage.setItem("initial", a.data);
-        localStorage.setItem("signature", b.data);
+
+        axios
+          .post("http://localhost:8000/uploadSign", formData, {
+            headers: {
+              Token: token
+            }
+          })
+          .then(res => {
+            if (res.status == 200) {
+              console.log(a.data);
+              console.log(b.data);
+              console.log(res.data.Signpath);
+              store.dispatch("changeinitial", res.data.InitialsPath);
+              store.dispatch("changeinitial", res.data.changesignature);
+              this.clicked();
+            } else {
+              console.log("go to hell");
+            }
+          });
       }
     },
 
     clear1(value) {
       var _this = this;
-      console.log(value);
       if (value != undefined) {
         _this.$refs.signaturePad1.clearSignature();
-        console.log("i have cleared one");
       } else {
         _this.$refs.pad2.clearSignature();
       }
     }
+  },
+
+  computed: {
+    token() {
+      return this.$store.getters.getToken;
+    }
+  },
+
+  updated() {
+    console.log("runrun");
+    // Fired every second, should always be true
+    this.save();
   }
 };
 </script>
 
       <style scoped>
+* {
+  /* border: 1px solid black; */
+}
+
 #mysignature {
   height: 200px;
 }
@@ -78,7 +149,7 @@ export default {
   width: 336px;
 }
 .outerdiv {
-  padding: 2% 2% 8px 2%;
+  padding: 2% 2% 0px 2%;
   background-color: #eaeaea;
 }
 
@@ -97,6 +168,7 @@ export default {
   display: flex;
   width: 100%;
   background: #eaeaea;
+  margin: 6px;
 }
 
 .first {

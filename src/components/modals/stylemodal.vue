@@ -2,7 +2,7 @@
   <div class="setheight">
 
 
-    <img :src=output>
+    <!-- <img :src=output> -->
 
     <table class="stylesign">
       <tr v-for="(key,index) in 3" :key="index" class="apply">

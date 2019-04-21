@@ -11,7 +11,8 @@
             accept="image/*"
             @change="run($event)"
             data-multiple-caption="{count} files selected"
-            multiple>
+            multiple
+          >
 
           <label for="file-33">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
@@ -62,7 +63,9 @@ export default {
   data() {
     return {
       initialFlag: false,
-      signatureFlag: false
+      signatureFlag: false,
+      selectedsignature: "",
+      selectedinitial: ""
     };
   },
   components: {
@@ -80,44 +83,47 @@ export default {
     run(event) {
       let input = event.target;
       if (event.target.files.length > 0) {
-        
-
         let reader = new FileReader();
-        console.log(this.initialFlag + "here 1");
+        // console.log(this.initialFlag + "here 1");
         // console.log(this.signatureFlag + "here S1");
-
+        // console.log(input.files[0])
         reader.readAsDataURL(input.files[0]);
 
         reader.onload = () => {
           var dataURL = reader.result;
 
           // check whether user has uploaded signature
+          // changesignature
           if (event.target.name == "signature") {
-            console.log(this.signatureFlag + "here 2");
-            console.log("In dataurl signature");
-            this.user_signature = dataURL;
-            console.log("Signature log"+dataURL)
+            this.selectedsignature = input.files[0];
+            // this.user_signature = dataURL;
+            this.$store.dispatch("changesignsrc", dataURL);
+
             this.signatureFlag = true;
-            this.$emit("avaliblesign",this.signatureFlag)
+            this.$emit("avaliblesign", this.signatureFlag);
+            this.$emit("datasignature", this.selectedsignature);
+
             return (this.signatureFlag = true);
           }
 
           // check whether user has uploaded initial
+          // changeinitial
           else {
             // console.log(this.initialFlag + "here 2");
-            this.user_initial = dataURL;
+            this.selectedinitial = input.files[0];
+            // this.user_initial = dataURL;
+            this.$store.dispatch("changeinitialsrc", dataURL);
+
             this.initialFlag = true;
-            
-            this.$emit("avalibleinitial",this.initialFlag)
+
+            this.$emit("avalibleinitial", this.initialFlag);
+            this.$emit("datainitial", this.selectedinitial);
             // console.log(this.initialFlag + "here 2");
-
-
           }
 
-          console.log(this.signatureFlag + "here 3");
-          console.log(this.initialFlag + "here 3");
-          console.log(dataURL)
-
+          // console.log(this.signatureFlag + "here 3");
+          // console.log(this.initialFlag + "here 3");
+          // console.log(dataURL)
         };
       }
     }
@@ -129,29 +135,16 @@ export default {
     },
     showinitial() {
       return this.initialFlag;
-
     },
 
-    user_initial:{
-      set(value){
-        localStorage.setItem('user_initial',value)
-      },
-      get(){
-      return localStorage.getItem('user_initial')
-
-      }
+    user_initial() {
+      return this.$store.getters.getinitialsrc;
     },
 
-    user_signature:{
-      set(value){
-        localStorage.setItem('user_signature',value)
-      },
-
-      get(){
-      return localStorage.getItem('user_signature')
-      }
-    },
-   
+    user_signature() {
+      //  getinitialsrc
+      return this.$store.getters.getsignsrc;
+    }
   },
 
   created() {
@@ -164,6 +157,7 @@ export default {
 .outerdiv {
   padding: 2%;
   background-color: #eaeaea;
+  height: 220px;
 }
 
 .setblock {
@@ -175,7 +169,7 @@ export default {
 .sig-panel {
   border: 1px dashed #ccc;
   cursor: default;
-  height: 234px;
+  height: 170px;
   position: relative;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -252,7 +246,7 @@ export default {
 }
 
 .box {
-  margin: 65px;
+  margin: 35px;
   text-align: center;
   text-transform: uppercase;
 }

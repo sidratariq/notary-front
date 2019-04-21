@@ -60,7 +60,7 @@
 
     <div
       class="dropdown drop"
-      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' &&this.$route.path!='/forget')"
+      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' &&this.$route.path!='/forget' &&this.$route.path!='/verify')"
     >
       <button
         class="dropdown float-right sethover"

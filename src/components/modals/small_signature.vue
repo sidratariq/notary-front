@@ -1,6 +1,6 @@
 <template>
   <span class="timeline_marker timeline_badge">
-    <span class=" ">
+    <span class>
       <div class="signatureChrome signatureChrome-inverse">
         <span style="position:absolute; color:#000000">E-Notarized by:</span>
         <!-- signature image from user choosen from database -->
@@ -28,14 +28,15 @@ export default {
       // this.$store.dispatch('changeflag')
     }
   },
-  props:['value'],
+  props: ["value"],
   computed: {
-    initialsignature(){
-      return this.user_initial
+    initialsignature() {
+      return this.user_initial;
     },
     profilepic: function() {
       return (
-        "http://localhost:8000/" +JSON.parse(localStorage.getItem("Userdata")).Userdata.Picture
+        "http://localhost:8000/" +
+        JSON.parse(localStorage.getItem("Userdata")).Userdata.Picture
       );
     }
   }
@@ -63,14 +64,14 @@ export default {
 }
 
 .sig-chrome {
-        border-left: 2px solid #005cb9;
-        border-radius: 8px;
-        display: block;
-        height: 55px;
-        margin: 4px 0;
-        overflow: visible;
-        /* position: relative; */
-    }
+  border-left: 2px solid #005cb9;
+  border-radius: 8px;
+  display: block;
+  height: 55px;
+  margin: 4px 0;
+  overflow: visible;
+  /* position: relative; */
+}
 
 .signatureChrome_signature {
   height: 52px;

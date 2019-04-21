@@ -7,22 +7,13 @@
     <hr>
     <img :src="output">
 
-
     <div class="sign-container">
-            <div class="signby">Signed By</div>
+      <div class="signby">Signed By</div>
 
-            <span
-              ref="okay"
-              class="font font-style"
-              :style="{'font-family': fontstyles[0]}"
-            >{{fullname}}</span>
+      <span ref="okay" class="font font-style" :style="{'font-family': fontstyles[0]}">{{fullname}}</span>
 
-            <div class="bottom">{{hash}}</div>
-          </div>
-
-
-
-
+      <div class="bottom">{{hash}}</div>
+    </div>
   </div>
 </template>
 
@@ -40,40 +31,37 @@ export default {
   },
   data: () => ({
     output: "",
-     a: 0,
+    a: 0,
     b: 1,
-    color:'',
-    gender:'',
+    color: "",
+    gender: "",
     fontstyles: [
-        "'Ruthie', cursive",
+      "'Ruthie', cursive",
 
-        "'Great Vibes', cursive",
-        "'Cookie', cursive",
-        "'Sacramento', cursive",
-        "'Charmonman', cursive",
+      "'Great Vibes', cursive",
+      "'Cookie', cursive",
+      "'Sacramento', cursive",
+      "'Charmonman', cursive",
 
-        "'Alex Brush', cursive",
-        "'Mr Dafoe', cursive",
-        "'Condiment', cursive",
-        "'Pacifico', cursive",
-        "'Homemade Apple', cursive"
-      ],
-       display: 1,
-      hash: "AE9DB71A4A854B1...",
-      fullname:'sidra'
-      
+      "'Alex Brush', cursive",
+      "'Mr Dafoe', cursive",
+      "'Condiment', cursive",
+      "'Pacifico', cursive",
+      "'Homemade Apple', cursive"
+    ],
+    display: 1,
+    hash: "AE9DB71A4A854B1...",
+    fullname: "sidra"
   }),
   methods: {
     async print(name) {
-      console.log(name)
+      console.log(name);
 
-      let e21 = this.$refs["okay"]  
+      let e21 = this.$refs["okay"];
       let el1 = this.$refs["Tomato"].$el;
-      
-
 
       this.output = (await html2canvas(e21)).toDataURL();
-      console.log(this.output+"value")
+      console.log(this.output + "value");
     }
   }
 };

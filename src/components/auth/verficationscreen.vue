@@ -93,7 +93,7 @@ export default {
               setInterval(() => {
                 this.$router.push("/login");
                 this.show = false;
-              }, 5000);
+              }, 2000);
             //   console.log(response);
             }
           },
