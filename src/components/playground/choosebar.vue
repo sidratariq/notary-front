@@ -103,12 +103,10 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color: "red",
+        color: "lightblue url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat fixed center",
         active: false,
         userid: "",
         text: args,
-        background:"lightblue url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat fixed center",
-        // http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png
         recipient:this.recipientid,
         recipientname: this.recipientname
       });

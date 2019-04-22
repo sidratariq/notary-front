@@ -23,7 +23,6 @@
                 v-for="(recipient,index) in signers"
                 @click="setid(recipient)"
                 :key="index"
-                href="#"
               >
                 <span class="round-body small" v-rainbow>.</span>
                 <span>{{recipient.Name}}</span>
@@ -142,7 +141,7 @@ export default {
 
 <style scoped>
 * {
-  /* border: 1px solid black; */
+  border: 1px solid black;
 }
 
 #app {

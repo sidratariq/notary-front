@@ -9,8 +9,8 @@
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
     >
       <!-- <button @click="add()" class="btn btn-sm btn-primary">add</button> -->
-      <!-- {{rects}} -->
-      <VueDragResize
+      {{rects}}
+      <!-- <VueDragResize
         v-for="(rect, index) in rects"
         :key="index"
         :w="rect.width"
@@ -36,9 +36,9 @@
       >
         <div
           class="filler"
-          :style="{backgroundColor:rect.color,backgroundImage:rect.background}"
+          :style="{background:rect.color}"
         >{{rect.text}}{{rect.recipient}}{{rect.recipientname}}</div>
-      </VueDragResize>
+      </VueDragResize> -->
     </div>
   </div>
 </template>
