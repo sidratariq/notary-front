@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-9">
         <div class="col-12">
-          <small>pdf.pdf</small>
+          <small>{{contractdata.ContractData.ContractName}}</small>
         </div>
 
         <div class="col-12">
@@ -25,7 +25,8 @@
       <div class="col-12 text-center">
         <a :href="imagesoure" target="_blank" rel="noopener noreferrer">
           <div style="position:relative">
-            <img ref="contract"
+            <img
+              ref="contract"
               :src="imagesoure"
               style=" border:1px solid #ccc; z-index;111"
               width="130px"
@@ -49,12 +50,9 @@
                   </div>
                 </div>
               </div>
-            </div> -->
-
+            </div>-->
           </div>
         </a>
-
-
       </div>
     </div>
   </div>
@@ -63,30 +61,28 @@
 <script>
 export default {
   methods: {
-    showpreview() {
-      
-    },
-     print(){
-       print(this.$refs.contract)
-  }
+    showpreview() {},
+    print() {
+      print(this.$refs.contract);
+    }
   },
   computed: {
     imagesoure() {
       let contractdata = this.$store.getters.getcontractdata;
-      console.log(contractdata)
+      console.log(contractdata);
       let imgsource =
         "http://localhost:8000/" + contractdata.ContractData.Filepath;
       return imgsource;
-    }
-  },
- 
+    },
 
+    contractdata() {
+      return this.$store.getters.getcontractdata;
+    }
+  }
 };
 </script>
 
 <style scoped>
-
-
 .sidedisplay {
   background: #e9e9e9;
   overflow: auto;

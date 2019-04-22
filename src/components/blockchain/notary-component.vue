@@ -80,6 +80,12 @@
      
       <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
       </div>
+                 <button
+        :disabled="able"
+        v-on:click="FindOwner"
+        class="btn btn-sm btn-primary"
+      >Verify from blockchain</button>
+
     </div>
   </div>
 </template>
@@ -140,9 +146,8 @@ export default {
       );
     },
     FindOwner(event) {
-      console.log("hash = ", this.checkOwner);
       this.$store.state.contractInstance().getContractOwner(
-        this.checkOwner,
+        this.contracthash,
         {
           gas: 500000,
           value: this.$store.state.web3.web3Instance().toWei(0, "ether"),
@@ -150,9 +155,32 @@ export default {
         },
         (err, result) => {
           if (err) {
-            console.log("error :", err);
+            alert("File not Found in Blockchain")
           } else {
-            console.log(result);
+
+            console.log(result)
+            this.$http
+                .post("http://localhost:8000/verifyContract", {
+
+                  "PublicAddress" : result
+                },
+                {
+                   headers: {
+                     Token : this.token
+                   }
+                }
+                )
+                .then(
+                  response => {
+                    if (response.status == 200) {       
+                    alert ("Contract saved in blockchain by: "+response.body)
+                    }
+                  },
+                  error => {
+                    alert ("CONTRACT NOT FOUND")
+                  }
+          );
+
           }
         }
       );

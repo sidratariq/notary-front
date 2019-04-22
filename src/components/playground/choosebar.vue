@@ -77,8 +77,8 @@ export default {
   methods:{
         add(args) {
       this.$store.state.rect.rects.push({
-        width: 100,
-        height: 150,
+        width: 50,
+        height: 50,
         top: 10,
         left: 10,
         draggable: true,
@@ -93,7 +93,8 @@ export default {
         color: "red",
         active: false,
         userid: "",
-        text: args
+        text: args,
+        background:'../../assets/icons/sign.png'
       });
     }
   }
