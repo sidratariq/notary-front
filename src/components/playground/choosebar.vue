@@ -4,7 +4,6 @@
       <div class="col-xs-0 content-bar">
         <div>
           <h6 class="text-centerr">Choose From Options</h6>
-
           <li class="nav-link menuitem" @click="add('Signature')"  active-class="active" exact tag="li">
             <span style="padding:4px" > 
               <i class="fas fa-file-signature menuicon set"></i>
@@ -73,6 +72,20 @@ export default {
       id: this.$route.params.id
     };
   },
+  computed:{
+      recipientid: {
+      get() {
+        return this.$store.state.currentrecipientid;
+      },
+      set(value) {
+        this.$store.state.currentrecipientid = value;
+      }
+    },
+    recipientname(){
+        return this.$store.state.currentreipientname;
+
+    }
+  },
 
   methods:{
         add(args) {
@@ -82,7 +95,7 @@ export default {
         top: 10,
         left: 10,
         draggable: true,
-        resizable: true,  
+        resizable: false,  
         minw: 10,
         minh: 10,
         axis: "both",
@@ -94,8 +107,12 @@ export default {
         active: false,
         userid: "",
         text: args,
-        background:'../../assets/icons/sign.png'
+        background:"lightblue url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat fixed center",
+        // http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png
+        recipient:this.recipientid,
+        recipientname: this.recipientname
       });
+      console.log(this.$store.state.rect.rects)
     }
   }
 };

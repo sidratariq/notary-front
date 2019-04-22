@@ -4,7 +4,7 @@
       <div class="col-5 col-md-5 col-lg-5 col-sm-5">
         <p style="font-size:1.75rem" class="text-left">Save Your contract in blockchain</p>
       </div>
-       <hello-metamask/>
+      <hello-metamask/>
     </div>
 
     <div class="row setmargin">
@@ -25,12 +25,12 @@
           <div class="col-md-9 col-lg-9 col-sm-9 text-left">{{contractdata.ContractData.ContractID}}</div>
         </div>
 
-     
-
         <div class="row">
-          <div class="col-md-1 col-lg-2 col-sm-1 text-left" style="padding:1.75rem 1.75rem 1.75rem 0rem">
-                <h4>Recipients</h4>
-
+          <div
+            class="col-md-1 col-lg-2 col-sm-1 text-left"
+            style="padding:1.75rem 1.75rem 1.75rem 0rem"
+          >
+            <h4>Recipients</h4>
           </div>
           <div
             class="col-md-9 col-lg-9 col-sm-12 text-left"
@@ -65,27 +65,24 @@
     </div>
     <!-- file show -->
 
-    <div class="col-12 ">
+    <div class="col-12">
       <div class="row pull-right">
-           <button
-        :disabled="able"
-        v-on:click="saveHash"
-        class="btn btn-sm btn-primary"
-      >Save in Blockchain</button>
-      <!-- <small class="text-muted">(0.1 ethers will be deducted from your account)</small> -->
+        <button
+          :disabled="able"
+          v-on:click="saveHash"
+          class="btn btn-sm btn-primary"
+        >Save in Blockchain</button>
+        <!-- <small class="text-muted">(0.1 ethers will be deducted from your account)</small> -->
       </div>
       <div class="clearfix"></div>
-        <div class="row pull-right">
-
-     
-      <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
+      <div class="row pull-right">
+        <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
       </div>
-                 <button
+      <button
         :disabled="able"
         v-on:click="FindOwner"
         class="btn btn-sm btn-primary"
       >Verify from blockchain</button>
-
     </div>
   </div>
 </template>
@@ -94,7 +91,7 @@
 import recipient from "../viewfile/recipients.vue";
 import { NETWORKS } from "../../util/constants/networks";
 import { mapState } from "vuex";
-import HelloMetamask from '@/components/blockchain/hello-metamask'
+import HelloMetamask from "@/components/blockchain/hello-metamask";
 
 export default {
   name: "notary",
@@ -155,32 +152,31 @@ export default {
         },
         (err, result) => {
           if (err) {
-            alert("File not Found in Blockchain")
+            alert("File not Found in Blockchain");
           } else {
-
-            console.log(result)
+            console.log(result);
             this.$http
-                .post("http://localhost:8000/verifyContract", {
-
-                  "PublicAddress" : result
+              .post(
+                "http://localhost:8000/verifyContract",
+                {
+                  PublicAddress: result
                 },
                 {
-                   headers: {
-                     Token : this.token
-                   }
-                }
-                )
-                .then(
-                  response => {
-                    if (response.status == 200) {       
-                    alert ("Contract saved in blockchain by: "+response.body)
-                    }
-                  },
-                  error => {
-                    alert ("CONTRACT NOT FOUND")
+                  headers: {
+                    Token: this.token
                   }
-          );
-
+                }
+              )
+              .then(
+                response => {
+                  if (response.status == 200) {
+                    alert("Contract saved in blockchain by: " + response.body);
+                  }
+                },
+                error => {
+                  alert("CONTRACT NOT FOUND");
+                }
+              );
           }
         }
       );
@@ -197,33 +193,34 @@ export default {
         (err, result) => {
           if (err) {
             console.log("error :", err);
-          }
-         else {
-           let address = this.$store.state.web3.coinbase
-           console.log("address is :"+ address)
+          } else {
+            let address = this.$store.state.web3.coinbase;
+            console.log("address is :" + address);
             this.$http
-                .post("http://localhost:8000/updateBlockchainstatus", {
+              .post(
+                "http://localhost:8000/updateBlockchainstatus",
+                {
                   ContractID: this.ContractID,
                   userid: this.userid,
-                  "publicAddress" : address
+                  publicAddress: address
                 },
                 {
-                   headers: {
-                     Token : this.token
-                   }
-                }
-                )
-                .then(
-                  response => {
-                    if (response.status == 200) {       
-                      alert("CONTRACT IS SUCCESSFLLY SAVED IN BLOCKCHAIN")
-                    }
-                  },
-                  error => {
-                    console.log(error);
-                    // console.log(response.bodyText)
+                  headers: {
+                    Token: this.token
                   }
-          );
+                }
+              )
+              .then(
+                response => {
+                  if (response.status == 200) {
+                    alert("CONTRACT IS SUCCESSFLLY SAVED IN BLOCKCHAIN");
+                  }
+                },
+                error => {
+                  console.log(error);
+                  // console.log(response.bodyText)
+                }
+              );
           }
         }
       );
@@ -254,8 +251,8 @@ export default {
     token() {
       return this.$store.getters.getToken;
     },
-    ContractID: function (){
-      return this.$store.getters.getcontractid
+    ContractID: function() {
+      return this.$store.getters.getcontractid;
     },
     userid: function() {
       return this.$store.getters.getuserid;
@@ -303,25 +300,21 @@ export default {
   },
 
   components: {
-     'hello-metamask': HelloMetamask,
+    "hello-metamask": HelloMetamask,
     recipient
   }
 };
 </script>
 
 <style scoped>
-
-.row{
+.row {
   margin-top: 25px;
-  
 }
 
-.setpadding{
+.setpadding {
   padding-left: 0px;
-  padding-right:0px; 
+  padding-right: 0px;
 }
-
-
 
 .notary {
   /* margin-top: 50px; */
