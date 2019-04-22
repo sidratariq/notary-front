@@ -20,9 +20,9 @@
         <div class="dropdown-menu setpadding">
           <div class="row">
             <div class="col-12">
-              <a class="dropdown-item date padding" href="#">Forward</a>
-              <a class="dropdown-item date padding" href="#">Create a Copy</a>
-              <a class="dropdown-item date padding" href="#">Save as Template</a>
+              <!-- <a class="dropdown-item date padding" href="#">Forward</a> -->
+              <!-- <a class="dropdown-item date padding" href="#">Create a Copy</a> -->
+              <!-- <a class="dropdown-item date padding" href="#">Save as Template</a> -->
               <a class="dropdown-item date padding" href="#">Export as CSV</a>
               <a class="dropdown-item date padding" href="#">Delete</a>
             </div>
@@ -38,13 +38,17 @@
     <div class="col-1 setpadding">
       <button class="btn btn-sm apply" type="button">Continue</button>
     </div>
+    <div class="col-1 setpadding">
+      <!-- <button class="btn btn-sm apply" type="button">Continue</button> -->
+    </div>
 
-    <div class="col-2 setpadding">
+    <div class="col-3 setpadding">
       <button
         class="btn btn-md apply green"
         @click="SaveinBlockhchain()"
         type="button"
-      >Save in Blockchain</button>
+      >Save in Blockchain<i class="fab fa-bitcoin" style="color:green;transform: rotate(-16deg); margin:3px"></i>
+      </button>
     </div>
   </div>
 </template>
@@ -129,7 +133,7 @@ export default {
 }
 
 .green {
-  background: #008938;
+  /* background: #008938; */
   font-size: 14px;
 }
 

@@ -78,9 +78,9 @@
         <!-- status__4 status  -->
         <td @click="routechange(select.ContractID)">
           <!-- {{select.Blockchain}} -->
-          <p style="font-size:13px">
+          <!-- <p style="font-size:13px"> -->
             <i class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
-          </p>
+          <!-- </p> -->
         </td>
 
         <!-- status__5 Last change  -->

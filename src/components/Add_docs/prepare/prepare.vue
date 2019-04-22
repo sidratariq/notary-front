@@ -113,7 +113,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5>{{filename + "filename"}}</h5>
+            <h5>{{filename }}</h5>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
