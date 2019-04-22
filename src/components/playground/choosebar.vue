@@ -11,14 +11,14 @@
             <span class="setlayout">signature</span>
           </li>
 
-          <li class="nav-link menuitem" @click="add('Initial')" active-class="active" exact tag="li">
+          <li class="nav-link menuitem" @click="addinitial('Initial')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="fas fa-signature set menuicon"></i>
             </span>
             <span class="setlayout">Initials</span>
           </li>
 
-          <li class="nav-link menuitem" @click="add('Calender')"  active-class="active" tag="li" exact>
+          <li class="nav-link menuitem" @click="add('DateSigned')"  active-class="active" tag="li" exact>
             <!-- <i class="far fa-edit menuicon"></i> -->
             <span style="padding:4px">
               <i class="far fa-calendar menuicon set"></i>
@@ -85,7 +85,9 @@ export default {
     },
     recipientname(){
         return this.$store.state.currentreipientname;
-
+    },
+    Contractid(){
+      return signers[0].ContractID
     }
   },
 
@@ -109,11 +111,43 @@ export default {
         active: false,
         text: args,
         recipient:this.recipientid,
-        recipientname: this.recipientname
+        recipientname: this.recipientname,
+        contractid:this.Contractid
+        
+      });
+      console.log(this.$store.state.rect.rects)
+    },
+
+     addinitial(args) {
+      this.$store.state.rect.rects.push({
+        width: 101,
+        height: 27,
+        top: 10,
+        left: 10,
+        draggable: true,
+        resizable: true,  
+        minw: 20,
+        minh: 20,
+        axis: "both",
+        parentLim: true,
+        snapToGrid: false,
+        aspectRatio: false,
+        zIndex: 1,
+        color: "lightgreen url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat  ",
+        active: false,
+        text: args,
+        recipient:this.recipientid,
+        recipientname: this.recipientname,
+        contractid:this.Contractid
+
       });
       console.log(this.$store.state.rect.rects)
     }
+
+
   }
+    
+  
 };
 </script>
 

@@ -39,7 +39,7 @@
 
         <div class="col-2">
 
-          <button class="btn btn-sm btn-secondary" @click.native="undo">
+          <button class="btn btn-sm btn-secondary" @click="undo">
               <i class="fas fa-undo"></i>
           </button>
 
@@ -91,17 +91,16 @@ import helloworld from "./HelloWorld.vue";
 import sidebar from "./filepreview.vue";
 import choosebar from "./choosebar.vue";
 export default {
-  data: function() {
-    return {};
-  },
 
-  components: {
+   components: {
     sidebar,
     helloworld,
     choosebar
   },
 
- 
+  data: function() {
+    return {};
+  },
 
   computed: {
     recipients: function() {
@@ -147,11 +146,12 @@ export default {
       this.$router.push("/addrecipient");
     },
     run() {
+      console.log("mein chal rhaa hn remove krnay ky liyee")
       this.$router.push("/testing");
     },
     undo(){
-      this.$store.state.rect.rects.pop()
-      this.$store.state.rect.rects.shift()
+        this.$store.state.rect.rects.pop()
+    
 
     }
 

@@ -15,7 +15,7 @@
         aria-expanded="false"
         style="width:70px"
       >
-        <!-- {{signers}}} -->
+        {{signers[0].ContractID}}
         <span class="round-body small-main" v-rainbow>.</span>
         <span>Name</span>
       </button>
