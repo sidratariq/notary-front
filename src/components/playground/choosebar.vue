@@ -87,6 +87,8 @@ export default {
         return this.$store.state.currentreipientname;
     },
     Contractid(){
+      // this.$store.getters.getsigners
+      let signers = this.$store.getters.getsigners
       return signers[0].ContractID
     }
   },

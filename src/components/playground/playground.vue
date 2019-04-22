@@ -161,7 +161,6 @@ export default {
 
 <style scoped>
 * {
-  border: 1px solid black;
 }
 
 #app {
