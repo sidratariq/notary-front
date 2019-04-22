@@ -107,5 +107,6 @@ export default {
 
     [CHANGE_MINW](state, payload) {
         state.rects[payload.id].minw = payload.minw;
-    }
+    },
+    
 };

@@ -5,20 +5,21 @@
         <div>
           <h6 class="text-centerr">Choose From Options</h6>
 
-          <li class="nav-link menuitem" active-class="active" exact tag="li">
-            <span style="padding:4px">
+          <li class="nav-link menuitem" @click="add('Signature')"  active-class="active" exact tag="li">
+            <span style="padding:4px" > 
               <i class="fas fa-file-signature menuicon set"></i>
             </span>
             <span class="setlayout">signature</span>
           </li>
-          <li class="nav-link menuitem" active-class="active" exact tag="li">
+
+          <li class="nav-link menuitem" @click="add('Initial')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="fas fa-signature set menuicon"></i>
             </span>
-
             <span class="setlayout">Initials</span>
           </li>
-          <li class="nav-link menuitem" active-class="active" tag="li" exact>
+
+          <li class="nav-link menuitem" @click="add('Calender')"  active-class="active" tag="li" exact>
             <!-- <i class="far fa-edit menuicon"></i> -->
             <span style="padding:4px">
               <i class="far fa-calendar menuicon set"></i>
@@ -27,7 +28,7 @@
             <span class="setlayout">Date Signed</span>
           </li>
 
-          <li class="nav-link menuitem" ctive-class="active" tag="li" exact>
+          <li class="nav-link menuitem" @click="add('Name')" active-class="active" tag="li" exact>
             <span style="padding:4px">
               <i class="fas fa-user menuicon set"></i>
             </span>
@@ -38,7 +39,7 @@
 
         <div class="envelopclass">
           <h6 class="text-centerr">_____________________</h6>
-          <li class="nav-link menuitem" active-class="active" exact tag="li">
+          <li class="nav-link menuitem" @click="add('Email')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="far fa-envelope set menuicon"></i>
             </span>
@@ -46,13 +47,13 @@
             <span class="setlayout">Email</span>
           </li>
 
-          <li class="nav-link menuitem" active-class="active" exact tag="li">
+          <li class="nav-link menuitem" @click="add('Company')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="far fa-building menuicon"></i>
             </span>
             <span class="setlayout">Company</span>
           </li>
-          <li class="nav-link menuitem" active-class="active" exact tag="li">
+          <li class="nav-link menuitem" @click="add('Text')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="fas fa-text-height menuicon"></i>
             </span>
@@ -71,6 +72,30 @@ export default {
     return {
       id: this.$route.params.id
     };
+  },
+
+  methods:{
+        add(args) {
+      this.$store.state.rect.rects.push({
+        width: 100,
+        height: 150,
+        top: 10,
+        left: 10,
+        draggable: true,
+        resizable: true,  
+        minw: 10,
+        minh: 10,
+        axis: "both",
+        parentLim: true,
+        snapToGrid: false,
+        aspectRatio: false,
+        zIndex: 1,
+        color: "red",
+        active: false,
+        userid: "",
+        text: args
+      });
+    }
   }
 };
 </script>

@@ -9,6 +9,8 @@
       :style="{ background: 'url(' + image + ') ' }"
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
     >
+      <!-- <button @click="add()" class="btn btn-sm btn-primary">add</button> -->
+      <!-- {{rects}} -->
       <VueDragResize
         v-for="(rect, index) in rects"
         :key="index"
@@ -33,7 +35,7 @@
         v-on:dragging="changePosition($event, index)"
         v-on:resizing="changeSize($event, index)"
       >
-        <div class="filler" :style="{backgroundColor:rect.color}"></div>
+        <div class="filler" :style="{backgroundColor:rect.color}">{{rect.text}}</div>
       </VueDragResize>
     </div>
   </div>

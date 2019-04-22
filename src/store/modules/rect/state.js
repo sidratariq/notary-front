@@ -1,7 +1,7 @@
 export default {
-    'rects': [
+    rects: [
         {
-            'width': 200,
+            'width': 100,
             'height': 150,
             'top': 10,
             'left': 10,
@@ -14,9 +14,10 @@ export default {
             'snapToGrid': false,
             'aspectRatio': false,
             'zIndex': 1,
-            'color': '#FFFFFF',
+            'color': '#0074D9',
             'active': false,
-            "userid":''
+            "userid":'',
+            "text":'lets work for the goal'            
         }
       
     ]
