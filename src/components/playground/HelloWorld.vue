@@ -5,12 +5,12 @@
     <div
       class="list"
       id="list"
-      :style="{ background: 'url(' + image + ') ' }"
+      :style="{ background: 'url(' + image + ') center ' }"
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
     >
       <!-- <button @click="add()" class="btn btn-sm btn-primary">add</button> -->
       {{rects}}
-      <!-- <VueDragResize
+      <VueDragResize
         v-for="(rect, index) in rects"
         :key="index"
         :w="rect.width"
@@ -38,7 +38,7 @@
           class="filler"
           :style="{background:rect.color}"
         >{{rect.text}}{{rect.recipient}}{{rect.recipientname}}</div>
-      </VueDragResize> -->
+      </VueDragResize>
     </div>
   </div>
 </template>

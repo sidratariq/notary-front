@@ -1,8 +1,11 @@
 <template>
   <div class="container-fluid">
     <div class="row h-25">
+
+       
       <div class="col-12 col-md-12" style="padding-left:0px">
-        <div class="col-2">
+        <div class="row">
+            <div class="col-2">
           <div class="dropdown" style="margin:7px">
             <button
               class="btn btn-sm btn-utility dropdown-none"
@@ -29,9 +32,20 @@
               </a>
             </div>
           </div>
+
+          
+
         </div>
 
-        <div class="col-2">status</div>
+        <div class="col-2">
+
+          <button class="btn btn-sm btn-secondary" @click.native="undo">
+              <i class="fas fa-undo"></i>
+          </button>
+
+        </div>
+        </div>
+        
       </div>
     </div>
 
@@ -57,7 +71,8 @@
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="margin-top:12px;"
-          @click="SendToRecipients()"
+          @click="run()"
+         
         >start</button>
 
         <button
@@ -86,14 +101,7 @@ export default {
     choosebar
   },
 
-  methods: {
-    changeroute() {
-      this.$router.push("/addrecipient");
-    },
-    SendToRecipients() {
-      this.$router.push("/testing");
-    }
-  },
+ 
 
   computed: {
     recipients: function() {
@@ -134,7 +142,19 @@ export default {
     setid(index) {
       this.status = index.Name;
       this.recipientid = index.UserID;
+    },
+      changeroute() {
+      this.$router.push("/addrecipient");
+    },
+    run() {
+      this.$router.push("/testing");
+    },
+    undo(){
+      this.$store.state.rect.rects.pop()
+      this.$store.state.rect.rects.shift()
+
     }
+
   }
 };
 </script>

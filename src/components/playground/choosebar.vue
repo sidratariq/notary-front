@@ -52,12 +52,14 @@
             </span>
             <span class="setlayout">Company</span>
           </li>
-          <li class="nav-link menuitem" @click="add('Text')" active-class="active" exact tag="li">
+          <!-- <li class="nav-link menuitem" @click="add('Text')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="fas fa-text-height menuicon"></i>
             </span>
             <span class="setlayout">Text</span>
-          </li>
+          </li> -->
+
+
         </div>
       </div>
     </div>
@@ -95,17 +97,16 @@ export default {
         top: 10,
         left: 10,
         draggable: true,
-        resizable: false,  
-        minw: 10,
-        minh: 10,
+        resizable: true,  
+        minw: 20,
+        minh: 20,
         axis: "both",
         parentLim: true,
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color: "lightblue url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat fixed center",
+        color: "lightblue url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat  ",
         active: false,
-        userid: "",
         text: args,
         recipient:this.recipientid,
         recipientname: this.recipientname
