@@ -22,8 +22,8 @@
             <div class="col-12">
               <!-- <a class="dropdown-item date padding" href="#">Forward</a> -->
               <!-- <a class="dropdown-item date padding" href="#">Create a Copy</a> -->
-              <!-- <a class="dropdown-item date padding" href="#">Save as Template</a> -->
-              <a class="dropdown-item date padding" href="#">Export as CSV</a>
+              <a class="dropdown-item date padding" @click="print()" href="#">Download</a>
+              <a class="dropdown-item date padding" @click="DownloadAsCSV(contractid)" href="#">Export as CSV</a>
               <a class="dropdown-item date padding" href="#">Delete</a>
             </div>
           </div>
@@ -94,6 +94,10 @@ export default {
     },
     gotoSignscreen(){
       this.$router.push('/signscreen')
+    },
+    DownloadAsCSV(args){
+      console.log(args)
+
     }
   },
   computed: {

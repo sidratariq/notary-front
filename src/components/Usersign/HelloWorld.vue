@@ -13,11 +13,10 @@
       </small>
       <!-- {{top}}
       {{left}} -->
-      <slot></slot>
+      <slot name="default"></slot>
       <slot  name="signature" ></slot>
       <slot  name="initial" ></slot>
 
-      <slot ></slot>
 
     </div>
   </div>

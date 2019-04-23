@@ -1,10 +1,13 @@
 <template>
   <div class="container-fluid">
+    <!-- header name -->
     <div class="row h-25">
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
-          <div class="col-2"></div>
-          <div class="col-2"></div>
+          <div style="border:1px solid black" class="col-2"></div>
+          <div class="col-2">
+            <div class="col-3"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -12,20 +15,21 @@
     <div class="row">
       <div class="col-2 set-side"></div>
 
+      <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
         <helloworld ref="name">
           <div v-for="(i,index) in coordinated" :key="'A'+index">
-
-            <div v-if="i.Name =='Signature'" slot="signature" >
+            <div v-if="i.Name =='Signature'" slot="signature">
               <img :src="start(i)">
               {{i.Topcord}}
               {{i.Leftcord}}
             </div>
-            <!-- :top="i.Topcord" :left="i.Leftcord -->
-            <!-- :style="{background:rect.color,backgroundSize: '67px' }" -->
-            <div v-if="i.Name =='Initial'" slot="initial" >
+
+            <div v-if="i.Name =='Initial'" slot="initial">
               <img :src="start(i)" :style="{position:absolute, top:i.Topcord, left:i.Leftcord }">
             </div>
+
+            <div v-if="i.Name!='Initial' && i.Name!='Signature'" name="default">{{start(i)}}</div>
           </div>
         </helloworld>
       </div>
@@ -33,16 +37,17 @@
       <div class="col-2" style="padding:0px;">{{coordinated}}</div>
     </div>
 
+    <!-- footer -->
     <div
       class="row"
-      style="position:fixed;z-index:999;bottom:20px; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
+      style="position:fixed;z-index:999;bottom:0px; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
     >
       <div class="col">
         <button
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="print()"
+          @click="copy()"
         >Sign</button>
 
         <button
@@ -51,6 +56,7 @@
           @click="setcoordinates()"
         >Place Fields</button>
 
+        <!-- when decline call decline  -->
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="margin-top:12px;"
@@ -86,6 +92,7 @@ export default {
         return this.set;
       }
     },
+
     image() {
       console.log(this.$store.getters.getcontractpath);
       return this.$store.getters.getcontractpath;
@@ -98,6 +105,7 @@ export default {
     },
     coordinated: {
       set(value) {
+        alert(value);
         this.responsedata = value;
       },
       get() {
@@ -140,24 +148,21 @@ export default {
         })
         .catch(error => {
           this.request = error.bodyText;
-          alert(error.bodyText);
+          console.log(error.bodyText);
         });
     },
 
     start(args) {
       console.log(this.pass + "undefined");
       let creator = this.Userdata;
-      // console.log(args.Name +"ansa")
       if (args.Name == "Signature") {
-        // console.log(args.Name +"ansa")
         return "http://localhost:8000/" + creator.Userdata.UserSignature;
       }
 
-      // for showing initial on the screen
       if (args.Name == "Initial") {
         return "http://localhost:8000/" + creator.Userdata.UserInitials;
       }
-      // for showing date that user will sign the document
+
       if (args.Name == "DateSigned") {
         var today = new Date();
         var time =
@@ -183,6 +188,14 @@ export default {
         return creator.Userdata.UserCompany;
       }
       // return true;
+    },
+
+    async copy() {
+      let el = this.$refs.name.$el;
+      // alert(this.image+"if i am undergined")
+      this.$refs.name.innerHTML = this.image;
+      this.output = (await html2canvas(el)).toDataURL();
+      console.log(this.output);
     }
   }
 };

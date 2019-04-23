@@ -185,7 +185,8 @@ export default {
     },
 
     deleteicon() {
-      console.log(this.$store.state.currentindex);
+      let index =this.$store.state.currentindex;
+      this.$store.state.rect.rects.splice(index,1)
     }
   }
 };
