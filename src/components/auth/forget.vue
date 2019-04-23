@@ -142,7 +142,7 @@ export default {
         .then(res => {
           if (res.status == 200) {
             console.log(res.body);
-            alert("code red");
+            // alert("code red");
             this.newpassword = true;
           }
             return res;
@@ -162,7 +162,7 @@ export default {
         .then(res => {
           if (res.status == 200) {
             console.log(res.body);
-            alert("code red");
+            // alert("code red");
             this.$router.push("/forget");
             return res;
           }
@@ -188,7 +188,7 @@ export default {
         .then(res => {
           if (res.status == 200) {
             console.log(res.body);
-            alert("code red");
+            // alert("code red");
             this.newpassword = true;
             this.sucessfull = true;
             setTimeout(() => {

@@ -107,7 +107,7 @@ export default {
   methods: {
     async print(name) {
       let el = this.$refs[name].$el;
-      this.output = (await html2canvas(el)).toDataURL();
+      this.output = (await html2canvas(el)).toDataURL("image/png");
     
     }
   }

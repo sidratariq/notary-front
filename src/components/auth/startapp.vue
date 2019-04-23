@@ -121,7 +121,6 @@ export default {
         .then(res => {
           if (res.status == 200) {
             console.log(res.body);
-            alert("code red");
             this.$router.push("/forget");
             return res;
           }
@@ -155,7 +154,6 @@ export default {
             console.log(res)
             let Userdata = res.body;
             console.log(Userdata)
-            alert(res.body)
             // alert(typeof(res.body))
             
             if (res.status == 200) {
