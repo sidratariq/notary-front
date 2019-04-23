@@ -8,7 +8,10 @@
     >
       <!-- <img :src="image" alt> -->
 
+      <small class="text-muted">
       {{getcontractid}}
+      </small>
+
     </div>
   </div>
 </template>

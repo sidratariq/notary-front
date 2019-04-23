@@ -8,7 +8,7 @@
           </div>
 
           <div class="col-2"></div>
-          {{getcontractid}}
+          <!-- {{getcontractid}} -->
         </div>
       </div>
     </div>
