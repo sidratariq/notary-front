@@ -4,20 +4,11 @@
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
           <div class="col-2">
-              <img :src="output" alt="">
+            <img :src="output" alt>
           </div>
 
           <div class="col-2"></div>
-
-          <div class="col-2">
-            <!-- {{rects}} -->
-          </div>
-          <div class="col-2">
-            <button class="btn btn-sm"></button>
-            <!-- <i class="far fa-trash-alt"></i> -->
-
-            <button class="btn btn-sm"></button>
-          </div>
+          {{getcontractid}}
         </div>
       </div>
     </div>
@@ -50,7 +41,7 @@
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="print('name')"
+          @click="setcoordinates()"
         >Sign</button>
       </div>
     </div>
@@ -72,35 +63,20 @@ export default {
 
   data: function() {
     return {
-        output:''
+      output: ""
     };
-
   },
 
   computed: {
-    recipients: function() {
-      let recipientlist = [];
-      let recipient = this.$store.getters.getrecipient;
-      recipient.forEach(element => {
-        recipientlist.push(element.name);
-      });
-      return recipient || recipientlist;
-    },
     image() {
       console.log(this.$store.getters.getcontractpath);
       return this.$store.getters.getcontractpath;
     },
-
-    signers() {
-      return this.$store.getters.getsigners;
+    token: function() {
+      return this.$store.getters.getToken;
     },
-    status: {
-      set(value) {
-        this.$store.state.currentreipientname = value;
-      },
-      get() {
-        return this.$store.state.currentreipientname;
-      }
+    getcontractid: function() {
+      return this.$store.getters.getcontractdata.ContractData.ContractID;
     }
   },
 
@@ -108,7 +84,32 @@ export default {
     async print(name) {
       let el = this.$refs[name].$el;
       this.output = (await html2canvas(el)).toDataURL("image/png");
-    
+    },
+    setcoordinates() {
+      // /serveCoordinates
+
+      console.log("mein chal rhaa hn remove krnay ky liyee");
+      // /playgroundinput
+      let token = this.token;
+      this.$http
+        .post("http://localhost:8000/serveCoordinates", {ContractID:this.getcontractid}, {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          if (res.status == 200) {
+            alert("inside");
+            // this.$router.push("/testing");
+            console.log(res);
+            // alert("code red");
+          }
+          return res;
+        })
+        .catch(error => {
+          this.request = error.bodyText;
+          alert(error.bodyText);
+        });
     }
   }
 };
