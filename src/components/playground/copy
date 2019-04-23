@@ -1,4 +1,4 @@
-  <template>
+    <template>
   <div class="container-fluid">
     <div class="row h-100">
       <div class="col-xs-0 content-bar">
@@ -71,7 +71,8 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      color:['','#c3d5e6','#acdce6','#f7b994','#c0a5cf','#97c9bf ']
     };
   },
   computed:{
@@ -109,7 +110,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color: "#ffd65b url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
+        color:  " #ffd65b url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -135,7 +136,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color:"#c3d5e6 url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
+        color: " #c3d5e6 url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -160,7 +161,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color:"#acdce6  no-repeat  ",
+        color: this.color[2]+" no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -185,7 +186,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color:"#f7b994  no-repeat  ",
+        color: this.color[3]+" no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -212,7 +213,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color:"#c0a5cf  no-repeat  ",
+        color: this.color[4]+" no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -240,7 +241,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color:"#97c9bf  no-repeat  ",
+        color:this.color[5]+"no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -248,7 +249,7 @@ export default {
         contractid:this.Contractid
 
       });
-      // console.log(this.$store.state.rect.rects)
+      console.log(this.$store.state.rect.rects)
     },
   }
     

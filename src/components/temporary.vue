@@ -32,14 +32,16 @@
         </a>
       </div>
     </div>
+
+    <p style="color:red">{{current}}</p>
+    <p style="color:green">{{recipients}}</p>
   </div>
 </template>
 
 <script>
 export default {
   data: function() {
-    return {
-    };
+    return {};
   },
   computed: {
     signers() {
@@ -60,7 +62,13 @@ export default {
       set(value) {
         this.$store.state.currentrecipientid = value;
       }
-    }
+    },
+    recipients() {
+      return this.$store.getters.getrecipient;
+    },
+    current(){
+     let current = this.$store.getters.getsigners[0].ContractID;
+     return current
   },
   methods: {
     setid(index) {
@@ -68,7 +76,7 @@ export default {
       this.recipientid = index.UserID;
     }
   }
-};
+}};
 </script>
 
 <style>

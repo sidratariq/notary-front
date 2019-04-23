@@ -37,8 +37,8 @@
       >
         <div
           class="filler"
-          :style="{background:rect.color,backgroundSize: '30px' }"
-        >{{rect.text}}{{rect.recipientname}}</div>
+          :style="{background:rect.color,backgroundSize: '67px' }"
+        >{{rect.recipientname}}</div>
       </VueDragResize>
     </div>
   </div>
@@ -121,7 +121,6 @@ export default {
     getindex(index){
       // alert(index)
       this.$store.state.currentindex = index;
-      console.log(this.$store.state.currentindex)
     }
     
   },

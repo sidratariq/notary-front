@@ -14,9 +14,10 @@
                 aria-expanded="false"
                 style="width:70px"
               >
-                <!-- {{signers}}} -->
+
+                {{signers}}}
                 <span class="round-body small-main" v-rainbow>.</span>
-                <span>Name</span>
+                <span>{{recipientid}}</span>
               </button>
               <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
                 <a
@@ -27,7 +28,6 @@
                 >
                   <span class="round-body small" v-rainbow>.</span>
                   <span>{{recipient.Name}}</span>
-
                 </a>
               </div>
             </div>
@@ -35,14 +35,16 @@
 
           <div class="col-2"></div>
 
-          <div class="col-2"></div>
+          <div class="col-2">
+            <!-- {{rects}} -->
+          </div>
           <div class="col-2">
             <button class="btn btn-sm" @click="undo">
               <i class="fas fa-undo"></i>
             </button>
             <!-- <i class="far fa-trash-alt"></i> -->
 
-              <button class="btn btn-sm" @click="deleteicon">
+            <button class="btn btn-sm" @click="deleteicon">
               <i class="far fa-trash-alt"></i>
             </button>
           </div>
@@ -133,10 +135,18 @@ export default {
       set(value) {
         this.$store.state.currentrecipientid = value;
       }
-    }
+    },
+    token: function() {
+      return this.$store.getters.getToken;
+    },
+    rects() {
+      return this.$store.state.rect.rects;
+    },
   },
 
   methods: {
+
+     
     setid(index) {
       this.status = index.Name;
       this.recipientid = index.UserID;
@@ -146,13 +156,37 @@ export default {
     },
     run() {
       console.log("mein chal rhaa hn remove krnay ky liyee");
-      this.$router.push("/testing");
+      // /playgroundinput
+      let token = this.token;
+      console.log(this.rects)
+      this.$http
+          .post("http://localhost:8000/playgroundinput", this.rects, {
+            headers: {
+              Token: token
+            }
+          })
+          .then(res => {
+            if (res.status == 200) {
+              alert('inside')
+              this.$router.push("/testing");
+              console.log(res)
+              // alert("code red");
+            }
+            return res;
+          })
+          .catch(error => {
+            this.request = error.bodyText;
+            alert(error.bodyText);
+          });
+
+      
     },
     undo() {
       this.$store.state.rect.rects.pop();
     },
-    deleteicon(){
 
+    deleteicon() {
+      console.log(this.$store.state.currentindex);
     }
   }
 };

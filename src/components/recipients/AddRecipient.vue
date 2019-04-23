@@ -375,6 +375,7 @@ export default {
             if (res.status == 200) {
               console.log(res.bodyText);
               store.dispatch("act_signers", JSON.parse(res.bodyText));
+              store.state.currentrecipientid = store.getters.getsigners[0].ContractID;
               store.dispatch("act_recipients", recipient);
               this.$router.push("/playground");
 
