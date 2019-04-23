@@ -297,6 +297,7 @@ export default {
     changeroute() {
       let contract = this.contractid;
       let token = this.token;
+      let creator = this.creator;
       let recipient = this.recipeints;
 
       let store = this.$store;
@@ -376,6 +377,7 @@ export default {
               console.log(res.bodyText);
               store.dispatch("act_signers", JSON.parse(res.bodyText));
               store.state.currentrecipientid = store.getters.getsigners[0].ContractID;
+              store.state.currentreipientname = creator
               store.dispatch("act_recipients", recipient);
               this.$router.push("/playground");
 

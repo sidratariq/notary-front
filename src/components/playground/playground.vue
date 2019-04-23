@@ -16,7 +16,7 @@
               >
 
                 <span class="round-body small-main" v-rainbow>.</span>
-                <span>{{recipientid}}</span>
+                <span>{{status}}</span>
               </button>
               <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
                 <a
