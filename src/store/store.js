@@ -44,7 +44,12 @@ export const store = new Vuex.Store({
     currentrecipientid: '',
     
     // for drag and drop playgroundscreen,
-    currentreipientname:''
+    currentreipientname:'',
+
+    // index for deleteing index from state object
+    currentindex:0
+
+
 
 
   },

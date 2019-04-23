@@ -1,6 +1,6 @@
   <template>
   <div id="app1">
-    <!-- <img src="../../assets/icons/sign.png" alt=""> -->
+    <img src="url('http://localhost:8000/Files/Icons/sign.png')" alt="">
 
     <div
       class="list"
@@ -9,7 +9,7 @@
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
     >
       <!-- <button @click="add()" class="btn btn-sm btn-primary">add</button> -->
-      {{rects}}
+      <!-- {{rects}} -->
       <VueDragResize
         v-for="(rect, index) in rects"
         :key="index"
@@ -33,11 +33,12 @@
         v-on:deactivated="deactivateEv(index)"
         v-on:dragging="changePosition($event, index)"
         v-on:resizing="changeSize($event, index)"
+        @click.native="getindex(index)"
       >
         <div
           class="filler"
-          :style="{background:rect.color}"
-        >{{rect.text}}{{rect.recipient}}{{rect.recipientname}}</div>
+          :style="{background:rect.color,backgroundSize: '30px' }"
+        >{{rect.text}}{{rect.recipientname}}</div>
       </VueDragResize>
     </div>
   </div>
@@ -58,7 +59,10 @@ export default {
       listWidth: 0,
       listHeight: 0,
       image: this.$store.getters.getcontractpath,
-      display: false
+      display: false,
+      backgroundwidth:'61px',
+      backgroundheight:'30px'
+
     };
   },
   mounted() {
@@ -113,7 +117,13 @@ export default {
       this.height1 = newRect.height;
       this.top1 = newRect.top;
       this.left1 = newRect.left;
+    },
+    getindex(index){
+      // alert(index)
+      this.$store.state.currentindex = index;
+      console.log(this.$store.state.currentindex)
     }
+    
   },
   computed: {
     rects() {

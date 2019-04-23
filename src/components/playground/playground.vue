@@ -1,51 +1,52 @@
 <template>
   <div class="container-fluid">
     <div class="row h-25">
-
-       
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
-            <div class="col-2">
-          <div class="dropdown" style="margin:7px">
-            <button
-              class="btn btn-sm btn-utility dropdown-none"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              style="width:70px"
-            >
-              <!-- {{signers}}} -->
-              <span class="round-body small-main" v-rainbow>.</span>
-              <span>Name</span>
-            </button>
-            <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
-              <a
-                class="dropdown-item"
-                v-for="(recipient,index) in signers"
-                @click="setid(recipient)"
-                :key="index"
+          <div class="col-2">
+            <div class="dropdown" style="margin:7px">
+              <button
+                class="btn btn-sm btn-utility dropdown-none"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                style="width:70px"
               >
-                <span class="round-body small" v-rainbow>.</span>
-                <span>{{recipient.Name}}</span>
-              </a>
+                <!-- {{signers}}} -->
+                <span class="round-body small-main" v-rainbow>.</span>
+                <span>Name</span>
+              </button>
+              <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
+                <a
+                  class="dropdown-item"
+                  v-for="(recipient,index) in signers"
+                  @click="setid(recipient)"
+                  :key="index"
+                >
+                  <span class="round-body small" v-rainbow>.</span>
+                  <span>{{recipient.Name}}</span>
+
+                </a>
+              </div>
             </div>
           </div>
 
-          
+          <div class="col-2"></div>
 
-        </div>
-
-        <div class="col-2">
-
-          <button class="btn btn-sm btn-secondary" @click="undo">
+          <div class="col-2"></div>
+          <div class="col-2">
+            <button class="btn btn-sm" @click="undo">
               <i class="fas fa-undo"></i>
-          </button>
+            </button>
+            <!-- <i class="far fa-trash-alt"></i> -->
 
+              <button class="btn btn-sm" @click="deleteicon">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
         </div>
-        </div>
-        
       </div>
     </div>
 
@@ -72,7 +73,6 @@
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="margin-top:12px;"
           @click="run()"
-         
         >start</button>
 
         <button
@@ -91,8 +91,7 @@ import helloworld from "./HelloWorld.vue";
 import sidebar from "./filepreview.vue";
 import choosebar from "./choosebar.vue";
 export default {
-
-   components: {
+  components: {
     sidebar,
     helloworld,
     choosebar
@@ -142,19 +141,19 @@ export default {
       this.status = index.Name;
       this.recipientid = index.UserID;
     },
-      changeroute() {
+    changeroute() {
       this.$router.push("/addrecipient");
     },
     run() {
-      console.log("mein chal rhaa hn remove krnay ky liyee")
+      console.log("mein chal rhaa hn remove krnay ky liyee");
       this.$router.push("/testing");
     },
-    undo(){
-        this.$store.state.rect.rects.pop()
-    
+    undo() {
+      this.$store.state.rect.rects.pop();
+    },
+    deleteicon(){
 
     }
-
   }
 };
 </script>

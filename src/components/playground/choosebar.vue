@@ -18,7 +18,7 @@
             <span class="setlayout">Initials</span>
           </li>
 
-          <li class="nav-link menuitem" @click="add('DateSigned')"  active-class="active" tag="li" exact>
+          <li class="nav-link menuitem" @click="adddate('DateSigned')"  active-class="active" tag="li" exact>
             <!-- <i class="far fa-edit menuicon"></i> -->
             <span style="padding:4px">
               <i class="far fa-calendar menuicon set"></i>
@@ -27,7 +27,7 @@
             <span class="setlayout">Date Signed</span>
           </li>
 
-          <li class="nav-link menuitem" @click="add('Name')" active-class="active" tag="li" exact>
+          <li class="nav-link menuitem" @click="addname('Name')" active-class="active" tag="li" exact>
             <span style="padding:4px">
               <i class="fas fa-user menuicon set"></i>
             </span>
@@ -38,7 +38,7 @@
 
         <div class="envelopclass">
           <h6 class="text-centerr">_____________________</h6>
-          <li class="nav-link menuitem" @click="add('Email')" active-class="active" exact tag="li">
+          <li class="nav-link menuitem" @click="addemail('Email')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="far fa-envelope set menuicon"></i>
             </span>
@@ -46,7 +46,7 @@
             <span class="setlayout">Email</span>
           </li>
 
-          <li class="nav-link menuitem" @click="add('Company')" active-class="active" exact tag="li">
+          <li class="nav-link menuitem" @click="addcompany('Company')" active-class="active" exact tag="li">
             <span style="padding:4px">
               <i class="far fa-building menuicon"></i>
             </span>
@@ -95,7 +95,7 @@ export default {
 
   methods:{
         add(args) {
-      this.$store.state.rect.rects.push({
+        this.$store.state.rect.rects.push({
         width: 50,
         height: 50,
         top: 10,
@@ -109,7 +109,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color: "lightblue url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat  ",
+        color: "#ffd65b url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -135,7 +135,7 @@ export default {
         snapToGrid: false,
         aspectRatio: false,
         zIndex: 1,
-        color: "lightgreen url('http://localhost:8000/Files/User_signs/Signs/997c679b-7f54-4908-b254-2925c51d8889.png') no-repeat  ",
+        color:"#c3d5e6 url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
         active: false,
         text: args,
         recipient:this.recipientid,
@@ -144,9 +144,112 @@ export default {
 
       });
       console.log(this.$store.state.rect.rects)
-    }
+    },
+    adddate(args) {
+      this.$store.state.rect.rects.push({
+        width: 101,
+        height: 27,
+        top: 10,
+        left: 10,
+        draggable: true,
+        resizable: true,  
+        minw: 20,
+        minh: 20,
+        axis: "both",
+        parentLim: true,
+        snapToGrid: false,
+        aspectRatio: false,
+        zIndex: 1,
+        color:"#acdce6  no-repeat  ",
+        active: false,
+        text: args,
+        recipient:this.recipientid,
+        recipientname: this.recipientname,
+        contractid:this.Contractid
+
+      });
+      console.log(this.$store.state.rect.rects)
+    },
+    addname(args) {
+      this.$store.state.rect.rects.push({
+        width: 101,
+        height: 27,
+        top: 10,
+        left: 10,
+        draggable: true,
+        resizable: true,  
+        minw: 20,
+        minh: 20,
+        axis: "both",
+        parentLim: true,
+        snapToGrid: false,
+        aspectRatio: false,
+        zIndex: 1,
+        color:"#f7b994  no-repeat  ",
+        active: false,
+        text: args,
+        recipient:this.recipientid,
+        recipientname: this.recipientname,
+        contractid:this.Contractid
+
+      });
+      console.log(this.$store.state.rect.rects)
+    },
 
 
+       addemail(args) {
+      this.$store.state.rect.rects.push({
+        width: 101,
+        height: 27,
+        top: 10,
+        left: 10,
+        draggable: true,
+        resizable: true,  
+        minw: 20,
+        minh: 20,
+        axis: "both",
+        parentLim: true,
+        snapToGrid: false,
+        aspectRatio: false,
+        zIndex: 1,
+        color:"#c0a5cf  no-repeat  ",
+        active: false,
+        text: args,
+        recipient:this.recipientid,
+        recipientname: this.recipientname,
+        contractid:this.Contractid
+
+      });
+      console.log(this.$store.state.rect.rects)
+    },
+    // #97c9bf
+
+
+       addcompany(args) {
+      this.$store.state.rect.rects.push({
+        width: 101,
+        height: 27,
+        top: 10,
+        left: 10,
+        draggable: true,
+        resizable: true,  
+        minw: 20,
+        minh: 20,
+        axis: "both",
+        parentLim: true,
+        snapToGrid: false,
+        aspectRatio: false,
+        zIndex: 1,
+        color:"#97c9bf  no-repeat  ",
+        active: false,
+        text: args,
+        recipient:this.recipientid,
+        recipientname: this.recipientname,
+        contractid:this.Contractid
+
+      });
+      console.log(this.$store.state.rect.rects)
+    },
   }
     
   
