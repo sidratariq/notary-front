@@ -21,7 +21,7 @@
 
 
     // ******* learning routes ************///
-    import User from './components/template/user/User.vue'
+    // import User from './components/template/user/User.vue'
     import userhome from './components/template/Home.vue'
     
     // ******* learning routes ************///
@@ -59,12 +59,7 @@
             name:'temporary'
         },
        
-            // ********* tutorial********    
-        {
-            path:'/user',
-            component: User,
-            name:'User'
-        },
+     
 
         {
             path:'/userhome',
