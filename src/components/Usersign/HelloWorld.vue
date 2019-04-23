@@ -5,12 +5,19 @@
       id="list"
       :style="{ background: 'url(' + image + ')center no-repeat',backgroundSize:'cover' }"
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
-    >
+    >                                                 
       <!-- <img :src="image" alt> -->
 
       <small class="text-muted">
       {{getcontractid}}
       </small>
+      <!-- {{top}}
+      {{left}} -->
+      <slot></slot>
+      <slot  name="signature" ></slot>
+      <slot  name="initial" ></slot>
+
+      <slot ></slot>
 
     </div>
   </div>
@@ -25,6 +32,10 @@ export default {
   components: {
     VueDragResize
   },
+  props:[
+    'top',
+    'left'
+  ],
 
   data() {
     return {
@@ -47,12 +58,16 @@ export default {
     },
       getcontractid:function(){
       return this.$store.getters.getcontractdata.ContractData.ContractID
-    }
+    },
+
   }
 };
 </script>
 
   <style>
+
+  
+
 .hero-image {
   height: 500px;
   background-position: center;

@@ -3,46 +3,58 @@
     <div class="row h-25">
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
-          <div class="col-2">
-            <img :src="output" alt>
-          </div>
-
           <div class="col-2"></div>
-          <!-- {{getcontractid}} -->
+          <div class="col-2"></div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-2 set-side" style>
-        <!-- <choosebar></choosebar> -->
-      </div>
+      <div class="col-2 set-side"></div>
 
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
-        <helloworld ref="name"></helloworld>
+        <helloworld ref="name">
+          <div v-for="(i,index) in coordinated" :key="'A'+index">
+
+            <div v-if="i.Name =='Signature'" slot="signature" >
+              <img :src="start(i)">
+              {{i.Topcord}}
+              {{i.Leftcord}}
+            </div>
+            <!-- :top="i.Topcord" :left="i.Leftcord -->
+            <!-- :style="{background:rect.color,backgroundSize: '67px' }" -->
+            <div v-if="i.Name =='Initial'" slot="initial" >
+              <img :src="start(i)" :style="{position:absolute, top:i.Topcord, left:i.Leftcord }">
+            </div>
+          </div>
+        </helloworld>
       </div>
 
-      <div class="col-2" style="padding:0px;">
-        <!-- <sidebar></sidebar> -->
-      </div>
+      <div class="col-2" style="padding:0px;">{{coordinated}}</div>
     </div>
 
     <div
       class="row"
-      style="position:fixed; bottom:45px;z-index:999; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
+      style="position:fixed;z-index:999;bottom:20px; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
     >
       <div class="col">
-        <button
-          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
-          style="margin-top:12px;"
-        >Place Fields</button>
-
         <button
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="setcoordinates()"
+          @click="print()"
         >Sign</button>
+
+        <button
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="margin-top:12px;"
+          @click="setcoordinates()"
+        >Place Fields</button>
+
+        <button
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="margin-top:12px;"
+        >Decline</button>
       </div>
     </div>
   </div>
@@ -50,24 +62,30 @@
 
 <script>
 import helloworld from "./HelloWorld.vue";
-// import sidebar from "./filepreview.vue";
 import html2canvas from "html2canvas";
 
-// import choosebar from "./choosebar.vue";
 export default {
   components: {
-    // sidebar,
     helloworld
-    // choosebar
   },
 
   data: function() {
     return {
-      output: ""
+      output: "",
+      responsedata: "",
+      set: "default"
     };
   },
 
   computed: {
+    pass: {
+      set(value) {
+        this.set = value;
+      },
+      get() {
+        return this.set;
+      }
+    },
     image() {
       console.log(this.$store.getters.getcontractpath);
       return this.$store.getters.getcontractpath;
@@ -77,6 +95,18 @@ export default {
     },
     getcontractid: function() {
       return this.$store.getters.getcontractdata.ContractData.ContractID;
+    },
+    coordinated: {
+      set(value) {
+        this.responsedata = value;
+      },
+      get() {
+        return this.responsedata;
+      }
+    },
+    Userdata() {
+      console.log(this.$store.state.userdata);
+      return this.$store.state.userdata;
     }
   },
 
@@ -85,24 +115,26 @@ export default {
       let el = this.$refs[name].$el;
       this.output = (await html2canvas(el)).toDataURL("image/png");
     },
-    setcoordinates() {
-      // /serveCoordinates
 
-      console.log("mein chal rhaa hn remove krnay ky liyee");
+    setcoordinates() {
       // /playgroundinput
+      let creator = this.Userdata;
       let token = this.token;
       this.$http
-        .post("http://localhost:8000/serveCoordinates", {ContractID:this.getcontractid}, {
-          headers: {
-            Token: token
+        .post(
+          "http://localhost:8000/serveCoordinates",
+          { ContractID: this.getcontractid },
+          {
+            headers: {
+              Token: token
+            }
           }
-        })
+        )
         .then(res => {
           if (res.status == 200) {
             alert("inside");
-            // this.$router.push("/testing");
             console.log(res);
-            // alert("code red");
+            this.coordinated = JSON.parse(res.bodyText);
           }
           return res;
         })
@@ -110,6 +142,47 @@ export default {
           this.request = error.bodyText;
           alert(error.bodyText);
         });
+    },
+
+    start(args) {
+      console.log(this.pass + "undefined");
+      let creator = this.Userdata;
+      // console.log(args.Name +"ansa")
+      if (args.Name == "Signature") {
+        // console.log(args.Name +"ansa")
+        return "http://localhost:8000/" + creator.Userdata.UserSignature;
+      }
+
+      // for showing initial on the screen
+      if (args.Name == "Initial") {
+        return "http://localhost:8000/" + creator.Userdata.UserInitials;
+      }
+      // for showing date that user will sign the document
+      if (args.Name == "DateSigned") {
+        var today = new Date();
+        var time =
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds();
+        return time;
+      }
+      // for showing user name
+      if (args.Name == "Name") {
+        return creator.Userdata.UserName;
+      }
+
+      // for showing user email
+      if (args.Name == "Email") {
+        return creator.Userdata.UserEmail;
+      }
+
+      // for showing usercompnay
+      if (args.Name == "Company") {
+        return creator.Userdata.UserCompany;
+      }
+      // return true;
     }
   }
 };
