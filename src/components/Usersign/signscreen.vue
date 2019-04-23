@@ -4,32 +4,7 @@
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
           <div class="col-2">
-            <div class="dropdown" style="margin:7px">
-              <button
-                class="btn btn-sm btn-utility dropdown-none"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                style="width:70px"
-              >
-
-                <span class="round-body small-main" v-rainbow>.</span>
-                <span>{{recipientid}}</span>
-              </button>
-              <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
-                <a
-                  class="dropdown-item"
-                  v-for="(recipient,index) in signers"
-                  @click="setid(recipient)"
-                  :key="index"
-                >
-                  <span class="round-body small" v-rainbow>.</span>
-                  <span>{{recipient.Name}}</span>
-                </a>
-              </div>
-            </div>
+              <img :src="output" alt="">
           </div>
 
           <div class="col-2"></div>
@@ -38,14 +13,10 @@
             <!-- {{rects}} -->
           </div>
           <div class="col-2">
-            <button class="btn btn-sm" @click="undo">
-              <i class="fas fa-undo"></i>
-            </button>
+            <button class="btn btn-sm"></button>
             <!-- <i class="far fa-trash-alt"></i> -->
 
-            <button class="btn btn-sm" @click="deleteicon">
-              <i class="far fa-trash-alt"></i>
-            </button>
+            <button class="btn btn-sm"></button>
           </div>
         </div>
       </div>
@@ -53,15 +24,15 @@
 
     <div class="row">
       <div class="col-2 set-side" style>
-        <choosebar></choosebar>
+        <!-- <choosebar></choosebar> -->
       </div>
 
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
-        <helloworld></helloworld>
+        <helloworld ref="name"></helloworld>
       </div>
 
       <div class="col-2" style="padding:0px;">
-        <sidebar></sidebar>
+        <!-- <sidebar></sidebar> -->
       </div>
     </div>
 
@@ -73,15 +44,14 @@
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="margin-top:12px;"
-          @click="run()"
-        >start</button>
+        >Place Fields</button>
 
         <button
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="changeroute()"
-        >back</button>
+          @click="print('name')"
+        >Sign</button>
       </div>
     </div>
   </div>
@@ -89,17 +59,22 @@
 
 <script>
 import helloworld from "./HelloWorld.vue";
-import sidebar from "./filepreview.vue";
-import choosebar from "./choosebar.vue";
+// import sidebar from "./filepreview.vue";
+import html2canvas from "html2canvas";
+
+// import choosebar from "./choosebar.vue";
 export default {
   components: {
-    sidebar,
-    helloworld,
-    choosebar
+    // sidebar,
+    helloworld
+    // choosebar
   },
 
   data: function() {
-    return {};
+    return {
+        output:''
+    };
+
   },
 
   computed: {
@@ -126,74 +101,20 @@ export default {
       get() {
         return this.$store.state.currentreipientname;
       }
-    },
-    recipientid: {
-      get() {
-        return this.$store.state.currentrecipientid;
-      },
-      set(value) {
-        this.$store.state.currentrecipientid = value;
-      }
-    },
-    token: function() {
-      return this.$store.getters.getToken;
-    },
-    rects() {
-      return this.$store.state.rect.rects;
-    },
+    }
   },
 
   methods: {
-
-     
-    setid(index) {
-      this.status = index.Name;
-      this.recipientid = index.UserID;
-    },
-    changeroute() {
-      this.$router.push("/addrecipient");
-    },
-    run() {
-      console.log("mein chal rhaa hn remove krnay ky liyee");
-      // /playgroundinput
-      let token = this.token;
-      console.log(this.rects)
-      this.$http
-          .post("http://localhost:8000/playgroundinput", this.rects, {
-            headers: {
-              Token: token
-            }
-          })
-          .then(res => {
-            if (res.status == 200) {
-              alert('inside')
-              this.$router.push("/testing");
-              console.log(res)
-              // alert("code red");
-            }
-            return res;
-          })
-          .catch(error => {
-            this.request = error.bodyText;
-            alert(error.bodyText);
-          });
-
-      
-    },
-    undo() {
-      this.$store.state.rect.rects.pop();
-    },
-
-    deleteicon() {
-      console.log(this.$store.state.currentindex);
+    async print(name) {
+      let el = this.$refs[name].$el;
+      this.output = (await html2canvas(el)).toDataURL();
+    
     }
   }
 };
 </script>
 
 <style scoped>
-
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

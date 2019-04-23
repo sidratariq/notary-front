@@ -142,9 +142,6 @@ export default {
 </script>
 
     <style scoped>
-* {
-  /* border: 1px solid black; */
-}
 
 .cross::after {
   content: "X";

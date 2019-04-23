@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-1 setpadding">
-      <button class="btn btn-primary btn-sm" type="button">SIGN</button>
+      <button class="btn btn-primary btn-sm" type="button" @click="gotoSignscreen()">SIGN</button>
     </div>
 
     <div class="col-1 setpadding">
@@ -91,6 +91,9 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    gotoSignscreen(){
+      this.$router.push('/signscreen')
     }
   },
   computed: {
