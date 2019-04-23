@@ -13,7 +13,7 @@
                 <div class="col-12" style="padding-left:22px">
                   <small
                     class="text-muted"
-                  >{{value.UserID}}sidratariq48@gmail.com(not comming from backend)</small>
+                  >{{value.UserID}}</small>
                 </div>
 
                 <div class="col-12" style="padding-left:22px">
