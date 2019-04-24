@@ -22,6 +22,7 @@ const state  ={
     contractpath:'',
 
     recipients:[],
+    // for blockchain route and manage select
     contractid:'',
 
 };

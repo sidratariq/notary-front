@@ -3,21 +3,15 @@
     <div
       class="list"
       id="list"
-      :style="{ background: 'url(' + image + ')center no-repeat',backgroundSize:'cover' }"
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
-    >                                                 
+    >
       <!-- <img :src="image" alt> -->
+      <img :src="image" alt style="position:relative; top:0;bottom:0;right:0;left:0; z-index:1" width="100%" height="100%" >
+      <small class="text-muted">{{getcontractid}}</small>
 
-      <small class="text-muted">
-      {{getcontractid}}
-      </small>
-      <!-- {{top}}
-      {{left}} -->
       <slot name="default"></slot>
-      <slot  name="signature" ></slot>
-      <slot  name="initial" ></slot>
-
-
+      <slot name="signature"></slot>
+      <slot name="initial"></slot>
     </div>
   </div>
 </template>
@@ -31,10 +25,7 @@ export default {
   components: {
     VueDragResize
   },
-  props:[
-    'top',
-    'left'
-  ],
+  props: ["top", "left"],
 
   data() {
     return {
@@ -55,17 +46,26 @@ export default {
         "http://localhost:8000/" + contractdata.ContractData.Filepath;
       return imgsource;
     },
-      getcontractid:function(){
-      return this.$store.getters.getcontractdata.ContractData.ContractID
-    },
-
+    getcontractid: function() {
+      return this.$store.getters.getcontractdata.ContractData.ContractID;
+    }
   }
 };
 </script>
 
   <style>
 
-  
+  .setclass{
+    font-size: 7rem;
+    color: greenyellow;
+  }
+
+.setheight {
+  height: 40px;
+  width: 40px;
+  background: red;
+  z-index: 999999;
+}
 
 .hero-image {
   height: 500px;

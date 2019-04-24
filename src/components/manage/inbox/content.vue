@@ -79,7 +79,7 @@
         <td @click="routechange(select.ContractID)">
           <!-- {{select.Blockchain}} -->
           <!-- <p style="font-size:13px"> -->
-            <i class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
+          <i class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
           <!-- </p> -->
         </td>
 
@@ -96,8 +96,7 @@
         <!-- drop down__6 -->
         <td style="padding-left: 39px;">
           <div class="btn-group">
-
-            <button 
+            <button
               class="btn btn-sm dropdown-toggle"
               :class="{'btn-primary':true}"
               type="button"
@@ -105,35 +104,73 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-             <!-- v-if="select.Status=='In Progress'" -->
-            Sign</button>
+              <!-- v-if="select.Status=='In Progress'" -->
+              Sign
+            </button>
 
-               <button
+            <!-- <button
               class="btn btn-sm dropdown-toggle"
               :class="{'btn-white':true}"
               type="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Move
-             <!-- v-if="select.Status=='Completed'" -->
-            </button>
+            >Move-->
+            <!-- v-if="select.Status=='Completed'" -->
+            <!-- </button> -->
 
-
-
+            <!--drop down menu  -->
             <div class="dropdown-menu">
               <div class="row">
                 <div class="col-12">
-                  <a v-if="avalible==false" class="dropdown-item date padding" href="#">Move</a>
+                  <a
+                    v-if="avalible==false"
+                    class="dropdown-item date padding"
+                    data-toggle="modal"
+                    data-target="#movefolder"
+                    href="#"
+                  >Move</a>
                   <a
                     v-if="avalible==false"
                     class="dropdown-item date padding"
                     href="#"
+                    @click="ExportAsCsv(select.ContractID)"
                   >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
                   <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
                   <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
                   <a class="dropdown-item date padding" href="#">Resend</a>
+                </div>
+              </div>
+            </div>
+            <!-- end -->
+
+            <div class="modal" id="movefolder">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h5 class="modal-title">Choose From Folder list to move contract</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <ul>
+                      
+                      <li v-for="(i,index) in folders" :key="index" style="border-top:1px solid #ccc;border-bottom:1px solid #ccc">
+                        <h5 class="movefolder" @click="MoveContract(i.FolderID,select.ContractID)">
+                          {{i.FolderName}}
+                        </h5>
+                      </li>
+                    </ul>
+
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -150,18 +187,7 @@ export default {
   data() {
     return {
       counter: "",
-      checked: false,
-      recepient: [
-        "To:Ali Ahsan",
-        "From:sidra",
-        "To:Ali Ahsan",
-        "From:sidra",
-        "To:Ali Ahsan",
-        "From:sidra",
-        "From:sidra"
-      ],
-
-      
+      checked: false
     };
   },
 
@@ -190,8 +216,6 @@ export default {
             console.log(res.body);
             store.dispatch("act_contractdata", res.body);
             this.$router.push(change);
-
-            alert("code red");
             return res;
           }
           // return res;
@@ -214,6 +238,67 @@ export default {
       } else {
         return [];
       }
+    },
+    ExportAsCsv(args) {
+      let token = this.token;
+      let contractid = args;
+      console.log(contractid);
+      this.$http
+        .post(
+          "http://localhost:8000/ExportCSV",
+          {
+            "ContractID": contractid
+          },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+          if (res.status == 200) {
+            console.log(res.bodyText);
+            setInterval(() => {
+              this.$router.push("/manage");
+            }, 3000);
+          }
+          return res;
+        })
+        .catch(error => {
+          alert(error);
+        });
+    },
+    MoveContract(arg1,arg2){
+      let token = this.token;
+      // alert(aa)
+      let contractid = arg2;
+      let folderid = arg1;
+      console.log(contractid);
+      this.$http
+        .post(
+          "http://localhost:8000/moveContract",
+          {
+            "FolderID": folderid,
+            "ContractID": contractid
+          },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+          if (res.status == 200) {
+            console.log(res.bodyText);
+            alert('updated')
+          }
+          return res;
+        })
+        .catch(error => {
+          alert(error);
+        });
     }
   },
   props: {
@@ -237,6 +322,9 @@ export default {
     },
     token: function() {
       return this.$store.getters.getToken;
+    },
+    folders:function(){
+      return this.$store.getters.getfolder
     }
   }
 };
@@ -282,6 +370,10 @@ export default {
 .setborder::selection {
   background: #bad3f8;
   text-shadow: none;
+}
+
+.movefolder:hover{
+  background-color: #cccccc;
 }
 
 .row {

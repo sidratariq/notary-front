@@ -122,20 +122,14 @@ export default {
         .then(res => {
           // contracts = JSON.parse();
           // store.dispatch("act_contractdata", res.bodyText.InboxContracts);
-         
-
 
           if (res.status == 200) {
-             let data = JSON.parse(res.bodyText);
-          let folderlist =data.FolderList
-          
-
-          let inboxcontracts = data.InboxContracts;
-
-
-
-          store.dispatch("updatefolder", folderlist);
-          store.dispatch("act_contractdata", inboxcontracts);
+            let data = JSON.parse(res.bodyText);
+            let folderlist = data.FolderList;
+            let inboxcontracts = data.InboxContracts;
+            console.log(folderlist)
+            store.dispatch("updatefolder", folderlist);
+            store.dispatch("act_contractdata", inboxcontracts);
           }
           return res.json();
         })

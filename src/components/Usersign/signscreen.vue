@@ -59,7 +59,7 @@
         <!-- when decline call decline  -->
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
-          style="margin-top:12px;"
+          style="margin-top:12px;" @click="DeclineContract()"
         >Decline</button>
       </div>
     </div>
@@ -196,8 +196,38 @@ export default {
       this.$refs.name.innerHTML = this.image;
       this.output = (await html2canvas(el)).toDataURL();
       console.log(this.output);
+    },
+    // ContractID
+    DeclineContract(){
+      let token = this.token;
+      let contractid = this.getcontractid;
+       this.$http
+          .post("http://localhost:8000/DeclineContract", {
+              "ContractID":this.contractid,
+              
+          }, {
+            headers: {
+              Token: token
+            }
+          })
+          .then(res => {
+              console.log(res);
+              
+            if (res.status == 200) {
+              console.log(res.bodyText);
+              setInterval(()=>{
+                 this.$router.push('/manage')
+              },3000)
+            }
+
+            return res;
+          })
+          .catch(error => {
+            alert(error);
+          });
     }
   }
+
 };
 </script>
 

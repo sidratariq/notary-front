@@ -64,7 +64,7 @@
                 :to="{name:'manage',query:{folder:foldervalue[key].FolderName}}"
                 exact
                 active-class="active"
-                @click.native="sendrequest(folder.FolderID)"
+                @click.native="getcontractlist(folder.FolderID)"
               >
                 <div class="row">
                   <div class="col-1">
@@ -74,7 +74,7 @@
                     <span class="setlayout">{{folder.FolderName}}</span>
                   </div>
 
-                  <div class="col-2">
+                  <!-- <div class="col-2">
                     <span class="pull-right">
                       <div class="btn-group">
                         <i
@@ -85,7 +85,6 @@
                           class="fas fa-ellipsis-v setright foldericon setdropdown"
                           style="padding: 4px;"
                         ></i>
-
                         <div class="dropdown-menu">
                           <div class="row">
                             <div class="col-12">
@@ -97,7 +96,7 @@
                         </div>
                       </div>
                     </span>
-                  </div>
+                  </div>-->
                 </div>
               </router-link>
             </li>
@@ -159,10 +158,6 @@ export default {
 
       // this.folders.push({ name: this.foldername });
     },
-    subfolder() {},
-
-    rename() {},
-    delete() {},
 
     sendrequest(args) {
       console.log(args);
@@ -187,6 +182,37 @@ export default {
           if (res.status == 200) {
             return res.json();
           }
+        })
+        .then(error => {
+          console.log(error);
+        });
+    },
+    getcontractlist(args) {
+      // console.log(args);
+      alert(args);
+      let token = this.token;
+      console.log(token);
+      let store = this.$store;
+      let contracts = [];
+      this.$http
+        .post(
+          "http://localhost:8000/folderContractList",
+          { ContractID: args },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          alert(res.bodyText);
+
+          contracts = JSON.parse(res.bodyText);
+
+          if (res.status == 200) {
+            store.dispatch("act_contractdata", contracts);
+          }
+          return res.json();
         })
         .then(error => {
           console.log(error);
