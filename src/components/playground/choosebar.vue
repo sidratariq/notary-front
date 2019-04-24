@@ -53,12 +53,12 @@
               <span class="setlayout">Company</span>
             </li>
 
-             <li class="nav-link menuitem" @click="addcompany('Phone')" active-class="active" exact tag="li">
+             <!-- <li class="nav-link menuitem" @click="addcompany('Phone')" active-class="active" exact tag="li">
               <span style="padding:4px">
                 <i class="fas fa-phone menuicon"></i>
               </span>
               <span class="setlayout">Phone</span>
-            </li>
+            </li> -->
           </div>
         </div>
       </div>

@@ -22,6 +22,9 @@ export default {
   line-height: 100px;
   text-align: center;
   position: relative;
+  position: relative; 
+  width:900px; 
+  height:510px;
 }
 
 .run {

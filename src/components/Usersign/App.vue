@@ -3,7 +3,6 @@
     <div class="row h-25">
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
-          
           <div class="col-2">
             <div class="col-3"></div>
           </div>
@@ -11,17 +10,12 @@
       </div>
     </div>
 
-    
-
-     <Tomato ref="Tomato" @click.native="print('Tomato')" value="i am from the parent">
-      <img height="20px" width="20px" class="run" src="./easy.png">
+    <Tomato ref="Tomato" @click.native="print('Tomato')" value="i am from the parent">
+      <img height="510px" width="900px" class="run" :src=space>
     </Tomato>
 
     <hr>
     <img :src="output">
-    
-
-
   </div>
 </template>
 
@@ -44,9 +38,31 @@ export default {
   },
   computed: {
     space() {
-      return "url(./easy.png)";
+      return "/img/soon.90f3e781.png"
+    },
+     token: function() {
+      return this.$store.getters.getToken;
+    },
+    getcontractid: function() {
+      return this.$store.getters.getcontractdata.ContractData.ContractID;
+    },
+    coordinated: {
+      set(value) {
+        alert(value);
+        this.responsedata = value;
+      },
+      get() {
+        return this.responsedata;
+      }
+    },
+    Userdata() {
+      console.log(this.$store.state.userdata);
+      return this.$store.state.userdata;
     }
-  }
+
+  },
+
+  
 };
 </script>
 
