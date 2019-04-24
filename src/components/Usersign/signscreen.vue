@@ -4,7 +4,6 @@
     <div class="row h-25">
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
-          <div style="border:1px solid black" class="col-2"></div>
           <div class="col-2">
             <div class="col-3"></div>
           </div>
@@ -19,22 +18,22 @@
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
         <helloworld ref="name">
           <div v-for="(i,index) in coordinated" :key="'A'+index">
-            <div v-if="i.Name =='Signature'" slot="signature">
+            <div v-if="i.Name =='Signature'" class="setsignature" slot="signature">
               <img :src="start(i)">
               {{i.Topcord}}
               {{i.Leftcord}}
             </div>
 
-            <div v-if="i.Name =='Initial'" slot="initial">
-              <img :src="start(i)" :style="{position:absolute, top:i.Topcord, left:i.Leftcord }">
+            <div v-if="i.Name =='Initial'" class="setinitial" slot="initial">
+              <img :src="start(i)" >
             </div>
 
-            <div v-if="i.Name!='Initial' && i.Name!='Signature'" name="default">{{start(i)}}</div>
+            <div v-if="i.Name!='Initial' && i.Name!='Signature'" class="setdefault" name="default">{{start(i)}}</div>
           </div>
         </helloworld>
       </div>
 
-      <div class="col-2" style="padding:0px;">{{coordinated}}</div>
+      <div class="col-2" style="padding:0px;"></div>
     </div>
 
     <!-- footer -->
@@ -47,7 +46,7 @@
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="copy()"
+          @click="copy(),sendrequest()" :disabled="pass==true"
         >Sign</button>
 
         <button
@@ -80,7 +79,8 @@ export default {
     return {
       output: "",
       responsedata: "",
-      set: "default"
+      set: false,
+      
     };
   },
 
@@ -144,6 +144,7 @@ export default {
             alert("inside");
             console.log(res);
             this.coordinated = JSON.parse(res.bodyText);
+            this.pass = true;
           }
           return res;
         })
@@ -154,7 +155,6 @@ export default {
     },
 
     start(args) {
-      console.log(this.pass + "undefined");
       let creator = this.Userdata;
       if (args.Name == "Signature") {
         return "http://localhost:8000/" + creator.Userdata.UserSignature;
@@ -206,7 +206,7 @@ export default {
         .post(
           "http://localhost:8000/DeclineContract",
           {
-            ContractID: this.contractid
+            "ContractID": this.contractid
           },
           {
             headers: {
@@ -219,7 +219,42 @@ export default {
 
           if (res.status == 200) {
             console.log(res.bodyText);
-            setInterval(() => {
+            setTimeout(() => {
+              this.$router.push("/manage");
+            }, 3000);
+          }
+
+          return res;
+        })
+        .catch(error => {
+          alert(error);
+        });
+    },
+
+    // send request
+    sendrequest(){
+      let token = this.token;
+      let contractid = this.getcontractid;
+      let base = this.output
+      this.$http
+        .post(
+          "http://localhost:8000/signContract",
+          {
+            "FileBase":base,
+            "ContractID": contractid
+          },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+
+          if (res.status == 200) {
+            console.log(res.bodyText);
+            setTimeout(() => {
               this.$router.push("/manage");
             }, 3000);
           }
@@ -230,6 +265,7 @@ export default {
           alert(error);
         });
     }
+
   }
 };
 </script>

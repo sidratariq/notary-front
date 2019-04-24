@@ -15,7 +15,7 @@ import temporary from './components/temporary.vue'
 import saveinblockchain from './components/blockchain/save-hash.vue'
 
 import signnow from './components/signnow.vue'
-import signscreen from './components/Usersign/App.vue'
+import signscreen from './components/Usersign/signscreen.vue'
 
 
 

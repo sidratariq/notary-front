@@ -3,10 +3,10 @@
     <div
       class="list"
       id="list"
+      :style="{ background: 'url(' + image + ')center no-repeat',backgroundSize:'cover', }"
       style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
     >
-      <!-- <img :src="image" alt> -->
-      <img :src="image" alt style="position:relative; top:0;bottom:0;right:0;left:0; z-index:1" width="100%" height="100%" >
+      
       <small class="text-muted">{{getcontractid}}</small>
 
       <slot name="default"></slot>
@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-  <style>
+  <style scoped>
 
   .setclass{
     font-size: 7rem;
@@ -113,6 +113,10 @@ body {
   left: 2px;
   right: 300px;
   box-shadow: 0 0 2px #aaa;
-  background-color: white;
+  background-color: white; 
+}
+
+.setdefault{
+  color: #ffffff;
 }
 </style>

@@ -79,7 +79,9 @@
         <td @click="routechange(select.ContractID)">
           <!-- {{select.Blockchain}} -->
           <!-- <p style="font-size:13px"> -->
-          <i class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
+          <i v-if="select.Blockchain ==1" class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
+          <i v-if="select.Blockchain ==0" class="fab fa-bitcoin" style="color:red;font-size:23px;transform: rotate(-16deg);"></i>
+          <!-- {{select}} -->
           <!-- </p> -->
         </td>
 
@@ -133,13 +135,13 @@
                   <a
                     v-if="avalible==false"
                     class="dropdown-item date padding"
-                    href="#"
+                    :href="'http://localhost:8000/'+getpath"
                     @click="ExportAsCsv(select.ContractID)"
                   >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
-                  <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
-                  <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
-                  <a class="dropdown-item date padding" href="#">Resend</a>
+                  <!-- <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a> -->
+                  <!-- <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a> -->
+                  <!-- <a class="dropdown-item date padding" href="#">Resend</a> -->
                 </div>
               </div>
             </div>
@@ -187,7 +189,8 @@ export default {
   data() {
     return {
       counter: "",
-      checked: false
+      checked: false,
+      path:''
     };
   },
 
@@ -259,9 +262,7 @@ export default {
           console.log(res);
           if (res.status == 200) {
             console.log(res.bodyText);
-            setInterval(() => {
-              this.$router.push("/manage");
-            }, 3000);
+            this.path = res.bodyText;
           }
           return res;
         })
@@ -325,6 +326,15 @@ export default {
     },
     folders:function(){
       return this.$store.getters.getfolder
+    },
+
+    getpath:{
+      get(){
+        return this.path;
+      },
+      set(value){
+        this.path = value;
+      }
     }
   }
 };
