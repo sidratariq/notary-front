@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Tomato ref="Tomato" @click.native="print('Tomato')"/>
+    <!-- <Tomato ref="Tomato" @click.native="print('Tomato')"/> -->
   
     <hr>
     <img :src="output">
@@ -9,15 +9,8 @@
 
 <script>
 import html2canvas from "html2canvas";
-import Tomato from "./Tomato";
-import Orange from "./Orange";
-import DodgeBlue from "./DodgerBlue";
-
 export default {
   components: {
-    Tomato,
-    Orange,
-    DodgeBlue
   },
   data: () => ({
     output: ""
