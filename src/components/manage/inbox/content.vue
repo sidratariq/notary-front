@@ -135,7 +135,7 @@
                   <a
                     v-if="avalible==false"
                     class="dropdown-item date padding"
-                    :href="'http://localhost:8000/'+getpath"
+                    :href="getpath"
                     @click="ExportAsCsv(select.ContractID)"
                   >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
@@ -262,7 +262,7 @@ export default {
           console.log(res);
           if (res.status == 200) {
             console.log(res.bodyText);
-            this.path = res.bodyText;
+            this.getpath = res.bodyText;
           }
           return res;
         })
@@ -330,6 +330,14 @@ export default {
 
     getpath:{
       get(){
+        if(this.path==''){
+          return ''
+        }
+        else{
+         return  "http://localhost:8000/"+this.path
+        }
+
+
         return this.path;
       },
       set(value){
