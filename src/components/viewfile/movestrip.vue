@@ -20,26 +20,26 @@
         <div class="dropdown-menu setpadding">
           <div class="row">
             <div class="col-12">
-              <!-- <a class="dropdown-item date padding" href="#">Forward</a> -->
-              <!-- <a class="dropdown-item date padding" href="#">Create a Copy</a> -->
+              <a class="dropdown-item date padding" href="#">Forward</a>
+              <a class="dropdown-item date padding" href="#">Create a Copy</a>
               <a class="dropdown-item date padding" @click="run()" href="#">Download</a>
               <a class="dropdown-item date padding" @click="DownloadAsCSV(contractid)" href="#">Export as CSV</a>
-              <!-- <a class="dropdown-item date padding" href="#">Delete</a> -->
+              <a class="dropdown-item date padding" href="#">Delete</a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- <div class="col-1 col-md-2 setpadding">
+    <div class="col-1 col-md-2 setpadding">
       <button class="btn btn-sm apply" type="button">RESEND</button>
     </div>
 
     <div class="col-1 setpadding">
       <button class="btn btn-sm apply" type="button">Continue</button>
-    </div> -->
+    </div>
     <div class="col-1 setpadding">
-      <!-- <button class="btn btn-sm apply" type="button">Continue</button> -->
+      <button class="btn btn-sm apply" type="button">Continue</button>
     </div>
 
     <div class="col-3 setpadding">

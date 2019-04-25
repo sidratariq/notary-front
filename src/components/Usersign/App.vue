@@ -10,8 +10,22 @@
       </div>
     </div>
 
-    <Tomato ref="Tomato" @click.native="print('Tomato')" value="i am from the parent">
-      <img height="510px" width="900px" class="run" :src=space>
+    <Tomato
+      ref="Tomato"
+      @click.native="print('Tomato')"
+      value="i am from the parent"
+      thumbnail="http://theurbanrecipes.com/wp-content/uploads/2016/12/shrimp-with-broccoli.jpg"
+      title="Sidra"
+      previewtext="awesome pizza"
+      topspace="20"
+      bottomspace="80"
+    >
+      <div v-for="(i,index) in output" :key="index">
+      
+        <img
+          :style="{content:'url('+space+')',position:'absolute',top:i.Topcord+'px',left:i.Leftcord+'px',width:widthset,height:heightset}"
+        >
+      </div>
     </Tomato>
 
     <hr>
@@ -28,7 +42,29 @@ export default {
     Tomato
   },
   data: () => ({
-    output: ""
+    output: [
+      {
+        ContractID: "5c1c5ccf-529c-42da-b96e-65fbee2de18e",
+        UserID: "",
+        Name: "Signature",
+        Topcord: 20,
+        Leftcord: 210
+      },
+      {
+        ContractID: "5c1c5ccf-529c-42da-b96e-65fbee2de18e",
+        UserID: "",
+        Name: "Initial",
+        Topcord: 20,
+        Leftcord: 426
+      },
+      {
+        ContractID: "5c1c5ccf-529c-42da-b96e-65fbee2de18e",
+        UserID: "",
+        Name: "Name",
+        Topcord: 0,
+        Leftcord: 316
+      }
+    ]
   }),
   methods: {
     async print(name) {
@@ -38,9 +74,22 @@ export default {
   },
   computed: {
     space() {
-      return "/img/soon.90f3e781.png"
+      return "http://theurbanrecipes.com/wp-content/uploads/2016/12/ensaladang-lechon-kawali-3.jpg";
     },
-     token: function() {
+    topspace() {
+      return "20px";
+    },
+    leftspace() {
+      return "70px";
+    },
+    heightset() {
+      return "20px";
+    },
+    widthset() {
+      return "30px";
+    },
+
+    token: function() {
       return this.$store.getters.getToken;
     },
     getcontractid: function() {
@@ -59,10 +108,7 @@ export default {
       console.log(this.$store.state.userdata);
       return this.$store.state.userdata;
     }
-
-  },
-
-  
+  }
 };
 </script>
 
@@ -231,6 +277,12 @@ ul li {
 
 .to-upper {
   text-transform: uppercase;
+}
+
+.content {
+  content: url("http://theurbanrecipes.com/wp-content/uploads/2016/12/ensaladang-lechon-kawali-3.jpg");
+  width: 30px;
+  height: 30px;
 }
 </style>
 

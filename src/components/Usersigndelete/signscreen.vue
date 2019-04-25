@@ -17,23 +17,32 @@
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
         <helloworld ref="name">
-          <div v-for="(i,index) in coordinated" :key="'A'+index">
+          <div v-for="(i,index) in coordinated" :key="index">
+            <!-- for signature field -->
             <div v-if="i.Name =='Signature'" class="setsignature" slot="signature">
-              <img :src="start(i)">
-              {{i.Topcord}}
-              {{i.Leftcord}}
+              <img
+                :style="{content:'url('+start(i)+')',position:'absolute',top:i.Topcord+'px',left:i.Leftcord+'px',width:widthset,height:heightset}"
+              >
             </div>
 
-            <div v-if="i.Name =='Initial'" class="setinitial" slot="initial">
-              <img :src="start(i)" >
+            <!-- for initial field -->
+            <div v-if="i.Name =='Initial'" slot="initial">
+              <img
+                :style="{content:'url('+start(i)+')',position:'absolute',top:i.Topcord+'px',left:i.Leftcord+'px',width:widthset,height:heightset}"
+              >
             </div>
 
-            <div v-if="i.Name!='Initial' && i.Name!='Signature'" class="setdefault" name="default">{{start(i)}}</div>
+            <!-- for other fields of contract -->
+            <div
+              v-if="i.Name!='Initial' && i.Name!='Signature'"
+              :style="{position:'absolute',top:i.Topcord+'px',left:i.Leftcord+'px',width:widthset,height:heightset}"
+              name="default"
+            >{{start(i)}}</div>
           </div>
         </helloworld>
       </div>
 
-      <div class="col-2" style="padding:0px;"></div>
+      <div class="col-2"></div>
     </div>
 
     <!-- footer -->
@@ -42,11 +51,12 @@
       style="position:fixed;z-index:999;bottom:0px; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
     >
       <div class="col">
+        <!-- :disabled="pass==true" -->
         <button
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="copy(),sendrequest()" :disabled="pass==true"
+          @click="copy(),sendrequest()"
         >Sign</button>
 
         <button
@@ -80,7 +90,29 @@ export default {
       output: "",
       responsedata: "",
       set: false,
-      
+      testdata: [
+        {
+          ContractID: "5c1c5ccf-529c-42da-b96e-65fbee2de18e",
+          UserID: "",
+          Name: "Signature",
+          Topcord: 20,
+          Leftcord: 210
+        },
+        {
+          ContractID: "5c1c5ccf-529c-42da-b96e-65fbee2de18e",
+          UserID: "",
+          Name: "Initial",
+          Topcord: 20,
+          Leftcord: 426
+        },
+        {
+          ContractID: "5c1c5ccf-529c-42da-b96e-65fbee2de18e",
+          UserID: "",
+          Name: "Name",
+          Topcord: 0,
+          Leftcord: 316
+        }
+      ]
     };
   },
 
@@ -116,6 +148,12 @@ export default {
     Userdata() {
       console.log(this.$store.state.userdata);
       return this.$store.state.userdata;
+    },
+    heightset() {
+      return "70px";
+    },
+    widthset() {
+      return "170px";
     }
   },
 
@@ -154,6 +192,7 @@ export default {
         });
     },
 
+    // it returns user contract field on every loop iteration what it should return
     start(args) {
       let creator = this.Userdata;
       if (args.Name == "Signature") {
@@ -188,7 +227,6 @@ export default {
       if (args.Name == "Company") {
         return creator.Userdata.UserCompany;
       }
-      // return true;
     },
 
     async copy() {
@@ -206,7 +244,7 @@ export default {
         .post(
           "http://localhost:8000/DeclineContract",
           {
-            "ContractID": this.contractid
+            ContractID: this.contractid
           },
           {
             headers: {
@@ -232,16 +270,16 @@ export default {
     },
 
     // send request
-    sendrequest(){
+    sendrequest() {
       let token = this.token;
       let contractid = this.getcontractid;
-      let base = this.output
+      let base = this.output;
       this.$http
         .post(
           "http://localhost:8000/signContract",
           {
-            "FileBase":base,
-            "ContractID": contractid
+            FileBase: base,
+            ContractID: contractid
           },
           {
             headers: {
@@ -265,7 +303,6 @@ export default {
           alert(error);
         });
     }
-
   }
 };
 </script>
