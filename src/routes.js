@@ -13,7 +13,7 @@ import authentication from './components/blankpage/waitingscreen'
 import temporary from './components/temporary.vue'
 // import  extra from './components/extra.vue'
 import saveinblockchain from './components/blockchain/save-hash.vue'
-import test from './components/Usersigndelete/signscreen.vue'
+// import test from './components/Usersigndelete/signscreen.vue'
 import signnow from './components/signnow.vue'
 import signscreen from './components/Usersign/signscreen.vue'
 
@@ -43,11 +43,7 @@ export const routes = [
         component: signscreen,
         name: 'signscreen'
     },
-    {
-        path:'/testcomp',
-        component:test,
-        name:'testcomp'
-    },
+ 
     {
         path: '/saveinblockchain',
         component: saveinblockchain,
