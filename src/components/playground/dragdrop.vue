@@ -1,46 +1,48 @@
   <template>
-  <div id="app1">
-    <img src="url('http://localhost:8000/Files/Icons/sign.png')" alt="">
+  <!-- <div
+    class="list"
+    id="list"
+    :style="{ background: 'url(' + image + ')center no-repeat ',backgroundSize:'cover' }"
+    style="position: relative; width:900px;
+           height:510px;
+           background-position: center;
+           display: block;
+           background-size: 100% 100%"
+  >-->
 
-    <div
-      class="list"
-      id="list"
-      :style="{ background: 'url(' + image + ')center no-repeat ',backgroundSize:'cover' }"
-      style="position: relative; width:900px; height:510px; background-position: center;display: block; background-size: 100% 100%"
+  <div class="card" id="list">
+    <img :style="{content:`url(`+image+`)`}">
+
+    <VueDragResize
+      v-for="(rect, index) in rects"
+      :key="index"
+      :w="rect.width"
+      :h="rect.height"
+      :x="rect.left"
+      :y="rect.top"
+      :parentW="listWidth"
+      :parentH="listHeight"
+      :axis="rect.axis"
+      :isActive="rect.active"
+      :minw="rect.minw"
+      :minh="rect.minh"
+      :isDraggable="rect.draggable"
+      :isResizable="rect.resizable"
+      :parentLimitation="rect.parentLim"
+      :snapToGrid="rect.snapToGrid"
+      :aspectRatio="rect.aspectRatio"
+      :z="rect.zIndex"
+      v-on:activated="activateEv(index)"
+      v-on:deactivated="deactivateEv(index)"
+      v-on:dragging="changePosition($event, index)"
+      v-on:resizing="changeSize($event, index)"
+      @click.native="getindex(index)"
     >
-      <!-- <button @click="add()" class="btn btn-sm btn-primary">add</button> -->
-      <!-- {{rects}} -->
-      <VueDragResize
-        v-for="(rect, index) in rects"
-        :key="index"
-        :w="rect.width"
-        :h="rect.height"
-        :x="rect.left"
-        :y="rect.top"
-        :parentW="listWidth"
-        :parentH="listHeight"
-        :axis="rect.axis"
-        :isActive="rect.active"
-        :minw="rect.minw"
-        :minh="rect.minh"
-        :isDraggable="rect.draggable"
-        :isResizable="rect.resizable"
-        :parentLimitation="rect.parentLim"
-        :snapToGrid="rect.snapToGrid"
-        :aspectRatio="rect.aspectRatio"
-        :z="rect.zIndex"
-        v-on:activated="activateEv(index)"
-        v-on:deactivated="deactivateEv(index)"
-        v-on:dragging="changePosition($event, index)"
-        v-on:resizing="changeSize($event, index)"
-        @click.native="getindex(index)"
-      >
-        <div
-          class="filler"
-          :style="{background:rect.color,backgroundSize: '67px' }"
-        >{{rect.recipientname}}</div>
-      </VueDragResize>
-    </div>
+      <div
+        class="filler"
+        :style="{background:rect.color,backgroundSize: '67px' }"
+      >{{rect.recipientname}}</div>
+    </VueDragResize>
   </div>
 </template>
 
@@ -60,9 +62,8 @@ export default {
       listHeight: 0,
       image: this.$store.getters.getcontractpath,
       display: false,
-      backgroundwidth:'61px',
-      backgroundheight:'30px'
-
+      backgroundwidth: "61px",
+      backgroundheight: "30px"
     };
   },
   mounted() {
@@ -118,11 +119,10 @@ export default {
       this.top1 = newRect.top;
       this.left1 = newRect.left;
     },
-    getindex(index){
+    getindex(index) {
       // alert(index)
       this.$store.state.currentindex = index;
     }
-    
   },
   computed: {
     rects() {
@@ -181,7 +181,20 @@ body {
   display: inline-block;
   position: absolute;
 }
-.list {
+
+.card {
+  background-size: cover;
+  background-repeat: none;
+  background-position: center center;
+  color: white;
+  position: relative;
+  background-color: tomato;
+  font-family: sans-serif;
+  text-align: center;
+  width: 900px;
+  height: 510px;
+}
+/* .list {
   position: absolute;
   top: 1px;
   bottom: 10px;
@@ -189,5 +202,5 @@ body {
   right: 300px;
   box-shadow: 0 0 2px #aaa;
   background-color: white;
-}
+} */
 </style>

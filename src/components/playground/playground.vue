@@ -3,6 +3,7 @@
     <div class="row h-25">
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
+          <!-- drop down for choose from options -->
           <div class="col-2">
             <div class="dropdown" style="margin:7px">
               <button
@@ -14,7 +15,6 @@
                 aria-expanded="false"
                 style="width:70px"
               >
-
                 <span class="round-body small-main" v-rainbow>.</span>
                 <span>{{status}}</span>
               </button>
@@ -52,19 +52,22 @@
     </div>
 
     <div class="row">
+      <!-- choose from options area -->
       <div class="col-2 set-side" style>
         <choosebar></choosebar>
       </div>
 
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
-        <helloworld></helloworld>
+        <dragdroparea></dragdroparea>
       </div>
 
+      <!-- sidebar for preview and styling -->
       <div class="col-2" style="padding:0px;">
         <sidebar></sidebar>
       </div>
     </div>
 
+    <!-- footer area -->
     <div
       class="row"
       style="position:fixed; bottom:45px;z-index:999; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
@@ -75,7 +78,6 @@
           style="margin-top:12px;"
           @click="run()"
         >start</button>
-
         <button
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
@@ -88,13 +90,13 @@
 </template>
 
 <script>
-import helloworld from "./HelloWorld.vue";
+import dragdroparea from "./dragdrop.vue";
 import sidebar from "./filepreview.vue";
 import choosebar from "./choosebar.vue";
 export default {
   components: {
     sidebar,
-    helloworld,
+    dragdroparea,
     choosebar
   },
 
@@ -140,12 +142,10 @@ export default {
     },
     rects() {
       return this.$store.state.rect.rects;
-    },
+    }
   },
 
   methods: {
-
-     
     setid(index) {
       this.status = index.Name;
       this.recipientid = index.UserID;
@@ -157,44 +157,40 @@ export default {
       console.log("mein chal rhaa hn remove krnay ky liyee");
       // /playgroundinput
       let token = this.token;
-      console.log(this.rects)
+      console.log(this.rects);
       this.$http
-          .post("http://localhost:8000/playgroundinput", this.rects, {
-            headers: {
-              Token: token
-            }
-          })
-          .then(res => {
-            if (res.status == 200) {
-              alert('inside')
-              this.$router.push("/testing");
-              console.log(res)
-              // alert("code red");
-            }
-            return res;
-          })
-          .catch(error => {
-            this.request = error.bodyText;
-            alert(error.bodyText);
-          });
-
-      
+        .post("http://localhost:8000/playgroundinput", this.rects, {
+          headers: {
+            Token: token
+          }
+        })
+        .then(res => {
+          if (res.status == 200) {
+            alert("inside");
+            this.$router.push("/testing");
+            console.log(res);
+            // alert("code red");
+          }
+          return res;
+        })
+        .catch(error => {
+          this.request = error.bodyText;
+          alert(error.bodyText);
+        });
     },
     undo() {
       this.$store.state.rect.rects.pop();
     },
 
     deleteicon() {
-      let index =this.$store.state.currentindex;
-      this.$store.state.rect.rects.splice(index,1)
+      let index = this.$store.state.currentindex;
+      this.$store.state.rect.rects.splice(index, 1);
     }
   }
 };
 </script>
 
 <style scoped>
-
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

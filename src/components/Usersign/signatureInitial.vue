@@ -1,7 +1,6 @@
   <template>
-  <!-- :style="{ background: `url(`+image+`)`+'no-repeat center center', backgroundSize: 'cover'}" -->
-  <div class="card" >
-    <img :style="{content:`url(`+image+`)`}" >
+  <div class="card">
+    <img :style="{content:`url(`+image+`)`}">
     <small class="text-muted">{{getcontractid}}</small>
 
     <slot name="default"></slot>

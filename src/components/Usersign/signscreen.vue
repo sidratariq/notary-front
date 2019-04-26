@@ -16,7 +16,7 @@
 
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
-        <helloworld ref="name">
+        <signatureInitial ref="name">
           <div v-for="(i,index) in coordinated" :key="index">
             <!-- for signature field -->
             <div v-if="i.Name =='Signature'" class="setsignature" slot="signature">
@@ -39,7 +39,7 @@
               name="default"
             >{{start(i)}}</div>
           </div>
-        </helloworld>
+        </signatureInitial>
       </div>
 
       <div class="col-2"></div>
@@ -77,12 +77,12 @@
 </template>
 
 <script>
-import helloworld from "./HelloWorld.vue";
+import signatureInitial from "./signatureInitial.vue";
 import html2canvas from "html2canvas";
 
 export default {
   components: {
-    helloworld
+    signatureInitial
   },
 
   data: function() {
