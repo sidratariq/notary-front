@@ -9,7 +9,10 @@
     </div>
 
     <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding">
-      <div class="btn-group setpadding">
+
+      <button class="btn btn-sm apply" @click="ExportAsCsv(contractid)" type="button">Export As CS</button>
+
+      <!-- <div class="btn-group setpadding">
         <button
           class="btn btn-sm dropdown-toggle apply"
           type="button"
@@ -23,19 +26,18 @@
               <a class="dropdown-item date padding" href="#">Forward</a>
               <a class="dropdown-item date padding" href="#">Create a Copy</a>
               <a class="dropdown-item date padding" @click="run()" href="#">Download</a>
-              <a
+              <a href="http://localhost:8000/Files/CSV/3b8831c9-aaa2-48df-9e9e-80bba225128f.csv"
                 class="dropdown-item date padding"
-                @click=" ExportAsCsv(contractid)"
-                :href="'http://localhost:8000/' +filepath"
-                
+                @click=" ExportAsCsv(contractid)"   
               >Export as CSV</a>
-          
               <a class="dropdown-item date padding" href="#">Delete</a>
             </div>
           </div>
         </div> 
-      </div>
+      </div> -->
     </div>
+
+            <!-- :href="'http://localhost:8000/iles/CSV/3b8831c9-aaa2-48df-9e9e-80bba225128f.csv' +filepath" -->
 
     <div class="col-1 col-md-2 setpadding">
       <button class="btn btn-sm apply" type="button">RESEND</button>
@@ -43,12 +45,12 @@
 
     </div>
 
-    <div class="col-1 setpadding">
+    <!-- <div class="col-1 setpadding">
       <button class="btn btn-sm apply" type="button">Continue</button>
     </div>
     <div class="col-1 setpadding">
       <button class="btn btn-sm apply" type="button">Continue</button>
-    </div>
+    </div> -->
 
     <div class="col-3 setpadding">
       <button class="btn btn-md apply green" @click="SaveinBlockhchain()" type="button">
@@ -126,8 +128,13 @@ export default {
         .then(res => {
           console.log(res);
           if (res.status == 200) {
-            console.log(res.bodyText);
-            this.filepath = res.bodyText;
+           
+            // console.log(res.bodyText.slice(-1,1));
+            // let a = "sidra"
+            // a.slice(-1)
+            // console.log(a)
+            // this.filepath = res.bodyText;
+            
           }
           return res;
         })
@@ -165,8 +172,11 @@ export default {
       .then(res => {
         console.log(res);
         if (res.status == 200) {
-          console.log(res.bodyText);
-          this.filepath = res.bodyText;
+            let path ="http://localhost:8000/"+res.bodyText.substring(1,res.bodyText.length-2)
+            console.log(path)
+            this.$http
+            .get (path)
+
         }
         return res;
       })

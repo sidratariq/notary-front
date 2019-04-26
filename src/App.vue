@@ -2,7 +2,7 @@
   <div  id="app">
       <head_head></head_head>
       <router-view></router-view>
-      <footer_footer v-if="this.$route.path !='/signscreen'" ></footer_footer >
+      <footer_footer v-if="this.$route.path !='/signscreen' &&this.$route.path !='/playground'" ></footer_footer >
   </div>
 </template>
 

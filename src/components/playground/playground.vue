@@ -15,8 +15,10 @@
                 aria-expanded="false"
                 style="width:70px"
               >
-                <span class="round-body small-main" v-rainbow>.</span>
-                <span>{{status}}</span>
+                <span class="round-body small-main small" style="background-color:black" ></span>
+                <!-- <span class="round-body small-main" v-rainbow>.</span> -->
+
+                <span class="spanset">{{status}}</span>
               </button>
               <div class="dropdown-menu btn-utility" aria-labelledby="dropdownMenuButton">
                 <a
@@ -25,8 +27,8 @@
                   @click="setid(recipient)"
                   :key="index"
                 >
-                  <span class="round-body small" v-rainbow>.</span>
-                  <span>{{recipient.Name}}</span>
+                  <span class="round-body small" v-rainbow></span>
+                  <span class="spanset">{{recipient.Name}}</span>
                 </a>
               </div>
             </div>
@@ -69,7 +71,7 @@
     <!-- footer area -->
     <div
       class="row"
-      style="position:fixed; bottom:45px;z-index:999; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
+      style="position:fixed; bottom:0px;z-index:999; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
     >
       <div class="col">
         <button
@@ -77,12 +79,12 @@
           style="margin-top:12px;"
           @click="run()"
         >start</button>
-        <button
+        <!-- <button
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
           @click="changeroute()"
-        >back</button>
+        >back</button> -->
       </div>
     </div>
   </div>
@@ -195,6 +197,9 @@ export default {
 </script>
 
 <style scoped>
+
+
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -349,6 +354,12 @@ ul li {
   text-decoration: none;
   text-transform: uppercase;
   vertical-align: middle;
+}
+
+.spanset::before{
+  content: '';
+  margin-right: 10px;
+  
 }
 
 .to-upper {

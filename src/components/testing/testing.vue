@@ -64,16 +64,16 @@
                   >We'll never share your email with anyone else.</small>
                 </div>
 
-                <button
+                <!-- <button
                   type="button"
                   class="OliveReact-Button--sizeLarge btn-sm OliveReact-Button--main OliveReact-Button to-upper"
                   style="border:1px solid #ccc; background-color:white"
                   @click="backroute()"
-                >back</button>
+                >back</button> -->
                 <button
                   class="OliveReact-Button--sizeLarge btn-sm OliveReact-Button--main OliveReact-Button to-upper"
                   @click="sendrequest()"
-                >Sign Now</button>
+                >Send Now</button>
               </form>
             </div>
           </div>

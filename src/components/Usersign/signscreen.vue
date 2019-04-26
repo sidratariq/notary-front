@@ -227,6 +227,10 @@ export default {
       if (args.Name == "Company") {
         return creator.Userdata.UserCompany;
       }
+      // for showing usercompnay
+      if (args.Name == "Phone") {
+        return creator.Userdata.UserPhone;
+      }
     },
 
     async copy() {

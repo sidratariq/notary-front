@@ -53,12 +53,12 @@
               <span class="setlayout">Company</span>
             </li>
 
-             <!-- <li class="nav-link menuitem" @click="addcompany('Phone')" active-class="active" exact tag="li">
+             <li class="nav-link menuitem" @click="addcompany('Phone')" active-class="active" exact tag="li">
               <span style="padding:4px">
                 <i class="fas fa-phone menuicon"></i>
               </span>
               <span class="setlayout">Phone</span>
-            </li> -->
+            </li>
           </div>
         </div>
       </div>
@@ -95,8 +95,8 @@
     methods:{
           add(args) {
           this.$store.state.rect.rects.push({
-          width: 50,
-          height: 50,
+          width: 108,
+          height: 96,
           top: 10,
           left: 10,
           draggable: true,
@@ -108,7 +108,7 @@
           snapToGrid: false,
           aspectRatio: false,
           zIndex: 1,
-          color: "#ffd65b url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
+          color: "#ffd65b url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  center ",
           active: false,
           text: args,
           recipient:this.recipientid,
@@ -121,8 +121,8 @@
 
       addinitial(args) {
         this.$store.state.rect.rects.push({
-          width: 101,
-          height: 27,
+          width: 108,
+          height: 96,
           top: 10,
           left: 10,
           draggable: true,
@@ -134,7 +134,7 @@
           snapToGrid: false,
           aspectRatio: false,
           zIndex: 1,
-          color:"#c3d5e6 url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat  ",
+          color:"#c3d5e6 url('http://localhost:8000/Files/Icons/sign.jpg') no-repeat center ",
           active: false,
           text: args,
           recipient:this.recipientid,
@@ -171,8 +171,8 @@
       },
       addname(args) {
         this.$store.state.rect.rects.push({
-          width: 101,
-          height: 27,
+          width: 125,
+          height: 29,
           top: 10,
           left: 10,
           draggable: true,
@@ -268,7 +268,7 @@
   }
 
   i {
-    background-color: aquamarine;
+    background-color: rgb(255, 214, 91);
     border: 1px solid #cccccc;
   }
 

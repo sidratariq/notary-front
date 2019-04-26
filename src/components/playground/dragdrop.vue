@@ -30,7 +30,13 @@
       <div
         class="filler"
         :style="{background:rect.color,backgroundSize: '67px' }"
-      >{{rect.recipientname}}</div>
+      >{{rect.recipientname}}
+      <span v-if="rect.text!='Signature' && rect.text!='Initial'" >
+        {{rect.text}}
+
+      </span>
+       <p v-if="rect.text=='Signature' || rect.text=='Initial'" style=" margin:45px 12px 0px 12px"  >{{rect.text}}</p>
+         </div>
     </VueDragResize>
   </div>
 </template>
@@ -57,8 +63,12 @@ export default {
   },
   mounted() {
     let listEl = document.getElementById("list");
+    console.log(listEl)
     this.listWidth = listEl.clientWidth;
+    console.log(this.listWidth)
+
     this.listHeight = listEl.clientHeight;
+    console.log(this.listHeight)
     window.addEventListener("resize", () => {
       this.listWidth = listEl.clientWidth;
       this.listHeight = listEl.clientHeight;

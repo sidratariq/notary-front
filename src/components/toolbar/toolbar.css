@@ -4,7 +4,7 @@
 .toolbar{
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 25px;
     width: var(--toolbar-width);
     padding:  15px 15px 0 15px;
     box-shadow: 0 0 2px #AAA;

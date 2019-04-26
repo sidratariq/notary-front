@@ -10,7 +10,6 @@
                 Please E-Notarize: {{contractdata.ContractData.ContractName}}
                 <br>
                
-                <!-- {{contractdata.ContractData}} -->
 
                 <span style="width:16px; height:16px">
                   <i
@@ -64,13 +63,14 @@
               <div class="col-md-8 col-lg-10 col-sm-8 col-xs-12">
                 <strip :contractid="contractdata.ContractData.ContractID"></strip>
               </div>
-
+              
               <!-- print and download -->
               <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding yee wlaa">
                 <div class="row setpadding" style="margin-left:0px; margin-right:0px">
                   <div class="col-3 setpadding"></div>
 
                   <div class="col-3 setpadding">
+
                     <div class="btn-group setpadding">
                       <button
                         class="btn btn-sm apply download"
@@ -86,6 +86,7 @@
 
                   <div class="col-3 setpadding">
                     <button @click="print" class="btn btn-sm apply print" type="button">
+                      
                       <i class="fas fa-print circle"></i>
                     </button>
                   </div>
@@ -100,7 +101,8 @@
         <!-- recipients -->
         <div class="row">
           <div class="col-12">
-            <h4>Recipients</h4>
+            <h4>Recipients{{signers}}
+            </h4>
             <hr>
             <!-- Signers -->
             <recipient v-for="(data,index) in contractdata.Signers" :date="updatetime[1]" :time="updatetime[2]"  :value="data"  :key="index">{{data}}</recipient>
@@ -140,6 +142,8 @@ export default {
   data() {
     return {
       checked: false,
+      creator:this.$store.getters.getuserid,
+      status:true
       
     };
   },
@@ -155,6 +159,13 @@ export default {
   computed: {
     contractdata() {
       return this.$store.getters.getcontractdata;
+    },
+
+    signers(){
+      let signers = this.contractdata.Signers;
+      let currentuser = this.creator;
+      return signers
+    
     },
 
     contractstatus() {
