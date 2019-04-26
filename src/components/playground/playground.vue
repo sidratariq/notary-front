@@ -167,7 +167,7 @@ export default {
             alert("inside");
             this.$router.push("/testing");
             console.log(res);
-            this.rects = []
+            this.rects = [];
             // alert("code red");
           }
           return res;
@@ -185,6 +185,11 @@ export default {
       let index = this.$store.state.currentindex;
       this.$store.state.rect.rects.splice(index, 1);
     }
+  },
+
+  // setting array containing rects to null
+  beforeDestroy() {
+    this.$store.state.rect.rects = [];
   }
 };
 </script>
