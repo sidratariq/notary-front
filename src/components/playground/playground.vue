@@ -154,7 +154,6 @@ export default {
     },
     run() {
       console.log("mein chal rhaa hn remove krnay ky liyee");
-      // /playgroundinput
       let token = this.token;
       console.log(this.rects);
       this.$http
@@ -168,6 +167,7 @@ export default {
             alert("inside");
             this.$router.push("/testing");
             console.log(res);
+            this.rects = []
             // alert("code red");
           }
           return res;
@@ -205,7 +205,6 @@ export default {
   height: 100%;
   border: 1px solid #cccccc;
   background: #f9f9f9;
-  /* z-index: 999; */
 }
 
 .border {
@@ -236,21 +235,17 @@ export default {
 
 .container-fluid {
   height: 100vh;
-  /* background-color: brown; */
 }
 
 .set-side {
   padding-left: 0px;
   padding-right: 0px;
-  /* background: red; */
 }
 
 .h-25 {
   height: 6% !important;
   border-bottom: 1px solid #ccc;
-  /* background-color: #ccc; */
   background-color: rgb(233, 233, 233);
-  /* #d9d9d9; */
 }
 
 .h-75 {

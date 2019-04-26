@@ -46,7 +46,6 @@
                     class="form-text text-muted"
                   >We'll never share your email with anyone else.</small>
                 </div>
-              
 
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">
@@ -68,11 +67,12 @@
                 <button
                   type="button"
                   class="OliveReact-Button--sizeLarge btn-sm OliveReact-Button--main OliveReact-Button to-upper"
-                  style="border:1px solid #ccc; background-color:white"  @click="backroute()"
+                  style="border:1px solid #ccc; background-color:white"
+                  @click="backroute()"
                 >back</button>
                 <button
                   class="OliveReact-Button--sizeLarge btn-sm OliveReact-Button--main OliveReact-Button to-upper"
-                   @click="sendrequest()"
+                  @click="sendrequest()"
                 >Sign Now</button>
               </form>
             </div>
@@ -110,26 +110,31 @@
           </div>
 
           <div class="col-md-12 col-lg-12 col-sm-12 setcolor">
-            <div class="row setcolor" style="margin-top:4px" v-for="(recipient,index) in recipients" :key="index">
-                
-                  <div class="col-md-2 col-lg-2 col-sm-2 setcolor">
-                    <div class="row setcolor" >
-                      <span
-                        
-                        style="border-radius:50%; padding:5px; font-size:10px; background:rgb(232, 237, 247) "
-                      >{{index}}</span>
-                    </div>
-                  </div>
-                
+            <div
+              class="row setcolor"
+              style="margin-top:4px"
+              v-for="(recipient,index) in recipients"
+              :key="index"
+            >
+              <div class="col-md-2 col-lg-2 col-sm-2 setcolor">
+                <div class="row setcolor">
+                  <span
+                    style="border-radius:50%; padding:5px; font-size:10px; background:rgb(232, 237, 247) "
+                  >{{index}}</span>
+                </div>
+              </div>
 
-                  <div class="col-md-5 col-lg-5 col-sm-5 setcolor">
-                     <small class="text-muted">{{recipient.Name}}</small>
-                      </div>
-                  <div class="col-md-5 col-lg-5 col-sm-5 setcolor"> <i :class="{'fas fa-file-signature seteffect':recipient.CC==0,'far fa-closed-captioning seteffect':recipient.CC==1}"  ></i><small class="text-muted"> {{(recipient.CC==1)? 'Receive a Copy':'Need to Sign'}}</small> </div>
-               
+              <div class="col-md-5 col-lg-5 col-sm-5 setcolor">
+                <small class="text-muted">{{recipient.Name}}</small>
+              </div>
+              <div class="col-md-5 col-lg-5 col-sm-5 setcolor">
+                <i
+                  :class="{'fas fa-file-signature seteffect':recipient.CC==0,'far fa-closed-captioning seteffect':recipient.CC==1}"
+                ></i>
+                <small class="text-muted">{{(recipient.CC==1)? 'Receive a Copy':'Need to Sign'}}</small>
+              </div>
             </div>
-            </div>
-
+          </div>
         </div>
       </div>
     </div>
@@ -142,42 +147,42 @@ export default {
     return {
       emailsubject: "",
       message: ""
-
     };
-    
   },
 
   methods: {
     backroute() {
       this.$router.push("/playground");
     },
-    sendrequest(){
-        let token = this.token
-        alert("everyone is crazy")
-        this.$http
-          .post("http://localhost:8000/SendContract", {
-              "ContractID":this.contractid,
-              "EmailSubj":this.emailsubject,
-              "EmailMsg":this.message
-          }, {
+    sendrequest() {
+      let token = this.token;
+      this.$http
+        .post(
+          "http://localhost:8000/SendContract",
+          {
+            ContractID: this.contractid,
+            EmailSubj: this.emailsubject,
+            EmailMsg: this.message
+          },
+          {
             headers: {
               Token: token
             }
-          })
-          .then(res => {
-              console.log(res);
-              
-            if (res.status == 200) {
-              console.log(res.bodyText);
-              this.$router.push('/signnow')
+          }
+        )
+        .then(res => {
+          console.log(res);
 
-            }
+          if (res.status == 200) {
+            console.log(res.bodyText);
+            this.$router.push("/signnow");
+          }
 
-            return res;
-          })
-          .catch(error => {
-            alert(error);
-          });
+          return res;
+        })
+        .catch(error => {
+          alert(error);
+        });
     }
   },
   computed: {
@@ -232,9 +237,9 @@ export default {
   padding: 7px 18px;
 }
 
-.seteffect{
-    color: rgb(153, 153, 153);
-    }
+.seteffect {
+  color: rgb(153, 153, 153);
+}
 
 .OliveReact-Button--main {
   background-color: #ffce00;

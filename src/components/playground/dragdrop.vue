@@ -1,6 +1,4 @@
   <template>
- 
-
   <div class="card" id="list">
     <img :style="{content:`url(`+image+`)`}">
 
@@ -185,13 +183,4 @@ body {
   width: 900px;
   height: 510px;
 }
-/* .list {
-  position: absolute;
-  top: 1px;
-  bottom: 10px;
-  left: 2px;
-  right: 300px;
-  box-shadow: 0 0 2px #aaa;
-  background-color: white;
-} */
 </style>

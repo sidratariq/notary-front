@@ -23,16 +23,24 @@
               <a class="dropdown-item date padding" href="#">Forward</a>
               <a class="dropdown-item date padding" href="#">Create a Copy</a>
               <a class="dropdown-item date padding" @click="run()" href="#">Download</a>
-              <a class="dropdown-item date padding" @click="DownloadAsCSV(contractid)" href="#">Export as CSV</a>
+              <a
+                class="dropdown-item date padding"
+                @click=" ExportAsCsv(contractid)"
+                :href="'http://localhost:8000/' +filepath"
+                
+              >Export as CSV</a>
+          
               <a class="dropdown-item date padding" href="#">Delete</a>
             </div>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
 
     <div class="col-1 col-md-2 setpadding">
       <button class="btn btn-sm apply" type="button">RESEND</button>
+                {{filepath}}
+
     </div>
 
     <div class="col-1 setpadding">
@@ -43,11 +51,12 @@
     </div>
 
     <div class="col-3 setpadding">
-      <button
-        class="btn btn-md apply green"
-        @click="SaveinBlockhchain()"
-        type="button"
-      >Save in Blockchain<i class="fab fa-bitcoin" style="color:green;transform: rotate(-16deg); margin:3px"></i>
+      <button class="btn btn-md apply green" @click="SaveinBlockhchain()" type="button">
+        Save in Blockchain
+        <i
+          class="fab fa-bitcoin"
+          style="color:green;transform: rotate(-16deg); margin:3px"
+        ></i>
       </button>
     </div>
   </div>
@@ -55,6 +64,11 @@
 
 <script>
 export default {
+  data: () => {
+    return {
+      filepath: null
+    };
+  },
   props: ["contractid"],
   methods: {
     SaveinBlockhchain() {
@@ -74,17 +88,15 @@ export default {
         )
         .then(res => {
           if (res.status == 200) {
-              console.log(token);
-              console.log(this.contractid)
+            console.log(token);
+            console.log(this.contractid);
 
-            let value = JSON.parse(res.bodyText)
+            let value = JSON.parse(res.bodyText);
             // console.log(value)
 
             store.dispatch("updateContracthash", value);
 
-            this.$router.push('/saveinblockchain');
-
-            
+            this.$router.push("/saveinblockchain");
           }
           return res;
         })
@@ -92,20 +104,75 @@ export default {
           console.log(error);
         });
     },
-    gotoSignscreen(){
-      this.$router.push('/signscreen')
+    gotoSignscreen() {
+      this.$router.push("/signscreen");
     },
-    DownloadAsCSV(args){
-      console.log(args)
+    ExportAsCsv(args) {
+      let token = this.token;
+      let contractid = args;
+      console.log(contractid);
+      this.$http
+        .post(
+          "http://localhost:8000/ExportCSV",
+          {
+            ContractID: contractid
+          },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+          if (res.status == 200) {
+            console.log(res.bodyText);
+            this.filepath = res.bodyText;
+          }
+          return res;
+        })
+        .catch(error => {
+          alert(error + "error");
+          console.log(error);
+        });
     },
-    click(){
-      this.print()
+    click() {
+      this.print();
     }
   },
   computed: {
     token: function() {
       return this.$store.getters.getToken;
     }
+  },
+  created: function() {
+    // alert(this.token)
+    // alert(this.contractid)
+    let token = this.token;
+    let contractid = this.contractid;
+    this.$http
+      .post(
+        "http://localhost:8000/ExportCSV",
+        {
+          ContractID: contractid
+        },
+        {
+          headers: {
+            Token: token
+          }
+        }
+      )
+      .then(res => {
+        console.log(res);
+        if (res.status == 200) {
+          console.log(res.bodyText);
+          this.filepath = res.bodyText;
+        }
+        return res;
+      })
+      .catch(error => {
+        alert(error);
+      });
   }
 };
 </script>

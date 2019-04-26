@@ -79,8 +79,16 @@
         <td @click="routechange(select.ContractID)">
           <!-- {{select.Blockchain}} -->
           <!-- <p style="font-size:13px"> -->
-          <i v-if="select.Blockchain ==1" class="fab fa-bitcoin" style="color:green;font-size:23px;transform: rotate(-16deg);"></i>
-          <i v-if="select.Blockchain ==0" class="fab fa-bitcoin" style="color:red;font-size:23px;transform: rotate(-16deg);"></i>
+          <i
+            v-if="select.Blockchain ==1"
+            class="fab fa-bitcoin"
+            style="color:green;font-size:23px;transform: rotate(-16deg);"
+          ></i>
+          <i
+            v-if="select.Blockchain ==0"
+            class="fab fa-bitcoin"
+            style="color:red;font-size:23px;transform: rotate(-16deg);"
+          ></i>
           <!-- {{select}} -->
           <!-- </p> -->
         </td>
@@ -139,9 +147,9 @@
                     @click="ExportAsCsv(select.ContractID)"
                   >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
-                  <!-- <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a> -->
-                  <!-- <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a> -->
-                  <!-- <a class="dropdown-item date padding" href="#">Resend</a> -->
+                  <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
+                  <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
+                  <a class="dropdown-item date padding" href="#">Resend</a>
                 </div>
               </div>
             </div>
@@ -159,14 +167,17 @@
                   <!-- Modal body -->
                   <div class="modal-body">
                     <ul>
-                      
-                      <li v-for="(i,index) in folders" :key="index" style="border-top:1px solid #ccc;border-bottom:1px solid #ccc">
-                        <h5 class="movefolder" @click="MoveContract(i.FolderID,select.ContractID)">
-                          {{i.FolderName}}
-                        </h5>
+                      <li
+                        v-for="(i,index) in folders"
+                        :key="index"
+                        style="border-top:1px solid #ccc;border-bottom:1px solid #ccc"
+                      >
+                        <h5
+                          class="movefolder"
+                          @click="MoveContract(i.FolderID,select.ContractID)"
+                        >{{i.FolderName}}</h5>
                       </li>
                     </ul>
-
                   </div>
 
                   <!-- Modal footer -->
@@ -184,13 +195,13 @@
 </template>
 
 
-        <script>
+<script>
 export default {
   data() {
     return {
       counter: "",
       checked: false,
-      path:''
+      path: ""
     };
   },
 
@@ -250,7 +261,7 @@ export default {
         .post(
           "http://localhost:8000/ExportCSV",
           {
-            "ContractID": contractid
+            ContractID: contractid
           },
           {
             headers: {
@@ -270,7 +281,7 @@ export default {
           alert(error);
         });
     },
-    MoveContract(arg1,arg2){
+    MoveContract(arg1, arg2) {
       let token = this.token;
       // alert(aa)
       let contractid = arg2;
@@ -280,8 +291,8 @@ export default {
         .post(
           "http://localhost:8000/moveContract",
           {
-            "FolderID": folderid,
-            "ContractID": contractid
+            FolderID: folderid,
+            ContractID: contractid
           },
           {
             headers: {
@@ -293,7 +304,7 @@ export default {
           console.log(res);
           if (res.status == 200) {
             console.log(res.bodyText);
-            alert('updated')
+            alert("updated");
           }
           return res;
         })
@@ -324,23 +335,21 @@ export default {
     token: function() {
       return this.$store.getters.getToken;
     },
-    folders:function(){
-      return this.$store.getters.getfolder
+    folders: function() {
+      return this.$store.getters.getfolder;
     },
 
-    getpath:{
-      get(){
-        if(this.path==''){
-          return ''
+    getpath: {
+      get() {
+        if (this.path == "") {
+          return "";
+        } else {
+          return "http://localhost:8000/" + this.path;
         }
-        else{
-         return  "http://localhost:8000/"+this.path
-        }
-
 
         return this.path;
       },
-      set(value){
+      set(value) {
         this.path = value;
       }
     }
@@ -390,7 +399,7 @@ export default {
   text-shadow: none;
 }
 
-.movefolder:hover{
+.movefolder:hover {
   background-color: #cccccc;
 }
 
