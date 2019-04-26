@@ -41,7 +41,6 @@
             <button class="btn btn-sm" @click="undo">
               <i class="fas fa-undo"></i>
             </button>
-            <!-- <i class="far fa-trash-alt"></i> -->
 
             <button class="btn btn-sm" @click="deleteicon">
               <i class="far fa-trash-alt"></i>

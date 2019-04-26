@@ -1,14 +1,5 @@
   <template>
-  <!-- <div
-    class="list"
-    id="list"
-    :style="{ background: 'url(' + image + ')center no-repeat ',backgroundSize:'cover' }"
-    style="position: relative; width:900px;
-           height:510px;
-           background-position: center;
-           display: block;
-           background-size: 100% 100%"
-  >-->
+ 
 
   <div class="card" id="list">
     <img :style="{content:`url(`+image+`)`}">
