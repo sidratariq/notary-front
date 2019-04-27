@@ -432,6 +432,10 @@ export default {
   position: relative;
 }
 
+table{
+  margin-left: 227px;
+}
+
 th {
   border-bottom: 1px solid #e9e9e9;
   font-size: 12px;

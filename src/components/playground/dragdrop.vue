@@ -190,7 +190,7 @@ body {
   background-color: tomato;
   font-family: sans-serif;
   text-align: center;
-  width: 900px;
+  width: z;
   height: 510px;
 }
 </style>
