@@ -17,12 +17,9 @@ import saveinblockchain from './components/blockchain/save-hash.vue'
 import signnow from './components/signnow.vue'
 import signscreen from './components/Usersign/signscreen.vue'
 import learn from './components/Usersign1/App.vue'
-
-
-
+import resizecanvas from './components/image.vue'
 
 // ******* learning routes ************///
-// import User from './components/template/user/User.vue'
 import userhome from './components/template/Home.vue'
 
 // ******* learning routes ************///
@@ -30,14 +27,17 @@ import adddocs from './components/Add_docs/adddocs.vue'
 import commingsoon from './components/commingsoon/comming.vue'
 import detail from './components/viewfile/detail.vue'
 
-
-
 // make a bundle of dashoard
 import dashboard from './components/dashboard/dashboard.vue'
 import addrecipient from './components/recipients/AddRecipient.vue'
 
 
 export const routes = [
+    {
+        path:'/canvas',
+        component:resizecanvas,
+        name:'canvas'
+    },
 
     {
         path: '/signscreen',

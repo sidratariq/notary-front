@@ -10,7 +10,6 @@
                 Please E-Notarize: {{contractdata.ContractData.ContractName}}{{signers}}
                 <br>
 
-
                 <span style="width:16px; height:16px">
                   <i
                     :class="{'far fa-clock':contractstatus=='In Progress',
@@ -63,14 +62,13 @@
               <div class="col-md-8 col-lg-10 col-sm-8 col-xs-12">
                 <strip :contractid="contractdata.ContractData.ContractID"></strip>
               </div>
-              
+
               <!-- print and download -->
               <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding yee wlaa">
                 <div class="row setpadding" style="margin-left:0px; margin-right:0px">
                   <div class="col-3 setpadding"></div>
 
                   <div class="col-3 setpadding">
-
                     <div class="btn-group setpadding">
                       <button
                         class="btn btn-sm apply download"
@@ -86,7 +84,6 @@
 
                   <div class="col-3 setpadding">
                     <button @click="print" class="btn btn-sm apply print" type="button">
-                      
                       <i class="fas fa-print circle"></i>
                     </button>
                   </div>
@@ -101,42 +98,44 @@
         <!-- recipients -->
         <div class="row">
           <div class="col-12">
-            <h4>Recipients
-            </h4>
+            <h4>Recipients</h4>
             <hr>
             <!-- Signers -->
-            <recipient v-for="(data,index) in contractdata.Signers" :date="updatetime[1]" :time="updatetime[2]"  :value="data"  :key="index">{{data}}</recipient>
+            <recipient
+              v-for="(data,index) in contractdata.Signers"
+              :date="updatetime[1]"
+              :time="updatetime[2]"
+              :value="data"
+              :key="index"
+            >{{data}}</recipient>
           </div>
         </div>
 
         <!-- Message -->
         <!-- <div class="row">
           <div class="col-12">
-            <h5>Message</h5> -->
-            <!-- THIS WILL BE LIST OF MESSAGES -->
-            <!-- <div class="col-12">
+        <h5>Message</h5>-->
+        <!-- THIS WILL BE LIST OF MESSAGES -->
+        <!-- <div class="col-12">
               <small class="text-muted">No message has been entered.</small>
             </div>
-            <hr> -->
-            <!-- <div class="col-12">
+        <hr>-->
+        <!-- <div class="col-12">
               <small class="text-muted">No message has been entered.</small>
             </div>
-          </div> -->
+        </div>-->
         <!-- </div>
-       -->
-
-       {{signers}}
-    </div>
+        -->
+      </div>
       <!-- sidebar -->
       <div class="col-2 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 setpadding setsidebar">
-        <sidebar ref="sidecontract"> </sidebar>
+        <sidebar ref="sidecontract"></sidebar>
       </div>
     </div>
-    
   </div>
 </template>
 
-                        <script>
+<script>
 import sidebar from "./FileSidePreview";
 import strip from "./movestrip.vue";
 import recipient from "./recipients.vue";
@@ -145,15 +144,14 @@ export default {
   data() {
     return {
       checked: false,
-      creator:this.$store.getters.getuserid,
-      status:true
-      
+      creator: this.$store.getters.getuserid,
+      status: true
     };
   },
 
   methods: {
-    print(){
-      window.print()
+    print() {
+      window.print();
       // print(this.$refs.sidecontract)
     },
     navigateToHome() {
@@ -190,17 +188,16 @@ export default {
       }
     },
 
-     signers(){
+    signers() {
       let signers = this.contractdata.Signers;
       let currentuser = this.creator;
       var value = false;
-      for(let i =0;i<signers.length;i++){
-          // 127a82c9-8397-4191-92d4-f3a8ca05255c
-        if(signers[i].UserID==currentuser){
-          return value = true
-        }
-        else{
-          return value = false
+      for (let i = 0; i < signers.length; i++) {
+        // 127a82c9-8397-4191-92d4-f3a8ca05255c
+        if (signers[i].UserID == currentuser) {
+          return (value = true);
+        } else {
+          return (value = false);
         }
       }
     }
@@ -217,8 +214,6 @@ export default {
 
 
 <style scoped>
-
-
 .voided {
   color: #999;
 }
