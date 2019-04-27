@@ -2,6 +2,11 @@
   <div class="row">
     <div class="col-1 setpadding">
       <button class="btn btn-primary btn-sm" type="button" @click="gotoSignscreen()">SIGN</button>
+      <!-- <button
+        class="btn btn-primary btn-sm"
+        type="button"
+        @click="gotoSignscreen()"
+      >Waiting for others</button> -->
     </div>
 
     <div class="col-1 setpadding">
@@ -9,7 +14,6 @@
     </div>
 
     <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding">
-
       <button class="btn btn-sm apply" @click="ExportAsCsv(contractid)" type="button">Export As CS</button>
 
       <!-- <div class="btn-group setpadding">
@@ -34,15 +38,15 @@
             </div>
           </div>
         </div> 
-      </div> -->
+      </div>-->
     </div>
 
-            <!-- :href="'http://localhost:8000/iles/CSV/3b8831c9-aaa2-48df-9e9e-80bba225128f.csv' +filepath" -->
+    <!-- :href="'http://localhost:8000/iles/CSV/3b8831c9-aaa2-48df-9e9e-80bba225128f.csv' +filepath" -->
 
     <div class="col-1 col-md-2 setpadding">
       <button class="btn btn-sm apply" type="button">RESEND</button>
-                {{filepath}}
-
+      <!-- {{filepath}} -->
+      <!-- {{contractdata}} -->
     </div>
 
     <!-- <div class="col-1 setpadding">
@@ -50,7 +54,7 @@
     </div>
     <div class="col-1 setpadding">
       <button class="btn btn-sm apply" type="button">Continue</button>
-    </div> -->
+    </div>-->
 
     <div class="col-3 setpadding">
       <button class="btn btn-md apply green" @click="SaveinBlockhchain()" type="button">
@@ -68,11 +72,13 @@
 export default {
   data: () => {
     return {
-      filepath: null
+      filepath: null,
+      creator: this.$store.getters.getuserid
     };
   },
   props: ["contractid"],
   methods: {
+    // save in blockchain
     SaveinBlockhchain() {
       let token = this.token;
       let store = this.$store;
@@ -106,9 +112,12 @@ export default {
           console.log(error);
         });
     },
+
+    //sign screen route
     gotoSignscreen() {
       this.$router.push("/signscreen");
     },
+
     ExportAsCsv(args) {
       let token = this.token;
       let contractid = args;
@@ -128,13 +137,11 @@ export default {
         .then(res => {
           console.log(res);
           if (res.status == 200) {
-           
             // console.log(res.bodyText.slice(-1,1));
             // let a = "sidra"
             // a.slice(-1)
             // console.log(a)
             // this.filepath = res.bodyText;
-            
           }
           return res;
         })
@@ -143,6 +150,8 @@ export default {
           console.log(error);
         });
     },
+
+    // print function for printing of current contract
     click() {
       this.print();
     }
@@ -150,6 +159,23 @@ export default {
   computed: {
     token: function() {
       return this.$store.getters.getToken;
+    },
+    contractdata() {
+      return this.$store.getters.getcontractdata;
+    },
+
+    signers() {
+      let signers = this.contractdata.Signers;
+      let currentuser = this.creator;
+      var value = false;
+      for (let i = 0; i < signers.length; i++) {
+        // 127a82c9-8397-4191-92d4-f3a8ca05255c
+        if (signers[i].UserID == currentuser) {
+          return (value = true);
+        } else {
+          return (value = false);
+        }
+      }
     }
   },
   created: function() {
@@ -157,6 +183,7 @@ export default {
     // alert(this.contractid)
     let token = this.token;
     let contractid = this.contractid;
+    var pathref = "okay";
     this.$http
       .post(
         "http://localhost:8000/ExportCSV",
@@ -172,17 +199,21 @@ export default {
       .then(res => {
         console.log(res);
         if (res.status == 200) {
-            let path ="http://localhost:8000/"+res.bodyText.substring(1,res.bodyText.length-2)
-            console.log(path)
-            this.$http
-            .get (path)
-
+          let path =
+            "http://localhost:8000/" +
+            res.bodyText.substring(1, res.bodyText.length - 2);
+          console.log(path);
+          // alert(pathref+"before assigning")
+          pathref = path;
+          // alert(pathref+"inside loop")
         }
         return res;
       })
       .catch(error => {
         alert(error);
       });
+
+    // alert(pathref+"outside")
   }
 };
 </script>

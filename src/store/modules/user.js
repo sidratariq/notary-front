@@ -107,18 +107,19 @@ const mutations = {
 
     setprofilepicture: (state, payload) => {
         state.Userdata.UserProfilepicture = payload;
-        window.location.reload()
+        // window.location.reload()
     },
 
     setinitial: (state, payload) => {
-        // console.log(payload)
-
+        console.log(payload+"inside setsignature")
         state.Userdata.UserInitials = payload
     },
 
     setsignature: (state, payload) => {
+        console.log(payload+"inside setsignature")
+
         state.Userdata.UserSignature = payload;
-        window.location.reload();
+        // window.location.reload();
 
     },
 
@@ -142,6 +143,7 @@ const mutations = {
     setExpiringsoon: (state, payload) => {
         state.Userdata.Expiringsoon = payload
     },
+
     setToken: (state, payload) => {
         state.Userdata.UserToken = payload
     },
@@ -174,15 +176,12 @@ const actions = {
     },
 
     changeinitial: ({ commit }, payload) => {
-        // console.log("mutation running")
+        console.log(payload)
         commit('setinitial', payload)
     },
 
     changesignature: ({ commit }, payload) => {
-
-        // console.log("mutation running")
-
-
+        console.log(payload)
         commit('setsignature', payload)
     },
 

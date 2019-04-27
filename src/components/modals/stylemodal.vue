@@ -175,10 +175,9 @@ export default {
             // console.log(res.data.Signpath);
             console.log(res.data.InitialsPath);
             console.log(res.data.Signpath);
-
             store.dispatch("changeinitial", res.data.InitialsPath);
             store.dispatch("changesignature", res.data.Signpath);
-
+            
             // this.clicked();
           } else {
             console.log("go to hell");

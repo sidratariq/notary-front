@@ -1,6 +1,7 @@
   <template>
   <div class="card" :style="{backgroundImage:'url('+thumbnail+')', position:'relative', }">
     <slot></slot>
+    adjakdaja
   </div>
 </template>
 

@@ -16,6 +16,7 @@ import saveinblockchain from './components/blockchain/save-hash.vue'
 // import test from './components/Usersigndelete/signscreen.vue'
 import signnow from './components/signnow.vue'
 import signscreen from './components/Usersign/signscreen.vue'
+import learn from './components/Usersign1/App.vue'
 
 
 
@@ -42,6 +43,11 @@ export const routes = [
         path: '/signscreen',
         component: signscreen,
         name: 'signscreen'
+    },
+    {
+        path:'/learn',
+        component:learn,
+        name:'learn'
     },
  
     {

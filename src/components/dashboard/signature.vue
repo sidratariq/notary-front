@@ -1,5 +1,7 @@
 <template>
   <div @click="clicked" class="signatureChrome signatureChrome-inverse">
+    
+   <!-- <span>{{signature}}</span>  -->
     <span style="position:absolute">E-Notarized by:</span>
     <!-- signature image from user choosen from database -->
     <img
@@ -11,7 +13,11 @@
     >
     <span v-if="signature==0" class="initial-text" id="set-color">Create your Signature</span>
     <span style="position:absolute; bottom:-75px; width:100%">{{userid}}</span>
+    <!-- <div>
+      Files/User_signs/Signs/127a82c9-8397-4191-92d4-f3a8ca05255c.png
+    </div> -->
   </div>
+
 </template>
 
 <script>

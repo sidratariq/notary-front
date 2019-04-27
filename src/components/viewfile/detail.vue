@@ -7,9 +7,9 @@
           <div class="col-12">
             <div class="row">
               <p class="setname setmargin">
-                Please E-Notarize: {{contractdata.ContractData.ContractName}}
+                Please E-Notarize: {{contractdata.ContractData.ContractName}}{{signers}}
                 <br>
-               
+
 
                 <span style="width:16px; height:16px">
                   <i
@@ -101,7 +101,7 @@
         <!-- recipients -->
         <div class="row">
           <div class="col-12">
-            <h4>Recipients{{signers}}
+            <h4>Recipients
             </h4>
             <hr>
             <!-- Signers -->
@@ -124,12 +124,15 @@
           </div> -->
         <!-- </div>
        -->
+
+       {{signers}}
     </div>
       <!-- sidebar -->
       <div class="col-2 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 setpadding setsidebar">
         <sidebar ref="sidecontract"> </sidebar>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -150,6 +153,7 @@ export default {
 
   methods: {
     print(){
+      window.print()
       // print(this.$refs.sidecontract)
     },
     navigateToHome() {
@@ -159,13 +163,6 @@ export default {
   computed: {
     contractdata() {
       return this.$store.getters.getcontractdata;
-    },
-
-    signers(){
-      let signers = this.contractdata.Signers;
-      let currentuser = this.creator;
-      return signers
-    
     },
 
     contractstatus() {
@@ -190,6 +187,21 @@ export default {
       } else {
         changetime = updatetime.split(" ");
         return changetime;
+      }
+    },
+
+     signers(){
+      let signers = this.contractdata.Signers;
+      let currentuser = this.creator;
+      var value = false;
+      for(let i =0;i<signers.length;i++){
+          // 127a82c9-8397-4191-92d4-f3a8ca05255c
+        if(signers[i].UserID==currentuser){
+          return value = true
+        }
+        else{
+          return value = false
+        }
       }
     }
 
