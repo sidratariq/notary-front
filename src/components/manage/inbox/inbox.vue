@@ -7,16 +7,17 @@
         :nooffilesselected="nooffilesselected"
       ></head_head>
     </div>
+
     <content_bar
-      v-if="usercontracts.length!=null"
+      v-if="(usercontracts==null? false: true)"
       :fileArray="fileArray"
       :defautSelects="defaultSelects"
       @Nooffile="nooffilesselected = $event"
       :getselected="getselected"
     ></content_bar>
-    {{usercontracts.length}}
-    <!-- <content_bar v-if="this.$route.query.view == 'Sent'"  :fileArray="fileArray" :defautSelects="defaultSelects" @Nooffile="nooffilesselected = $event" :getselected="getselected"></content_bar>                     -->
-    <nofile v-if="usercontracts==null"></nofile>
+
+    {{ (usercontracts==null||usercontracts.legth==0? 'it is null': usercontracts.length)}}
+    <nofile v-if="usercontracts==null || usercontracts.length==0"></nofile>
   </div>
 </template>
 

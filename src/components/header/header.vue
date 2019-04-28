@@ -127,7 +127,8 @@
               let data = JSON.parse(res.bodyText);
               let folderlist = data.FolderList;
               let inboxcontracts = data.InboxContracts;
-              console.log(folderlist)
+              console.log(folderlist+'header');
+              console.log(inboxcontracts+"header")
               store.dispatch("updatefolder", folderlist);
               store.dispatch("act_contractdata", inboxcontracts);
             }
@@ -137,6 +138,8 @@
       },
 
       logout() {
+        let store = this.$store;
+
         console.log(this.token);
         this.$http
           .get("http://localhost:8000/Logout", {
@@ -149,6 +152,8 @@
               this.$router.push("/login");
               localStorage.removeItem("vuex");
               this.$router.push("/login");
+              store.dispatch("act_contractdata",[])
+
               return res;
             }
           })

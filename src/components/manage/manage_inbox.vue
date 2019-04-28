@@ -52,9 +52,7 @@
             <span class="setlayout">Delete</span>
           </router-link>
         </div>
-        <!-- // @click="sendtoactionrequire
-            @click="sendexpire
-        @click="sendtowait-->
+
         <div class="envelopclass">
           <h6 class="text-centerr">quick views</h6>
           <router-link
@@ -158,11 +156,10 @@ export default {
         .then(res => {
           contracts = JSON.parse(res.bodyText);
           // store.dispatch("act_contractdata", []);
-
+          console.log(contracts);
           if (res.status == 200) {
-          store.dispatch("act_contractdata", contracts);
-
-            
+            store.dispatch("act_contractdata", []);
+            store.dispatch("act_contractdata", contracts);
           }
           return res.json();
         })
@@ -173,11 +170,9 @@ export default {
 };
 </script>
 
-    <!-- Add "scoped" attribute to limit CSS to this component only -->
     <style scoped>
 .container-fluid {
   height: 100vh;
-  /* overflow: scroll; */
 }
 
 .setlayout {

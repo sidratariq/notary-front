@@ -177,11 +177,14 @@ export default {
         )
         .then(res => {
           contracts = JSON.parse(res.bodyText);
-          store.dispatch("act_contractdata", contracts);
 
           if (res.status == 200) {
-            return res.json();
+          store.dispatch("act_contractdata", []);          
+          store.dispatch("act_contractdata", contracts);
+
+           
           }
+           return res.json();
         })
         .then(error => {
           console.log(error);

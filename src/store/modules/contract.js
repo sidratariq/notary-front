@@ -161,6 +161,7 @@ const mutations = {
         commit('setcontractid',payload)
     },
     act_contractdata:({commit},payload)=>{
+        console.log(payload+"dispatch store")
         commit('setcontractdata',payload)
     },
     act_contractpath:({commit},payload)=>{
