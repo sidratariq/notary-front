@@ -43,7 +43,7 @@
           <span style="padding:4px">
             <i
               :class="{'far fa-clock':select.Status=='In Progress',
-                                            'fas fa-ban voided':select.Status=='Voided',
+                                            'fas fa-ban voided':select.Status=='Declined',
                                             'fas fa-exclamation-circle reqaction':select.Status=='In Progress',
                                             'far fa-edit menuicon':select.Status=='DRAFT',
                                             'fas fa-check sucess':select.Status=='Completed' }"
@@ -104,7 +104,7 @@
         </td>
 
         <!-- drop down__6 -->
-        <td style="padding-left: 39px;">
+        <td style="text-align:left">
           <div class="btn-group">
             <button
               class="btn btn-sm dropdown-toggle"
@@ -114,21 +114,10 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <!-- v-if="select.Status=='In Progress'" -->
               Sign
             </button>
 
-            <!-- <button
-              class="btn btn-sm dropdown-toggle"
-              :class="{'btn-white':true}"
-              type="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Move-->
-            <!-- v-if="select.Status=='Completed'" -->
-            <!-- </button> -->
-
+           
             <!--drop down menu  -->
             <div class="dropdown-menu">
               <div class="row">
@@ -147,9 +136,13 @@
                     @click="ExportAsCsv(select.ContractID)"
                   >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
-                  <a v-if="avalible==false" class="dropdown-item date padding" href="#">Delete</a>
+                  <a v-if="$route.query.view == 'Draft'" class="dropdown-item date padding" href="#">Delete</a>
                   <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
                   <a class="dropdown-item date padding" href="#">Resend</a>
+                  <a v-if="$route.query.view == 'Actions Required'" class="dropdown-item date padding" href="#">Decline</a>
+
+        <!--  -->
+                  <!--  -->
                 </div>
               </div>
             </div>

@@ -5,7 +5,6 @@
 
       <uploadfile @buttonenable="enable=$event" v-if="fileavalible ==true"></uploadfile>
       <dragdrop v-if="fileavalible ==false"></dragdrop>
-      <!-- {{enable}} -->
       <div class="row set">
         <div class="col-10" style="padding-left:-15px, padding-right:-15px"></div>
         

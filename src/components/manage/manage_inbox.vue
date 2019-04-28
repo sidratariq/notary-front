@@ -40,7 +40,7 @@
             <span class="setlayout">Draft</span>
           </router-link>
           <!-- no route avalible -->
-          <router-link
+          <!-- <router-link
             class="nav-link menuitem"
             ctive-class="active"
             :to="{name:'manage',query:{view:'Delete'}}"
@@ -50,7 +50,7 @@
           >
             <i class="fas fa-trash menuicon"></i>
             <span class="setlayout">Delete</span>
-          </router-link>
+          </router-link> -->
         </div>
 
         <div class="envelopclass">

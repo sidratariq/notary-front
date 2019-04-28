@@ -16,7 +16,7 @@
       :getselected="getselected"
     ></content_bar>
 
-    {{ (usercontracts==null||usercontracts.legth==0? 'it is null': usercontracts.length)}}
+    <!-- {{ (usercontracts==null||usercontracts.legth==0? 'it is null': usercontracts.length)}} -->
     <nofile v-if="usercontracts==null || usercontracts.length==0"></nofile>
   </div>
 </template>
