@@ -63,7 +63,13 @@
       </button>
     </div>
 
-    <div class="col-lg-1 col-md-3 col-sm-2 col-xs-12">{{imagesoure}}</div>
+    <div class="col-lg-1 col-md-3 col-sm-2 col-xs-12">
+      <a :href="imagesoure">
+        start
+      </a>
+
+      {{imagesoure}}
+    </div>
 
     <!-- print and download -->
     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding">
@@ -227,8 +233,9 @@ export default {
       let contractdata = this.$store.getters.getcontractdata;
       console.log(contractdata);
       let imgsource =
-        "http://localhost:8000/" + contractdata.ContractData.Filepath;
+        "http://localhost:8000/DownloadFile?file=" + contractdata.ContractData.Filepath;
       return imgsource;
+      // 
     },
     // getfolder list
     folders: function() {
@@ -308,9 +315,7 @@ export default {
 
 <style scoped>
 
-*{
-   border: 1px solid black
-}
+
 
 .dropdown-item {
   width: 120px;

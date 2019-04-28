@@ -10,7 +10,7 @@
                 Please E-Notarize: {{contractdata.ContractData.ContractName}}{{signers}}
                 <br>
 
-                <span style="width:16px; height:16px">dadad
+                <span style="width:16px; height:16px">
                   <i
                     :class="{'far fa-clock':contractstatus=='In Progress',
                            'fas fa-ban voided':contractstatus=='Voided',
@@ -148,18 +148,17 @@ export default {
 
     signers() {
       let signers = this.contractdata.Signers;
-      let currentuser = this.creator;
-      var value = false;
+
+      let store = this.$store.getters.getuserid;
+
       for (let i = 0; i < signers.length; i++) {
-        // 127a82c9-8397-4191-92d4-f3a8ca05255c
-        if (signers[i].UserID == currentuser) {
-          return (value = true);
+        if (signers[i].UserID == store && signers[i].SignStatus == "Signed") {
+          return true;
         } else {
-          return (value = false);
+          return false;
         }
       }
     }
-
     // ContractcreationTime
   },
   components: {
