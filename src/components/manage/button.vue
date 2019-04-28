@@ -1,9 +1,16 @@
 <template>
-  <button @click="$router.push('/adddocs')" class="btn-main btn-large">Start Now</button>
+  <button @click="startupload()" class="btn-main btn-large">Start Now</button>
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    startupload(){
+      this.$store.commit('setavalible',false);
+      this.$router.push('/adddocs')
+    }
+  }
+};
 </script>
 
 <style scoped>

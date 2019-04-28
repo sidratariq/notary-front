@@ -8,10 +8,11 @@
       <!-- {{enable}} -->
       <div class="row set">
         <div class="col-10" style="padding-left:-15px, padding-right:-15px"></div>
-
+        
         <div class="col-2" style="padding-left:-15px, padding-right:-15px">
           <button
             class="btn-main btn-large btn btn-primary btn-sm float-right"
+            :class="{'cursor':enable<100}"
             :disabled="enable<100"
             @click="AddDoc()"
           >NEXT</button>
@@ -34,7 +35,6 @@ export default {
         name: "",
         filesrc: ""
       },
-      // fileavalible:this.$store.getters.getavalible,
       noofdocs: [],
       allow: 0
     };
@@ -154,5 +154,9 @@ button:hover {
   font-size: 13px;
   min-height: 34px;
   font-weight: bolder;
+}
+
+.cursor{
+  cursor: not-allowed
 }
 </style>

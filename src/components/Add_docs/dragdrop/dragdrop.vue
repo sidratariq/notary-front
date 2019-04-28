@@ -1,5 +1,5 @@
   <template>
-  <div class="media-apply" v-if="!fileavalible || routecheck"  :class="{setheight:'idk'}">
+  <div class="media-apply" v-if="!fileavalible || routecheck" :class="{setheight:'idk'}">
     <!-- v-if="!fileavalible" -->
     <form enctype="multipart/form-data">
       <input
@@ -9,7 +9,7 @@
         @change="showImage($event)"
         accept="image/*"
       >
-      
+
       <label for="file-select" class="img-container dotted-class">
         <img
           style="max-width:80px"
@@ -19,111 +19,90 @@
         <span class="spanset">Drag documents here to get started</span>
         <button
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button"
-          id="start-now" @click="filesChange()"
-          
+          id="start-now"
+          @click="filesChange()"
         >{{content}}</button>
       </label>
     </form>
-
-   
   </div>
 </template>
 
        <script>
-            import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
+export default {
+  name: "app",
+  data() {
+    return {
+      file: "",
+      idk: true,
+      btnvalue: ""
+    };
+  },
 
-            export default {
+  computed: {
+    content: function() {
+      if (this.$route.path == "/dashboard") {
+        this.btnvalue = "Start";
+        this.idk = false;
+        return this.btnvalue;
+      }
 
-                name: 'app',
-                data() {
-                return {
-                    file:'',
-                    idk:true, 
-                    btnvalue:'',
+      if (this.$route.path == "/adddocs") {
+        this.btnvalue = "UPload";
+        this.idk = true;
+        return this.btnvalue;
+      }
+    },
+    fileavalible: function() {
+      return this.$store.getters.getavalible;
+    },
+    routecheck: function() {
+      if (this.$route.path == "/dashboard") {
+        return true;
+      } else {
+        return false;
+      }
+    },
 
-                }
-                },
+    token() {
+      return this.$store.getters.getToken;
+    }
+  },
 
-                computed: {
-                    content:function(){
-                        
-                      if(this.$route.path == '/dashboard'){
-                          this.btnvalue = 'Start'
-                          this.idk = false                    
-                          return this.btnvalue
-                      }
+  methods: {
+    showImage(event) {
+      let input = event.target;
+      let store = this.$store;
 
-                        if(this.$route.path == '/adddocs'){
-                          this.btnvalue = 'UPload'
-                          this.idk = true                 
-                          return this.btnvalue
-                        }
-                    },
-                    fileavalible:function(){
-                        return this.$store.getters.getavalible
-                    },
-                    routecheck:function(){
-                        if(this.$route.path =='/dashboard'){
-                            return true
-                        }
-                        else {
-                            return false
-                        }
-                    },
+      if (event.target.files.length > 0) {
+        // console.log(event.target.files[0].name)
 
-                     token() {
-                        return this.$store.getters.getToken;
-                    }
-                },
+        if (this.$router.path == "/dashboard") {
+          this.$router.push("/adddocs");
+        }
+        let reader = new FileReader();
+        reader.onload = function() {
+          var dataURL = reader.result;
+          store.dispatch("act_filename", event.target.files[0].name);
+          store.dispatch("act_filesrc", dataURL);
+          store.dispatch("act_selectedcontract", event.target.files[0]);
+          store.dispatch("act_avalible", true);
+        };
+        reader.readAsDataURL(input.files[0]);
 
-                methods: {
-
-
-                        showImage(event){ 
-                            let input = event.target;
-                            let store = this.$store;
-
-                            if(event.target.files.length > 0){
-                                // console.log(event.target.files[0].name) 
-
-                                if(this.$router.path == '/dashboard'){
-                                    this.$router.push('/adddocs')
-                                }
-                                let reader = new FileReader();
-                                reader.onload = function(){
-                                
-                                var dataURL = reader.result;
-                                store.dispatch('act_filename',event.target.files[0].name)
-                                store.dispatch('act_filesrc',dataURL)
-                                store.dispatch('act_selectedcontract',event.target.files[0])
-                                store.dispatch('act_avalible',true)        
-                                }
-                                reader.readAsDataURL(input.files[0])
-
-                               
-                                this.$router.push('/adddocs')
-
-                            }
-                            }
-                    ,
-
-                    filesChange(){
-                                this.$router.push('/adddocs')
-                    },
-                    setstore(){
-
-                    }
-
-                
-
-                
-            }}
-
-            </script>
+        this.$router.push("/adddocs");
+      }
+    },
+    filesChange() {
+      this.$router.push("/adddocs");
+    },
+    setstore() {}
+  }
+};
+</script>
 
         <style scoped>
-
 .panel-fileDrop {
   border: 1px solid #d9d9d9;
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -251,6 +230,5 @@
   padding: 50px 0;
 }
 @media only screen and (max-width: 520px) {
-
 }
 </style>
