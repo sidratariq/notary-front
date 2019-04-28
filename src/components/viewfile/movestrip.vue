@@ -1,21 +1,21 @@
 <template>
   <div class="row">
-    <div class="col-2 setpadding">
-      <button
-        class="btn btn-primary btn-sm"
-        v-if="signers==true"
-        type="button"
-        @click="gotoSignscreen()"
-      >SIGN</button>
+    <div class="col-1 setpadding" style="text-align:center">
       <button
         class="btn btn-primary btn-sm"
         v-if="signers==false"
         type="button"
         @click="gotoSignscreen()"
+      >SIGN</button>
+      <button
+        class="btn btn-success btn-sm"
+        v-if="signers==true"
+        type="button"
+        @click="gotoSignscreen()"
       >SIGNED</button>
     </div>
 
-    <div class="col-1 setpadding">
+    <div class="col-1 setpadding" style="text-align:center">
       <!-- href='filepath' -->
       <button
         class="btn btn-sm apply"
@@ -24,25 +24,37 @@
         type="button"
       >MOVE</button>
     </div>
-    <!-- {{filepath}} -->
 
-    <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding">
-      <a class="btn btn-sm apply" type="button">Export As CSV</a>
+    <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding" style="text-align:center">
+      <button class="btn btn-sm apply" type="button">Export As CSV</button>
     </div>
 
-    <div class="col-1 col-md-2 setpadding">
-      <button class="btn btn-sm apply" type="button">RESEND</button>
+    <div class="col-1 col-md-2 setpadding" style="text-align:center">
+      <button class="btn btn-sm apply" type="button">RESEND
+      </button>
     </div>
 
-    <div class="col-3 setpadding">
-      <button class="btn btn-md apply green" @click="SaveinBlockhchain()" type="button">
+    <div class="col-3 setpadding" style="text-align:center">
+
+      <button v-if="blockchainstatus==0"  class="btn btn-md apply green" @click="SaveinBlockhchain()" type="button">
         Save in Blockchain
         <i
           class="fab fa-bitcoin"
           style="color:green;transform: rotate(-16deg); margin:3px"
         ></i>
       </button>
+
+         
+        <button  v-if="blockchainstatus==1" class="btn btn-success btn-md green" style="border:1px solid #ccc" @click="SaveinBlockhchain()" type="button">
+        Verify
+        <i
+          class="fab fa-bitcoin"
+          style="color:orange;transform: rotate(-16deg); margin:3px; "
+        ></i>
+      </button>
     </div>
+       
+
 
     <!--Modal-->
     <div class="modal" id="movefolder">
@@ -191,12 +203,16 @@ export default {
       let store = this.$store.getters.getuserid;
 
       for (let i = 0; i < signers.length; i++) {
-        if (signers[i].UserID == store) {
+        if (signers[i].UserID == store && signers[i].SignStatus == "Signed") {
           return true;
         } else {
           return false;
         }
       }
+    },
+
+    blockchainstatus(){
+      return this.contractdata.ContractData.Blockchain
     }
   },
 
@@ -293,8 +309,8 @@ export default {
   margin-right: 0px;
 }
 
-ul{
-padding-left:0px; 
+ul {
+  padding-left: 0px;
 }
 
 ul li {
@@ -302,11 +318,10 @@ ul li {
   list-style: none;
 }
 
-.modal-body{
-      max-height: 132px;
-    overflow-y: scroll;
+.modal-body {
+  max-height: 132px;
+  overflow-y: scroll;
 }
-
 
 /* width */
 ::-webkit-scrollbar {
@@ -316,16 +331,16 @@ ul li {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 </style>

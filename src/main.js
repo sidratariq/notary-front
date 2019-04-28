@@ -32,37 +32,26 @@ import * as svgicon from 'vue-svgicon';
       }
     );
 
-    // router.beforeEach((to,from,next)=>{
-    //   console.log("global before each");
-    //   next(true)
-    // })
-// c0a5cf
-// #acdce6
-// #81afb8
-// #91789e
-// #c0a5cf
+
 
     Vue.directive('rainbow',{
       bind(el,binding,vnode){
-        el.style.background ='#' + ((1<<24)*Math.random()|0).toString(16);
-        el.style.color = ((1<<24)*Math.random()|0).toString(16);;
+ 
+        let arr= ['c0a5cf','acdce6','81afb8','91789e','c0a5cf',
+                  '8D8741','659DBD','DAAD86','BC986A','05386B',
+                   'FC4445','55BCC9','8EE4AF','C3073F','AFD275',
+                  '45A29E' ,'EE4C7C']
+        for(let i=0;i<20;i++){
+          el.style.background ='#' + arr[Math.floor(Math.random() * arr.length)]
+        }
+        // el.style.background ='#' + ((1<<24)*Math.random()|0).toString(16);
+        // el.style.color = ((1<<24)*Math.random()|0).toString(16);;
 
         
       }
     })
 
-    // const tutor = new VueRouter( 
-    //   {
-    //     tutorial,
-    //     mode:'history'
-    //   }
-    // );
-
-
-    // router.beforeEach((to,from,next)=>{
-    //   console.log("beforeEach Global");
-    //   next();
-    // });
+    
 
     new Vue({
       router,

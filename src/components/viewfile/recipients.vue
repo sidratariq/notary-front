@@ -8,7 +8,7 @@
               <div class="col-12">
                 <i class="fas fa-check sucess"></i>
                       
-                <strong>{{value.Name}}dadadadad</strong>
+                <strong>{{value.Name}}</strong>
 
                 <div class="col-12" style="padding-left:22px">
                   <small
@@ -77,7 +77,11 @@ export default {
 };
 </script>
 
+
 <style scoped>
+
+
+
 .sucess {
   color: #008938;
 }

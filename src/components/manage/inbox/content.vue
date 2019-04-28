@@ -359,9 +359,7 @@ export default {
 
  <style scoped>
 
-*{
-  /* border: 1px solid black; */
-}
+
 .sucess {
   color: #008938;
 }
@@ -461,9 +459,7 @@ th {
   line-height: 18px;
 }
 
-tr{
-  /* text-align: center */
-}
+
 
 td ul li {
   list-style: none;
