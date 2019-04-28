@@ -386,7 +386,7 @@
       /* width: 100%; */
       height: 55px;
       grid-template-columns: 1fr auto minmax(800px, 3fr) 1fr;
-      position: fixed;
+      /* position: fixed; */
     }
 
     .logo {

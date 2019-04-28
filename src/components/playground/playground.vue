@@ -15,7 +15,7 @@
                 aria-expanded="false"
                 style="width:70px"
               >
-                <span class="round-body small-main small" style="background-color:black" ></span>
+                <span class="round-body small-main small" style="background-color:black"></span>
                 <!-- <span class="round-body small-main" v-rainbow>.</span> -->
 
                 <span class="spanset">{{status}}</span>
@@ -79,12 +79,6 @@
           style="margin-top:12px;"
           @click="run()"
         >start</button>
-        <!-- <button
-          type="button"
-          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
-          style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="changeroute()"
-        >back</button> -->
       </div>
     </div>
   </div>
@@ -197,9 +191,6 @@ export default {
 </script>
 
 <style scoped>
-
-
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -295,7 +286,7 @@ ul li {
 .small {
   width: 20px;
   height: 20px;
-  padding: 3px;
+  padding: 4px;
 }
 
 .small-main {
@@ -356,10 +347,9 @@ ul li {
   vertical-align: middle;
 }
 
-.spanset::before{
-  content: '';
+.spanset::before {
+  content: "";
   margin-right: 10px;
-  
 }
 
 .to-upper {

@@ -192,10 +192,10 @@ export default {
   background-color: #f4f4f4;
   width: 100%;
   padding: 0px;
-  position: fixed;
-  left: 0;
-  top: 55px;
-  z-index: 10;
+  /* position: fixed; */
+  /* left: 0; */
+  /* top: 55px; */
+  /* z-index: 10; */
 }
 
 .text-centerr {

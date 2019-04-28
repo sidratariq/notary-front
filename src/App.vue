@@ -2,7 +2,8 @@
   <div  id="app">
       <head_head></head_head>
       <router-view></router-view>
-      <footer_footer v-if="this.$route.path !='/signscreen' &&this.$route.path !='/playground'" ></footer_footer >
+
+      <footer_footer v-if="this.$route.path !='/signscreen' && this.$route.path !='/playground' && this.$route.path!='/manage' " ></footer_footer >
   </div>
 </template>
 
@@ -16,6 +17,11 @@ export default {
   components:{
     footer_footer,
     head_head
+  },
+  computed:{
+    substring(){
+      // return this.$route.path
+    }
   }
   
 }

@@ -55,8 +55,10 @@ body {
   background-color: tomato;
   font-family: sans-serif;
   text-align: center;
-  width: 900px;
-  height: 510px;
+  /* width: 900px; */
+  /* height: 510px; */
+  width: 100%;
+  height: 100%;
 }
 
 .text-muted {

@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       currentflag: this.flag,
-      email:''
+      email:'sidratariq48@gmail.com'
     };
   },
   props: ['flag']

@@ -87,27 +87,7 @@ export default {
     },
     widthset() {
       return "30px";
-    },
-
-    token: function() {
-      return this.$store.getters.getToken;
-    },
-    getcontractid: function() {
-      return this.$store.getters.getcontractdata.ContractData.ContractID;
-    },
-    coordinated: {
-      set(value) {
-        alert(value);
-        this.responsedata = value;
-      },
-      get() {
-        return this.responsedata;
-      }
-    },
-    Userdata() {
-      console.log(this.$store.state.userdata);
-      return this.$store.state.userdata;
-    }
+    }, 
   }
 };
 </script>

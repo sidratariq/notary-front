@@ -4,11 +4,11 @@
       <!-- headings side -->
       <tr>
         <!-- 2 -->
-        <th style="width:3%;">
+        <th style="width:7%;">
           <span></span>
         </th>
         <!-- 3 -->
-        <th style="width:40%;">
+        <th style="width:36%;">
           <span>Subject</span>
         </th>
         <!-- 4 -->
@@ -358,6 +358,10 @@ export default {
 </script>
 
  <style scoped>
+
+*{
+  /* border: 1px solid black; */
+}
 .sucess {
   color: #008938;
 }
@@ -411,6 +415,7 @@ export default {
 .setpadding {
   padding-top: 1%;
   padding-left: 1%;
+  text-align: left;
 }
 
 .setinbox {
@@ -433,7 +438,8 @@ export default {
 }
 
 table{
-  margin-left: 227px;
+  /* margin-left: 227px; */
+  text-align: center
 }
 
 th {
@@ -442,7 +448,7 @@ th {
   font-weight: 900;
   line-height: 16px;
   padding: 8px 12px;
-  text-align: left;
+  text-align: center;
 }
 
 .date {
@@ -453,6 +459,10 @@ th {
   text-rendering: optimizelegibility;
   font-size: 13px;
   line-height: 18px;
+}
+
+tr{
+  /* text-align: center */
 }
 
 td ul li {

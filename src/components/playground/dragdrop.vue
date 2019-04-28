@@ -17,7 +17,7 @@
       :minh="rect.minh"
       :isDraggable="rect.draggable"
       :isResizable="rect.resizable"
-      :parentLimitation="rect.parentLim"
+      :parentLimitation='false'
       :snapToGrid="rect.snapToGrid"
       :aspectRatio="rect.aspectRatio"
       :z="rect.zIndex"
@@ -29,13 +29,13 @@
     >
       <div
         class="filler"
-        :style="{background:rect.color,backgroundSize: '67px' }"
+        :style="{background:rect.color,backgroundSize: '67px',left:0 }"
       >{{rect.recipientname}}
-      <span v-if="rect.text!='Signature' && rect.text!='Initial'" >
+      <span v-if="rect.text!='Signature' && rect.text!='Initial'"  style="left:0">
         {{rect.text}}
 
       </span>
-       <p v-if="rect.text=='Signature' || rect.text=='Initial'" style=" margin:45px 12px 0px 12px"  >{{rect.text}}</p>
+       <p v-if="rect.text=='Signature' || rect.text=='Initial'" style=" margin:45px 12px 0px 12px; left:0"  >{{rect.text}}</p>
          </div>
     </VueDragResize>
   </div>
@@ -190,7 +190,7 @@ body {
   background-color: tomato;
   font-family: sans-serif;
   text-align: center;
-  width: z;
-  height: 510px;
+  width: 100%;
+  height: 100%;
 }
 </style>
