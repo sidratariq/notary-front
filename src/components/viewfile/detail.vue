@@ -59,9 +59,11 @@
           <div class="col-lg-12 col-md-8 col-md-8 col-lg-10 col-sm-8 col-xs-12">
             <div class="row options">
               <!-- move and more button dropdown -->
-              <div class="col-md-12 col-lg-12 col-sm-10 col-xs-12">
+              <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12">
                 <strip :contractid="contractdata.ContractData.ContractID"></strip>
-              </div>              
+              </div>
+
+            
             </div>
           </div>
         </div>
@@ -109,10 +111,7 @@ export default {
   },
 
   methods: {
-    print() {
-      window.print();
-      // print(this.$refs.sidecontract)
-    },
+
     navigateToHome() {
       this.$router.push("/helloworld");
     }
@@ -174,9 +173,6 @@ export default {
 
 <style scoped>
 
-*{
-  border: 1px solid red;
-}
 
 .voided {
   color: #999;
@@ -231,8 +227,7 @@ export default {
 
 .circle {
   color: #868686;
-  /* height: 16px; */
-  /* width: 16px; */
+
 }
 
 .apply {

@@ -1,7 +1,6 @@
 <template>
   <div class="row">
     <div class="col-1 setpadding" style="text-align:center">
-
       <!--shows signed button if user is gigne  -->
       <button
         class="btn btn-primary btn-sm"
@@ -32,13 +31,16 @@
     </div>
 
     <div class="col-1 col-md-2 setpadding" style="text-align:center">
-      <button class="btn btn-sm apply" type="button">RESEND
-      </button>
+      <button class="btn btn-sm apply" type="button">RESEND</button>
     </div>
 
-    <div class="col-3 setpadding" style="text-align:center">
-
-      <button v-if="blockchainstatus==0"  class="btn btn-md apply green" @click="SaveinBlockhchain()" type="button">
+    <div class="col-3 setpadding" style="text-align:left">
+      <button
+        v-if="blockchainstatus==0"
+        class="btn btn-md apply green"
+        @click="SaveinBlockhchain()"
+        type="button"
+      >
         Save in Blockchain
         <i
           class="fab fa-bitcoin"
@@ -46,8 +48,13 @@
         ></i>
       </button>
 
-         
-        <button  v-if="blockchainstatus==1" class="btn btn-success btn-md green" style="border:1px solid #ccc" @click="SaveinBlockhchain()" type="button">
+      <button
+        v-if="blockchainstatus==1"
+        class="btn btn-success btn-md green"
+        style="border:1px solid #ccc"
+        @click="SaveinBlockhchain()"
+        type="button"
+      >
         Verify
         <i
           class="fab fa-bitcoin"
@@ -56,37 +63,34 @@
       </button>
     </div>
 
-              <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding yee wlaa">
-              </div>
+    <div class="col-lg-1 col-md-3 col-sm-2 col-xs-12"></div>
 
-      <!-- print and download -->
-              <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding yee wlaa">
-                <div class="row setpadding" style="margin-left:0px; margin-right:0px">
-                  <div class="col-3 setpadding"></div>
+    <!-- print and download -->
+    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding">
+      <div class="row setpadding" style="margin-left:0px; margin-right:0px">
+        <div class="col-3 setpadding"></div>
 
-                  <div class="col-3 setpadding">
-                    <div class="btn-group setpadding">
-                      <button
-                        class="btn btn-sm apply download"
-                        type="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="fas fa-download circle"></i>
-                      </button>
-                    </div>
-                  </div>
+        <div class="col-3 setpadding">
+          <div class="btn-group setpadding">
+            <button
+              class="btn btn-sm apply download"
+              type="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-download circle"></i>
+            </button>
+          </div>
+        </div>
 
-                  <div class="col-3 setpadding">
-                    <button @click="print" class="btn btn-sm apply print" type="button">
-                      <i class="fas fa-print circle"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-       
-
+        <div class="col-3 setpadding">
+          <button @click="print" class="btn btn-sm apply print" type="button">
+            <i class="fas fa-print circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!--Modal-->
     <div class="modal" id="movefolder">
@@ -134,6 +138,11 @@ export default {
   props: ["contractid"],
 
   methods: {
+    print() {
+      window.print();
+      // print(this.$refs.sidecontract)
+    },
+
     // save in blockchain
     SaveinBlockhchain() {
       let token = this.token;
@@ -243,8 +252,8 @@ export default {
       }
     },
 
-    blockchainstatus(){
-      return this.contractdata.ContractData.Blockchain
+    blockchainstatus() {
+      return this.contractdata.ContractData.Blockchain;
     }
   },
 
@@ -291,9 +300,8 @@ export default {
 
 <style scoped>
 
-
 *{
-  border: 1px solid black;
+   border: 1px solid black
 }
 
 .dropdown-item {
@@ -327,6 +335,12 @@ export default {
 .green {
   /* background: #008938; */
   font-size: 14px;
+}
+
+.circle {
+  color: #868686;
+  /* height: 16px; */
+  /* width: 16px; */
 }
 
 .dropdown-item {
