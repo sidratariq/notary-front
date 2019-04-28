@@ -63,7 +63,7 @@
       </button>
     </div>
 
-    <div class="col-lg-1 col-md-3 col-sm-2 col-xs-12"></div>
+    <div class="col-lg-1 col-md-3 col-sm-2 col-xs-12">{{filepath}}</div>
 
     <!-- print and download -->
     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding">
