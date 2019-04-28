@@ -59,36 +59,9 @@
           <div class="col-lg-12 col-md-8 col-md-8 col-lg-10 col-sm-8 col-xs-12">
             <div class="row options">
               <!-- move and more button dropdown -->
-              <div class="col-md-8 col-lg-10 col-sm-8 col-xs-12">
+              <div class="col-md-12 col-lg-12 col-sm-10 col-xs-12">
                 <strip :contractid="contractdata.ContractData.ContractID"></strip>
-              </div>
-
-              <!-- print and download -->
-              <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 setpadding yee wlaa">
-                <div class="row setpadding" style="margin-left:0px; margin-right:0px">
-                  <div class="col-3 setpadding"></div>
-
-                  <div class="col-3 setpadding">
-                    <div class="btn-group setpadding">
-                      <button
-                        class="btn btn-sm apply download"
-                        type="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                      >
-                        <i class="fas fa-download circle"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="col-3 setpadding">
-                    <button @click="print" class="btn btn-sm apply print" type="button">
-                      <i class="fas fa-print circle"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              </div>              
             </div>
           </div>
         </div>
@@ -111,21 +84,7 @@
           </div>
         </div>
 
-        <!-- Message -->
-        <!-- <div class="row">
-          <div class="col-12">
-        <h5>Message</h5>-->
-        <!-- THIS WILL BE LIST OF MESSAGES -->
-        <!-- <div class="col-12">
-              <small class="text-muted">No message has been entered.</small>
-            </div>
-        <hr>-->
-        <!-- <div class="col-12">
-              <small class="text-muted">No message has been entered.</small>
-            </div>
-        </div>-->
-        <!-- </div>
-        -->
+      
       </div>
       <!-- sidebar -->
       <div class="col-2 col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 setpadding setsidebar">
@@ -214,6 +173,11 @@ export default {
 
 
 <style scoped>
+
+*{
+  border: 1px solid red;
+}
+
 .voided {
   color: #999;
 }

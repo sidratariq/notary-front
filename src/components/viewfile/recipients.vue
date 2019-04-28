@@ -88,8 +88,6 @@ export default {
 
 .circle {
   color: #868686;
-  /* height: 16px; */
-  /* width: 16px; */
 }
 .apply {
   color: #000000;
