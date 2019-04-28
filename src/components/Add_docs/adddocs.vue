@@ -12,9 +12,10 @@
           <button
             class="btn-main btn-large btn btn-primary btn-sm float-right"
             :class="{'cursor':enable<100}"
-            :disabled="enable<100"
+            
             @click="AddDoc()"
           >NEXT</button>
+          <!-- :disabled="enable<100" -->
         </div>
       </div>
     </div>
