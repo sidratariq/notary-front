@@ -10,7 +10,7 @@
                 Please E-Notarize: {{contractdata.ContractData.ContractName}}{{signers}}
                 <br>
 
-                <span style="width:16px; height:16px">
+                <span style="width:16px; height:16px">dadad
                   <i
                     :class="{'far fa-clock':contractstatus=='In Progress',
                            'fas fa-ban voided':contractstatus=='Voided',
@@ -44,7 +44,7 @@
               <div>
                 <i
                   :class="{'far fa-clock':contractstatus=='In Progress',
-                           'fas fa-ban voided':contractstatus=='Voided',
+                           'fas fa-ban voided':contractstatus=='Declined',
                            'fas fa-exclamation-circle reqaction':contractstatus=='In Progress',
                            'far fa-edit menuicon':contractstatus=='DRAFT',
                            'fas fa-check sucess':contractstatus=='Completed' }"
