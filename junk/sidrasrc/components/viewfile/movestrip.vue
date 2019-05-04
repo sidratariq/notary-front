@@ -1,19 +1,24 @@
 <template>
   <div class="row">
-    <div class="col-1 setpadding" style="text-align:center">
+    <div v-if="signers==false" class="col-1 setpadding" style="text-align:center">
       <!--shows signed button if user is gigne  -->
       <button
         class="btn btn-primary btn-sm"
-        v-if="signers==false"
+        
         type="button"
-        @click="gotoSignscreen()"
       >SIGN</button>
+     
+    </div>
+
+     <div  v-if="signers==true" class="col-1 setpadding" style="text-align:center">
+      <!--shows signed button if user is gigne  -->
+
       <button
         class="btn btn-success btn-sm"
-        v-if="signers==true"
         type="button"
-        @click="gotoSignscreen()"
+        :disabled="false"
       >SIGNED</button>
+
     </div>
 
     <div class="col-1 setpadding" style="text-align:center">

@@ -17,7 +17,7 @@
         </th>
 
         <th style="width:6%; padding-left:0px;">
-          <span>Verify</span>
+          <span>Verify adadad</span>
         </th>
 
         <!-- 5 -->
@@ -114,7 +114,9 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Sign
+            <!--:disabled="validated ? '' : disabled"  -->
+                                            <!-- 'fas fa-check sucess':select.Status=='Completed' }" -->
+              {{ select.Status=='Completed'? 'Move' :'Move'  }}dadadada
             </button>
 
            
@@ -141,8 +143,7 @@
                   <a class="dropdown-item date padding" href="#">Resend</a>
                   <a v-if="$route.query.view == 'Actions Required'" class="dropdown-item date padding" href="#">Decline</a>
 
-        <!--  -->
-                  <!--  -->
+        
                 </div>
               </div>
             </div>
