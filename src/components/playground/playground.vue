@@ -58,7 +58,7 @@
         <choosebar></choosebar>
       </div>
 
-      <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
+      <div class="col-8" style="padding:0px; height:500px; width:906px;overflow:scroll">
         <dragdroparea></dragdroparea>
       </div>
 

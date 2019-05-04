@@ -7,6 +7,13 @@
       <hello-metamask/>
     </div>
 
+    <div v-if="showowner==true" class="alert alert-primary alert-dismissible fade show" role="alert">
+   Contract saved in blockchain by:  <strong>{{useremail}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
     <div class="row setmargin">
       <div class="col-md-9 col-sm-6 col-lg-9">
         <div class="row">
@@ -30,7 +37,7 @@
             class="col-md-1 col-lg-2 col-sm-1 text-left"
             style="padding:1.75rem 1.75rem 1.75rem 0rem"
           >
-            <h4>Recipients</h4>
+            <h4>Recipients{{contractdata.ContractData.Blockchain}}</h4>
           </div>
           <div
             class="col-md-9 col-lg-9 col-sm-12 text-left"
@@ -67,22 +74,24 @@
 
     <div class="col-12">
       <div class="row pull-right">
-        <button
+        <button v-if="contractdata.ContractData.Blockchain==0"
           :disabled="able"
           v-on:click="saveHash"
           class="btn btn-sm btn-primary"
         >Save in Blockchain</button>
-        <!-- <small class="text-muted">(0.1 ethers will be deducted from your account)</small> -->
-      </div>
-      <div class="clearfix"></div>
-      <div class="row pull-right">
-        <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
-      </div>
-      <button
+        <button v-if="contractdata.ContractData.Blockchain==1"
         :disabled="able"
         v-on:click="FindOwner"
-        class="btn btn-sm btn-primary"
+        class="btn btn-sm btn-success"
       >Verify from blockchain</button>
+
+
+      </div>
+      <div class="clearfix"></div>
+      <div v-if="contractdata.ContractData.Blockchain==0" class="row pull-right">
+        <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
+      </div>
+      
     </div>
   </div>
 </template>
@@ -101,7 +110,9 @@ export default {
       amount: null,
       pending: false,
       winEvent: null,
-      checkOwner: ""
+      checkOwner: "",
+      verifyblockchain:false,
+      email:''
     };
   },
   methods: {
@@ -142,6 +153,9 @@ export default {
         }
       );
     },
+
+    //find the owner hash and finds its email id
+    //verify from blockchain
     FindOwner(event) {
       this.$store.state.contractInstance().getContractOwner(
         this.contracthash,
@@ -170,7 +184,10 @@ export default {
               .then(
                 response => {
                   if (response.status == 200) {
-                    alert("Contract saved in blockchain by: " + response.body);
+                    this.useremail = response.body;
+                    this.showowner = true;
+
+                    // alert("Contract saved in blockchain by: " + response.body);
                   }
                 },
                 error => {
@@ -228,6 +245,26 @@ export default {
   },
 
   computed: {
+
+    useremail:{
+      set(value){
+        this.email = value
+      },
+      get(){
+        return this.email
+      }
+    },
+
+    showowner:{
+      set(value){
+        this.verifyblockchain = value;
+      },
+      get(){
+        return this.verifyblockchain;
+      }
+    },
+
+
     able: function() {
       if (this.isInjected == true && this.network == "Rinkeby test network") {
         return true;
@@ -235,6 +272,7 @@ export default {
         return false;
       }
     },
+    
     //  isInjected: state => state.web3.isInjected,
     isInjected: function() {
       let value = this.$store.state.web3.isInjected;

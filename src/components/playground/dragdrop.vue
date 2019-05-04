@@ -1,6 +1,6 @@
   <template>
   <div class="card" id="list">
-    <img :style="{content:`url(`+image+`)`}">
+    <img :style="{content:`url(`+image+`)`, position:'relative',  background:'no-repeat center'}">
 
     <VueDragResize
       v-for="(rect, index) in rects"
@@ -17,7 +17,7 @@
       :minh="rect.minh"
       :isDraggable="rect.draggable"
       :isResizable="rect.resizable"
-      :parentLimitation='false'
+      :parentLimitation='true'
       :snapToGrid="rect.snapToGrid"
       :aspectRatio="rect.aspectRatio"
       :z="rect.zIndex"
@@ -186,11 +186,11 @@ body {
   background-repeat: none;
   background-position: center center;
   color: white;
-  position: relative;
+  /* position: relative; */
   background-color: tomato;
   font-family: sans-serif;
   text-align: center;
-  width: 100%;
-  height: 100%;
+  width: 900px;
+  height: 500px;
 }
 </style>

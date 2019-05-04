@@ -185,7 +185,7 @@ export default {
            
               this.invalid_password = true;
               this.errorvalue = error.body;
-              setInterval(()=>{
+              setTimeout(()=>{
                 this.invalid_password = false;
               },3000)
 
