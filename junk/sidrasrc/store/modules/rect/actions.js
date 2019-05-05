@@ -2,6 +2,7 @@ import types, {CHANGE_ZINDEX} from './mutation-types';
 
 export default {
     setActive({commit, state}, {id}) {
+        alert("run actions set active")
         for (let i = 0, l = state.rects.length; i < l; i++) {
             if (i === id) {
                 commit(types.ENABLE_ACTIVE, i);
@@ -16,6 +17,8 @@ export default {
     },
 
     toggleDraggable({commit, state}, {id}) {
+        alert("run actions draggable")
+
         if (!state.rects[id].draggable) {
             commit(types.ENABLE_DRAGGABLE, id);
         } else {
@@ -24,6 +27,8 @@ export default {
     },
 
     toggleResizable({commit, state}, {id}) {
+        alert("run actions resizable")
+        
         if (!state.rects[id].resizable) {
             commit(types.ENABLE_RESIZABLE, id);
         } else {
@@ -32,6 +37,8 @@ export default {
     },
 
     toggleParentLimitation({commit, state}, {id}) {
+        alert("parent limitation")
+
         if (!state.rects[id].parentLim) {
             commit(types.ENABLE_PARENT_LIMITATION, id);
         } else {
@@ -40,6 +47,8 @@ export default {
     },
 
     toggleSnapToGrid({commit, state}, {id}) {
+        alert("run actions WTF snap to grid")
+        
         if (!state.rects[id].snapToGrid) {
             commit(types.ENABLE_SNAP_TO_GRID, id);
         } else {
@@ -48,6 +57,7 @@ export default {
     },
 
     setAspect({commit}, {id}) {
+        
         commit(types.ENABLE_ASPECT, id);
     },
     unsetAspect({commit}, {id}) {

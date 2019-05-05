@@ -1,7 +1,9 @@
   <template>
   <div class="card" id="list">
-    <img :style="{content:`url(`+image+`)`}">
-
+    <!-- <img :style="{content:`url(`+image+`)`}"> -->
+    <h1>
+      daadadadao i was getting crazy
+    </h1>
     <VueDragResize
       v-for="(rect, index) in rects"
       :key="index"
@@ -17,7 +19,7 @@
       :minh="rect.minh"
       :isDraggable="rect.draggable"
       :isResizable="rect.resizable"
-      :parentLimitation='false'
+      :parentLimitation="false"
       :snapToGrid="rect.snapToGrid"
       :aspectRatio="rect.aspectRatio"
       :z="rect.zIndex"
@@ -27,16 +29,17 @@
       v-on:resizing="changeSize($event, index)"
       @click.native="getindex(index)"
     >
-      <div
-        class="filler"
-        :style="{background:rect.color,backgroundSize: '67px',left:0 }"
-      >{{rect.recipientname}}
-      <span v-if="rect.text!='Signature' && rect.text!='Initial'"  style="left:0">
-        {{rect.text}}
-
-      </span>
-       <p v-if="rect.text=='Signature' || rect.text=='Initial'" style=" margin:45px 12px 0px 12px; left:0"  >{{rect.text}}</p>
-         </div>
+      <div class="filler" :style="{background:rect.color,backgroundSize: '67px',left:0 }">
+        {{rect.recipientname}}
+        <span
+          v-if="rect.text!='Signature' && rect.text!='Initial'"
+          style="left:0"
+        >{{rect.text}}</span>
+        <p
+          v-if="rect.text=='Signature' || rect.text=='Initial'"
+          style=" margin:45px 12px 0px 12px; left:0"
+        >{{rect.text}}</p>
+      </div>
     </VueDragResize>
   </div>
 </template>
@@ -63,12 +66,12 @@ export default {
   },
   mounted() {
     let listEl = document.getElementById("list");
-    console.log(listEl)
+    console.log(listEl);
     this.listWidth = listEl.clientWidth;
-    console.log(this.listWidth)
+    console.log(this.listWidth);
 
     this.listHeight = listEl.clientHeight;
-    console.log(this.listHeight)
+    console.log(this.listHeight);
     window.addEventListener("resize", () => {
       this.listWidth = listEl.clientWidth;
       this.listHeight = listEl.clientHeight;
