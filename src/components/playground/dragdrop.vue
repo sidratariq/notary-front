@@ -2,8 +2,9 @@
   <div class="card" >
     <img id="list"
       :style="{content:`url(`+image+`)`, position:'relative',  background:'no-repeat center'}"
-      style="width:200px; height:400px"
+     
     >
+    <!--  style="width:200px; height:400px" -->
 
     <VueDragResize
       v-for="(rect, index) in rects"
@@ -194,7 +195,7 @@ body {
   /* background-color: tomato; */
   /* font-family: sans-serif; */
   /* text-align: center; */
-  /* width: 900px; */
-  /* height: 500px; */
+  width: 900px;
+  height: 500px;
 }
 </style>
