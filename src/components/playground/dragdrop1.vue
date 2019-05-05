@@ -1,9 +1,10 @@
   <template>
-  <div  >
-    <img id="list" class="card"
-      :style="{content:`url(`+image+`)`, position:'relative',  background:'no-repeat center'}"
+  <div >
+    <img id="list"
+      :style="{content:`url(`+image+`)`, position:'relative', background:'no-repeat center', size: 'auto auto'}"
      
     >
+    <!--  style="width:200px; height:400px" -->
 
     <VueDragResize
       v-for="(rect, index) in rects"
@@ -144,8 +145,7 @@ export default {
 };
 </script>
 
-  <style scoped>
-  
+  <style>
 .hero-image {
   height: 500px;
   background-position: center;
@@ -187,8 +187,15 @@ body {
 }
 
 .card {
- 
+  /* background-size: cover; */
+  /* background-repeat: none; */
+  /* background-position: center center; */
   color: white;
-
+  /* position: relative; */
+  /* background-color: tomato; */
+  /* font-family: sans-serif; */
+  /* text-align: center; */
+  /* width: 900px;
+  height: 500px; */
 }
 </style>

@@ -4,7 +4,7 @@
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
           <!-- drop down for choose from options -->
-          <div class="col-2">
+          <div class="col-2" style="padding-left: 8px;">
             <div class="dropdown" style="margin:7px">
               <button
                 class="btn btn-sm btn-utility dropdown-none"
@@ -15,8 +15,7 @@
                 aria-expanded="false"
                 style="width:70px"
               >
-                <span class="round-body small-main small" style="background-color:black"></span>
-                <!-- <span class="round-body small-main" v-rainbow>.</span> -->
+                <span class="round-body small" style="background-color:black"></span>
 
                 <span class="spanset">{{status}}</span>
               </button>
@@ -34,19 +33,73 @@
             </div>
           </div>
 
+          <!--end of choose from recipients  -->
+
           <div class="col-2"></div>
 
           <div class="col-2">
-            <!-- {{rects}} -->
-          </div>
-          <div class="col-2">
-            <button class="btn btn-sm" @click="undo">
+            <button class="btn btn-sm pull-right" @click="undo">
               <i class="fas fa-undo"></i>
             </button>
 
-            <button class="btn btn-sm" @click="deleteicon">
+            <!-- Delete an icon -->
+            <button class="btn btn-sm pull-right" @click="deleteicon">
               <i class="far fa-trash-alt"></i>
             </button>
+          </div>
+
+          <div class="col-1">
+            <!-- ZOom button start -->
+            <div class="dropdown">
+              <button
+                class="btn dropdown-toggle seteffect"
+                type="button"
+                style="font-size:13px; "
+                id="dropdownMenu2"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >{{'25%'}}</button>
+              <div class="dropdown-menu menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item seteffect" type="button" style="font-size:13px; ">25%</button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>50%</span>
+                </button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>75%</span>
+                </button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>100%</span>
+                </button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>125%</span>
+                </button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>150%</span>
+                </button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>200%</span>
+                </button>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>400%</span>
+                </button>
+
+                <hr>
+
+                <button class="dropdown-item" style="font-size:13px;" type="button">
+                  <span>Fix to width</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Zoom button end -->
           </div>
         </div>
       </div>
@@ -54,7 +107,7 @@
 
     <div class="row">
       <!-- choose from options area -->
-      <div class="col-2 set-side" style>
+      <div class="col-2 set-side">
         <choosebar></choosebar>
       </div>
 
@@ -135,8 +188,13 @@ export default {
     token: function() {
       return this.$store.getters.getToken;
     },
-    rects() {
-      return this.$store.state.rect.rects;
+    rects: {
+      get() {
+        return this.$store.state.rect.rects;
+      },
+      set(value) {
+        this.$store.state.rect.rects = value;
+      }
     }
   },
 
@@ -191,6 +249,7 @@ export default {
 </script>
 
 <style scoped>
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -284,17 +343,15 @@ ul li {
 }
 
 .small {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   padding: 4px;
+  font-weight: 0;
+  font-size: 38%;
 }
 
 .small-main {
   margin-left: -40px;
-}
-
-.small-main span {
-  color: red;
 }
 
 .dropdown-none::after {
@@ -355,4 +412,17 @@ ul li {
 .to-upper {
   text-transform: uppercase;
 }
+
+/* // zoom classes */
+.seteffect:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #1951b8;
+}
+
+.menu {
+  min-width: 6rem;
+}
+
+/* // zoom classes end */
 </style>

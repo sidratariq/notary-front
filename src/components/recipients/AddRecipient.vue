@@ -77,7 +77,7 @@
           <!--  v-rainbow -->
           <div class="row foreground">
             <!-- email and name of recipient -->
-            <div  class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
+            <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
               <form>
                 <div class="form-group crush">
                   <!-- 
@@ -380,8 +380,9 @@ export default {
             if (res.status == 200) {
               console.log(res.bodyText);
               store.dispatch("act_signers", JSON.parse(res.bodyText));
-              store.state.currentrecipientid = store.getters.getsigners[0].ContractID;
-              store.state.currentreipientname = creator
+              store.state.currentrecipientid =
+                store.getters.getsigners[0].ContractID;
+              store.state.currentreipientname = creator;
               store.dispatch("act_recipients", recipient);
               this.$router.push("/playground");
 
