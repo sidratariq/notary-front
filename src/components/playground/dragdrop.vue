@@ -1,6 +1,9 @@
   <template>
-  <div class="card" id="list">
-    <img :style="{content:`url(`+image+`)`, position:'relative',  background:'no-repeat center'}">
+  <div class="card" >
+    <img id="list"
+      :style="{content:`url(`+image+`)`, position:'relative',  background:'no-repeat center'}"
+      style="width:200px; height:400px"
+    >
 
     <VueDragResize
       v-for="(rect, index) in rects"
@@ -17,7 +20,7 @@
       :minh="rect.minh"
       :isDraggable="rect.draggable"
       :isResizable="rect.resizable"
-      :parentLimitation='true'
+      :parentLimitation="true"
       :snapToGrid="rect.snapToGrid"
       :aspectRatio="rect.aspectRatio"
       :z="rect.zIndex"
@@ -27,16 +30,17 @@
       v-on:resizing="changeSize($event, index)"
       @click.native="getindex(index)"
     >
-      <div
-        class="filler"
-        :style="{background:rect.color,backgroundSize: '67px',left:0 }"
-      >{{rect.recipientname}}
-      <span v-if="rect.text!='Signature' && rect.text!='Initial'"  style="left:0">
-        {{rect.text}}
-
-      </span>
-       <p v-if="rect.text=='Signature' || rect.text=='Initial'" style=" margin:45px 12px 0px 12px; left:0"  >{{rect.text}}</p>
-         </div>
+      <div class="filler" :style="{background:rect.color,backgroundSize: '67px',left:0 }">
+        {{rect.recipientname}}
+        <span
+          v-if="rect.text!='Signature' && rect.text!='Initial'"
+          style="left:0"
+        >{{rect.text}}</span>
+        <p
+          v-if="rect.text=='Signature' || rect.text=='Initial'"
+          style=" margin:45px 12px 0px 12px; left:0"
+        >{{rect.text}}</p>
+      </div>
     </VueDragResize>
   </div>
 </template>
@@ -63,12 +67,12 @@ export default {
   },
   mounted() {
     let listEl = document.getElementById("list");
-    console.log(listEl)
+    console.log(listEl);
     this.listWidth = listEl.clientWidth;
-    console.log(this.listWidth)
+    console.log(this.listWidth);
 
     this.listHeight = listEl.clientHeight;
-    console.log(this.listHeight)
+    console.log(this.listHeight);
     window.addEventListener("resize", () => {
       this.listWidth = listEl.clientWidth;
       this.listHeight = listEl.clientHeight;
@@ -112,20 +116,20 @@ export default {
       this.left = newRect.left;
     },
 
-    resize1(newRect) {
-      this.width1 = newRect.width;
-      this.height1 = newRect.height;
-      this.top1 = newRect.top;
-      this.left1 = newRect.left;
-    },
     getindex(index) {
       // alert(index)
       this.$store.state.currentindex = index;
     }
   },
   computed: {
-    rects() {
+    rects: {
+      set(value){
+          this.$store.state.rect.rects= value
+      },
+      get(){
       return this.$store.state.rect.rects;
+
+      }
     },
 
     show: {
@@ -182,15 +186,15 @@ body {
 }
 
 .card {
-  background-size: cover;
-  background-repeat: none;
-  background-position: center center;
+  /* background-size: cover; */
+  /* background-repeat: none; */
+  /* background-position: center center; */
   color: white;
   /* position: relative; */
-  background-color: tomato;
-  font-family: sans-serif;
-  text-align: center;
-  width: 900px;
-  height: 500px;
+  /* background-color: tomato; */
+  /* font-family: sans-serif; */
+  /* text-align: center; */
+  /* width: 900px; */
+  /* height: 500px; */
 }
 </style>
