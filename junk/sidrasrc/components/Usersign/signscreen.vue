@@ -5,14 +5,14 @@
       <div class="col-12 col-md-12" style="padding-left:0px">
         <div class="row">
           <div class="col-2">
-            <div class="col-3"></div>
+            <div class="col-3">not showinhg any damn thinhg</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-2 set-side"></div>
+      <div class="col-2 set-side"> dakjdjadkj</div>
 
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:96%; width:906px;overflow:scroll">
@@ -312,6 +312,11 @@ export default {
 </script>
 
 <style scoped>
+
+*{
+  border: 1px solid black;
+}
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
