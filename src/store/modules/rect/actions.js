@@ -15,6 +15,40 @@ export default {
         commit(types.DISABLE_ACTIVE, id);
     },
 
+<<<<<<< HEAD
+=======
+    // toggleDraggable({commit, state}, {id}) {
+    //     if (!state.rects[id].draggable) {
+    //         commit(types.ENABLE_DRAGGABLE, id);
+    //     } else {
+    //         commit(types.DISABLE_DRAGGABLE, id);
+    //     }
+    // },
+
+    // toggleResizable({commit, state}, {id}) {
+    //     if (!state.rects[id].resizable) {
+    //         commit(types.ENABLE_RESIZABLE, id);
+    //     } else {
+    //         commit(types.DISABLE_RESIZABLE, id);
+    //     }
+    // },
+
+    // toggleParentLimitation({commit, state}, {id}) {
+    //     if (!state.rects[id].parentLim) {
+    //         commit(types.ENABLE_PARENT_LIMITATION, id);
+    //     } else {
+    //         commit(types.DISABLE_PARENT_LIMITATION, id);
+    //     }
+    // },
+
+    // toggleSnapToGrid({commit, state}, {id}) {
+    //     if (!state.rects[id].snapToGrid) {
+    //         commit(types.ENABLE_SNAP_TO_GRID, id);
+    //     } else {
+    //         commit(types.DISABLE_SNAP_TO_GRID, id);
+    //     }
+    // },
+>>>>>>> 1dae12c84294e7cf265f38b6e9f2d80dfb217496
 
     setAspect({commit}, {id}) {
         commit(types.ENABLE_ASPECT, id);
