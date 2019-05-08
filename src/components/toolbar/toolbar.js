@@ -41,7 +41,9 @@ export default {
         },
 
         resizable() {
+            // return this.activeRect === null ? false : this.$store.state.rect.rects[this.activeRect].resizable;
             return this.activeRect === null ? false : this.$store.state.rect.rects[this.activeRect].resizable;
+            
         },
 
         snapToGrid() {
@@ -101,21 +103,21 @@ export default {
             }
         },
 
-        toggleParentLimitation() {
-            this.$store.dispatch('rect/toggleParentLimitation', {id: this.activeRect});
-        },
+        // toggleParentLimitation() {
+        //     this.$store.dispatch('rect/toggleParentLimitation', {id: this.activeRect});
+        // },
 
-        toggleResizable() {
-            this.$store.dispatch('rect/toggleResizable', {id: this.activeRect});
-        },
+        // toggleResizable() {
+        //     this.$store.dispatch('rect/toggleResizable', {id: this.activeRect});
+        // },
 
-        toggleDraggable() {
-            this.$store.dispatch('rect/toggleDraggable', {id: this.activeRect});
-        },
+        // toggleDraggable() {
+        //     this.$store.dispatch('rect/toggleDraggable', {id: this.activeRect});
+        // },
 
-        toggleSnapToGrid() {
-            this.$store.dispatch('rect/toggleSnapToGrid', {id: this.activeRect});
-        },
+        // toggleSnapToGrid() {
+        //     this.$store.dispatch('rect/toggleSnapToGrid', {id: this.activeRect});
+        // },
 
         toTop() {
             this.$store.dispatch('rect/changeZToTop', {id: this.activeRect});
