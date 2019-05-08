@@ -1,0 +1,22 @@
+ <div v-for="(i,index) in coordinated" :key="index">
+            <!-- for signature field -->
+            <div v-if="i.Name =='Signature'" class="setsignature" slot="signature">
+              <img
+                :style="{content:'url('+start(i)+')',position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
+              >
+            </div>
+
+            <!-- for initial field -->
+            <div v-if="i.Name =='Initial'" slot="initial">
+              <img
+                :style="{content:'url('+start(i)+')',position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
+              >
+            </div>
+
+            <!-- for other fields of contract -->
+            <div
+              v-if="i.Name!='Initial' && i.Name!='Signature'"
+              :style="{position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
+              name="default"
+            >{{start(i)}}</div>
+          </div>

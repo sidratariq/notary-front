@@ -24,24 +24,23 @@
     </div>
 
     <div class="row">
-      <div class="col-2 set-side"></div>
+      <div class="col-2 set-side">
+        <h4>coordinated data</h4>
+        {{coordinated}}</div>
 
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:500px; width:906px;overflow:scroll">
         <signatureInitial ref="name">
-        <!-- <p style="position:absolute; top:20px; bottom:20px">{{Userdata}}</p> -->
-         <div v-for="(i,index) in coordinated" :key="index">
+          <div v-for="(i,index) in coordinated" :key="index">
             <!-- for signature field -->
-            
-            <!-- <p style="position:absolute;left:20px;top:20px">{{start(i)}}</p> -->
-            <div v-if="i.Text =='Signature'" class="setsignature" slot="signature">
+            <div v-if="i.Name =='Signature'" class="setsignature" slot="signature">
               <img
                 :style="{content:'url('+start(i)+')',position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
               >
             </div>
 
             <!-- for initial field -->
-            <div v-if="i.Text =='Initial'" slot="initial">
+            <div v-if="i.Name =='Initial'" slot="initial">
               <img
                 :style="{content:'url('+start(i)+')',position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
               >
@@ -49,7 +48,7 @@
 
             <!-- for other fields of contract -->
             <div
-              v-if="i.Text!='Initial' && i.Text!='Signature'"
+              v-if="i.Name!='Initial' && i.Name!='Signature'"
               :style="{position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
               name="default"
             >{{start(i)}}</div>
@@ -58,6 +57,8 @@
       </div>
 
       <div class="col-2">
+        <h4>User data avalible</h4>
+        {{Userdata}}
       </div>
     </div>
 
@@ -199,15 +200,15 @@ export default {
     // it returns user contract field on every loop iteration what it should return
     start(args) {
       let creator = this.Userdata;
-      if (args.Text == "Signature") {
+      if (args.Name == "Signature") {
         return "http://localhost:8000/" + creator.Userdata.UserSignature;
       }
 
-      if (args.Text == "Initial") {
+      if (args.Name == "Initial") {
         return "http://localhost:8000/" + creator.Userdata.UserInitials;
       }
 
-      if (args.Text == "DateSigned") {
+      if (args.Name == "DateSigned") {
         var today = new Date();
         var time =
           today.getHours() +
@@ -215,25 +216,24 @@ export default {
           today.getMinutes() +
           ":" +
           today.getSeconds();
-          console.log
         return time;
       }
       // for showing user name
-      if (args.Text == "Name") {
+      if (args.Name == "Name") {
         return creator.Userdata.UserName;
       }
 
       // for showing user email
-      if (args.Text == "Email") {
+      if (args.Name == "Email") {
         return creator.Userdata.UserEmail;
       }
 
       // for showing usercompnay
-      if (args.Text == "Company") {
+      if (args.Name == "Company") {
         return creator.Userdata.UserCompany;
       }
       // for showing usercompnay
-      if (args.Text == "Phone") {
+      if (args.Name == "Phone") {
         return creator.Userdata.UserPhone;
       }
     },

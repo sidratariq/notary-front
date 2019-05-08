@@ -1,0 +1,28 @@
+ <!-- footer -->
+    <div
+      class="row"
+      style="position:fixed;z-index:999;bottom:0px; border-top:1px solid #ccc; background:#ffffff; width:100%; min-height:54px;"
+    >
+      <div class="col">
+        <!-- :disabled="pass==true" -->
+        <button
+          type="button"
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="border:1px solid #ccc; margin-top:12px; background-color:white"
+          @click="copy(),sendrequest()"
+        >Sign</button>
+
+        <button
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="margin-top:12px;"
+          @click="setcoordinates()"
+        >Place Fields</button>
+
+        <!-- when decline call decline  -->
+        <button
+          class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
+          style="margin-top:12px;"
+          @click="DeclineContract()"
+        >Decline</button>
+      </div>
+    </div>

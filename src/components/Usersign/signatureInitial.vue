@@ -1,8 +1,7 @@
   <template>
-  <div class="card">
-    <img :style="{content:`url(`+image+`)`}">
+  <div >
+    <img :style="{content:`url(`+image+`)`}" class="card">
     <small class="text-muted">{{getcontractid}}</small>
-
     <slot name="default"></slot>
     <slot name="signature"></slot>
     <slot name="initial"></slot>
@@ -47,18 +46,18 @@ body {
 }
 
 .card {
-  background-size: cover;
+  /* background-size: cover;
   background-repeat: none;
-  background-position: center center;
-  color: white;
+  background-position: center center; */
+  color:black;
   position: relative;
-  background-color: tomato;
+  /* background-color: tomato;
   font-family: sans-serif;
-  text-align: center;
+  text-align: center; */
   /* width: 900px; */
   /* height: 510px; */
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 }
 
 .text-muted {
