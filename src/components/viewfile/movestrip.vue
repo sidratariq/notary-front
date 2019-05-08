@@ -72,18 +72,15 @@
 
         <div class="col-3 setpadding">
           <div class="btn-group setpadding">
-            <button
+            <a
               class="btn btn-sm apply download"
               type="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+              :href="imagesoure"
+              style="border:1px solid #ccc"
             >
-              <a :href="imagesoure"></a>
               <i class="fas fa-download circle"></i>
               
-              {{imagesoure}}
-            </button>
+            </a>
           </div>
         </div>
 
