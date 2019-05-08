@@ -1,8 +1,9 @@
   <template>
-  <div  >
-    <img id="list" class="card"
+  <div>
+    <img
+      id="list"
+      class="card"
       :style="{content:`url(`+image+`)`, position:'relative',  background:'no-repeat center'}"
-     
     >
 
     <VueDragResize
@@ -31,14 +32,14 @@
       @click.native="getindex(index)"
     >
       <div class="filler" :style="{background:rect.color,backgroundSize: '67px',left:0 }">
-        {{rect.recipientname}}
+        <span style="text-align:center">{{rect.recipientname}}</span>
         <span
           v-if="rect.text!='Signature' && rect.text!='Initial'"
-          style="left:0"
-        >{{rect.text}}</span>
+          style="left:0; color:#3E424B"
+        >({{rect.text}})</span>
         <p
           v-if="rect.text=='Signature' || rect.text=='Initial'"
-          style=" margin:45px 12px 0px 12px; left:0"
+          style=" margin:45px 12px 0px 12px; left:0;"
         >{{rect.text}}</p>
       </div>
     </VueDragResize>
@@ -123,12 +124,11 @@ export default {
   },
   computed: {
     rects: {
-      set(value){
-          this.$store.state.rect.rects= value
+      set(value) {
+        this.$store.state.rect.rects = value;
       },
-      get(){
-      return this.$store.state.rect.rects;
-
+      get() {
+        return this.$store.state.rect.rects;
       }
     },
 
@@ -145,7 +145,6 @@ export default {
 </script>
 
   <style scoped>
-  
 .hero-image {
   height: 500px;
   background-position: center;
@@ -187,8 +186,6 @@ body {
 }
 
 .card {
- 
   color: white;
-
 }
 </style>

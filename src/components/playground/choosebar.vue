@@ -146,7 +146,7 @@
       },
       adddate(args) {
         this.$store.state.rect.rects.push({
-          width: 101,
+          width: 121,
           height: 27,
           top: 10,
           left: 10,
@@ -171,7 +171,7 @@
       },
       addname(args) {
         this.$store.state.rect.rects.push({
-          width: 125,
+          width: 121,
           height: 29,
           top: 10,
           left: 10,
@@ -198,7 +198,7 @@
 
         addemail(args) {
         this.$store.state.rect.rects.push({
-          width: 101,
+          width: 121,
           height: 27,
           top: 10,
           left: 10,
@@ -226,8 +226,8 @@
 
         addcompany(args) {
         this.$store.state.rect.rects.push({
-          width: 101,
-          height: 27,
+          width: 121,
+          height: 27, 
           top: 10,
           left: 10,
           draggable: true,
