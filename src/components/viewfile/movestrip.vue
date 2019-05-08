@@ -81,6 +81,8 @@
             >
               <a :href="imagesoure"></a>
               <i class="fas fa-download circle"></i>
+              
+              {{imagesoure}}
             </button>
           </div>
         </div>

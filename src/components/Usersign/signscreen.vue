@@ -29,10 +29,10 @@
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:500px; width:906px;overflow:scroll">
         <signatureInitial ref="name">
-        <!-- <p style="position:absolute; top:20px; bottom:20px">{{Userdata}}</p> -->
-         <div v-for="(i,index) in coordinated" :key="index">
+          <!-- <p style="position:absolute; top:20px; bottom:20px">{{Userdata}}</p> -->
+          <div v-for="(i,index) in coordinated" :key="index">
             <!-- for signature field -->
-            
+
             <!-- <p style="position:absolute;left:20px;top:20px">{{start(i)}}</p> -->
             <div v-if="i.Text =='Signature'" class="setsignature" slot="signature">
               <img
@@ -57,8 +57,7 @@
         </signatureInitial>
       </div>
 
-      <div class="col-2">
-      </div>
+      <div class="col-2"></div>
     </div>
 
     <!-- footer -->
@@ -111,6 +110,8 @@ export default {
   },
 
   computed: {
+    // disabling the user sign button user should first place fields to show user
+    // where he will sign
     pass: {
       set(value) {
         this.set = value;
@@ -120,6 +121,7 @@ export default {
       }
     },
 
+    // Deline the contractalert
     declined: {
       set(value) {
         this.declinedvalue = value;
@@ -129,16 +131,28 @@ export default {
       }
     },
 
+    //current contract path
     image() {
       console.log(this.$store.getters.getcontractpath);
       return this.$store.getters.getcontractpath;
     },
+
+    //token of the user
     token: function() {
       return this.$store.getters.getToken;
     },
+
+    // getting current contract id
     getcontractid: function() {
       return this.$store.getters.getcontractdata.ContractData.ContractID;
     },
+
+    getcontract: function() {
+      return this.$store.getters.getcontractdata.ContractData
+        .ContractcreationTime;
+    },
+
+    // coordinates set for setting the name,email etc
     coordinated: {
       set(value) {
         alert(value);
@@ -148,10 +162,13 @@ export default {
         return this.responsedata;
       }
     },
+
+    //Current User data
     Userdata() {
       console.log(this.$store.state.userdata);
       return this.$store.state.userdata;
     },
+
     heightset() {
       return "70px";
     },
@@ -199,6 +216,8 @@ export default {
     // it returns user contract field on every loop iteration what it should return
     start(args) {
       let creator = this.Userdata;
+      var date = this.getcontract;
+
       if (args.Text == "Signature") {
         return "http://localhost:8000/" + creator.Userdata.UserSignature;
       }
@@ -208,15 +227,8 @@ export default {
       }
 
       if (args.Text == "DateSigned") {
-        var today = new Date();
-        var time =
-          today.getHours() +
-          ":" +
-          today.getMinutes() +
-          ":" +
-          today.getSeconds();
-          console.log
-        return time;
+        let contractdate = date.split(" ");
+        return contractdate[1];
       }
       // for showing user name
       if (args.Text == "Name") {

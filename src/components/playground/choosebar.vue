@@ -146,7 +146,7 @@
       },
       adddate(args) {
         this.$store.state.rect.rects.push({
-          width: 121,
+          width: 161,
           height: 27,
           top: 10,
           left: 10,

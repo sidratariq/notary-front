@@ -1,4 +1,4 @@
-        <template>
+          <template>
   <div class="row makescroll">
     <table style="width:100%;">
       <!-- headings side -->
@@ -43,10 +43,10 @@
           <span style="padding:4px">
             <i
               :class="{'far fa-clock':select.Status=='In Progress',
-                                            'fas fa-ban voided':select.Status=='Declined',
-                                            'fas fa-exclamation-circle reqaction':select.Status=='In Progress',
-                                            'far fa-edit menuicon':select.Status=='DRAFT',
-                                            'fas fa-check sucess':select.Status=='Completed' }"
+                                              'fas fa-ban voided':select.Status=='Declined',
+                                              'fas fa-exclamation-circle reqaction':select.Status=='In Progress',
+                                              'far fa-edit menuicon':select.Status=='DRAFT',
+                                              'fas fa-check sucess':select.Status=='Completed' }"
               style="margin:2px"
             ></i>
           </span>
@@ -113,11 +113,8 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >
-              Sign
-            </button>
+            >Sign</button>
 
-           
             <!--drop down menu  -->
             <div class="dropdown-menu">
               <div class="row">
@@ -136,12 +133,21 @@
                     @click="ExportAsCsv(select.ContractID)"
                   >Export As CSV</a>
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
-                  <a v-if="$route.query.view == 'Draft'" class="dropdown-item date padding" href="#">Delete</a>
+                  <a
+                    v-if="$route.query.view == 'Draft'"
+                    @click="DeleteDraft(select.ContractID)"
+                    class="dropdown-item date padding"
+                    href="#"
+                  >Delete</a>
                   <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
                   <a class="dropdown-item date padding" href="#">Resend</a>
-                  <a v-if="$route.query.view == 'Actions Required'" class="dropdown-item date padding" href="#">Decline</a>
+                  <a
+                    v-if="$route.query.view == 'Actions Required'"
+                    class="dropdown-item date padding"
+                    href="#"
+                  >Decline</a>
 
-        <!--  -->
+                  <!--  -->
                   <!--  -->
                 </div>
               </div>
@@ -188,7 +194,7 @@
 </template>
 
 
-<script>
+  <script>
 export default {
   data() {
     return {
@@ -246,6 +252,8 @@ export default {
         return [];
       }
     },
+
+    // Export as CSV
     ExportAsCsv(args) {
       let token = this.token;
       let contractid = args;
@@ -274,18 +282,19 @@ export default {
           alert(error);
         });
     },
+
+    // Moving contracts between the folders
     MoveContract(arg1, arg2) {
       let token = this.token;
-      // alert(aa)
       let contractid = arg2;
       let folderid = arg1;
-      console.log(contractid);
+
       this.$http
         .post(
           "http://localhost:8000/moveContract",
           {
-            FolderID: folderid,
-            ContractID: contractid
+            'FolderID': folderid,
+            'ContractID': contractid
           },
           {
             headers: {
@@ -304,8 +313,42 @@ export default {
         .catch(error => {
           alert(error);
         });
+    },
+
+    // DeleteDraft contract
+    DeleteDraft(args) {
+      console.log(args);
+
+      let token = this.token;
+
+      this.$http
+        .delete(
+          "http://localhost:8000/delDraft",
+          {
+            'ContractID': args
+          },
+          {
+            headers: {
+              Token: token
+            }
+          }
+        )
+        .then(res => {
+          console.log(res);
+          if (res.status == 200) {
+            console.log("updated")
+            console.log(res);
+            alert("updated");
+          }
+          return res;
+        })
+        .catch(error => {
+          console.log("not updated")
+          console.log(error);
+        });
     }
   },
+
   props: {
     defaultSelects: [Array],
     getselected: [Array],
@@ -350,9 +393,7 @@ export default {
 };
 </script>
 
- <style scoped>
-
-
+  <style scoped>
 .sucess {
   color: #008938;
 }
@@ -428,9 +469,9 @@ export default {
   position: relative;
 }
 
-table{
+table {
   /* margin-left: 227px; */
-  text-align: center
+  text-align: center;
 }
 
 th {
@@ -451,8 +492,6 @@ th {
   font-size: 13px;
   line-height: 18px;
 }
-
-
 
 td ul li {
   list-style: none;
