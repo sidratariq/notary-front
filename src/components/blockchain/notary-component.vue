@@ -191,7 +191,26 @@ export default {
                   }
                 },
                 error => {
-                  alert("CONTRACT NOT FOUND");
+                  alert("CONTRACT HAS BEEN TEMPERED");
+                 this.$http
+                 .post ( "http://localhost:8000/TemperingEmail",
+                 {
+                    ContractID: this.ContractID
+                 },
+                 {
+                    headers: {
+                    Token: this.token
+                  }
+                 }
+                 ).then(
+                   response => {
+                     if (response.status == 200){
+                       alert("email sent to all users")
+                     }
+                   }
+                 )
+                
+
                 }
               );
           }
