@@ -38,6 +38,7 @@
         class="setborder"
         :class="{'clicked':checked}"
       >
+      
         <!-- status__2 -->
         <td @click="routechange(select.Creator)" style="padding:2px">
           <span style="padding:4px">
@@ -89,7 +90,7 @@
             class="fab fa-bitcoin"
             style="color:red;font-size:23px;transform: rotate(-16deg);"
           ></i>
-          <!-- {{select}} -->
+          
           <!-- </p> -->
         </td>
 
@@ -113,7 +114,9 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >Sign</button>
+            >
+            {{select.Status=='Completed'?'Move':'Sign'}}
+            </button>
 
             <!--drop down menu  -->
             <div class="dropdown-menu">
@@ -126,21 +129,30 @@
                     data-target="#movefolder"
                     href="#"
                   >Move</a>
-                  <a
+
+                  <!-- <a
                     v-if="avalible==false"
                     class="dropdown-item date padding"
-                    :href="getpath"
                     @click="ExportAsCsv(select.ContractID)"
-                  >Export As CSV</a>
+                  >Export As CSV</a> -->
+
+                  <a @click="routechange(select.ContractID)" class="dropdown-item date padding">
+                    View Detail
+                  </a>
+
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
+
                   <a
                     v-if="$route.query.view == 'Draft'"
                     @click="DeleteDraft(select.ContractID)"
                     class="dropdown-item date padding"
                     href="#"
                   >Delete</a>
-                  <a v-if="avalible" class="dropdown-item date padding" href="#">Continue</a>
-                  <a class="dropdown-item date padding" href="#">Resend</a>
+
+                  <a v-if="avalible " class="dropdown-item date padding" href="#">Continue</a>
+
+                  <a class="dropdown-item date padding" v-if="select.Status!='Completed' && select.Status!='DRAFT'" href="#">Resend</a>
+
                   <a
                     v-if="$route.query.view == 'Actions Required'"
                     class="dropdown-item date padding"
@@ -251,35 +263,6 @@ export default {
       }
     },
 
-    // Export as CSV
-    ExportAsCsv(args) {
-      let token = this.token;
-      let contractid = args;
-      console.log(contractid);
-      this.$http
-        .post(
-          "http://localhost:8000/ExportCSV",
-          {
-            ContractID: contractid
-          },
-          {
-            headers: {
-              Token: token
-            }
-          }
-        )
-        .then(res => {
-          console.log(res);
-          if (res.status == 200) {
-            console.log(res.bodyText);
-            this.getpath = res.bodyText;
-          }
-          return res;
-        })
-        .catch(error => {
-          alert(error);
-        });
-    },
 
     // Moving contracts between the folders
     MoveContract(arg1, arg2) {

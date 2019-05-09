@@ -31,11 +31,14 @@
     <!-- Export as CSV button -->
     <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding" style="text-align:center">
       <a class="btn btn-sm apply" :href="csvsource">Export As CSV</a>
-      
     </div>
 
-    <div class="col-1 col-md-2 setpadding" style="text-align:center">
+    <div v-if="contractstatus=='In Progress'" class="col-1 col-md-2 setpadding" style="text-align:center">
       <button class="btn btn-sm apply" type="button">RESEND</button>
+    </div>
+
+    <div v-if="contractstatus=='DRAFT'" class="col-1 col-md-1 setpadding" style="text-align:center">
+      <button class="btn btn-sm apply" type="button">Continue</button>
     </div>
 
     <div class="col-3 setpadding" style="text-align:left">
@@ -269,10 +272,9 @@ export default {
       return this.contractdata.ContractData.Blockchain;
     },
 
-
     contractstatus() {
       return this.$store.getters.getcontractdata.ContractData.Status;
-    },
+    }
   },
 
   // called when the component is created to get the export as csv file
@@ -296,9 +298,7 @@ export default {
       .then(res => {
         console.log(res);
         if (res.status == 200) {
-          let path =
-            
-            res.bodyText.substring(1, res.bodyText.length - 2);
+          let path = res.bodyText.substring(1, res.bodyText.length - 2);
           exportfile = path;
           localStorage.setItem("filepath", path);
           // alert(localStorage.getItem('filepath'))

@@ -19,10 +19,10 @@
                 <div class="col-12" style="padding-left:22px">
                   <small class="text-muted">Status: {{value.SignStatus}}</small>
                 </div>
-
-                <div class="col-12" style="padding-left:22px">
+                
+                <!-- <div class="col-12" style="padding-left:22px">
                   <small class="text-muted">Message: {{value.Message}}</small>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
