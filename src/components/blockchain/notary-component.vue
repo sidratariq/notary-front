@@ -374,7 +374,6 @@ export default {
 }
 
 .notary {
-  /* margin-top: 50px; */
   text-align: center;
 }
 #loader {
@@ -383,8 +382,6 @@ export default {
 
 * {
   color: #444444;
-  /* background-color:rgb(244, 244, 244); */
-  /* background-color: blueviolet */
 }
 
 #has-metamask {

@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-1 setpadding" style="text-align:center">
+    <div v-if="contractstatus!='DRAFT'" class="col-1 setpadding" style="text-align:center">
       <!--shows signed button if user is gigne  -->
       <button
         class="btn btn-primary btn-sm"
@@ -267,7 +267,12 @@ export default {
 
     blockchainstatus() {
       return this.contractdata.ContractData.Blockchain;
-    }
+    },
+
+
+    contractstatus() {
+      return this.$store.getters.getcontractdata.ContractData.Status;
+    },
   },
 
   // called when the component is created to get the export as csv file
@@ -292,7 +297,7 @@ export default {
         console.log(res);
         if (res.status == 200) {
           let path =
-            "http://localhost:8000/" +
+            
             res.bodyText.substring(1, res.bodyText.length - 2);
           exportfile = path;
           localStorage.setItem("filepath", path);
