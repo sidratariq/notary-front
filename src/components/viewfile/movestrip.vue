@@ -14,6 +14,8 @@
         type="button"
         @click="gotoSignscreen()"
       >SIGNED</button>
+
+
     </div>
 
     <div class="col-1 setpadding" style="text-align:center">
@@ -27,7 +29,7 @@
     </div>
 
     <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding" style="text-align:center">
-      <button class="btn btn-sm apply" type="button">Export As CSV</button>
+      <a class="btn btn-sm apply" :href="csvsource">Export As CSV</a>
     </div>
 
     <div class="col-1 col-md-2 setpadding" style="text-align:center">
@@ -72,14 +74,8 @@
 
         <div class="col-3 setpadding">
           <div class="btn-group setpadding">
-            <a
-              class="btn btn-sm apply download"
-              type="button"
-              :href="imagesoure"
-              style="border:1px solid #ccc"
-            >
+            <a class="btn btn-sm apply download" :href="imagesoure" style="border:1px solid #ccc">
               <i class="fas fa-download circle"></i>
-              
             </a>
           </div>
         </div>
@@ -130,7 +126,7 @@
 export default {
   data: () => {
     return {
-      filepath: localStorage.getItem("filepath")
+      // filepath: localStorage.getItem("filepath")
     };
   },
 
@@ -229,8 +225,13 @@ export default {
         "http://localhost:8000/DownloadFile?file=" +
         contractdata.ContractData.Filepath;
       return imgsource;
-      //
     },
+
+    csvsource() {
+      let filepath = localStorage.getItem("filepath");
+      return "http://localhost:8000/DownloadFile?file=" + filepath;
+    },
+
     // getfolder list
     folders: function() {
       return this.$store.getters.getfolder;

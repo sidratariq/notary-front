@@ -205,9 +205,7 @@ export default {
   },
 
   methods: {
-    navigateToHome() {
-      this.$router.push("/helloworld");
-    },
+ 
 
     routechange(args) {
       let token = this.token;
@@ -322,10 +320,10 @@ export default {
       let token = this.token;
 
       this.$http
-        .delete(
+        .post(
           "http://localhost:8000/delDraft",
           {
-            'ContractID': args
+            ContractID: args
           },
           {
             headers: {
