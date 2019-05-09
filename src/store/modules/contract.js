@@ -56,6 +56,7 @@ const getters ={
     },
 
     getcontractid:state=>{
+        console.log(state.contractid)
         return state.contractid
     },
     getcontractdata:state=>{
@@ -124,7 +125,7 @@ const mutations = {
         state.signers = payload
     }
 
-
+    
 
 
 };
@@ -157,14 +158,20 @@ const mutations = {
     act_recipients:({commit},payload)=>{
         commit('setrecipients',payload)
     },
+
+
     act_contractid:({commit},payload)=>{
+        console.log(payload+"contractid")        
         commit('setcontractid',payload)
     },
+
     act_contractdata:({commit},payload)=>{
-        console.log(payload+"dispatch store")
+        // console.log(payload+"dispatch store")
         commit('setcontractdata',payload)
     },
+
     act_contractpath:({commit},payload)=>{
+        console.log(payload+'path')
         commit('setcontractpath',payload)
     },
 

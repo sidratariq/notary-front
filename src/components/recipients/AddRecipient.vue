@@ -80,10 +80,7 @@
             <div class="col-sm-12 col-md-6 col-xs-12 col-lg-6 col-xl-6">
               <form>
                 <div class="form-group crush">
-                  <!-- 
-                    value="sidratariq48@gmail.com"
-
-                  -->
+                
                   <input
                     type="email"
                     style="font-size:0.85rem"

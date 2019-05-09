@@ -33,12 +33,16 @@
       <a class="btn btn-sm apply" :href="csvsource">Export As CSV</a>
     </div>
 
-    <div v-if="contractstatus=='In Progress'" class="col-1 col-md-2 setpadding" style="text-align:center">
+    <div
+      v-if="contractstatus=='In Progress'"
+      class="col-1 col-md-2 setpadding"
+      style="text-align:center"
+    >
       <button class="btn btn-sm apply" type="button">RESEND</button>
     </div>
 
     <div v-if="contractstatus=='DRAFT'" class="col-1 col-md-1 setpadding" style="text-align:center">
-      <button class="btn btn-sm apply" type="button">Continue</button>
+      <button class="btn btn-sm apply" @click="ReuseContract()" type="button">Continue</button>
     </div>
 
     <div class="col-3 setpadding" style="text-align:left">
@@ -221,12 +225,24 @@ export default {
         .catch(error => {
           alert(error);
         });
+    },
+
+    // Reuse contract that are in draft
+
+    ReuseContract() {
+      let contractid = this.contractdata.ContractData.ContractID;
+      let contractpath = this.contractdata.ContractData.Filepath;
+
+      this.$store.dispatch("act_contractid", contractid);
+      this.$store.dispatch("act_contractpath", contractpath);
+
+      this.$router.push("/addrecipient");
     }
   },
   computed: {
     imagesoure() {
       let contractdata = this.$store.getters.getcontractdata;
-      console.log(contractdata);
+      // console.log(contractdata);
       let imgsource =
         "http://localhost:8000/DownloadFile?file=" +
         contractdata.ContractData.Filepath;
@@ -296,7 +312,7 @@ export default {
         }
       )
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if (res.status == 200) {
           let path = res.bodyText.substring(1, res.bodyText.length - 2);
           exportfile = path;

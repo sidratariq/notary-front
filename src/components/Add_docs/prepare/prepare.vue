@@ -203,9 +203,9 @@ export default {
 
     Delete() {
       this.$store.dispatch("act_avalible", false);
-      store.dispatch("act_filename",'');
-      store.dispatch("act_filesrc", '');
-      store.dispatch("act_selectedcontract", '');
+       this.$store.dispatch("act_filename",'');
+       this.$store.dispatch("act_filesrc", '');
+       this.$store.dispatch("act_selectedcontract", '');
     }
   }
 };
