@@ -7,12 +7,17 @@
       <hello-metamask/>
     </div>
 
-    <div v-if="showowner==true" class="alert alert-primary alert-dismissible fade show" role="alert">
-   Contract saved in blockchain by:  <strong>{{useremail}}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+    <div
+      v-if="showowner==true"
+      class="alert alert-primary alert-dismissible fade show"
+      role="alert"
+    >
+      Contract saved in blockchain by:
+      <strong>{{useremail}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
     <div class="row setmargin">
       <div class="col-md-9 col-sm-6 col-lg-9">
@@ -74,24 +79,23 @@
 
     <div class="col-12">
       <div class="row pull-right">
-        <button v-if="contractdata.ContractData.Blockchain==0"
+        <button
+          v-if="contractdata.ContractData.Blockchain==0"
           :disabled="able"
           v-on:click="saveHash"
           class="btn btn-sm btn-primary"
         >Save in Blockchain</button>
-        <button v-if="contractdata.ContractData.Blockchain==1"
-        :disabled="able"
-        v-on:click="FindOwner"
-        class="btn btn-sm btn-success"
-      >Verify from blockchain</button>
-
-
+        <button
+          v-if="contractdata.ContractData.Blockchain==1"
+          :disabled="able"
+          v-on:click="FindOwner"
+          class="btn btn-sm btn-success"
+        >Verify from blockchain</button>
       </div>
       <div class="clearfix"></div>
       <div v-if="contractdata.ContractData.Blockchain==0" class="row pull-right">
         <small class="text-muted">(0.1 ethers will be deducted from your account)</small>
       </div>
-      
     </div>
   </div>
 </template>
@@ -111,8 +115,8 @@ export default {
       pending: false,
       winEvent: null,
       checkOwner: "",
-      verifyblockchain:false,
-      email:''
+      verifyblockchain: false,
+      email: ""
     };
   },
   methods: {
@@ -192,25 +196,23 @@ export default {
                 },
                 error => {
                   alert("CONTRACT HAS BEEN TEMPERED");
-                 this.$http
-                 .post ( "http://localhost:8000/TemperingEmail",
-                 {
-                    ContractID: this.ContractID
-                 },
-                 {
-                    headers: {
-                    Token: this.token
-                  }
-                 }
-                 ).then(
-                   response => {
-                     if (response.status == 200){
-                       alert("email sent to all users")
-                     }
-                   }
-                 )
-                
-
+                  this.$http
+                    .post(
+                      "http://localhost:8000/TemperingEmail",
+                      {
+                        ContractID: this.ContractID
+                      },
+                      {
+                        headers: {
+                          Token: this.token
+                        }
+                      }
+                    )
+                    .then(response => {
+                      if (response.status == 200) {
+                        alert("email sent to all users");
+                      }
+                    });
                 }
               );
           }
@@ -264,25 +266,23 @@ export default {
   },
 
   computed: {
-
-    useremail:{
-      set(value){
-        this.email = value
+    useremail: {
+      set(value) {
+        this.email = value;
       },
-      get(){
-        return this.email
+      get() {
+        return this.email;
       }
     },
 
-    showowner:{
-      set(value){
+    showowner: {
+      set(value) {
         this.verifyblockchain = value;
       },
-      get(){
+      get() {
         return this.verifyblockchain;
       }
     },
-
 
     able: function() {
       if (this.isInjected == true && this.network == "Rinkeby test network") {
@@ -291,7 +291,7 @@ export default {
         return false;
       }
     },
-    
+
     //  isInjected: state => state.web3.isInjected,
     isInjected: function() {
       let value = this.$store.state.web3.isInjected;

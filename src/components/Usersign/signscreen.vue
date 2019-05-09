@@ -11,6 +11,20 @@
       </div>
     </div>
 
+    <!-- alerts -->
+    <div
+      v-if="contractsigned==true"
+      class="alert alert-primary alert-dismissible fade show"
+      role="alert"
+    >
+      Your Contract has been signed <strong> Contract Name</strong>
+      <button type="button" class="" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <!-- alerts -->
+
     <div v-if="declined==true" class="alert alert-danger alert-dismissible fade show" role="alert">
       <strong>CONTRACT DECLINED</strong> You have success fully declined the contract.
       <button
@@ -29,7 +43,6 @@
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:500px; width:906px;overflow:scroll">
         <signatureInitial ref="name">
-
           <div v-for="(i,index) in coordinated" :key="index">
             <!-- for signature field -->
 
@@ -70,7 +83,7 @@
           type="button"
           class="OliveReact-Button--sizeLarge OliveReact-Button--main OliveReact-Button to-upper float-right"
           style="border:1px solid #ccc; margin-top:12px; background-color:white"
-          @click="copy(),sendrequest()"
+          @click="copy(),SignContract()"
         >Sign</button>
 
         <button
@@ -104,7 +117,8 @@ export default {
       output: "",
       responsedata: "",
       set: false,
-      declinedvalue: false
+      declinedvalue: false,
+      SignSuccess: false
     };
   },
 
@@ -117,6 +131,15 @@ export default {
       },
       get() {
         return this.set;
+      }
+    },
+
+    contractsigned: {
+      set(value) {
+        this.SignSuccess = value;
+      },
+      get() {
+        return this.SignSuccess;
       }
     },
 
@@ -293,8 +316,8 @@ export default {
         });
     },
 
-    // send request
-    sendrequest() {
+    // send request to SIgn the contract
+    SignContract() {
       let token = this.token;
       let contractid = this.getcontractid;
       let base = this.output;
@@ -316,7 +339,9 @@ export default {
 
           if (res.status == 200) {
             console.log(res.bodyText);
+            this.contractsigned = true;
             setTimeout(() => {
+              this.contractsigned = false;
               this.$router.push("/manage");
             }, 3000);
           }
