@@ -8,14 +8,14 @@
         type="button"
         @click="gotoSignscreen()"
       >SIGN</button>
+
+      <!-- Show if contract is signed -->
       <button
         class="btn btn-success btn-sm"
         v-if="signers==true"
+        style="cursor:pointer"
         type="button"
-        @click="gotoSignscreen()"
       >SIGNED</button>
-
-
     </div>
 
     <div class="col-1 setpadding" style="text-align:center">
@@ -28,8 +28,10 @@
       >MOVE</button>
     </div>
 
+    <!-- Export as CSV button -->
     <div class="col-1 col-md-2 col-xs-2 col-sm-2 setpadding" style="text-align:center">
       <a class="btn btn-sm apply" :href="csvsource">Export As CSV</a>
+      
     </div>
 
     <div class="col-1 col-md-2 setpadding" style="text-align:center">
@@ -73,6 +75,7 @@
         <div class="col-3 setpadding"></div>
 
         <div class="col-3 setpadding">
+          <!-- Download button -->
           <div class="btn-group setpadding">
             <a class="btn btn-sm apply download" :href="imagesoure" style="border:1px solid #ccc">
               <i class="fas fa-download circle"></i>
@@ -81,6 +84,7 @@
         </div>
 
         <div class="col-3 setpadding">
+          <!-- print button -->
           <button @click="print" class="btn btn-sm apply print" type="button">
             <i class="fas fa-print circle"></i>
           </button>
@@ -161,7 +165,6 @@ export default {
             console.log(this.contractid);
 
             let value = JSON.parse(res.bodyText);
-            // console.log(value)
 
             store.dispatch("updateContracthash", value);
 
@@ -340,6 +343,17 @@ export default {
 .green {
   /* background: #008938; */
   font-size: 14px;
+}
+
+/* //  */
+.signed-btn {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
 }
 
 .circle {

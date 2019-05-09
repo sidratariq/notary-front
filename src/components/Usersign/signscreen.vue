@@ -29,11 +29,10 @@
       <!-- child screen part -->
       <div class="col-8" style="padding:0px; height:500px; width:906px;overflow:scroll">
         <signatureInitial ref="name">
-          <!-- <p style="position:absolute; top:20px; bottom:20px">{{Userdata}}</p> -->
+
           <div v-for="(i,index) in coordinated" :key="index">
             <!-- for signature field -->
 
-            <!-- <p style="position:absolute;left:20px;top:20px">{{start(i)}}</p> -->
             <div v-if="i.Text =='Signature'" class="setsignature" slot="signature">
               <img
                 :style="{content:'url('+start(i)+')',position:'absolute',top:i.Top+'px',left:i.Left+'px',width:widthset,height:heightset}"
