@@ -86,12 +86,13 @@
 
         <div class="col-2-5">
           <div class="form-group" style="padding-left:0px; width:60%">
-            <label class="label" for="jobtitle">First Name</label>
+            <label class="label" for="jobtitle">First Name({{firstname}})</label>
             <input
               type="text"
               class="input-text"
               id="jobtitle"
-              :placeholder=username[0]
+              v-model="firstname"
+              :placeholder='splitusername[0]'
               data-qa="preferences-job-title-input"
               data-kwimpalastatus="alive"
               data-kwimpalaid="1551144858268-29"
@@ -101,13 +102,19 @@
 
           <div class="form-group" style="padding-left:0px; width:60%">
             <label class="label" for="phone">
-              Last Name
+              Last Name({{lastname}})
+              Full name({{fullname}})
+              phone({{newphone}})
+              company({{newcompany}})
+
+
               <span class="text-muted" data-children-count="0"></span>
             </label>
             <input
               type="text"
               class="input-text"
-              :placeholder=username[1]
+              :placeholder='splitusername[1]'
+              v-model="lastname"
               id="phone"
               data-kwimpalastatus="alive"
               data-kwimpalaid="1551144858268-33"
@@ -120,7 +127,7 @@
       <!-- fun aand stuff -->
       <div class="grid">
         <h2 class="header-title">Company and Phone Number</h2>
-        {{phone}}{{company}}
+      
 
         <div class="col-2-5">
           <div class="form-group" style="padding-left:0px; width:60%">
@@ -128,13 +135,13 @@
             <input
               type="text"
               class="input-text ng-pristine ng-valid ng-not-empty ng-touched"
-              :placeholder=company
+              :placeholder='company'
               
               id="jobtitle"
               data-qa="preferences-job-title-input"
               data-kwimpalastatus="alive"
               data-kwimpalaid="1551144858268-29"
-              v-model="company"
+              v-model="newcompany"
               style="height:35px"
             >
 
@@ -152,11 +159,11 @@
               class="input-text"
               id="phone"
          
-              :placeholder=phone
+              :placeholder='phone'
               data-kwimpalastatus="alive"
               data-kwimpalaid="1551144858268-33"
               style="height:35px"
-              v-model="phone"
+              v-model="newphone"
             >
           </div>
         </div>
@@ -223,7 +230,7 @@
 
       <div class="section-footer" style="margin-bottom:8vh">
         <div class="action-btns">
-          <button class="btn btn-primary" type="button">Save</button>
+          <button class="btn btn-primary" @click="UpdatePreferences" type="button">Save</button>
           <button class="btn btn-minor" type="button">Cancel</button>
         </div>
       </div>
@@ -288,19 +295,54 @@ export default {
     return{
       newcompany:'',
       newphone:'',
+      firstname:'',
+      lastname:''
+      
       
     }
   },
 
   methods: {
+    
     getclick() {
       this.$store.dispatch("changephoto");
     },
+    
     clicked() {
       this.$store.dispatch("changeflag");
+    },
+
+
+    // send request to backend
+    UpdatePreferences(){
+      // /userprefs
+      this.$http
+          .post("http://localhost:8000/userprefs", {
+            'UserName': this.fullname,
+            'Company': this.newcompany,
+            'Phone': this.newphone,
+          }, {
+          headers: {
+            Token:this.token
+          }
+        }
+          )
+          .then(
+            response => {
+              console.log(response)
+            },
+            error => {
+              console.log(error.bodyText);
+              
+            }
+          );
     }
+
   },
   computed: {
+    token() {
+      return this.$store.getters.getToken;
+    },
 
     uploadflag() {
       return this.$store.getters.getupload;
@@ -314,10 +356,15 @@ export default {
       return this.$store.getters.getflag;
     },
 
-    username: function() {
+    splitusername: function() {
       let username = this.$store.getters.getusername.split(" ");
       return username;
     },
+
+    fullname:function(){
+      return this.firstname +' '+ this.lastname
+    },
+    
 
     email: function() {
       return this.$store.getters.getemail;
