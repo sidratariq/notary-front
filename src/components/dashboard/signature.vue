@@ -1,9 +1,7 @@
 <template>
-  <div @click="clicked" class="signatureChrome signatureChrome-inverse">
-    
-   <!-- <span>{{signature}}</span>  -->
-    <span style="position:absolute">E-Notarized by:</span>
-    <!-- signature image from user choosen from database -->
+  <button @click="clicked" class="signatureChrome signatureChrome-inverse">
+    <span class="set-color">E-Notarized by:</span>
+    <span class="initial-text" id="set-color">Create your Signature</span>
     <img
       v-if="signature!=0"
       style="position:absolute;top:20px;left:20px; width:70px; height:30px"
@@ -11,39 +9,45 @@
       class="signatureChrome_signature"
       alt="Signature"
     >
-    <span v-if="signature==0" class="initial-text" id="set-color">Create your Signature</span>
-    <span style="position:absolute; bottom:-75px; width:100%">{{userid}}</span>
-    <!-- <div>
-      Files/User_signs/Signs/127a82c9-8397-4191-92d4-f3a8ca05255c.png
-    </div> -->
-  </div>
 
+    {{signature}}
+    <span class="set-color">{{userid}}</span>
+  </button>
 </template>
 
 <script>
-import { mapActions } from "vuex";
 
-export default {
-  methods: {
-    ...mapActions([
-      // 'changeflag'
-    ]),
-    clicked() {
-      this.$store.dispatch("changeflag");
-    }
-  },
-  computed: {
-    userid: function() {
-      //  getuserid
-      return this.$store.getters.getuserid;
-    },
-    signature: function() {
+    import {mapActions} from 'vuex'
+
+
+        export default {
+    
+
+            methods: {
+
+                    ...mapActions(
+                        [
+                            // 'changeflag'
+                        ]
+                    ),
+                    clicked(){
+                        this.$store.dispatch('changeflag')
+                    }                        
+                    },
+                computed:{
+                userid:function(){
+                    //  getuserid
+                    return this.$store.getters.getuserid
+
+                },
+                  signature: function() {
       // if (this.$store.getters.getsignsrc != undefined) {
         return "http://localhost:8000/" + this.$store.getters.getsignature;
       
     }
   }
-};
+            
+}
 </script>
 
 <style scoped>
@@ -92,8 +96,11 @@ export default {
   margin: 5px 0;
   min-height: 26px;
   font-family: "Parisienne", cursive;
-  position: absolute;
 }
+
+/* *{
+        color: #bad3f8;
+    } */
 
 *:hover {
   color: #bad3f8;

@@ -71,7 +71,6 @@ import modal from "../modals/modal.vue";
 import uploadphoto from "../modals/photoupload.vue";
 import signature from "./signature.vue";
 import { mapActions } from "vuex";
-
 export default {
   data: function() {
     return {
@@ -80,26 +79,21 @@ export default {
       userdata: {}
     };
   },
-
   methods: {
     ...mapActions([
       // 'changeflag'
     ]),
-
     clicked() {
       this.$store.dispatch("changeflag");
     },
-
     getclick() {
       this.$store.dispatch("changephoto");
     },
-
     escapeKeyListener: function(evt) {
       if (evt.keyCode === 27 && this.showModal) {
         this.showModal = false;
       }
     },
-
     routechange() {
       this.$router.push({ name: "manage", query: { view: "Action Required" } });
     },
@@ -113,28 +107,22 @@ export default {
       this.$router.push({ name: "manage", query: { view: "Expiring Soon" } });
     }
   },
-
   computed: {
     flag() {
       return this.$store.getters.getflag;
     },
-
     uploadflag() {
       return this.$store.getters.getupload;
     },
-
     profilepic: function() {
       return this.$store.getters.getprofilepicture || 0;
     },
-
     ActionRequired: function() {
       return this.$store.getters.getosign || 0;
     },
-
     WaitingOthers() {
       return this.$store.getters.getwaiting || 0;
     },
-
     expiring() {
       return this.$store.getters.getexpiringsoon || 0;
     }
@@ -146,11 +134,9 @@ export default {
     uploadphoto,
     signature
   },
-
   created() {
     document.addEventListener("keyup", this.escapeKeyListener);
   },
-
   destroyed() {
     document.removeEventListener("keyup", this.escapeKeyListener);
   }
@@ -160,58 +146,48 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Roboto");
-
 * {
   position: relative;
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
   /* border: 1px solid black; */
 }
-
 ul {
   padding: 0;
   list-style: none;
   display: flex;
   flex-flow: row;
 }
-
 a {
   cursor: pointer;
 }
-
 ul li {
   list-style: none;
   /* width: 150px; */
   height: 80px;
   margin: 8px;
 }
-
 .container-flex {
   width: 85%;
   display: flex;
   padding-top: 30px;
 }
-
 .first {
   justify-content: flex-start;
   width: 50%;
   flex-wrap: wrap;
 }
-
 .small-screen {
   display: none;
 }
-
 .second {
   justify-content: flex-end;
   width: 50%;
   min-width: 150px;
 }
-
 .second li {
   border-radius: 5%;
 }
-
 .outer-container {
   display: flex;
   width: 100%;
@@ -222,7 +198,6 @@ ul li {
   border: none;
   position: relative;
 }
-
 .signatureChrome::before {
   border-bottom: 2px solid #005cb9;
   border-left: 2px solid #005cb9;
@@ -236,7 +211,6 @@ ul li {
   top: 4px;
   width: 20px;
 }
-
 .signatureChrome_signature {
   height: 52px;
   left: -12px;
@@ -244,20 +218,16 @@ ul li {
   max-width: 244px;
   position: relative;
 }
-
 .main {
   background-color: rgb(244, 244, 244);
   height: 100vh;
 }
-
 .signatureChrome-inverse::before {
   border-color: #fff;
 }
-
 .signatureChrome-inverse {
   color: #fff;
 }
-
 .signatureChrome {
   background: 0 0;
   border: none;
@@ -269,22 +239,18 @@ ul li {
   position: relative;
   text-align: left;
 }
-
 .signature {
   color: #999;
 }
-
 .signature:hover {
   color: #fff;
 }
-
 .sizeXlarge {
   font-size: 22px;
   height: 72px;
   line-height: 72px;
   width: 72px;
 }
-
 .OliveReact-Avatar {
   background-color: #e8edf7;
   background-position: 50%;
@@ -307,7 +273,6 @@ ul li {
   margin-left: 54px;
   cursor: pointer;
 }
-
 .userAction {
   background: rgba(255, 255, 255, 0);
   border: none;
@@ -317,7 +282,6 @@ ul li {
   text-align: left;
   text-decoration: none;
 }
-
 .userAction_number {
   display: block;
   font-size: 35px;
@@ -325,21 +289,17 @@ ul li {
   padding: 0px 32px;
   min-width: 150px;
 }
-
 .userAction_status {
   color: #fff;
   text-align: left;
   line-height: 16px;
   font-size: 15px;
 }
-
 .userActions .userAction + .userAction {
   margin-left: 24px;
 }
-
 .userAction::before {
   background: #fff;
-
   bottom: 0;
   content: "";
   display: block;
@@ -349,7 +309,6 @@ ul li {
   top: 0;
   width: 1px;
 }
-
 .userAction[data-v-6492da79]::before {
   background: #fff;
   bottom: 0;
@@ -360,12 +319,10 @@ ul li {
   top: 0;
   width: 1px;
 }
-
 .container-flex .drop_drop {
   position: relative;
   width: 100%;
 }
-
 .panel-fileDrop {
   border: 1px solid #d9d9d9;
   -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
@@ -377,86 +334,69 @@ ul li {
   width: 100%;
   padding: 2%;
 }
-
 .invalid-checkbox {
   color: red;
 }
-
 .modalavalible {
   background: rgba(38, 38, 38, 0.3);
   overflow: hidden;
 }
-
 .small-screen {
   display: none;
 }
-
 .signature {
   cursor: pointer;
 }
-
 @media only screen and (max-width: 948px) {
   * {
     border: none;
   }
-
   .first {
     display: none;
   }
-
   .second {
     width: 80%;
     justify-content: flex-start;
   }
 }
-
 @media only screen and (max-width: 520px) {
   .container-flex {
     padding: 0px;
   }
-
   .second {
     width: 100%;
     /* border: 1px solid red; */
   }
-
   ul {
     display: flex;
     flex-direction: column;
   }
-
   ul li {
     width: 100%;
     display: flex;
   }
-
   .userAction {
     width: 100%;
     display: flex;
     align-content: space-evenly;
   }
-
   .small-screen {
     display: block;
     align-items: center;
     justify-content: right;
   }
-
   .userAction_status {
     font-weight: bold;
     font-size: 15px;
   }
-
   .userAction_number {
     padding: 0px;
     font-size: 15px;
     font-weight: bold;
   }
-
   .large-screen {
     display: none;
   }
-
   .panel-fileDrop {
     display: none;
   }
