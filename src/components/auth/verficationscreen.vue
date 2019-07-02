@@ -62,12 +62,10 @@
 export default {
   data: function() {
     return {
-      // email:this.$route.params.email,
 
       show: false,
       resendcode:false,
       verify_code: "",
-      // email:this.$route.params.email,
     };
   },
   methods: {
@@ -77,7 +75,6 @@ export default {
         this.resendcode = false;
         console.log(show);
       }, 5000);
-      // this.show= false
     },
 
     submit() {
@@ -90,7 +87,7 @@ export default {
           response => {
             if (response.status == 200) {
               this.show = true;
-              setInterval(() => {
+              setTimeout(() => {
                 this.$router.push("/login");
                 this.show = false;
               }, 2000);

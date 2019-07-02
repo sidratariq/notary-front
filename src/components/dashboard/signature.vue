@@ -10,7 +10,6 @@
       alt="Signature"
     >
 
-    {{signature}}
     <span class="set-color">{{userid}}</span>
   </button>
 </template>
