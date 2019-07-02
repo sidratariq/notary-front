@@ -1,65 +1,58 @@
 <template>
   <button @click="clicked" class="signatureChrome signatureChrome-inverse">
     <span class="set-color">E-Notarized by:</span>
-    <span class="initial-text" id="set-color">Create your Signature</span>
+
+    <span v-show="signature==null" class="initial-text" id="set-color">Create your Signature</span>
+
     <img
-      v-if="signature!=0"
+      v-if="signature!='null'"
       style="position:absolute;top:20px;left:20px; width:70px; height:30px"
       :src="signature"
       class="signatureChrome_signature"
       alt="Signature"
     >
-
-    <span class="set-color">{{userid}}</span>
+    
+    <!-- User id-->
+    <span class="set-color set-userid" style="">{{userid}}</span>
+ 
   </button>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 
-    import {mapActions} from 'vuex'
+export default {
+  methods: {
+    ...mapActions([]),
 
+    clicked() {
+      this.$store.dispatch("changeflag");
+    }
+  },
+  computed: {
+    userid: function() {
+      return this.$store.getters.getuserid;
+    },
 
-        export default {
-    
-
-            methods: {
-
-                    ...mapActions(
-                        [
-                            // 'changeflag'
-                        ]
-                    ),
-                    clicked(){
-                        this.$store.dispatch('changeflag')
-                    }                        
-                    },
-                computed:{
-                userid:function(){
-                    //  getuserid
-                    return this.$store.getters.getuserid
-
-                },
-                  signature: function() {
-      // if (this.$store.getters.getsignsrc != undefined) {
+    signature: function() {
+      if (this.$store.getters.getsignature == "default") {
+        return null;
+      } else {
         return "http://localhost:8000/" + this.$store.getters.getsignature;
-      
+      }
     }
   }
-            
-}
+};
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Parisienne");
 
 * {
-  /* border: 1px solid black; */
 }
 
 .signatureChrome::before {
   border-bottom: 2px solid #005cb9;
-  /* border-left: 2px solid #005cb9; */
-  /* border-radius: 5px 0 0 5px; */
   border-top: 2px solid #005cb9;
   content: "";
   display: block;
@@ -87,6 +80,7 @@
 #set-color {
   color: black;
 }
+
 .initial-text {
   display: block;
   font-size: 18px;
@@ -97,15 +91,18 @@
   font-family: "Parisienne", cursive;
 }
 
-/* *{
-        color: #bad3f8;
-    } */
-
 *:hover {
   color: #bad3f8;
 }
 
 .signatureChrome:hover {
   color: #ffffff;
+}
+
+.set-userid{
+ position:absolute;
+ width: 220px; 
+ top:48px;
+ left:22px
 }
 </style>

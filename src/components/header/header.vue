@@ -1,5 +1,8 @@
 <template>
+
+  <!-- don't show the  -->
   <header v-if="((this.$route.path)!='/login')">
+
     <div class="logo">
       <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
       <img
@@ -60,7 +63,7 @@
 
     <div
       class="dropdown drop"
-      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' &&this.$route.path!='/forget')"
+      v-show="(this.$route.path !='/signup' && this.$route.path !='/commingsoon' &&this.$route.path!='/forget' && this.$route.path !='/verify')"
     >
       <button
         class="dropdown float-right sethover"
