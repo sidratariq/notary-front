@@ -1,5 +1,7 @@
           <template>
   <div class="row makescroll">
+    <!-- {{usercontracts}} -->
+    <!-- <button @click="deletemethod">delete</button> -->
     <table style="width:100%;">
       <!-- headings side -->
       <tr>
@@ -38,7 +40,6 @@
         class="setborder"
         :class="{'clicked':checked}"
       >
-      
         <!-- status__2 -->
         <td @click="routechange(select.Creator)" style="padding:2px">
           <span style="padding:4px">
@@ -78,8 +79,6 @@
 
         <!-- status__4 status  -->
         <td @click="routechange(select.ContractID)">
-          <!-- {{select.Blockchain}} -->
-          <!-- <p style="font-size:13px"> -->
           <i
             v-if="select.Blockchain ==1"
             class="fab fa-bitcoin"
@@ -90,7 +89,7 @@
             class="fab fa-bitcoin"
             style="color:red;font-size:23px;transform: rotate(-16deg);"
           ></i>
-          
+
           <!-- </p> -->
         </td>
 
@@ -114,9 +113,7 @@
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >
-            {{select.Status=='Completed'?'Move':'Sign'}}
-            </button>
+            >{{select.Status=='Completed'?'Move':'Sign'}}</button>
 
             <!--drop down menu  -->
             <div class="dropdown-menu">
@@ -134,33 +131,35 @@
                     v-if="avalible==false"
                     class="dropdown-item date padding"
                     @click="ExportAsCsv(select.ContractID)"
-                  >Export As CSV</a> -->
+                  >Export As CSV</a>-->
 
-                  <a @click="routechange(select.ContractID)" class="dropdown-item date padding">
-                    View Detail
-                  </a>
+                  <a
+                    @click="routechange(select.ContractID)"
+                    class="dropdown-item date padding"
+                  >View Detail</a>
 
                   <a class="dropdown-item date padding" href="#">Save in Blockchain</a>
 
                   <a
                     v-if="$route.query.view == 'Draft'"
-                    @click="DeleteDraft(select.ContractID)"
+                    @click="DeleteDraft(select.ContractID,key )"
                     class="dropdown-item date padding"
                     href="#"
                   >Delete</a>
 
                   <a v-if="avalible " class="dropdown-item date padding" href="#">Continue</a>
 
-                  <a class="dropdown-item date padding" v-if="select.Status!='Completed' && select.Status!='DRAFT'" href="#">Resend</a>
+                  <a
+                    class="dropdown-item date padding"
+                    v-if="select.Status!='Completed' && select.Status!='DRAFT'"
+                    href="#"
+                  >Resend</a>
 
                   <a
                     v-if="$route.query.view == 'Actions Required'"
                     class="dropdown-item date padding"
                     href="#"
                   >Decline</a>
-
-                  <!--  -->
-                  <!--  -->
                 </div>
               </div>
             </div>
@@ -217,8 +216,6 @@ export default {
   },
 
   methods: {
- 
-
     routechange(args) {
       let token = this.token;
       let store = this.$store;
@@ -249,6 +246,12 @@ export default {
       console.log(args);
     },
 
+     deletemethod(){
+      
+    },
+
+   
+
     showdetail(contractid) {
       console.log("contract id" + contractid);
     },
@@ -263,7 +266,6 @@ export default {
       }
     },
 
-
     // Moving contracts between the folders
     MoveContract(arg1, arg2) {
       let token = this.token;
@@ -274,8 +276,8 @@ export default {
         .post(
           "http://localhost:8000/moveContract",
           {
-            'FolderID': folderid,
-            'ContractID': contractid
+            FolderID: folderid,
+            ContractID: contractid
           },
           {
             headers: {
@@ -297,8 +299,9 @@ export default {
     },
 
     // DeleteDraft contract
-    DeleteDraft(args) {
-      console.log(args);
+    // args1 contractid
+    // args2 index of array
+    DeleteDraft(args1, args2) {
 
       let token = this.token;
 
@@ -306,7 +309,7 @@ export default {
         .post(
           "http://localhost:8000/delDraft",
           {
-            ContractID: args
+            ContractID: args1
           },
           {
             headers: {
@@ -317,14 +320,15 @@ export default {
         .then(res => {
           console.log(res);
           if (res.status == 200) {
-            console.log("updated")
+            console.log("updated");
+            this.$store.dispatch('act_delete',args2)
+
             console.log(res);
-            alert("updated");
           }
           return res;
         })
         .catch(error => {
-          console.log("not updated")
+          console.log("not updated");
           console.log(error);
         });
     }
@@ -346,9 +350,10 @@ export default {
     },
 
     usercontracts() {
-      let haha = this.$store.getters.getcontractdata;
-      return haha;
+
+      return this.$store.getters.getcontractdata;
     },
+
     token: function() {
       return this.$store.getters.getToken;
     },
