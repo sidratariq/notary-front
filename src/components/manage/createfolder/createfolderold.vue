@@ -10,7 +10,6 @@
           <!-- {{foldervalue}} -->
           FOLDERS
           <!-- <button @click="CreateNewFolder()"  class="btn btn-sm btn-primary">+</button> -->
-
           <button
             type="button"
             class="btn btn-sm setright"
@@ -72,6 +71,7 @@
                   </div>
                   <div class="col-7">
                     <span class="setlayout">{{folder.FolderName}}</span>
+
                   </div>
 
                   <!-- <div class="col-2">
@@ -82,7 +82,7 @@
                           data-toggle="dropdown"
                           aria-haspopup="true"
                           aria-expanded="false"
-                          class="fas fa-ellipsis-v setright foldericon setdropdown"
+                          class="fas fa-ellipsis-v setright f oldericon setdropdown"
                           style="padding: 4px;"
                         ></i>
                         <div class="dropdown-menu">
@@ -96,7 +96,7 @@
                         </div>
                       </div>
                     </span>
-                  </div>-->
+                  </div> -->
                 </div>
               </router-link>
             </li>
@@ -109,7 +109,7 @@
         
   <script>
 export default {
-  name: "HelloWorld",
+
   data() {
     return {
       avalible: false,
@@ -131,7 +131,9 @@ export default {
   methods: {
     CreateNewFolder() {
       let foldername = this.foldername;
+      let store = this.$store;
       let token = this.token;
+
       if (foldername != "") {
         this.$http
           .post(
@@ -146,13 +148,13 @@ export default {
           .then(res => {
             if (res.status == 200) {
               console.log(res);
-              // store.dispatch('act_recipients',recipient)
-              alert("code red");
+              store.dispatch("addnewfolder",'okay');          
+
             }
             return res;
           })
           .catch(error => {
-            alert(error);
+            console.log(error);
           });
       }
 
@@ -190,9 +192,9 @@ export default {
           console.log(error);
         });
     },
+
     getcontractlist(args) {
       // console.log(args);
-      alert(args);
       let token = this.token;
       console.log(token);
       let store = this.$store;
@@ -208,7 +210,6 @@ export default {
           }
         )
         .then(res => {
-          alert(res.bodyText);
 
           contracts = JSON.parse(res.bodyText);
 

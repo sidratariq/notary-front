@@ -23,10 +23,10 @@ const mutations = {
 const actions = {
     updatefolder:({commit},payload)=>{
         commit('setfolder',payload)
-        // console.log(state.flag)
     },
 
-    addnewfolder:()=>{
+    addnewfolder:({commit},payload)=>{
+        console.log(payload+"i am empty")
         commit('addfolder',payload)
     }
 };

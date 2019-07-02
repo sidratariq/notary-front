@@ -1,8 +1,6 @@
 <template>
-
   <!-- don't show the  -->
   <header v-if="((this.$route.path)!='/login')">
-
     <div class="logo">
       <!-- <img style="z-index=999" src="../../assets/icons/logo.svg"  -->
       <img
@@ -123,23 +121,15 @@ export default {
           }
         })
         .then(res => {
-          // contracts = JSON.parse();
-          // store.dispatch("act_contractdata", res.bodyText.InboxContracts);
-         
-
-
           if (res.status == 200) {
-             let data = JSON.parse(res.bodyText);
-          let folderlist =data.FolderList
-          
+            let data = JSON.parse(res.bodyText);
+            console.log(res.bodyText)
+            let folderlist = data.FolderList;
 
-          let inboxcontracts = data.InboxContracts;
-          console.log(folderlist + "folder");
-          console.log(inboxcontracts + "contracts");
+            let inboxcontracts = data.InboxContracts;
 
-
-          store.dispatch("updatefolder", folderlist);
-          store.dispatch("act_contractdata", inboxcontracts);
+            store.dispatch("updatefolder", folderlist);
+            store.dispatch("act_contractdata", inboxcontracts);
           }
           return res.json();
         })
